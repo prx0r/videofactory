@@ -1,0 +1,98 @@
+{
+  "canonical": "videofactory/DATATYPES.json",
+  "version": "1.0.0",
+  "date": "2026-11-05",
+  "note": "Every datatype in the teaching-video pipeline: what each transformation is FOR, its exact shape, who produces it, what validates it, and the gate rule. A new artifact adheres to the standard iff it validates under its validator AND honors its gate rule. Meta-check in check.py.",
+  "transforms": [
+    {
+      "id": "source-chapter",
+      "stage": 0,
+      "purpose": "Pin the exact prose under production. Every downstream claim traces to these bytes.",
+      "fields": {"required": ["markdown", "sha16", "word_count"], "optional": []},
+      "producer": "split_chapters.py + cleanup_chapters.py (idempotent, --only-scoped)",
+      "validator": "diff --stat after every run; blanks intact",
+      "gate_rule": "Blanks collapsed, prose edited, or frozen chapter touched = BLOCKED.",
+      "consumers": ["blocks"]
+    },
+    {
+      "id": "blocks",
+      "stage": 1,
+      "purpose": "Assign every paragraph a voice and direction. The renderer never decides, only resolves.",
+      "fields": {"required": ["id", "section", "type", "voice", "text", "directed"], "optional": ["words_per_voice", "est_min"]},
+      "producer": "build_storyboard.py + overrides (text-anchored remap only)",
+      "validator": "storyboard validator 0 errors 0 warnings; M18 three-part remap proof",
+      "gate_rule": "UNCAST defaults, split paragraphs, or hand-edited overrides = BLOCKED.",
+      "consumers": ["audio-groups", "alignment", "holds", "video"]
+    },
+    {
+      "id": "direction-v1",
+      "stage": 1,
+      "purpose": "Voice the line well on free Fish S2: beats, title weight, seat tags. Tags prefix only; bodies never rewritten.",
+      "fields": {"required": ["directed", "allowlist_tags", "tag_cap_3"], "optional": []},
+      "producer": "apply_direction (BEAT_LEXICON + colon-enders + per-bid forcing)",
+      "validator": "audit_direction (stripped directed == original)",
+      "gate_rule": "Body rewrite, tag >3, or S2 migration without byte-proof = BLOCKED.",
+      "consumers": ["audio-groups"]
+    },
+    {
+      "id": "glossary",
+      "stage": 2,
+      "purpose": "Citation Deva + IAST + literal + final per term. Display text never comes from a folded key.",
+      "fields": {"required": ["key_folded_ascii", "deva_citation", "gloss", "status"], "optional": ["literal", "literal_status", "note"]},
+      "producer": "mine_glossary.py (scoped) + owner bulk-confirm",
+      "validator": "V5 (confirmed terms carry citation Deva); M15/M23",
+      "gate_rule": "Confirmed term without citation Deva, or machine-derived Deva = BLOCKED.",
+      "consumers": ["holds", "video"]
+    },
+    {
+      "id": "approval",
+      "stage": 3,
+      "purpose": "Owner act pinning exact inputs + builder version. Revocable by deleting the file.",
+      "fields": {"required": ["storyboard_sha", "glossary_sha", "builder_version", "order_cite"], "optional": []},
+      "producer": "engineer records owner message",
+      "validator": "validate_bundle (SHA recompute + version match)",
+      "gate_rule": "No approval, stale SHA, or self-granted = no render, ever.",
+      "consumers": ["audio-groups", "video"]
+    },
+    {
+      "id": "audio-group",
+      "stage": 4,
+      "purpose": "One TTS call per same-section same-voice group (prosody over beats). Re-runs are cache hits.",
+      "fields": {"required": ["file", "voice", "chars", "bids", "sha", "dur", "src"], "optional": ["phoneme", "gain_db"]},
+      "producer": "render_chapter.py (Fish s2.1-pro-free only; human clips for singleton phonemes)",
+      "validator": "content-hash hit (size + sha256); receipts append-only; -21dB mean, man 75%",
+      "gate_rule": "Paid model string, missing group at assemble, or unwitnessed call = BLOCKED.",
+      "consumers": ["assembly", "alignment"]
+    },
+    {
+      "id": "alignment",
+      "stage": 5,
+      "purpose": "Word-onset timings for karaoke. Measured, never distributed.",
+      "fields": {"required": ["bid", "t_on", "t_off", "mms"], "optional": []},
+      "producer": "align_group.js (MMS; en-IN narration, sa-IN chant; folding for aligner only)",
+      "validator": "1:1 row map; mean >= 0.85; zero non-monotonic; 200-threshold chunk routing",
+      "gate_rule": "Mean under bar, nonmono, or stale rows (opath deleted pre-run) = stop the group.",
+      "consumers": ["video"]
+    },
+    {
+      "id": "video-part",
+      "stage": 6,
+      "purpose": "Group-aligned mp4 chunk + proof pack. Review unit; chapter mp4 is the ship unit.",
+      "fields": {"required": ["mp4", "render_meta", "subs", "proof_pack", "review_record"], "optional": []},
+      "producer": "run_blocks.py + prove_clip.py (one video build at a time, lock as code)",
+      "validator": "gate_visual machine lines + eye read with filed notes + H6 word-row match",
+      "gate_rule": "Red proof, missing meta, or unwitnessed frames = no concat.",
+      "consumers": ["assembly-video", "verify"]
+    },
+    {
+      "id": "sealed-video",
+      "stage": 7,
+      "purpose": "One canonical file per deliverable, provably what its evidence claims.",
+      "fields": {"required": ["mp4_sha256", "verify_report", "voice_energy", "qwen_disposition", "ears_record"], "optional": []},
+      "producer": "concat proven parts; verify; voices; Qwen taste-only; owner ears; golden seal",
+      "validator": "golden tolerances (duration 2s, cue order/drift, white 5pp, cuts)",
+      "gate_rule": "Unbound meta, stale part, model-verdict-as-gate, or new R2 root key = BLOCKED.",
+      "consumers": ["site"]
+    }
+  ]
+}

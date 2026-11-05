@@ -1,0 +1,48 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Frozen storyboard",
+  "type": "object",
+  "required": ["title", "blocks", "validation"],
+  "additionalProperties": false,
+  "properties": {
+    "title": {"type": "string", "pattern": "\\S"},
+    "blocks": {
+      "type": "array", "minItems": 2,
+      "items": {
+        "type": "object",
+        "required": ["id", "section", "type", "voice", "text"],
+        "additionalProperties": false,
+        "properties": {
+          "id": {"type": "string", "pattern": "^b(_opener|[1-9][0-9]*)$"},
+          "section": {"type": "string", "pattern": "\\S"},
+          "type": {"enum": ["opener", "title", "verse", "narration", "dialogue", "figure", "label", "meta", "trailer"]},
+          "voice": {"enum": ["none", "granny", "man", "verse"]},
+          "text": {"type": "string", "pattern": "\\S"},
+          "directed": {"type": "string", "pattern": "\\S"},
+          "asset": {"type": "string", "pattern": "\\S"},
+          "mix": {"type": "string", "pattern": "\\S"}
+        },
+        "allOf": [
+          {"if": {"properties": {"type": {"const": "opener"}}, "required": ["type"]},
+           "then": {"required": ["asset", "mix"], "properties": {"id": {"const": "b_opener"}, "voice": {"const": "none"}}},
+           "else": {"required": ["directed"]}}
+        ]
+      }
+    },
+    "validation": {
+      "type": "object", "required": ["errors", "warnings"], "additionalProperties": false,
+      "properties": {
+        "errors": {"type": "array", "items": {"type": "string"}},
+        "warnings": {"type": "array", "items": {"type": "string"}}
+      }
+    },
+    "totals": {
+      "type": "object", "required": ["blocks", "words_per_voice", "est_min"], "additionalProperties": false,
+      "properties": {
+        "blocks": {"type": "integer", "minimum": 0},
+        "words_per_voice": {"type": "object", "additionalProperties": {"type": "integer", "minimum": 0}},
+        "est_min": {"type": "object", "additionalProperties": {"type": "number", "minimum": 0}}
+      }
+    }
+  }
+}

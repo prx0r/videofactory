@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Current glossary",
+  "type": "object",
+  "minProperties": 1,
+  "propertyNames": {"pattern": "^[a-z0-9-]+$"},
+  "additionalProperties": {
+    "type": "object",
+    "required": ["deva", "gloss", "status"],
+    "additionalProperties": false,
+    "properties": {
+      "deva": {"type": "string"},
+      "gloss": {"type": "string"},
+      "status": {"enum": ["proposed", "confirmed"]},
+      "note": {"type": "string"},
+      "cue_blocks": {"type": "array", "items": {"type": "string", "pattern": "^b[1-9][0-9]*$"}},
+      "literal": {"type": "string"},
+      "literal_status": {"enum": ["proposed", "confirmed"]},
+      "deva_candidate_single": {"type": "string"},
+      "deva_candidates": {
+        "type": "array", "items": {
+          "type": "object", "required": ["iast", "deva"], "additionalProperties": false,
+          "properties": {"iast": {"type": "string", "pattern": "\\S"}, "deva": {"type": "string", "pattern": "\\S"}}
+        }
+      }
+    },
+    "dependentRequired": {"literal": ["literal_status"], "literal_status": ["literal"]},
+    "allOf": [
+      {"if": {"properties": {"status": {"const": "confirmed"}}, "required": ["status"]},
+       "then": {"properties": {"deva": {"pattern": "[\\u0900-\\u097f]"}, "gloss": {"pattern": "\\S"}}}},
+      {"if": {"properties": {"literal_status": {"const": "confirmed"}}, "required": ["literal_status"]},
+       "then": {"properties": {"literal": {"pattern": "\\S"}}}}
+    ]
+  }
+}

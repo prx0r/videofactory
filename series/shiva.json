@@ -1,0 +1,9 @@
+{
+  "series": "shiva",
+  "repo": "~/tantrasara",
+  "lane_dir": "shiva",
+  "renders": "~/vol/shiva/renders",
+  "r2": "r2:svread-audio/shiva",
+  "review_r2": "r2:svread-audio/shiva/review",
+  "note": "78 units (s00 intro + s01-s77) under shiva/. Shares builders via holds.lane_for routing. Render paths parametrization open per NEW-LANE."
+}

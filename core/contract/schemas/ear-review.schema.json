@@ -1,0 +1,12 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Owner listening sign-off for one exact video",
+  "type": "object", "additionalProperties": false,
+  "required": ["version", "unit", "reviewer_role", "reviewed_on", "decision", "video_sha256", "evidence"],
+  "properties": {
+    "version": {"const": 1}, "unit": {"type": "string", "pattern": "\\S"},
+    "reviewer_role": {"const": "owner"}, "reviewed_on": {"type": "string", "format": "date"},
+    "decision": {"const": "approved"}, "video_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "evidence": {"type": "string", "minLength": 10, "pattern": "\\S"}
+  }
+}

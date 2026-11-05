@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object", "additionalProperties": false,
+  "required": ["version", "lane", "unit", "storyboard_sha256", "glossary_sha256", "approval_sha256", "video_sha256", "meta_sha256", "subs_sha256", "gate_sha256", "machine_passed", "frames"],
+  "properties": {
+    "version": {"const": 1}, "lane": {"enum": ["tantrasara", "shiva"]}, "unit": {"type": "string", "pattern": "\\S"},
+    "storyboard_sha256": {"$ref": "#/$defs/hash"}, "glossary_sha256": {"$ref": "#/$defs/hash"},
+    "approval_sha256": {"$ref": "#/$defs/hash"}, "video_sha256": {"$ref": "#/$defs/hash"},
+    "meta_sha256": {"$ref": "#/$defs/hash"}, "subs_sha256": {"$ref": "#/$defs/hash"}, "gate_sha256": {"$ref": "#/$defs/hash"},
+    "machine_passed": {"type": "boolean"},
+    "frames": {"type": "array", "minItems": 1, "items": {"type": "object", "additionalProperties": false,
+      "required": ["file", "at", "expected", "sha256"],
+      "properties": {"file": {"type": "string", "pattern": "^[a-zA-Z0-9_-]+\\.png$"},
+        "at": {"type": "number", "minimum": 0}, "expected": {"type": "string", "pattern": "\\S"}, "sha256": {"$ref": "#/$defs/hash"}}}}
+  },
+  "$defs": {"hash": {"type": "string", "pattern": "^[0-9a-f]{64}$"}}
+}

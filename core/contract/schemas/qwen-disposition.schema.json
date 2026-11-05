@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object", "additionalProperties": false,
+  "required": ["version", "report_sha256", "reviewer", "reviewed_on", "findings"],
+  "properties": {
+    "version": {"const": 1}, "report_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "reviewer": {"type": "string", "minLength": 2, "pattern": "\\S"},
+    "reviewed_on": {"type": "string", "format": "date"},
+    "findings": {"type": "array", "items": {"type": "object", "additionalProperties": false,
+      "required": ["section", "index", "status", "evidence"],
+      "properties": {
+        "section": {"enum": ["beats", "timings", "audio", "script", "niggles"]},
+        "index": {"type": "integer", "minimum": 0},
+        "status": {"enum": ["dismissed", "unreviewed", "unresolved"]},
+        "evidence": {"type": "string", "minLength": 10, "pattern": "\\S"}
+      }
+    }}
+  }
+}

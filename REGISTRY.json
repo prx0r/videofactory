@@ -1,0 +1,120 @@
+{
+ "goal": "video factory proving parity with the frozen series system, then becoming the live path",
+ "mode": "build-only (never renders production; never writes series repos)",
+ "series": {
+  "tantrasara": {
+   "stage": "referenced-read-only",
+   "units": 22
+  },
+  "shiva": {
+   "stage": "referenced-read-only",
+   "units": 78
+  }
+ },
+ "milestones": [
+  {
+   "id": "scaffold",
+   "status": "done"
+  },
+  {
+   "id": "structure-import",
+   "status": "done"
+  },
+  {
+   "id": "builders-ported",
+   "status": "done"
+  },
+  {
+   "id": "paths-centralized",
+   "status": "done"
+  },
+  {
+   "id": "entry-gates",
+   "status": "done-compat-mode"
+  },
+  {
+   "id": "pure-core-tests",
+   "status": "done"
+  },
+  {
+   "id": "contract-suite-green",
+   "status": "done-47-47"
+  },
+  {
+   "id": "docs",
+   "status": "in-progress"
+  },
+  {
+   "id": "read-only-audit",
+   "status": "pending"
+  },
+  {
+   "id": "dry-run-parity",
+   "status": "pending"
+  },
+  {
+   "id": "strict-mode",
+   "status": "pending-owner"
+  },
+  {
+   "id": "cutover",
+   "status": "pending-owner"
+  },
+  {
+   "id": "shiva-lane-test",
+   "status": "done"
+  },
+  {
+   "id": "law-ported-18-docs",
+   "status": "done"
+  },
+  {
+   "id": "units-conventions",
+   "status": "done"
+  },
+  {
+   "id": "series-scaffold",
+   "status": "done-tested"
+  },
+  {
+   "id": "assets-centralized",
+   "status": "done"
+  },
+  {
+   "id": "hold-registry",
+   "status": "done-tested"
+  },
+  {
+   "id": "suite-54-green",
+   "status": "done"
+  },
+  {
+   "id": "sleepdraw-engine",
+   "status": "done-tested-synthetic"
+  },
+  {
+   "id": "suite-60-green",
+   "status": "done"
+  }
+ ],
+ "locks": {},
+ "processes": {},
+ "rules": [
+  "never write outside ~/videofactory except lane-configured outputs (there are none yet)",
+  "never import production credentials; free-tier pin verified by gate, not by calling",
+  "one concern per commit when this becomes a repo"
+ ],
+ "shiva_lane_test": {
+  "date": "2026-11-05",
+  "gate_s01": "GREEN (after lane-aware glossary fix)",
+  "gate_s00": "RED H1 only (intro 96s by nature \u2014 data state, not defect)",
+  "sheets_s01": "4 holds, series art fallback correct, numeral+title+Deva+IAST correct",
+  "dry_run_78": "78/78 plan clean, 711 groups would render (all unrendered, consistent)",
+  "live_audio_probe": "2/2 Fish calls ok to isolated root, section slugs correct, volume untouched",
+  "video_probe": "SKIPPED \u2014 video lock held by ch08/ch09 finish (one-video law); factory build_clip code-identical to proven frozen builder modulo paths/gates; H6 validated against its output",
+  "factory_fixes": [
+   "gate_storyboard lane-aware glossary",
+   "render_holds lane-titled sheets"
+  ]
+ }
+}

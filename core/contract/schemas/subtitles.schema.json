@@ -1,0 +1,11 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "array", "minItems": 1,
+  "items": {"type": "object", "additionalProperties": false, "required": ["bid", "t", "w", "s"],
+    "properties": {
+      "bid": {"type": "string", "pattern": "^b[1-9][0-9]*$"},
+      "t": {"type": "number", "minimum": 0},
+      "w": {"type": "string", "pattern": "\\S"}, "s": {"type": "string"}
+    }
+  }
+}

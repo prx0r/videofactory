@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Reviewed chunk assembly receipt",
+  "type": "object", "additionalProperties": false,
+  "required": ["version", "storyboard_sha256", "video_sha256", "parts"],
+  "properties": {
+    "version": {"const": 1}, "storyboard_sha256": {"$ref": "#/$defs/hash"}, "video_sha256": {"$ref": "#/$defs/hash"},
+    "parts": {"type": "array", "minItems": 1, "items": {"type": "object", "additionalProperties": false,
+      "required": ["video", "video_sha256", "proof_dir", "manifest_sha256", "review_sha256"],
+      "properties": {
+        "video": {"type": "string", "pattern": "\\S"}, "video_sha256": {"$ref": "#/$defs/hash"},
+        "proof_dir": {"type": "string", "pattern": "\\S"}, "manifest_sha256": {"$ref": "#/$defs/hash"},
+        "review_sha256": {"$ref": "#/$defs/hash"}
+      }
+    }}
+  },
+  "$defs": {"hash": {"type": "string", "pattern": "^[0-9a-f]{64}$"}}
+}

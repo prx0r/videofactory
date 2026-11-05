@@ -1,0 +1,3 @@
+-r requirements-contract.txt
+Pillow>=10,<14
+indic-transliteration>=2.3,<3

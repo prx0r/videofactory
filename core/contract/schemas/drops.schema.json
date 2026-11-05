@@ -1,0 +1,12 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Filed impact drops",
+  "type": "object", "propertyNames": {"pattern": "^b[1-9][0-9]*$"},
+  "additionalProperties": {
+    "type": "object", "required": ["pause", "why"], "additionalProperties": false,
+    "properties": {
+      "pause": {"type": "number", "exclusiveMinimum": 0},
+      "why": {"type": "string", "pattern": "\\S"}
+    }
+  }
+}
