@@ -47,7 +47,7 @@ wait only where law says the owner decides. Revocable by deleting files.
 
 ## The factory rule
 
-Series are lanes, never forks: series/*.json points at data; builders stay
+Series are lanes, never forks: projects/*/project.json points at data, lane plugins own unit semantics; builders stay
 single-copy under core/. A new series follows docs/NEW-LANE (scaffold →
 intake → render → wire 12 lines). The frozen series repos are read-only
 inputs until parity is proven — this factory never writes outside its own
