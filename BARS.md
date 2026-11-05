@@ -92,3 +92,9 @@ the law.
     The complete frame shows the full image; progress is measured between
     two word onsets, never estimated. Frames are transient; mp4+meta+subs
     persist.
+29. Overlay clips play muted on the mini canvas (centered 1280x660, above
+    subtitles) between two onsets, then hold their last frame like a
+    persist. Filed like draws {start, asset mp4, complete, clear, why};
+    used sparingly, for effect. The mix stays ours — clip audio never
+    renders. Pre-rendered once (scaled, looped/trimmed, 15fps); frames
+    transient like all motion.

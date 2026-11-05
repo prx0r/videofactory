@@ -19,6 +19,9 @@ FR = _vf.fonts()['gloss']
 FE = _vf.fonts()['subtitle']
 SUB_Y = 860
 SAFE_MARGIN = 85  # card ink stays 85px+ inside frame edges, above SUB_Y
+CANVAS_W, CANVAS_H = 1280, 660  # mini canvas for overlay clips, centered safe
+CANVAS_X = (W - CANVAS_W) // 2
+CANVAS_Y = 90 + (SUB_Y - 90 - CANVAS_H) // 2
 
 _HOLD_RENDERERS = {}  # kind -> fn(d, im, hold, sub_text, glossary)
 
@@ -235,6 +238,46 @@ def draw_progress(base_im, asset_path, p):
     p = min(1.0, max(0.0, p))
     ground = Image.new('RGB', asset.size, LIGHT)
     im.paste(Image.blend(ground, asset, p), (x, y))
+    return im
+
+
+def clips_for(sb_path):
+    """Owner-called overlay clips: {start_bid: {asset, complete_bid,
+    clear=fade|cut, fade=seconds, why}}. A muted video plays on the mini
+    canvas (centered, 1280x660, above subtitles) between the two onsets,
+    then its last frame holds like a persist until the next cue/chant/
+    tone-break. Audio is NEVER carried (muted by construction — the mix
+    stays ours). why is required — unjustified motion never renders. Spec
+    lives beside the drops file (clips_chNN.json / shiva clips_sNN.json).
+    Used sparingly, for effect."""
+    import json, os
+    lane = lane_for(sb_path)
+    dp = os.path.join(os.path.dirname(lane['drops']),
+                      os.path.basename(lane['drops']).replace('drops_', 'clips_'))
+    if not os.path.exists(dp):
+        return {}
+    d = json.load(open(dp, encoding='utf-8'))
+    for bid, spec in d.items():
+        assert isinstance(spec, dict) and spec.get('asset'), f"clip {bid}: needs an asset mp4 path"
+        assert spec.get('complete_bid'), f"clip {bid}: needs complete_bid (span end onset)"
+        assert spec.get('clear', 'cut') in ('fade', 'cut'), f"clip {bid}: clear is fade|cut"
+        assert float(spec.get('fade', 1.5)) > 0, f"clip {bid}: fade seconds must be > 0"
+        assert (spec.get('why') or '').strip(), f"clip {bid}: needs a why — unjustified motion never renders"
+    return d
+
+
+def overlay_paste(base_im, frame_im, q=1.0):
+    """Paste one pre-rendered canvas frame (exactly CANVAS_W x CANVAS_H)
+    centered-safe; q fades it toward white for fade clearings."""
+    from PIL import Image
+    assert frame_im.size == (CANVAS_W, CANVAS_H), f'canvas frame must be {CANVAS_W}x{CANVAS_H}'
+    im = base_im.copy()
+    if q >= 1.0:
+        im.paste(frame_im, (CANVAS_X, CANVAS_Y))
+    else:
+        ground = Image.new('RGB', frame_im.size, LIGHT)
+        im.paste(Image.blend(frame_im, ground, min(1.0, max(0.0, 1.0 - q))), (CANVAS_X, CANVAS_Y))
+    assert_safe(CANVAS_Y + CANVAS_H, 'overlay canvas')
     return im
 
 
