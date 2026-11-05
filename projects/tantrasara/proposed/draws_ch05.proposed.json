@@ -1,0 +1,107 @@
+{
+ "meta": {
+  "lane": "tantrasara",
+  "unit": "05",
+  "priority": "normal",
+  "white_map_stuck": [],
+  "status": "machine-proposed-unreviewed"
+ },
+ "draws": {
+  "b13": {
+   "asset": null,
+   "complete_bid": "b_opener",
+   "clear": "fade",
+   "fade": 1.5,
+   "why": "tone-break white at b13 (Tantrasāra — Chapter 5): sealed art holds the breath — “I am infinite consciousness.”",
+   "sealed_prompt": "Black ink sketch on warm white paper, hand-drawn storybook etching: “I am infinite. The final snapshot — the end-state, freedom rendered, always the arrival. One world: all elements in a single wide landscape, dense etched detail on the subject, vast breathing white space everywhere else. Rasa in bands: roots and web below, horizon and thread across the middle, the living subject last, breath between bands. All greyscale, luminous accents as densest ink. No text, no letters, no numbers, no words.",
+   "preset": "lora2-inv",
+   "preset_sha256": "46caa7f7a71ee0fc67970ec5bf3d037835a80087935544b971fbf001ee2de7bf",
+   "bank": null,
+   "status": "machine-proposed-unreviewed"
+  },
+  "b120": {
+   "asset": null,
+   "complete_bid": "b_opener",
+   "clear": "fade",
+   "fade": 1.5,
+   "why": "tone-break white at b120 (Tantrasāra — Chapter 5): sealed art holds the breath — “There’s me, and there’s a flower.”",
+   "sealed_prompt": "Black ink sketch on warm white paper, hand-drawn storybook etching: “There’s me, and there’s a. The final snapshot — the end-state, freedom rendered, always the arrival. One world: all elements in a single wide landscape, dense etched detail on the subject, vast breathing white space everywhere else. Rasa in bands: roots and web below, horizon and thread across the middle, the living subject last, breath between bands. All greyscale, luminous accents as densest ink. No text, no letters, no numbers, no words.",
+   "preset": "lora2-inv",
+   "preset_sha256": "46caa7f7a71ee0fc67970ec5bf3d037835a80087935544b971fbf001ee2de7bf",
+   "bank": null,
+   "status": "machine-proposed-unreviewed"
+  },
+  "b161": {
+   "asset": null,
+   "complete_bid": "b_opener",
+   "clear": "fade",
+   "fade": 1.5,
+   "why": "tone-break white at b161 (Tantrasāra — Chapter 5): sealed art holds the breath — “Right, lovely. Flower dissolved. Job done.”",
+   "sealed_prompt": "Black ink sketch on warm white paper, hand-drawn storybook etching: “Right, lovely. Flower dissolved. Job. The final snapshot — the end-state, freedom rendered, always the arrival. One world: all elements in a single wide landscape, dense etched detail on the subject, vast breathing white space everywhere else. Rasa in bands: roots and web below, horizon and thread across the middle, the living subject last, breath between bands. All greyscale, luminous accents as densest ink. No text, no letters, no numbers, no words.",
+   "preset": "lora2-inv",
+   "preset_sha256": "46caa7f7a71ee0fc67970ec5bf3d037835a80087935544b971fbf001ee2de7bf",
+   "bank": null,
+   "status": "machine-proposed-unreviewed"
+  },
+  "b249": {
+   "asset": null,
+   "complete_bid": "b_opener",
+   "clear": "fade",
+   "fade": 1.5,
+   "why": "tone-break white at b249 (Tantrasāra — Chapter 5): sealed art holds the breath — “I’m here, and the thing is over there.”",
+   "sealed_prompt": "Black ink sketch on warm white paper, hand-drawn storybook etching: “I’m here, and the thing is over. The final snapshot — the end-state, freedom rendered, always the arrival. One world: all elements in a single wide landscape, dense etched detail on the subject, vast breathing white space everywhere else. Rasa in bands: roots and web below, horizon and thread across the middle, the living subject last, breath between bands. All greyscale, luminous accents as densest ink. No text, no letters, no numbers, no words.",
+   "preset": "lora2-inv",
+   "preset_sha256": "46caa7f7a71ee0fc67970ec5bf3d037835a80087935544b971fbf001ee2de7bf",
+   "bank": null,
+   "status": "machine-proposed-unreviewed"
+  },
+  "b270": {
+   "asset": null,
+   "complete_bid": "b_opener",
+   "clear": "fade",
+   "fade": 1.5,
+   "why": "tone-break white at b270 (Tantrasāra — Chapter 5): sealed art holds the breath — “I’ll be complete when I get this.”",
+   "sealed_prompt": "Black ink sketch on warm white paper, hand-drawn storybook etching: “I’ll be complete when I get. The final snapshot — the end-state, freedom rendered, always the arrival. One world: all elements in a single wide landscape, dense etched detail on the subject, vast breathing white space everywhere else. Rasa in bands: roots and web below, horizon and thread across the middle, the living subject last, breath between bands. All greyscale, luminous accents as densest ink. No text, no letters, no numbers, no words.",
+   "preset": "lora2-inv",
+   "preset_sha256": "46caa7f7a71ee0fc67970ec5bf3d037835a80087935544b971fbf001ee2de7bf",
+   "bank": null,
+   "status": "machine-proposed-unreviewed"
+  },
+  "b327": {
+   "asset": null,
+   "complete_bid": "b_opener",
+   "clear": "fade",
+   "fade": 1.5,
+   "why": "tone-break white at b327 (Tantrasāra — Chapter 5): sealed art holds the breath — “Abhinava, mate, what does any of this actually feel like?”",
+   "sealed_prompt": "Black ink sketch on warm white paper, hand-drawn storybook etching: “Abhinava, mate, what does any of this actually feel. The final snapshot — the end-state, freedom rendered, always the arrival. One world: all elements in a single wide landscape, dense etched detail on the subject, vast breathing white space everywhere else. Rasa in bands: roots and web below, horizon and thread across the middle, the living subject last, breath between bands. All greyscale, luminous accents as densest ink. No text, no letters, no numbers, no words.",
+   "preset": "lora2-inv",
+   "preset_sha256": "46caa7f7a71ee0fc67970ec5bf3d037835a80087935544b971fbf001ee2de7bf",
+   "bank": null,
+   "status": "machine-proposed-unreviewed"
+  },
+  "b346": {
+   "asset": null,
+   "complete_bid": "b_opener",
+   "clear": "fade",
+   "fade": 1.5,
+   "why": "tone-break white at b346 (Tantrasāra — Chapter 5): sealed art holds the breath — “Hang on, is this the bliss of having no bliss?”",
+   "sealed_prompt": "Black ink sketch on warm white paper, hand-drawn storybook etching: “Hang on, is this the bliss of having no. The final snapshot — the end-state, freedom rendered, always the arrival. One world: all elements in a single wide landscape, dense etched detail on the subject, vast breathing white space everywhere else. Rasa in bands: roots and web below, horizon and thread across the middle, the living subject last, breath between bands. All greyscale, luminous accents as densest ink. No text, no letters, no numbers, no words.",
+   "preset": "lora2-inv",
+   "preset_sha256": "46caa7f7a71ee0fc67970ec5bf3d037835a80087935544b971fbf001ee2de7bf",
+   "bank": null,
+   "status": "machine-proposed-unreviewed"
+  },
+  "b379": {
+   "asset": null,
+   "complete_bid": "b_opener",
+   "clear": "fade",
+   "fade": 1.5,
+   "why": "tone-break white at b379 (Tantrasāra — Chapter 5): sealed art holds the breath — “Lovely, so I’ve just got to collect all six and I’ve completed spiritual enlightenment.”",
+   "sealed_prompt": "Black ink sketch on warm white paper, hand-drawn storybook etching: “Lovely, so I’ve just got to collect all six and I’ve completed spiritual. The final snapshot — the end-state, freedom rendered, always the arrival. One world: all elements in a single wide landscape, dense etched detail on the subject, vast breathing white space everywhere else. Rasa in bands: roots and web below, horizon and thread across the middle, the living subject last, breath between bands. All greyscale, luminous accents as densest ink. No text, no letters, no numbers, no words.",
+   "preset": "lora2-inv",
+   "preset_sha256": "46caa7f7a71ee0fc67970ec5bf3d037835a80087935544b971fbf001ee2de7bf",
+   "bank": null,
+   "status": "machine-proposed-unreviewed"
+  }
+ }
+}

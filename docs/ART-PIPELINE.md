@@ -55,11 +55,12 @@ holds pointers; canonical briefs live in translation-work.
 ## 3. Loop (the actual workflow)
 
 ```
-timeline WHITE gap  →  propose_draws (bank-first: bank hit or fresh seal_prompt)
-  →  draws_chNN.proposed.json (asset:null, machine-proposed)
+timeline WHITE gap (+ white-map priority) → propose_draws (bank-first)
+  →  projects/<lane>/proposed/draws_chNN.proposed.json (in-factory staging;
+      draws_for matches draws_chNN.json exactly, so staged files NEVER render)
   →  owner/agent review: accept bank asset | render new seal (confirm_paid)
-  →  promote: write draws_chNN.json {asset, complete_bid, why}
-  →  build_clip fades it in from white; verify; ship
+  →  promote: copy to series drops dir as draws_chNN.json {asset,
+      complete_bid, clear, fade, why} → build fades it in from white
 ```
 
 Commands:

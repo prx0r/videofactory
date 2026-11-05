@@ -1,0 +1,68 @@
+{
+ "meta": {
+  "lane": "tantrasara",
+  "unit": "18",
+  "priority": "high",
+  "white_map_stuck": [
+   {
+    "seconds": 127,
+    "ref": "328"
+   },
+   {
+    "seconds": 143,
+    "ref": "2168"
+   }
+  ],
+  "status": "machine-proposed-unreviewed"
+ },
+ "draws": {
+  "b29": {
+   "asset": null,
+   "complete_bid": "b_opener",
+   "clear": "fade",
+   "fade": 1.5,
+   "why": "tone-break white at b29 (Tantrasāra — Chapter 18): sealed art holds the breath — “Congratulations, mate. You’re now authorised to liberate other people.”",
+   "sealed_prompt": "Black ink sketch on warm white paper, hand-drawn storybook etching: “Congratulations, mate. You’re now authorised to liberate other. The final snapshot — the end-state, freedom rendered, always the arrival. One world: all elements in a single wide landscape, dense etched detail on the subject, vast breathing white space everywhere else. Rasa in bands: roots and web below, horizon and thread across the middle, the living subject last, breath between bands. All greyscale, luminous accents as densest ink. No text, no letters, no numbers, no words.",
+   "preset": "lora2-inv",
+   "preset_sha256": "46caa7f7a71ee0fc67970ec5bf3d037835a80087935544b971fbf001ee2de7bf",
+   "bank": null,
+   "status": "machine-proposed-unreviewed"
+  },
+  "b80": {
+   "asset": null,
+   "complete_bid": "b_opener",
+   "clear": "fade",
+   "fade": 1.5,
+   "why": "tone-break white at b80 (Tantrasāra — Chapter 18): sealed art holds the breath — “The person who’s completed the most elaborate ceremony.”",
+   "sealed_prompt": "Black ink sketch on warm white paper, hand-drawn storybook etching: “The person who’s completed the most elaborate. The final snapshot — the end-state, freedom rendered, always the arrival. One world: all elements in a single wide landscape, dense etched detail on the subject, vast breathing white space everywhere else. Rasa in bands: roots and web below, horizon and thread across the middle, the living subject last, breath between bands. All greyscale, luminous accents as densest ink. No text, no letters, no numbers, no words.",
+   "preset": "lora2-inv",
+   "preset_sha256": "46caa7f7a71ee0fc67970ec5bf3d037835a80087935544b971fbf001ee2de7bf",
+   "bank": null,
+   "status": "machine-proposed-unreviewed"
+  },
+  "b182": {
+   "asset": null,
+   "complete_bid": "b_opener",
+   "clear": "fade",
+   "fade": 1.5,
+   "why": "tone-break white at b182 (Tantrasāra — Chapter 18): sealed art holds the breath — “Wonderful. So the person who genuinely knows can simply do whatever they like?”",
+   "sealed_prompt": "Black ink sketch on warm white paper, hand-drawn storybook etching: “Wonderful. So the person who genuinely knows can simply do whatever they. The final snapshot — the end-state, freedom rendered, always the arrival. One world: all elements in a single wide landscape, dense etched detail on the subject, vast breathing white space everywhere else. Rasa in bands: roots and web below, horizon and thread across the middle, the living subject last, breath between bands. All greyscale, luminous accents as densest ink. No text, no letters, no numbers, no words.",
+   "preset": "lora2-inv",
+   "preset_sha256": "46caa7f7a71ee0fc67970ec5bf3d037835a80087935544b971fbf001ee2de7bf",
+   "bank": null,
+   "status": "machine-proposed-unreviewed"
+  },
+  "b330": {
+   "asset": null,
+   "complete_bid": "b_opener",
+   "clear": "fade",
+   "fade": 1.5,
+   "why": "tone-break white at b330 (Tantrasāra — Chapter 18): sealed art holds the breath — “Wonderful. I’ve been given authority.”",
+   "sealed_prompt": "Black ink sketch on warm white paper, hand-drawn storybook etching: “Wonderful. I’ve been given. The final snapshot — the end-state, freedom rendered, always the arrival. One world: all elements in a single wide landscape, dense etched detail on the subject, vast breathing white space everywhere else. Rasa in bands: roots and web below, horizon and thread across the middle, the living subject last, breath between bands. All greyscale, luminous accents as densest ink. No text, no letters, no numbers, no words.",
+   "preset": "lora2-inv",
+   "preset_sha256": "46caa7f7a71ee0fc67970ec5bf3d037835a80087935544b971fbf001ee2de7bf",
+   "bank": null,
+   "status": "machine-proposed-unreviewed"
+  }
+ }
+}

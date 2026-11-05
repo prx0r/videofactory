@@ -3,13 +3,14 @@
 
 Reads a holds timeline (review/chNN/timeline.md, WHITE entries) + the chapter
 storyboard, drafts one hermetic seal prompt per gap via sleepdraw's
-mcp_server.seal_prompt, and writes draws_chNN.proposed.json beside the drops
-file. The proposed file NEVER renders (draws_for matches draws_chNN.json
-exactly). Owner promotes: render each asset (sleepdraw MCP render_seal with
-explicit confirm_paid), then write draws_chNN.json {start_bid: {asset,
-complete_bid, clear, fade, why}} — draws_for fails loud on missing fields.
+mcp_server.seal_prompt. Output stages in-factory at
+projects/<lane>/proposed/draws_chNN.proposed.json — draws_for matches
+draws_chNN.json exactly, so staged files NEVER render. Owner promotes: render
+each asset (sleepdraw MCP render_seal with explicit confirm_paid), copy to the
+series drops dir as draws_chNN.json {start_bid: {asset, complete_bid, clear,
+fade, why}} — draws_for fails loud on missing fields.
 
-Usage: python3 propose_draws.py <storyboard.json> <timeline.md> [out.json]
+Usage: python3 propose_draws.py <storyboard.json> <timeline.md> [out.json] [--white-map review/white-map.md]
 """
 import json
 import os
@@ -18,6 +19,8 @@ import sys
 
 sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), '..'))
 from lane_api import for_path  # noqa: E402
+
+FACTORY_ROOT = os.path.normpath(os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', '..'))
 
 SLEEPDRAW_ROOT = os.environ.get('SLEEPDRAW_ROOT', '/root/sleepdraw')
 sys.path.insert(0, SLEEPDRAW_ROOT)
@@ -62,12 +65,37 @@ def white_gaps(timeline_md):
     return gaps
 
 
-def propose(storyboard_json, timeline_md, out_path=None):
+def white_map_stuck(white_map_md, unit):
+    """Stuck long-holds for one chapter from the lane white-map.
+
+    White-map rows look like `| 17 | 36.0m | 11% | 212s@250, 152s@682 |`.
+    Returns [(seconds, ref)] in row order; refs are estimator marks, not
+    block ids — callers must NOT treat them as bids.
+    """
+    stuck = []
+    try:
+        lines = open(white_map_md, encoding='utf-8').read().splitlines()
+    except OSError:
+        return stuck
+    for line in lines:
+        m = re.match(r'^\|\s*0*(\d+)\s*\|[^|]*\|[^|]*\|\s*(.*?)\s*\|?\s*$', line)
+        if not m or m.group(1) != str(int(unit)):
+            continue
+        for item in m.group(2).split(','):
+            n = re.match(r'\s*(\d+)s@(\S+)', item or '')
+            if n:
+                stuck.append((int(n.group(1)), n.group(2)))
+    return stuck
+
+
+def propose(storyboard_json, timeline_md, out_path=None, white_map_md=None):
     sb = json.load(open(storyboard_json, encoding='utf-8'))
     blocks = {b['id']: b for b in sb['blocks']}
     lane_name, lane = for_path(storyboard_json)
     unit = lane.unit_id(storyboard_json)
     gaps = white_gaps(timeline_md)
+    stuck = white_map_stuck(white_map_md, unit) if white_map_md else []
+    priority = 'high' if any(s >= 120 for s, _ in stuck) else 'normal'
     proposals = {}
     for bid in gaps:
         b = blocks.get(bid)
@@ -106,17 +134,28 @@ def propose(storyboard_json, timeline_md, out_path=None):
             'status': 'machine-proposed-unreviewed',
         }
     if out_path is None:
-        lane_paths = lane.paths(os.path.dirname(os.path.abspath(storyboard_json)), unit)
-        stem = os.path.basename(lane_paths['drops']).replace('drops_', 'draws_')
-        out_path = os.path.join(os.path.dirname(lane_paths['drops']),
-                                stem.replace('.json', '.proposed.json'))
+        # Staged in-factory, never in the series repo: promotion (copy to
+        # the drops dir + render asset + write draws_chNN.json) is an
+        # explicit owner/agent act. draws_for only reads exact-name
+        # draws_chNN.json, so staged files can never render.
+        stage = os.path.join(FACTORY_ROOT, 'projects', lane_name, 'proposed')
+        os.makedirs(stage, exist_ok=True)
+        out_path = os.path.join(stage, f'draws_ch{unit}.proposed.json')
     with open(out_path, 'w', encoding='utf-8') as f:
-        json.dump(proposals, f, ensure_ascii=False, indent=1)
+        json.dump({'meta': {'lane': lane_name, 'unit': unit,
+                            'priority': priority,
+                            'white_map_stuck': [{'seconds': s, 'ref': r}
+                                                for s, r in stuck],
+                            'status': 'machine-proposed-unreviewed'},
+                   'draws': proposals}, f, ensure_ascii=False, indent=1)
     return out_path, proposals
 
 
 if __name__ == '__main__':
-    sb, tl = sys.argv[1], sys.argv[2]
-    out = sys.argv[3] if len(sys.argv) > 3 else None
-    path, props = propose(sb, tl, out)
+    args = [a for a in sys.argv[1:] if not a.startswith('--white-map')]
+    wm = next((a.split('=', 1)[1] for a in sys.argv[1:]
+               if a.startswith('--white-map=')), None)
+    sb, tl = args[0], args[1]
+    out = args[2] if len(args) > 3 else None
+    path, props = propose(sb, tl, out, white_map_md=wm)
     print(f'{path}: {len(props)} proposed seals (asset:null until rendered + owner-promoted)')

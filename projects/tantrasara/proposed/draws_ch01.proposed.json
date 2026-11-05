@@ -1,0 +1,15 @@
+{
+ "meta": {
+  "lane": "tantrasara",
+  "unit": "01",
+  "priority": "high",
+  "white_map_stuck": [
+   {
+    "seconds": 124,
+    "ref": "124"
+   }
+  ],
+  "status": "machine-proposed-unreviewed"
+ },
+ "draws": {}
+}

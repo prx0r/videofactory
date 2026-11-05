@@ -1,0 +1,101 @@
+{
+ "meta": {
+  "lane": "tantrasara",
+  "unit": "04",
+  "priority": "normal",
+  "white_map_stuck": [],
+  "status": "machine-proposed-unreviewed"
+ },
+ "draws": {
+  "b14": {
+   "asset": null,
+   "complete_bid": "b_opener",
+   "clear": "fade",
+   "fade": 1.5,
+   "why": "tone-break white at b14 (Tantrasāra — Chapter 4): sealed art holds the breath — “Well, I suppose this is who I am.”",
+   "sealed_prompt": "Black ink sketch on warm white paper, hand-drawn storybook etching: “Well, I suppose this is who I. The final snapshot — the end-state, freedom rendered, always the arrival. One world: all elements in a single wide landscape, dense etched detail on the subject, vast breathing white space everywhere else. Rasa in bands: roots and web below, horizon and thread across the middle, the living subject last, breath between bands. All greyscale, luminous accents as densest ink. No text, no letters, no numbers, no words.",
+   "preset": "lora2-inv",
+   "preset_sha256": "46caa7f7a71ee0fc67970ec5bf3d037835a80087935544b971fbf001ee2de7bf",
+   "bank": null,
+   "status": "machine-proposed-unreviewed"
+  },
+  "b92": {
+   "asset": null,
+   "complete_bid": "b_opener",
+   "clear": "fade",
+   "fade": 1.5,
+   "why": "tone-break white at b92 (Tantrasāra — Chapter 4): sealed art holds the breath — “Abhinava, mate, if it’s that straightforward, why doesn’t everyone just understand it?”",
+   "sealed_prompt": "Black ink sketch on warm white paper, hand-drawn storybook etching: “Abhinava, mate, if it’s that straightforward, why doesn’t everyone just understand. The final snapshot — the end-state, freedom rendered, always the arrival. One world: all elements in a single wide landscape, dense etched detail on the subject, vast breathing white space everywhere else. Rasa in bands: roots and web below, horizon and thread across the middle, the living subject last, breath between bands. All greyscale, luminous accents as densest ink. No text, no letters, no numbers, no words.",
+   "preset": "lora2-inv",
+   "preset_sha256": "46caa7f7a71ee0fc67970ec5bf3d037835a80087935544b971fbf001ee2de7bf",
+   "bank": null,
+   "status": "machine-proposed-unreviewed"
+  },
+  "b124": {
+   "asset": null,
+   "complete_bid": "b_opener",
+   "clear": "fade",
+   "fade": 1.5,
+   "why": "tone-break white at b124 (Tantrasāra — Chapter 4): sealed art holds the breath — “Hang on, Abhinava.”",
+   "sealed_prompt": "Black ink sketch on warm white paper, hand-drawn storybook etching: “Hang on,. The final snapshot — the end-state, freedom rendered, always the arrival. One world: all elements in a single wide landscape, dense etched detail on the subject, vast breathing white space everywhere else. Rasa in bands: roots and web below, horizon and thread across the middle, the living subject last, breath between bands. All greyscale, luminous accents as densest ink. No text, no letters, no numbers, no words.",
+   "preset": "lora2-inv",
+   "preset_sha256": "46caa7f7a71ee0fc67970ec5bf3d037835a80087935544b971fbf001ee2de7bf",
+   "bank": null,
+   "status": "machine-proposed-unreviewed"
+  },
+  "b174": {
+   "asset": null,
+   "complete_bid": "b_opener",
+   "clear": "fade",
+   "fade": 1.5,
+   "why": "tone-break white at b174 (Tantrasāra — Chapter 4): sealed art holds the breath — “Congratulations, you’re now officially qualified to recognise your own consciousness.”",
+   "sealed_prompt": "Black ink sketch on warm white paper, hand-drawn storybook etching: “Congratulations, you’re now officially qualified to recognise your own. The final snapshot — the end-state, freedom rendered, always the arrival. One world: all elements in a single wide landscape, dense etched detail on the subject, vast breathing white space everywhere else. Rasa in bands: roots and web below, horizon and thread across the middle, the living subject last, breath between bands. All greyscale, luminous accents as densest ink. No text, no letters, no numbers, no words.",
+   "preset": "lora2-inv",
+   "preset_sha256": "46caa7f7a71ee0fc67970ec5bf3d037835a80087935544b971fbf001ee2de7bf",
+   "bank": null,
+   "status": "machine-proposed-unreviewed"
+  },
+  "b257": {
+   "asset": null,
+   "complete_bid": "b_opener",
+   "clear": "fade",
+   "fade": 1.5,
+   "why": "tone-break white at b257 (Tantrasāra — Chapter 4): sealed art holds the breath — “Well, surely samādhi helps?”",
+   "sealed_prompt": "Black ink sketch on warm white paper, hand-drawn storybook etching: “Well, surely samādhi. The final snapshot — the end-state, freedom rendered, always the arrival. One world: all elements in a single wide landscape, dense etched detail on the subject, vast breathing white space everywhere else. Rasa in bands: roots and web below, horizon and thread across the middle, the living subject last, breath between bands. All greyscale, luminous accents as densest ink. No text, no letters, no numbers, no words.",
+   "preset": "lora2-inv",
+   "preset_sha256": "46caa7f7a71ee0fc67970ec5bf3d037835a80087935544b971fbf001ee2de7bf",
+   "bank": null,
+   "status": "machine-proposed-unreviewed"
+  },
+  "b304": {
+   "asset": null,
+   "complete_bid": "b_opener",
+   "clear": "fade",
+   "fade": 1.5,
+   "why": "tone-break white at b304 (Tantrasāra — Chapter 4): sealed art holds the breath — “Bloody hell, nobody’s brought me a jasmine garland today.”",
+   "sealed_prompt": "[BANK queue-mala]  — see ; draft fresh only if the gap needs more than the bank holds.",
+   "preset": "lora2-inv",
+   "preset_sha256": "46caa7f7a71ee0fc67970ec5bf3d037835a80087935544b971fbf001ee2de7bf",
+   "bank": {
+    "bank_id": "queue-mala",
+    "bank_kind": "queued-subject",
+    "bank_status": "PROPOSED",
+    "match_score": 2,
+    "brief": null
+   },
+   "status": "machine-proposed-unreviewed"
+  },
+  "b368": {
+   "asset": null,
+   "complete_bid": "b_opener",
+   "clear": "fade",
+   "fade": 1.5,
+   "why": "tone-break white at b368 (Tantrasāra — Chapter 4): sealed art holds the breath — “Om namaḥ śivāya, Om namaḥ śivāya, Om namaḥ śivāya.”",
+   "sealed_prompt": "Black ink sketch on warm white paper, hand-drawn storybook etching: “Om namaḥ śivāya, Om namaḥ śivāya, Om namaḥ. The final snapshot — the end-state, freedom rendered, always the arrival. One world: all elements in a single wide landscape, dense etched detail on the subject, vast breathing white space everywhere else. Rasa in bands: roots and web below, horizon and thread across the middle, the living subject last, breath between bands. All greyscale, luminous accents as densest ink. No text, no letters, no numbers, no words.",
+   "preset": "lora2-inv",
+   "preset_sha256": "46caa7f7a71ee0fc67970ec5bf3d037835a80087935544b971fbf001ee2de7bf",
+   "bank": null,
+   "status": "machine-proposed-unreviewed"
+  }
+ }
+}

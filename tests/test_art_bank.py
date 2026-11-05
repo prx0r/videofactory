@@ -50,14 +50,38 @@ class BankTests(unittest.TestCase):
             op = os.path.join(d, 'draws_ch99.proposed.json')
             json.dump(sb, open(sp, 'w'))
             open(tp, 'w').write(tl)
-            with unittest.mock.patch.object(P, 'BANK_REG',
-                                            os.path.join(os.path.dirname(BANK), 'REGISTRY.json')):
-                path, props = P.propose(sp, tp, op)
+            path, props = P.propose(sp, tp, op)
             self.assertEqual(path, op)
             self.assertIn('b2', props)
             self.assertEqual(props['b2']['bank']['bank_id'], 'queue-mala')
             self.assertIsNone(props['b2']['asset'])
-            self.assertNotIn('draws_ch99.json', os.listdir(d))
+            saved = json.load(open(op))
+            self.assertEqual(saved['meta']['priority'], 'normal')
+            self.assertEqual(saved['meta']['lane'], 'tantrasara')
+
+    def test_white_map_marks_priority_and_never_bids(self):
+        sb = {'blocks': [
+            {'id': 'b1', 'type': 'narration', 'voice': 'granny', 'section': 'S',
+             'text': 'Right.', 'directed': 'Right.'},
+            {'id': 'b2', 'type': 'narration', 'voice': 'granny', 'section': 'S',
+             'text': 'Still here.', 'directed': 'Still here.'},
+        ]}
+        tl = 'b2: WHITE (tone break)\n'
+        wm = '| 99 | 10.0m | 50% | 212s@250, 30s@9 |\n'
+        with tempfile.TemporaryDirectory() as d:
+            sp = os.path.join(d, 'storyboard_ch99.json')
+            tp = os.path.join(d, 'timeline.md')
+            wp = os.path.join(d, 'white-map.md')
+            op = os.path.join(d, 'out.proposed.json')
+            json.dump(sb, open(sp, 'w'))
+            open(tp, 'w').write(tl)
+            open(wp, 'w').write(wm)
+            path, props = P.propose(sp, tp, op, white_map_md=wp)
+            saved = json.load(open(path))
+            self.assertEqual(saved['meta']['priority'], 'high')
+            self.assertEqual(saved['meta']['white_map_stuck'][0]['seconds'], 212)
+            # stuck refs are estimator marks, never block ids
+            self.assertNotIn('b250', props)
 
     def test_proposed_file_can_never_render(self):
         import holds as H

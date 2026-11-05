@@ -1,0 +1,52 @@
+{
+ "meta": {
+  "lane": "tantrasara",
+  "unit": "21",
+  "priority": "high",
+  "white_map_stuck": [
+   {
+    "seconds": 140,
+    "ref": "700"
+   },
+   {
+    "seconds": 126,
+    "ref": "2584"
+   },
+   {
+    "seconds": 129,
+    "ref": "3089"
+   },
+   {
+    "seconds": 139,
+    "ref": "3322"
+   }
+  ],
+  "status": "machine-proposed-unreviewed"
+ },
+ "draws": {
+  "b28": {
+   "asset": null,
+   "complete_bid": "b_opener",
+   "clear": "fade",
+   "fade": 1.5,
+   "why": "tone-break white at b28 (Tantrasāra — Chapter 21): sealed art holds the breath — “Excuse me, Abhinavagupta.”",
+   "sealed_prompt": "Black ink sketch on warm white paper, hand-drawn storybook etching: “Excuse me,. The final snapshot — the end-state, freedom rendered, always the arrival. One world: all elements in a single wide landscape, dense etched detail on the subject, vast breathing white space everywhere else. Rasa in bands: roots and web below, horizon and thread across the middle, the living subject last, breath between bands. All greyscale, luminous accents as densest ink. No text, no letters, no numbers, no words.",
+   "preset": "lora2-inv",
+   "preset_sha256": "46caa7f7a71ee0fc67970ec5bf3d037835a80087935544b971fbf001ee2de7bf",
+   "bank": null,
+   "status": "machine-proposed-unreviewed"
+  },
+  "b239": {
+   "asset": null,
+   "complete_bid": "b_opener",
+   "clear": "fade",
+   "fade": 1.5,
+   "why": "tone-break white at b239 (Tantrasāra — Chapter 21): sealed art holds the breath — “If everything is one revelation, why are there so many different bloody scriptures?”",
+   "sealed_prompt": "Black ink sketch on warm white paper, hand-drawn storybook etching: “If everything is one revelation, why are there so many different bloody. The final snapshot — the end-state, freedom rendered, always the arrival. One world: all elements in a single wide landscape, dense etched detail on the subject, vast breathing white space everywhere else. Rasa in bands: roots and web below, horizon and thread across the middle, the living subject last, breath between bands. All greyscale, luminous accents as densest ink. No text, no letters, no numbers, no words.",
+   "preset": "lora2-inv",
+   "preset_sha256": "46caa7f7a71ee0fc67970ec5bf3d037835a80087935544b971fbf001ee2de7bf",
+   "bank": null,
+   "status": "machine-proposed-unreviewed"
+  }
+ }
+}
