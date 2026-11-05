@@ -1,0 +1,59 @@
+{
+ "meta": {
+  "lane": "tantrasara",
+  "unit": "06",
+  "priority": "normal",
+  "white_map_stuck": [],
+  "status": "machine-proposed-unreviewed"
+ },
+ "draws": {
+  "b10": {
+   "asset": null,
+   "complete_bid": "b_opener",
+   "clear": "fade",
+   "fade": 1.5,
+   "why": "tone-break white at b10 (Tantrasāra — Chapter 6): sealed art holds the breath — \"Right, Abhinava, we've covered consciousness, its powers, and the methods of liberation. Surely that's the whole thing?",
+   "sealed_prompt": "Black ink sketch on warm white paper, hand-drawn storybook etching: \"Right, Abhinava, we've covered consciousness, its powers, and the methods of liberation. Surely that's the whole. The final snapshot — the end-state, freedom rendered, always the arrival. One world: all elements in a single wide landscape, dense etched detail on the subject, vast breathing white space everywhere else. Rasa in bands: roots and web below, horizon and thread across the middle, the living subject last, breath between bands. All greyscale, luminous accents as densest ink. No text, no letters, no numbers, no words.",
+   "preset": "lora2-inv",
+   "preset_sha256": "46caa7f7a71ee0fc67970ec5bf3d037835a80087935544b971fbf001ee2de7bf",
+   "bank": null,
+   "status": "machine-proposed-unreviewed"
+  },
+  "b47": {
+   "asset": null,
+   "complete_bid": "b_opener",
+   "clear": "fade",
+   "fade": 1.5,
+   "why": "tone-break white at b47 (1. First, we're going to need somewhere to put everything): sealed art holds the breath — \"Six pathways? Abhinava, mate, you've introduced another classification.\"",
+   "sealed_prompt": "Black ink sketch on warm white paper, hand-drawn storybook etching: \"Six pathways? Abhinava, mate, you've introduced another. The final snapshot — the end-state, freedom rendered, always the arrival. One world: all elements in a single wide landscape, dense etched detail on the subject, vast breathing white space everywhere else. Rasa in bands: roots and web below, horizon and thread across the middle, the living subject last, breath between bands. All greyscale, luminous accents as densest ink. No text, no letters, no numbers, no words.",
+   "preset": "lora2-inv",
+   "preset_sha256": "46caa7f7a71ee0fc67970ec5bf3d037835a80087935544b971fbf001ee2de7bf",
+   "bank": null,
+   "status": "machine-proposed-unreviewed"
+  },
+  "b108": {
+   "asset": null,
+   "complete_bid": "b_opener",
+   "clear": "fade",
+   "fade": 1.5,
+   "why": "tone-break white at b108 (3. How infinite consciousness ends up being a bloke): sealed art holds the breath — \"I am here.\"",
+   "sealed_prompt": "Black ink sketch on warm white paper, hand-drawn storybook etching: \"I am. The final snapshot — the end-state, freedom rendered, always the arrival. One world: all elements in a single wide landscape, dense etched detail on the subject, vast breathing white space everywhere else. Rasa in bands: roots and web below, horizon and thread across the middle, the living subject last, breath between bands. All greyscale, luminous accents as densest ink. No text, no letters, no numbers, no words.",
+   "preset": "lora2-inv",
+   "preset_sha256": "46caa7f7a71ee0fc67970ec5bf3d037835a80087935544b971fbf001ee2de7bf",
+   "bank": null,
+   "status": "machine-proposed-unreviewed"
+  },
+  "b193": {
+   "asset": null,
+   "complete_bid": "b_opener",
+   "clear": "fade",
+   "fade": 1.5,
+   "why": "tone-break white at b193 (72 aṅgulas): sealed art holds the breath — \"Abhinava, are you telling me I've got an entire calendar in my chest?\"",
+   "sealed_prompt": "Black ink sketch on warm white paper, hand-drawn storybook etching: \"Abhinava, are you telling me I've got an entire calendar in my. The final snapshot — the end-state, freedom rendered, always the arrival. One world: all elements in a single wide landscape, dense etched detail on the subject, vast breathing white space everywhere else. Rasa in bands: roots and web below, horizon and thread across the middle, the living subject last, breath between bands. All greyscale, luminous accents as densest ink. No text, no letters, no numbers, no words.",
+   "preset": "lora2-inv",
+   "preset_sha256": "46caa7f7a71ee0fc67970ec5bf3d037835a80087935544b971fbf001ee2de7bf",
+   "bank": null,
+   "status": "machine-proposed-unreviewed"
+  }
+ }
+}

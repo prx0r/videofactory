@@ -1,0 +1,41 @@
+{
+ "meta": {
+  "lane": "tantrasara",
+  "unit": "02",
+  "priority": "normal",
+  "white_map_stuck": [],
+  "status": "machine-proposed-unreviewed"
+ },
+ "draws": {
+  "b9": {
+   "asset": null,
+   "complete_bid": "b_opener",
+   "clear": "fade",
+   "fade": 1.5,
+   "why": "tone-break white at b9 (Tantrasāra — Chapter 2): sealed art holds the breath — “Brilliant. So how do I get there?”",
+   "sealed_prompt": "Black ink sketch on warm white paper, hand-drawn storybook etching: “Brilliant. So how do I get. The final snapshot — the end-state, freedom rendered, always the arrival. One world: all elements in a single wide landscape, dense etched detail on the subject, vast breathing white space everywhere else. Rasa in bands: roots and web below, horizon and thread across the middle, the living subject last, breath between bands. All greyscale, luminous accents as densest ink. No text, no letters, no numbers, no words.",
+   "preset": "lora2-inv",
+   "preset_sha256": "46caa7f7a71ee0fc67970ec5bf3d037835a80087935544b971fbf001ee2de7bf",
+   "bank": null,
+   "status": "machine-proposed-unreviewed"
+  },
+  "b120": {
+   "asset": null,
+   "complete_bid": "b_opener",
+   "clear": "fade",
+   "fade": 1.5,
+   "why": "tone-break white at b120 (Tantrasāra — Chapter 2): sealed art holds the breath — “Can a little clay pot be responsible for illuminating the thousand-rayed sun?”",
+   "sealed_prompt": "[BANK queue-sun]  — see ; draft fresh only if the gap needs more than the bank holds.",
+   "preset": "lora2-inv",
+   "preset_sha256": "46caa7f7a71ee0fc67970ec5bf3d037835a80087935544b971fbf001ee2de7bf",
+   "bank": {
+    "bank_id": "queue-sun",
+    "bank_kind": "queued-subject",
+    "bank_status": "PROPOSED",
+    "match_score": 2,
+    "brief": null
+   },
+   "status": "machine-proposed-unreviewed"
+  }
+ }
+}
