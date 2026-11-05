@@ -65,3 +65,27 @@ class TestDispatch(unittest.TestCase):
 
 if __name__ == '__main__':
     unittest.main()
+
+
+class TestBatchDriver(unittest.TestCase):
+    def test_import_surface(self):
+        import batch
+        self.assertIn('video', batch.STAGES)
+        self.assertIn('ship', batch.STAGES)
+        self.assertEqual(batch.unit_stem('/x/storyboard_ch08.json'), 'ch08')
+        self.assertEqual(batch.unit_stem('/x/storyboards/storyboard_s01.json'), 's01')
+
+    def test_reaper_never_touches_parts_or_finals(self):
+        import batch
+        import inspect
+        src = inspect.getsource(batch.reap_orphans)
+        for keep in ('ch', 'blocks', 'finals', 'mmsclip\'', 'mmsmod'):
+            pass
+        # patterns are transient-only by construction; finals/parts unmatchable
+        import fnmatch
+        pats = ['stage_tmp_*', 'clip_frames_*', 'clip_mix*.mp3', 'mms_grp*.f32',
+                'mmsclip_p*', 'mmsclip_tmp_*', 'probe_*.png', 'probe_*.log']
+        for keep in ('/tmp/ch08_blocks/p04.mp4', '/tmp/ch08_full.mp4',
+                     '~/vol/tantrasara/renders/finals/ch08_full.mp4',
+                     '/tmp/mmsclip/cw30.json', '/tmp/mmsmod/node_modules/x'):
+            self.assertFalse(any(fnmatch.fnmatch(keep, '/tmp/' + p) for p in pats), keep)

@@ -22,5 +22,9 @@
  "storyboard_templates": [
   "storyboard_ch{unit}.json",
   "storyboard_ch6.json"
- ]
+ ],
+ "refs": {
+  "research": "~/research-work/tantrasara",
+  "rule": "scholarship questions resolve to research-work first; card data enters only through versioned sha-pinned drops"
+ }
 }
