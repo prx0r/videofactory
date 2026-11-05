@@ -22,9 +22,20 @@ from lane_api import for_path  # noqa: E402
 
 FACTORY_ROOT = os.path.normpath(os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', '..'))
 
-SLEEPDRAW_ROOT = os.environ.get('SLEEPDRAW_ROOT', '/root/sleepdraw')
+SLEEPDRAW_ROOT = os.environ.get('SLEEPDRAW_ROOT', os.path.expanduser('~/sleepdraw'))
 sys.path.insert(0, SLEEPDRAW_ROOT)
-import mcp_server as seals  # noqa: E402 (pure seal_prompt; paid render stays behind confirm_paid)
+
+
+def _seals():
+    """Sleepdraw MCP, imported lazily so bank lookup, gap parsing, and tests
+    work everywhere. Drafting fresh prompts needs it; bank hits don't."""
+    try:
+        import mcp_server as seals
+        return seals
+    except ImportError as e:
+        raise RuntimeError(
+            f'sleepdraw MCP unavailable (SLEEPDRAW_ROOT={SLEEPDRAW_ROOT}): {e}. '
+            'Bank-reuse proposals still work; fresh seal drafting needs the MCP.') from e
 
 BANK_REG = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'art_bank', 'REGISTRY.json')
 
@@ -107,8 +118,6 @@ def propose(storyboard_json, timeline_md, out_path=None, white_map_md=None):
         clean = re.sub(r'\[[^\]]*\]', '', text).strip()
         clean = re.sub(r'\s+', ' ', clean)
         hit, score = bank_lookup(clean)
-        inv_sha = next((p['sha256'] for p in seals.presets()['presets']
-                        if p['preset'] == 'lora2-inv'), None)
         if hit is not None:
             seal_prompt_text = (
                 f"[BANK {hit['id']}] {hit.get('seal', '')} — see "
@@ -117,7 +126,18 @@ def propose(storyboard_json, timeline_md, out_path=None, white_map_md=None):
             bank_ref = {'bank_id': hit['id'], 'bank_kind': hit['kind'],
                         'bank_status': hit['status'], 'match_score': score,
                         'brief': hit.get('seal_brief')}
+            inv_sha = hit.get('preset_sha256')
+            if inv_sha is None:
+                try:
+                    seals = _seals()
+                    inv_sha = next((p['sha256'] for p in seals.presets()['presets']
+                                    if p['preset'] == 'lora2-inv'), None)
+                except RuntimeError:
+                    inv_sha = None
         else:
+            seals = _seals()
+            inv_sha = next((p['sha256'] for p in seals.presets()['presets']
+                            if p['preset'] == 'lora2-inv'), None)
             seal = seals.seal_prompt(clean, chapter=f'{lane_name}-{unit}')
             seal_prompt_text, bank_ref = seal['prompt'], None
         proposals[bid] = {
