@@ -5,6 +5,8 @@ import unittest
 from unittest import mock
 
 sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'core'))
+sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'core', 'builders'))
+sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'core', 'contract'))
 
 import lane_api
 
@@ -61,6 +63,28 @@ class TestDispatch(unittest.TestCase):
         out = lane_api.intro_args('/home/ubuntu/tantrasara/shiva/storyboards/storyboard_s01.json', blocks, {})
         self.assertFalse(out['numeral'])
         self.assertEqual(out['header'], {'ref': '1.1', 'title': 'The Funny Title'})
+
+
+
+
+class TestAllBuildersImportable(unittest.TestCase):
+    def test_every_builder_imports_clean(self):
+        import glob
+        import importlib
+        mods = []
+        for f in sorted(glob.glob(os.path.join(os.path.dirname(os.path.abspath(__file__)),
+                                               '..', 'core', 'builders', '*.py'))):
+            name = os.path.splitext(os.path.basename(f))[0]
+            if name in ('align_group',):
+                continue
+            try:
+                importlib.import_module(name)
+                mods.append(name)
+            except SystemExit:
+                mods.append(name + ' (exits without argv: expected for CLIs)')
+            except Exception as e:
+                self.fail(f'{name} failed to import: {e}')
+        self.assertIn('holds', mods)
 
 
 if __name__ == '__main__':

@@ -10,6 +10,8 @@ import json, os, re, subprocess, sys, hashlib, glob
 
 BASE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, BASE)
+sys.path.insert(0, os.path.join(BASE, '..', 'contract'))
+import paths as _vf
 import holds as H
 
 LOCK = '/tmp/video_build.lock'

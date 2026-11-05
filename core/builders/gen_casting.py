@@ -19,23 +19,28 @@ def blocks_for(ch):
                    capture_output=True, text=True)
     return json.load(open(f'/tmp/sb_{ch}.json'))['blocks']
 
-for ch in ['02', '03', '04', '05', '07', '08', '09', '10', '11', '12', '13',
-           '14', '15', '16', '17', '18', '19', '20', '21', '22']:
-    blocks = blocks_for(ch)
-    byid = {b['id']: i for i, b in enumerate(blocks)}
-    uncast = [b for b in blocks if b['voice'] == 'UNCAST']
-    auto_man = [b for b in blocks if b['type'] == 'dialogue' and b['voice'] == 'man']
-    lines = [f'# Casting — chapter {ch}', '',
-             f'{len(uncast)} quotes need a call. Mark each `M` (man) or `G` (granny).',
-             f'{len(auto_man)} already man via the Abhinava rule (listed at end for veto).', '']
-    for b in uncast:
-        i = byid[b['id']]
-        prev = next((x['text'][:100] for x in reversed(blocks[:i]) if x['type'] == 'narration'), '—')
-        nxt = next((x['text'][:100] for x in blocks[i + 1:i + 4] if x['type'] == 'narration'), '—')
-        lines += [f"## {b['id']} · [{b['section'][:45]}]", '', f'> {b["text"]}', '',
-                  f'before: {prev}', '', f'after: {nxt}', '', 'call: _', '']
-    lines += ['---', '## Auto-man (veto with X)', '']
-    for b in auto_man:
-        lines.append(f"- {b['id']}: {b['text'][:80]}")
-    open(f'{BASE}/casting/cast_ch{ch}.md', 'w', encoding='utf-8').write('\n'.join(lines) + '\n')
-    print(f'ch{ch}: {len(uncast)} calls, {len(auto_man)} auto-man')
+def main():
+    for ch in ['02', '03', '04', '05', '07', '08', '09', '10', '11', '12', '13',
+               '14', '15', '16', '17', '18', '19', '20', '21', '22']:
+        blocks = blocks_for(ch)
+        byid = {b['id']: i for i, b in enumerate(blocks)}
+        uncast = [b for b in blocks if b['voice'] == 'UNCAST']
+        auto_man = [b for b in blocks if b['type'] == 'dialogue' and b['voice'] == 'man']
+        lines = [f'# Casting — chapter {ch}', '',
+                 f'{len(uncast)} quotes need a call. Mark each `M` (man) or `G` (granny).',
+                 f'{len(auto_man)} already man via the Abhinava rule (listed at end for veto).', '']
+        for b in uncast:
+            i = byid[b['id']]
+            prev = next((x['text'][:100] for x in reversed(blocks[:i]) if x['type'] == 'narration'), '—')
+            nxt = next((x['text'][:100] for x in blocks[i + 1:i + 4] if x['type'] == 'narration'), '—')
+            lines += [f"## {b['id']} · [{b['section'][:45]}]", '', f'> {b["text"]}', '',
+                      f'before: {prev}', '', f'after: {nxt}', '', 'call: _', '']
+        lines += ['---', '## Auto-man (veto with X)', '']
+        for b in auto_man:
+            lines.append(f"- {b['id']}: {b['text'][:80]}")
+        open(f'{BASE}/casting/cast_ch{ch}.md', 'w', encoding='utf-8').write('\n'.join(lines) + '\n')
+        print(f'ch{ch}: {len(uncast)} calls, {len(auto_man)} auto-man')
+
+
+if __name__ == '__main__':
+    main()

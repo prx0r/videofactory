@@ -60,17 +60,22 @@ JOBS = [
     ('tantrasara14-18', [14, 15, 16, 17, 18]),
     ('tantrasara19-22', [19, 20, 21, 22]),
 ]
-os.makedirs(OUT, exist_ok=True)
-for fname, want in JOBS:
-    chaps = split_file(f'{SRC}/{fname}')
-    for n in want:
-        assert n in chaps, f'ch{n} missing from {fname} (has {sorted(chaps)})'
-        body = clean(chaps[n])
-        head = f'# Tantrasāra — Chapter {n}\n\n'
-        text = head + '\n'.join(body) + '\n'
-        # ch6 exists already (verified identical source); never overwrite it
-        if n == 6:
-            continue
-        with open(f'{OUT}/ch{n:02d}.md', 'w', encoding='utf-8') as f:
-            f.write(text)
-        print(f'ch{n:02d}: {len(text.split())} words from {fname}')
+def main():
+    os.makedirs(OUT, exist_ok=True)
+    for fname, want in JOBS:
+        chaps = split_file(f'{SRC}/{fname}')
+        for n in want:
+            assert n in chaps, f'ch{n} missing from {fname} (has {sorted(chaps)})'
+            body = clean(chaps[n])
+            head = f'# Tantrasāra — Chapter {n}\n\n'
+            text = head + '\n'.join(body) + '\n'
+            # ch6 exists already (verified identical source); never overwrite it
+            if n == 6:
+                continue
+            with open(f'{OUT}/ch{n:02d}.md', 'w', encoding='utf-8') as f:
+                f.write(text)
+            print(f'ch{n:02d}: {len(text.split())} words from {fname}')
+
+
+if __name__ == '__main__':
+    main()

@@ -177,13 +177,16 @@ def main():
     reap_orphans(logf, dry)
     import lane_api as _api
     failed = []
+    forced_proj = args[args.index('--project') + 1] if '--project' in args else None
     for u in units:
         sb = u if os.path.exists(u) else None
         if sb is None:
-            # resolve unit id through the active project lane
+            # resolve unit id through the project lane (forced --project
+            # wins; otherwise every lane is tried and the first hit stands)
             import glob as _g
             cands = []
-            for proj in sorted(os.listdir(_api.projects_dir())):
+            projs = [forced_proj] if forced_proj else sorted(os.listdir(_api.projects_dir()))
+            for proj in projs:
                 if proj.startswith('_'):
                     continue
                 try:

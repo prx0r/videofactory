@@ -9,6 +9,7 @@ R2 creds present, MMS + whisper models present. Exit 0/1.
 import hashlib
 import json
 import os
+import sys
 sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'contract'))
 import paths as _vf
 import re

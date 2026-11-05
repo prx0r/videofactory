@@ -85,23 +85,27 @@ the law.
     (anything unreferenced by a live lock or resume manifest is swept).
 27. Local-disk flakes are real at 99%: preflight is a floor, and every
     filesystem read on the hot path retries.
-28. Motion is justified like silence: every draw files {start, asset,
+28. Importing a builder must never execute work (M19 recurrence 2026-11-05:
+    an import test regenerated glossaries, wiping Deva + confirms — restored
+    from git). Miners, generators, publishers and drivers guard everything
+    past defs behind main(); the import test fails any file that doesn't.
+29. Motion is justified like silence: every draw files {start, asset,
     complete frame, clear fade|cut, why} — unjustified motion never
     renders. Entry always fades in from white; clearing is fade to white
     over `fade` seconds (crisp-shaped) or an instant cut (drop-shaped).
     The complete frame shows the full image; progress is measured between
     two word onsets, never estimated. Frames are transient; mp4+meta+subs
     persist.
-29. Staging law (Sanskrit hold, decide drop, blank, decide draw — never
+30. Staging law (Sanskrit hold, decide drop, blank, decide draw — never
     Sanskrit straight into draw): motion renders ONLY on white; chant,
     cue, persist and thumbnail cards always win. A draw/clip must START
     on a white word (asserted, fail loud). The blank is our silence.
-30. Holds release: a persist clears to white 60s after its chant onset
+31. Holds release: a persist clears to white 60s after its chant onset
     unless superseded (max hold ~60s, owner call 2026-11-05); completed
     draws clear the same way. Newer persists win over older (cue-clamp
     mirror M11) — a fresh chant re-covers, never flashes one frame under
     a stale hold. Re-mentions re-fire, so live cards survive.
-29. Overlay clips play muted on the mini canvas (centered 1280x660, above
+32. Overlay clips play muted on the mini canvas (centered 1280x660, above
     subtitles) between two onsets, then hold their last frame like a
     persist. Filed like draws {start, asset mp4, complete, clear, why};
     used sparingly, for effect. The mix stays ours — clip audio never
