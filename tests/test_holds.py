@@ -47,7 +47,7 @@ class TestCentralizedAssets(unittest.TestCase):
 
     def test_series_config_wins(self):
         import json
-        cfg_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'series', 'tantrasara.json')
+        cfg_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'projects', 'tantrasara', 'project.json')
         cfg = json.load(open(cfg_path, encoding='utf-8'))
         self.assertEqual(set(cfg['voices']), {'granny', 'man', 'verse'})
         self.assertEqual(_vf.voices(), cfg['voices'])

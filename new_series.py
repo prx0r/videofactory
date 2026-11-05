@@ -34,8 +34,14 @@ def main():
         'unit_target': units,
         'note': 'Fill units/uNN-slug.md per docs/UNITS.md, then storyboard each.',
     }
-    cfg_path = os.path.join(ROOT, 'series', f'{name}.json')
+    projdir = os.path.join(ROOT, 'projects', name)
+    os.makedirs(projdir, exist_ok=True)
+    cfg_path = os.path.join(projdir, 'project.json')
+    cfg['lane'] = name
     json.dump(cfg, open(cfg_path, 'w'), indent=1)
+    lane_src = open(os.path.join(ROOT, 'projects', '_template', 'lane.py')).read()
+    lane_src = lane_src.replace('NAME = \'_template\'', f'NAME = \'{name}\'')
+    open(os.path.join(projdir, 'lane.py'), 'w').write(lane_src)
     intake = os.path.join(repo, 'INTAKE.md')
     if not os.path.exists(intake):
         open(intake, 'w').write(

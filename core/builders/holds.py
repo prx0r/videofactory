@@ -158,29 +158,15 @@ def split_phoneme_groups(groups):
 
 
 def lane_for(sb_path):
-    """Lane routing shared by sheets and video: tantrasara chapters resolve
-    tantrasara glossaries/art; shiva storyboards resolve the shiva lane
-    (own glossaries, own thumbnail dir — empty until art lands, so openers
-    stay clean instead of borrowing the wrong series' art)."""
-    import os, re
-    base = _vf.repo_root()
-    if '/shiva/' in sb_path:
-        m = re.search(r's(\d+)\.json$', sb_path)
-        ch = m.group(1).zfill(2) if m else '00'
-        return {'lane': 'shiva', 'ch': ch,
-                'glossary': os.path.join(base, 'shiva', f'glossary_s{ch}.json'),
-                'verse': os.path.join(base, 'shiva', f'verse_gloss_s{ch}.json'),
-                'assets': os.path.join(base, 'shiva', 'assets', 'thumbnail'),
-                'thumbbox': (760, 760), 'numeral': False, 'art_center': True,
-                'drops': os.path.join(base, 'shiva', f'drops_s{ch}.json')}
-    m = re.search(r'ch(\d+)', sb_path)
-    ch = m.group(1).zfill(2) if m else '01'
-    return {'lane': 'tantrasara', 'ch': ch,
-            'glossary': os.path.join(base, f'glossary_ch{ch}.json'),
-            'verse': os.path.join(base, f'verse_gloss_ch{ch}.json'),
-            'assets': None, 'thumbbox': (1400, 730), 'numeral': None,
-            'art_center': False,
-            'drops': os.path.join(base, f'drops_ch{ch}.json')}
+    """Lane routing shared by sheets and video — delegates to the project
+    lane plugin (core/lane_api), so engine code never names a series.
+    Returns the same dict shape builders already consume."""
+    import sys as _sys2
+    _sys2.path.insert(0, _os.path.join(_os.path.dirname(_os.path.abspath(__file__)), '..'))
+    import lane_api as _api
+    _name, _mod = _api.for_path(sb_path)
+    _unit = _mod.unit_id(sb_path)
+    return _mod.paths(_vf.repo_root(), _unit)
 
 
 def drops_for(sb_path):
@@ -298,28 +284,12 @@ def split_after(groups, bids):
 
 
 def shiva_header(blocks):
-    """Shiva intro header from the chapter itself: sūtra ref (top-right)
-    and funny title (top-left), mirroring the tantrasara canonical header
-    in the same type. Ref from the H1, title from the heading line."""
-    import re
-    ref, title = None, None
-    for b in blocks:
-        t = b.get('text', '').strip()
-        if b.get('id') == 'b_opener':
-            continue
-        if b.get('type') == 'title' and ref is None:
-            m = re.search(r'(\d+\.\d+)\s*$', t)
-            if m:
-                ref = m.group(1)
-            continue
-        if ref and title is None and b.get('type') == 'narration':
-            m = re.match(r'^\d+\.\d+\s*—\s*(.+)$', t)
-            if m:
-                title = m.group(1).strip()
-                break
-    if not ref:
-        return None
-    return {'ref': ref, 'title': title or ''}
+    """Sutra intro header — implementation lives in the shiva-sutras lane
+    plugin (projects/shiva-sutras/lane.py). Kept here as a thin alias."""
+    import sys as _sys3
+    _sys3.path.insert(0, _os.path.join(_os.path.dirname(_os.path.abspath(__file__)), '..'))
+    import lane_api as _api
+    return _api.load_lane('shiva-sutras').header(blocks)
 
 
 def intro_hold(ch, title=None, asset_dir=None, maxbox=(1400, 730), numeral=None,

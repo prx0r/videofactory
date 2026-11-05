@@ -116,5 +116,14 @@
    "gate_storyboard lane-aware glossary",
    "render_holds lane-titled sheets"
   ]
- }
+ },
+ "observations": [
+  {
+   "date": "2026-11-05",
+   "what": "one non-reproducible bad ch02 intro sheet (missing 02 numeral, small title stack)",
+   "status": "not reproduced on re-run; direct intro_hold call + fresh sheets canonical and mutually identical",
+   "suspect": "transient /tmp+local-disk flake (same session: ls ENOENT, node MODULE_NOT_FOUND, both self-healed)",
+   "rule": "sheet proofs are read every time precisely so transients never ship (M24)"
+  }
+ ]
 }

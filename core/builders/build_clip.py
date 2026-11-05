@@ -483,7 +483,9 @@ def _main_inner():
     # the image is discarded anyway).
     _HOLD0 = None
     if _starts_at_top:
-        _HOLD0 = _H.intro_hold(_ch, _H.chapter_title(blocks, _gl), _lane['assets'], _lane['thumbbox'], _lane['numeral'], _lane['art_center'], _H.shiva_header(blocks) if _lane['lane'] == 'shiva' else None)
+        import lane_api as _api2
+        _intro = _api2.intro_args(sys.argv[1], blocks, _gl)
+        _HOLD0 = _H.intro_hold(_ch, _intro['title'], _lane['assets'], _lane['thumbbox'], _intro['numeral'], _lane['art_center'], _intro['header'])
     if _HOLD0 is None:
         _HOLD0 = hold_for.get(_first_verse['id'], _blank) if _first_verse else _blank
     _PRE_IMG = _HOLD0 if _starts_at_top else _blank

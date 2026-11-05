@@ -39,12 +39,15 @@ def builders_dir():
     return os.path.join(os.path.dirname(contract_dir()), 'builders')
 
 
+def projects_dir():
+    return os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', '..', 'projects')
+
+
 def _series_cfg():
-    """Series lane config (series/<name>.json); missing file = {}. Never raises."""
+    """Project lane config (projects/<name>/project.json); missing = {}. Never raises."""
     import json as _j
     try:
-        return _j.load(open(os.path.join(os.path.dirname(os.path.abspath(__file__)),
-                                         '..', '..', 'series', series_name() + '.json'), encoding='utf-8'))
+        return _j.load(open(os.path.join(projects_dir(), series_name(), 'project.json'), encoding='utf-8'))
     except (OSError, ValueError):
         return {}
 
@@ -53,8 +56,7 @@ def apply_series(name):
     """Point every downstream path at a lane config (drivers call this from
     --series before spawning builders; subprocesses inherit the env)."""
     import json as _j
-    cfg = _j.load(open(os.path.join(os.path.dirname(os.path.abspath(__file__)),
-                                    '..', '..', 'series', name + '.json'), encoding='utf-8'))
+    cfg = _j.load(open(os.path.join(projects_dir(), name, 'project.json'), encoding='utf-8'))
     os.environ['VF_SERIES'] = cfg.get('series', name)
     os.environ['VF_REPO'] = cfg.get('repo', DEFAULTS['VF_REPO'])
     os.environ['VF_RENDERS'] = cfg.get('renders', DEFAULTS['VF_RENDERS'])

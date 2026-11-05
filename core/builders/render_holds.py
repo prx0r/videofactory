@@ -23,12 +23,16 @@ def main():
     flat = sb['blocks']
     idx = {b['id']: i for i, b in enumerate(flat)}
     files = []
-    _title = H.chapter_title(sb['blocks'], gl)
+    sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), '..'))
+    import lane_api as _api
+    _sb_arg = sys.argv[1] if len(sys.argv) > 1 and not sys.argv[1].startswith('-') else ''
+    _intro = _api.intro_args(_sb_arg or 'tantrasara/storyboard_ch01.json', sb['blocks'], gl)
+    _title = _intro['title']
     for hi, h in enumerate(groups):
         last_id = h[-1]['id']
         if h[0].get('id') == 'b_opener':
             # sheets show the same intro bug the video burns
-            _ih = H.intro_hold(_ch, _title, lane['assets'], lane['thumbbox'], lane['numeral'], lane['art_center'], H.shiva_header(sb['blocks']) if lane['lane'] == 'shiva' else None)
+            _ih = H.intro_hold(_ch, _title, lane['assets'], lane['thumbbox'], _intro['numeral'], lane['art_center'], _intro['header'])
             im = _ih if _ih is not None else H.render_hold(h, None, gl)
             fn = f'{out}/hold{hi:03d}.png'
             im.save(fn)

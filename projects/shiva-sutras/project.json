@@ -1,0 +1,24 @@
+{
+ "series": "shiva-sutras",
+ "lane": "shiva-sutras",
+ "repo": "~/tantrasara",
+ "lane_dir": "shiva",
+ "renders": "~/vol/shiva/renders",
+ "r2": "r2:svread-audio/shiva",
+ "review_r2": "r2:svread-audio/shiva/review",
+ "match_marks": [
+  "/shiva/",
+  "storyboard_s"
+ ],
+ "unit_scheme": "sNN",
+ "unit_target": 78,
+ "voices": {
+  "granny": "614f8afd83f841048c040b2c6234d2c1",
+  "man": "fcfd5ebf496949ed9f76b3a533ee4738",
+  "verse": "4e873c37d4cb439e9bccc4dc1f633290"
+ },
+ "voice_db": -21.0,
+ "man_atten": 0.75,
+ "tts_model": "fish-audio/s2.1-pro-free",
+ "note": "78 units (s00 intro + s01-s77) under shiva/. Units are sutras, not chapters: no numerals; header is sutra ref + funny title per unit."
+}
