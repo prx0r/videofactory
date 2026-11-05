@@ -658,6 +658,7 @@ def _main_inner():
     # hold). Only draws fully inside this range render; the rest belong
     # to sibling chunks.
     _draw_spans, _drawholds, _meta_draws = [], [], []
+    _clip_dirs = []  # pre-render scratch (etch + overlay frames); swept at end
     _first_onset = {}
     for (_bb, _kk, _tt, *_r) in flat:
         _first_onset.setdefault(_bb['id'], _tt)
@@ -672,6 +673,26 @@ def _main_inner():
         _clear = _dspec.get('clear', 'cut')
         _fade_dur = float(_dspec.get('fade', 1.5))
         _draw_spans.append((_dk, _asset, _t0, _t1))
+        # etched draws: a sleepdraw stroke video (muted) plays fullscreen
+        # instead of a fade-in still. Pre-rendered once: negated to
+        # ink-on-white, fitted, 15fps, looped to the span. Verse chant
+        # words keep their verse card (chant wins over motion, always).
+        _etch = _dspec.get('etch')
+        _eframes = []
+        if _etch:
+            import tempfile as _tf2
+            _edir = _tf2.mkdtemp(prefix=f'etch_{_dk}_')
+            _clip_dirs.append(_edir)
+            _r = subprocess.run(['ffmpeg', '-y', '-v', 'error', '-stream_loop', '-1', '-i', _etch,
+                                 '-vf', 'negate,scale=1920:1080:force_original_aspect_ratio=decrease,'
+                                        'pad=1920:1080:(ow-iw)/2:(oh-ih)/2:white,fps=15',
+                                 '-t', str(round(_t1 - _t0 + 0.1, 3)), '-an', f'{_edir}/f%05d.png'],
+                                capture_output=True, text=True)
+            assert _r.returncode == 0, f'draw {_dk}: etch pre-render failed: {_r.stderr[-300:]}'
+            import glob as _gg4
+            _eframes = sorted(_gg4.glob(f'{_edir}/f*.png'))
+            assert _eframes, f'draw {_dk}: no etch frames pre-rendered'
+        _draw_spans[-1] = (_dk, _asset, _t0, _t1, _eframes)
         _evts = sorted({s for s, e, k in _cues if s > _t1} |
                        {tt for (bb, kk, tt, *_r) in flat if tt > _t1 and
                         (bb['type'] in ('verse', 'dialogue') or '[long pause]' in bb.get('directed', ''))})
@@ -689,20 +710,21 @@ def _main_inner():
         # fade clearing: the tail of the hold dissolves to white (crisp-shaped);
         # a cut clearing ends the span dead (drop-shaped boom-white).
         _f0 = max(_t1, _hend - _fade_dur) if _clear == 'fade' else _hend
-        _drawholds.append((_t1, _hend, _f0, _dk, _asset, _clear))
+        _drawholds.append((_t1, _hend, _f0, _dk, _asset, _clear, _eframes))
         import hashlib as _hh3
         _meta_draws.append({'key': _dk, 't_start': round(_t0, 2), 't_complete': round(_t1, 2),
                             'clear': _clear, 'fade': _fade_dur, 'why': _dspec.get('why', ''),
-                            'asset_sha': _hh3.sha256(open(_asset, 'rb').read()).hexdigest()[:16]})
+                            'asset_sha': _hh3.sha256(open(_asset, 'rb').read()).hexdigest()[:16],
+                            'etch': _dspec.get('etch')})
     if _draw_spans:
-        print(f'draws: {[(k, round(t0, 1), round(t1, 1)) for k, a, t0, t1 in _draw_spans]}', flush=True)
+        print(f'draws: {[(k, round(t0, 1), round(t1, 1)) for k, a, t0, t1, e in _draw_spans]}', flush=True)
     # overlay clips (owner-called, clips_chNN.json): a muted video plays on
     # the mini canvas between two onsets; frames pre-rendered once via
     # ffmpeg (scaled/padded to canvas, looped/trimmed to span, 15fps, no
     # audio ever), then pasted per sub-frame. Last frame holds like a
     # persist until the next event; only fully in-range clips render.
     import tempfile as _tf
-    _clip_spans, _clipholds, _meta_clips, _clip_dirs = [], [], [], []
+    _clip_spans, _clipholds, _meta_clips = [], [], []
     for _ck, _cspec in _H.clips_for(sys.argv[1]).items():
         _ccb = _cspec['complete_bid']
         if _ck not in _first_onset or _ccb not in _first_onset:
@@ -750,9 +772,13 @@ def _main_inner():
         print(f'clips: {[(k, round(t0, 1), round(t1, 1)) for k, d, f, t0, t1 in _clip_spans]}', flush=True)
     for fi, (b, k, t_on, sw, sub, t_off) in enumerate(flat):
         im = hold_img(b, fi).copy()
-        for (_ds, _de, _df0, _dk2, _da, _dc) in _drawholds:
+        for (_ds, _de, _df0, _dk2, _da, _dc, _defr) in _drawholds:
             if _ds <= t_on < _de and fi >= _intro_end_fi:
-                im = _H.draw_progress(im, _da, 1.0)
+                if _defr:
+                    from PIL import Image as _PIL5
+                    im = _H.etch_paste(im, _PIL5.open(_defr[-1]).convert('RGB'), 1.0)
+                else:
+                    im = _H.draw_progress(im, _da, 1.0)
                 break
         for (_cs, _ce, _cf0, _ck2, _clast, _cc) in _clipholds:
             if _cs <= t_on < _ce and fi >= _intro_end_fi:
@@ -854,15 +880,15 @@ def _main_inner():
             entries.append((idx, max(0.03, _tnext - _tend), 'white'))
             idx += 1
             continue
-        _hit = next(((k2, a2, t0, t1) for (k2, a2, t0, t1) in _draw_spans
+        _hit = next(((k2, a2, t0, t1, ef) for (k2, a2, t0, t1, ef) in _draw_spans
                      if t0 <= t_on < t1), None)
         _chit = next(((k2, cd, cf, t0, t1) for (k2, cd, cf, t0, t1) in _clip_spans
                       if t0 <= t_on < t1), None)
-        _ftail = next(((k2, a2, f0, de) for (ds, de, f0, k2, a2, dc) in _drawholds
+        _ftail = next(((k2, a2, ef, f0, de) for (ds, de, f0, k2, a2, dc, ef) in _drawholds
                        if dc == 'fade' and ds <= t_on < de and f0 < de and nxt > f0 and fi >= _intro_end_fi), None)
         _ctail = next(((k2, cf, f0, de) for (ds, de, f0, k2, cf, cc) in _clipholds
                        if cc == 'fade' and ds <= t_on < de and f0 < de and nxt > f0 and fi >= _intro_end_fi), None)
-        if _ctail is not None and fi >= _intro_end_fi:
+        if _ctail is not None and fi >= _intro_end_fi and b.get('voice') != 'verse':
             # clip fade clearing: tail dissolves the frozen frame to white.
             from PIL import Image as _PIL2
             _ck3, _cf3, _cf0, _ce1 = _ctail
@@ -875,7 +901,7 @@ def _main_inner():
                 entries.append((idx, round(_dur / _K, 4), 'clip:' + _ck3))
                 idx += 1
             continue
-        if _chit is not None and fi >= _intro_end_fi:
+        if _chit is not None and fi >= _intro_end_fi and b.get('voice') != 'verse':
             # overlay clip span: paste the pre-rendered canvas frame for
             # this moment (drops win on conflict — handled above). Muted
             # always; karaoke continues on the same word.
@@ -890,29 +916,39 @@ def _main_inner():
                 entries.append((idx, round(_dur / _K, 4), 'clip:' + _ck3))
                 idx += 1
             continue
-        if _ftail is not None and fi >= _intro_end_fi:
+        if _ftail is not None and fi >= _intro_end_fi and b.get('voice') != 'verse':
             # fade clearing: tail of the hold dissolves to white over `fade`
             # seconds (crisp-shaped). Karaoke continues; durations unchanged.
-            _dk3, _da3, _df0, _de1 = _ftail
+            _dk3, _da3, _defr, _df0, _de1 = _ftail
             _dur = max(0.03, nxt - t_on)
             _K = max(1, int(round(_dur / DRAW_STEP)))
             for _j in range(_K):
                 _tt = t_on + _dur * _j / _K
                 _q = 1.0 if _tt < _df0 else max(0.0, 1.0 - (_tt - _df0) / (_de1 - _df0))
-                _H.draw_progress(im, _da3, _q).save(f'{fdir}/{idx:05d}.png')
+                if _defr:
+                    from PIL import Image as _PIL6
+                    _H.etch_paste(im, _PIL6.open(_defr[-1]).convert('RGB'), _q).save(f'{fdir}/{idx:05d}.png')
+                else:
+                    _H.draw_progress(im, _da3, _q).save(f'{fdir}/{idx:05d}.png')
                 entries.append((idx, round(_dur / _K, 4), 'draw:' + _dk3))
                 idx += 1
             continue
-        if _hit is not None and fi >= _intro_end_fi:
+        if _hit is not None and fi >= _intro_end_fi and b.get('voice') != 'verse':
             # sleepdraw entry: subdivide this word's duration into fade-in
             # frames (drops win on conflict — handled above). Karaoke stays
             # on the same word across sub-frames; durations sum identically.
-            _dk3, _da3, _dt0, _dt1 = _hit
+            _dk3, _da3, _dt0, _dt1, _defr = _hit
             _dur = max(0.03, nxt - t_on)
             _K = max(1, int(round(_dur / DRAW_STEP)))
             for _j in range(_K):
-                _p = (t_on + _dur * _j / _K - _dt0) / (_dt1 - _dt0)
-                _H.draw_progress(im, _da3, _p).save(f'{fdir}/{idx:05d}.png')
+                _tt = t_on + _dur * _j / _K
+                if _defr:
+                    from PIL import Image as _PIL4
+                    _fidx = min(len(_defr) - 1, int((_tt - _dt0) * 15))
+                    _H.etch_paste(im, _PIL4.open(_defr[_fidx]).convert('RGB'), 1.0).save(f'{fdir}/{idx:05d}.png')
+                else:
+                    _p = (_tt - _dt0) / (_dt1 - _dt0)
+                    _H.draw_progress(im, _da3, _p).save(f'{fdir}/{idx:05d}.png')
                 entries.append((idx, round(_dur / _K, 4), 'draw:' + _dk3))
                 idx += 1
             continue

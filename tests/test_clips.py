@@ -94,5 +94,24 @@ class TestOverlayClips(unittest.TestCase):
             shutil.rmtree(lane, ignore_errors=True)
 
 
+
+    def test_etch_paste_fullscreen(self):
+        import holds as H
+        from PIL import Image
+        base = Image.new('RGB', (1920, 1080), (255, 255, 255))
+        fr = Image.new('RGB', (1920, 1080), (10, 10, 10))
+        out = H.etch_paste(base, fr, 1.0)
+        self.assertEqual(out.load()[960, 400][:2], (10, 10))
+        out0 = H.etch_paste(base, fr, 0.0)
+        self.assertEqual(out0.load()[960, 400], (255, 255, 255))
+        with self.assertRaises(AssertionError):
+            H.etch_paste(base, Image.new('RGB', (100, 100), (0, 0, 0)))
+
+    def test_draws_schema_accepts_etch(self):
+        import factory_contract as C
+        C.validate_schema('draws', {'b2': {'asset': 'x.jpg', 'complete_bid': 'b9',
+                                           'etch': 'y.mp4', 'why': 't'}}, 'etch ok')
+
+
 if __name__ == '__main__':
     unittest.main()

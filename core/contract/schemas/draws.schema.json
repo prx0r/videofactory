@@ -1,15 +1,46 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "title": "Filed sleepdraws",
-  "type": "object", "propertyNames": {"pattern": "^b[0-9]+$"},
+  "type": "object",
+  "propertyNames": {
+    "pattern": "^b[0-9]+$"
+  },
   "additionalProperties": {
-    "type": "object", "required": ["asset", "complete_bid", "why"], "additionalProperties": false,
+    "type": "object",
+    "required": [
+      "asset",
+      "complete_bid",
+      "why"
+    ],
+    "additionalProperties": false,
     "properties": {
-      "asset": {"type": "string", "pattern": "\\S"},
-      "complete_bid": {"type": "string", "pattern": "^b[0-9]+$"},
-      "clear": {"type": "string", "enum": ["fade", "cut"]},
-      "fade": {"type": "number", "exclusiveMinimum": 0},
-      "why": {"type": "string", "pattern": "\\S"}
+      "asset": {
+        "type": "string",
+        "pattern": "\\S"
+      },
+      "complete_bid": {
+        "type": "string",
+        "pattern": "^b[0-9]+$"
+      },
+      "clear": {
+        "type": "string",
+        "enum": [
+          "fade",
+          "cut"
+        ]
+      },
+      "fade": {
+        "type": "number",
+        "exclusiveMinimum": 0
+      },
+      "why": {
+        "type": "string",
+        "pattern": "\\S"
+      },
+      "etch": {
+        "type": "string",
+        "pattern": "\\S"
+      }
     }
   }
 }

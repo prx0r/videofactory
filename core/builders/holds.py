@@ -200,6 +200,8 @@ def draws_for(sb_path):
     for bid, spec in d.items():
         assert isinstance(spec, dict) and spec.get('asset'), f"draw {bid}: needs an asset path"
         assert spec.get('complete_bid'), f"draw {bid}: needs complete_bid (the frame it is complete on)"
+        if spec.get('etch'):
+            assert os.path.exists(spec['etch']), f"draw {bid}: etch video missing: {spec['etch']}"
         assert spec.get('clear', 'cut') in ('fade', 'cut'), f"draw {bid}: clear is fade|cut"
         assert float(spec.get('fade', 1.5)) > 0, f"draw {bid}: fade seconds must be > 0"
         assert (spec.get('why') or '').strip(), f"draw {bid}: needs a why — unjustified motion never renders"
@@ -250,6 +252,20 @@ def clips_for(sb_path):
         assert float(spec.get('fade', 1.5)) > 0, f"clip {bid}: fade seconds must be > 0"
         assert (spec.get('why') or '').strip(), f"clip {bid}: needs a why — unjustified motion never renders"
     return d
+
+
+def etch_paste(base_im, frame_im, q=1.0):
+    """Paste one pre-rendered full-frame etch frame (1920x1080, already
+    negated to ink-on-white at pre-render); q fades it toward white."""
+    from PIL import Image
+    assert frame_im.size == (W, H), f'etch frame must be {W}x{H}'
+    im = base_im.copy()
+    if q >= 1.0:
+        im.paste(frame_im, (0, 0))
+    else:
+        ground = Image.new('RGB', frame_im.size, LIGHT)
+        im.paste(Image.blend(frame_im, ground, min(1.0, max(0.0, 1.0 - q))), (0, 0))
+    return im
 
 
 def overlay_paste(base_im, frame_im, q=1.0):
