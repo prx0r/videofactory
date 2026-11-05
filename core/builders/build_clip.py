@@ -601,6 +601,12 @@ def _main_inner():
             _end = next((j for j in range(_fi + 1, len(flat) + 1)
                          if j >= len(flat) or flat[j][2] >= _end_t - 1e-6),
                         len(flat))
+            # max hold ~60s (owner call 2026-11-05): a persist clears to
+            # white unless a newer cue/chant/break supersedes it first.
+            # Re-mentions re-fire their own spans, so live cards survive.
+            _cap = next((j for j in range(_fi + 1, len(flat) + 1)
+                         if j >= len(flat) or flat[j][2] >= _ton + 60.0), len(flat))
+            _end = min(_end, _cap)
             if _end <= _fi + 1:
                 continue
             _term_imgs[('persist', b['id'])] = hold_for.get(b['id'], _blank)
@@ -633,7 +639,9 @@ def _main_inner():
                     _ri, _p = _run_of[_n]
                     return _term_imgs[('stack', _ri, _p + 1)]
                 return _term_imgs[key]
-        for (s, e, bid) in _persists:
+        # newest persist wins (mirrors cue clamping M11): a fresh chant
+        # re-covers older holds instead of flashing one frame under them.
+        for (s, e, bid) in reversed(_persists):
             if s <= t < e:
                 return _term_imgs[('persist', bid)]
         return _blank
@@ -648,7 +656,7 @@ def _main_inner():
                 if _n in _run_of:
                     return 'stack:' + key
                 return 'term:' + key
-        for (s, e, bid) in _persists:
+        for (s, e, bid) in reversed(_persists):
             if s <= t < e:
                 return 'verse-hold:' + bid
         return 'white'
@@ -668,6 +676,13 @@ def _main_inner():
             continue
         _t0, _t1 = _first_onset[_dk], _first_onset[_cb]
         assert _t1 > _t0, f'draw {_dk}: complete_bid must start after start_bid'
+        # Staging law: a draw starts on white blank, never straight off a
+        # Sanskrit card (hold, decide drop, blank, decide draw).
+        _sfi = next((_fi for _fi, (_bb, *_r) in enumerate(flat) if _bb['id'] == _dk), None)
+        assert _sfi is not None, f'draw {_dk}: start bid not in this range'
+        _skind = hold_kind(flat[_sfi][0], _sfi)
+        assert _skind == 'white', (f'draw {_dk}: must start on white blank, found {_skind} — '
+                                   'clear the Sanskrit hold first (drop/cue), then draw')
         _asset = _dspec['asset']
         assert os.path.exists(_asset), f'draw {_dk}: asset missing: {_asset}'
         _clear = _dspec.get('clear', 'cut')
@@ -706,7 +721,7 @@ def _main_inner():
                 break
             _prev_sec = bb['section']
         _ends = ([_brk] if _brk else []) + _evts
-        _hend = min(_ends) if _ends else off
+        _hend = min(min(_ends) if _ends else off, _t1 + 60.0)
         # fade clearing: the tail of the hold dissolves to white (crisp-shaped);
         # a cut clearing ends the span dead (drop-shaped boom-white).
         _f0 = max(_t1, _hend - _fade_dur) if _clear == 'fade' else _hend
@@ -731,6 +746,11 @@ def _main_inner():
             continue
         _ct0, _ct1 = _first_onset[_ck], _first_onset[_ccb]
         assert _ct1 > _ct0, f'clip {_ck}: complete_bid must start after start_bid'
+        _csfi = next((_fi for _fi, (_bb, *_r) in enumerate(flat) if _bb['id'] == _ck), None)
+        assert _csfi is not None, f'clip {_ck}: start bid not in this range'
+        _cskind = hold_kind(flat[_csfi][0], _csfi)
+        assert _cskind == 'white', (f'clip {_ck}: must start on white blank, found {_cskind} — '
+                                    'clear the Sanskrit hold first, then play')
         _casset = _cspec['asset']
         assert os.path.exists(_casset), f'clip {_ck}: asset missing: {_casset}'
         _cclear = _cspec.get('clear', 'cut')
@@ -772,8 +792,13 @@ def _main_inner():
         print(f'clips: {[(k, round(t0, 1), round(t1, 1)) for k, d, f, t0, t1 in _clip_spans]}', flush=True)
     for fi, (b, k, t_on, sw, sub, t_off) in enumerate(flat):
         im = hold_img(b, fi).copy()
+        # Staging law: motion renders ONLY on white (kind0). Chant, cue,
+        # persist and thumbnail cards always win — Sanskrit hold, deliberate
+        # blank, then draw. Never Sanskrit straight into draw.
+        _base_kind = hold_kind(b, fi)
+        _motion_ok = _pure.motion_applies(_base_kind) and fi >= _intro_end_fi
         for (_ds, _de, _df0, _dk2, _da, _dc, _defr) in _drawholds:
-            if _ds <= t_on < _de and fi >= _intro_end_fi:
+            if _motion_ok and _ds <= t_on < _de:
                 if _defr:
                     from PIL import Image as _PIL5
                     im = _H.etch_paste(im, _PIL5.open(_defr[-1]).convert('RGB'), 1.0)
@@ -781,7 +806,7 @@ def _main_inner():
                     im = _H.draw_progress(im, _da, 1.0)
                 break
         for (_cs, _ce, _cf0, _ck2, _clast, _cc) in _clipholds:
-            if _cs <= t_on < _ce and fi >= _intro_end_fi:
+            if _motion_ok and _cs <= t_on < _ce:
                 from PIL import Image as _PIL
                 im = _H.overlay_paste(im, _PIL.open(_clast).convert('RGB'), 1.0)
                 break
@@ -888,7 +913,7 @@ def _main_inner():
                        if dc == 'fade' and ds <= t_on < de and f0 < de and nxt > f0 and fi >= _intro_end_fi), None)
         _ctail = next(((k2, cf, f0, de) for (ds, de, f0, k2, cf, cc) in _clipholds
                        if cc == 'fade' and ds <= t_on < de and f0 < de and nxt > f0 and fi >= _intro_end_fi), None)
-        if _ctail is not None and fi >= _intro_end_fi and b.get('voice') != 'verse':
+        if _ctail is not None and _motion_ok:
             # clip fade clearing: tail dissolves the frozen frame to white.
             from PIL import Image as _PIL2
             _ck3, _cf3, _cf0, _ce1 = _ctail
@@ -901,7 +926,7 @@ def _main_inner():
                 entries.append((idx, round(_dur / _K, 4), 'clip:' + _ck3))
                 idx += 1
             continue
-        if _chit is not None and fi >= _intro_end_fi and b.get('voice') != 'verse':
+        if _chit is not None and _motion_ok:
             # overlay clip span: paste the pre-rendered canvas frame for
             # this moment (drops win on conflict — handled above). Muted
             # always; karaoke continues on the same word.
@@ -916,7 +941,7 @@ def _main_inner():
                 entries.append((idx, round(_dur / _K, 4), 'clip:' + _ck3))
                 idx += 1
             continue
-        if _ftail is not None and fi >= _intro_end_fi and b.get('voice') != 'verse':
+        if _ftail is not None and _motion_ok:
             # fade clearing: tail of the hold dissolves to white over `fade`
             # seconds (crisp-shaped). Karaoke continues; durations unchanged.
             _dk3, _da3, _defr, _df0, _de1 = _ftail
@@ -933,7 +958,7 @@ def _main_inner():
                 entries.append((idx, round(_dur / _K, 4), 'draw:' + _dk3))
                 idx += 1
             continue
-        if _hit is not None and fi >= _intro_end_fi and b.get('voice') != 'verse':
+        if _hit is not None and _motion_ok:
             # sleepdraw entry: subdivide this word's duration into fade-in
             # frames (drops win on conflict — handled above). Karaoke stays
             # on the same word across sub-frames; durations sum identically.

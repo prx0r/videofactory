@@ -73,3 +73,11 @@ def plan_groups(blocks):
 def count_disp(group):
     return sum(len([w for w in b['text'].strip().split() if re.search(r'\w', w, re.U)])
                for b in group if 'group_kind' not in b)
+
+
+def motion_applies(base_kind):
+    """The staging law (owner call 2026-11-05): motion (draw/clip spans and
+    completion holds) renders ONLY on white. Chant, cue, persist, thumbnail
+    and dialogue-entry cards always win — Sanskrit hold, deliberate blank,
+    then draw. Never Sanskrit straight into draw."""
+    return base_kind == 'white'

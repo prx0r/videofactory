@@ -225,7 +225,10 @@ def draw_progress(base_im, asset_path, p):
     assert_safe(y + asset.size[1], f'draw asset {asset_path}')
     p = min(1.0, max(0.0, p))
     ground = Image.new('RGB', asset.size, LIGHT)
-    im.paste(Image.blend(ground, asset, p), (x, y))
+    shown = Image.blend(ground, asset, p)
+    full = Image.new('RGB', (W, H), LIGHT)
+    full.paste(shown, (x, y))
+    im.paste(full, (0, 0), _white_mask(full))
     return im
 
 
@@ -254,17 +257,27 @@ def clips_for(sb_path):
     return d
 
 
+def _white_mask(frame_im, thresh=12):
+    """Mask of non-white pixels: art shows through, existing ink
+    (karaoke subtitles already on the base) survives underneath."""
+    from PIL import Image, ImageChops
+    diff = ImageChops.difference(frame_im, Image.new('RGB', frame_im.size, LIGHT))
+    return diff.convert('L').point(lambda v: 255 if v > thresh else 0)
+
+
 def etch_paste(base_im, frame_im, q=1.0):
     """Paste one pre-rendered full-frame etch frame (1920x1080, already
-    negated to ink-on-white at pre-render); q fades it toward white."""
+    negated to ink-on-white at pre-render); q fades it toward white.
+    White-preserving: karaoke ink already on the base survives."""
     from PIL import Image
     assert frame_im.size == (W, H), f'etch frame must be {W}x{H}'
     im = base_im.copy()
     if q >= 1.0:
-        im.paste(frame_im, (0, 0))
+        im.paste(frame_im, (0, 0), _white_mask(frame_im))
     else:
         ground = Image.new('RGB', frame_im.size, LIGHT)
-        im.paste(Image.blend(frame_im, ground, min(1.0, max(0.0, 1.0 - q))), (0, 0))
+        im.paste(Image.blend(frame_im, ground, min(1.0, max(0.0, 1.0 - q))), (0, 0),
+                 _white_mask(frame_im))
     return im
 
 

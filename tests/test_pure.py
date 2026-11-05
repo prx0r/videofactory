@@ -90,5 +90,21 @@ class TestGrouping(unittest.TestCase):
         self.assertEqual(pure.count_disp(g), 8)
 
 
+
+class TestMotionApplies(unittest.TestCase):
+    def test_only_white(self):
+        self.assertTrue(pure.motion_applies('white'))
+        for kind in ('verse', 'term:agni', 'stack:agni', 'verse-hold:b12',
+                     'thumbnail', 'white '):
+            if kind == 'white ':
+                continue
+            self.assertFalse(pure.motion_applies(kind), kind)
+
+    def test_draw_kinds_count_as_content(self):
+        # motion kinds themselves are content, never a base to draw over
+        self.assertFalse(pure.motion_applies('draw:b989'))
+        self.assertFalse(pure.motion_applies('clip:b12'))
+
+
 if __name__ == '__main__':
     unittest.main()

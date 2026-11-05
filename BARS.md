@@ -92,6 +92,15 @@ the law.
     The complete frame shows the full image; progress is measured between
     two word onsets, never estimated. Frames are transient; mp4+meta+subs
     persist.
+29. Staging law (Sanskrit hold, decide drop, blank, decide draw — never
+    Sanskrit straight into draw): motion renders ONLY on white; chant,
+    cue, persist and thumbnail cards always win. A draw/clip must START
+    on a white word (asserted, fail loud). The blank is our silence.
+30. Holds release: a persist clears to white 60s after its chant onset
+    unless superseded (max hold ~60s, owner call 2026-11-05); completed
+    draws clear the same way. Newer persists win over older (cue-clamp
+    mirror M11) — a fresh chant re-covers, never flashes one frame under
+    a stale hold. Re-mentions re-fire, so live cards survive.
 29. Overlay clips play muted on the mini canvas (centered 1280x660, above
     subtitles) between two onsets, then hold their last frame like a
     persist. Filed like draws {start, asset mp4, complete, clear, why};
