@@ -274,5 +274,6 @@
    "status": "chain stopped cleanly, ch14-22 block dirs wiped (672M, poisoned by old-code provenance), batch relaunched detached on fixed code (14..22 --ship). ch20 no longer blocks at audio and cannot crash on devya run (one cue/block).",
    "tests": "174 passed (recursive splitter invariant, cue-model, gate demotion, prove record-only); check.py CANONICAL"
   }
- ]
+ ],
+ "render_gate": "storyboard green + owner approval (owner order 2026-11-06); everything else advisory/record-only"
 }
