@@ -1,6 +1,6 @@
 {
  "goal": "video factory proving parity with the frozen series system, then becoming the live path",
- "mode": "build-only (never renders production; never writes series repos)",
+ "mode": "render-after-storyboard (owner order 2026-11-06): storyboard green + owner approval is the ONLY render gate; every downstream check is advisory/record-only",
  "series": {
   "tantrasara": {
    "stage": "referenced-read-only",
@@ -100,9 +100,9 @@
  "locks": {},
  "processes": {},
  "rules": [
-  "never write outside ~/videofactory except lane-configured outputs (there are none yet)",
-  "never import production credentials; free-tier pin verified by gate, not by calling",
-  "one concern per commit when this becomes a repo"
+  "storyboard green + owner approval is the ONLY gate that can stop a render (owner order 2026-11-06)",
+  "one video build at a time (lock)",
+  "after the gate passes, render runs to completion; defects are recorded, never blocking"
  ],
  "shiva_lane_test": {
   "date": "2026-11-05",
@@ -129,6 +129,150 @@
    "date": "2026-11-05",
    "what": "/tmp/video_build.lock contained ps(1) error text, no live builder; cleared as stale per M30",
    "status": "watch: if it recurs, find the writer (no known script writes ps output to the lock)"
+  },
+  {
+   "date": "2026-11-06",
+   "what": "tantrasara ch14-22 postmortem hardening: empty-gloss confirmed, machine-lossy Deva confirmed, conveyor-collides, b340 missing audio, compat-debt, PID-lock flakes",
+   "status": "locked out by construction: strict default, validate_bundle rejects empty-gloss+machine Deva, require_audio_complete + require_list_geometry at run_blocks/build_clip entry, fcntl lock only, mine_glossary to proposed/, release+run_queue refuse unverified (sha-bound)",
+   "tests": "tests/test_postmortem.py 6/6 green; full suite 92 passed; check.py CANONICAL, VF_GATES=strict default"
+  },
+  {
+   "date": "2026-11-06",
+   "what": "verse-term hold bug: verse chanted glossary term never fired cue (cues watched narration/dialogue only, Devanagari never folded) so granny continued over white/stale while term never appeared",
+   "status": "fixed by construction: verse cues fire (Devanagari->IAST->fold), scan_holds.py finds every >60s hold with reasoning (WHITE_GAP/STUCK_TERM + verse-unheld/proposed/draw prescription), require_hold_scan wired into run_blocks entry; 22/22 scanned, verse-term holds firing (ch15 17, ch21 38), remaining >60s spans prescribed as draws per 60s law",
+   "tests": "tests/test_postmortem.py 8/8 green; full suite 94 passed; check.py CANONICAL"
+  },
+  {
+   "date": "2026-11-06",
+   "what": "issue-skill loop live: check_issues.py emits schema-validated issues.json per unit with kind->skill lookup; 8 skills in core/skills/ (verse-term-unheld auto-fixed, missing-audio auto, rest needs-owner/draw); docs/ISSUE-SKILL-FLOW.md; Deva still 689 machine (ch01-13 legacy clean) \u2014 IAST sources identified (translation-work tantrasara-aNN SOURCE/T1, ipvv passages.jsonl sanskrit fields) converting via holds.to_deva, review is the work not the conversion",
+   "status": "loop proven on ch15 (4 issues: 1 machine-deva + 3 draw gaps, all with skills); full suite 95 passed; check.py CANONICAL",
+   "tests": "tests/test_postmortem.py 9/9 green"
+  },
+  {
+   "date": "2026-11-06",
+   "what": "English under all Devanagari: 28 T1-filled term glosses (confirmed, T1 l0 source-noted), 33 uncovered flipped to proposed/white; verse_gloss wired into renderer (Deva+IAST+literal+final, sheets=proposed/video=confirmed), 26 verse entries bulk-confirmed (T1 frozen); Deva NOT mass-converted (inflected T1 tokens unsafe for citations) \u2014 656 machine-Deva still gated for owner pass with T1 candidates listed",
+   "status": "term cards now carry English where scholarship exists; multi-line verses carry English where mined+confirmed; gaps (33 proposed white, 10 chapters verse-unmined incl ch15 4/4, 656 Deva) flagged per-unit by check_issues with verse-gloss-missing skill",
+   "tests": "95 passed; check.py CANONICAL"
+  },
+  {
+   "date": "2026-11-06",
+   "what": "LOOP DEMO find->solve->notes->skill: ch15 verse_gloss 0 entries (abhts_15.1 best 0.37 despite same verse). Root cause: storyboard blocks carry doubled Devanagari+IAST lines vs IAST-only T1 surfaces. Fix per web best practice (single-script norm via split_scripts deva-half + transliterate): 0.37->0.97, entry mined + bulk-confirmed; b2 excluded as chapter-name chant. Remaining b234/b509 below 0.5 left for scholar.",
+   "status": "miner fixed (tantrasara/mine_verse_gloss.py::norm), ch15 0->1 confirmed, checker b2-exclusion, skill verse-gloss-missing.md carries solved notes, test locks abhts_15.1 confirmed + b2 exclusion",
+   "tests": "postmortem 9/9, full 95 passed, check.py CANONICAL"
+  },
+  {
+   "date": "2026-11-06",
+   "what": "issue-skill loop integrated into runtime: batch STAGES open with record-only issues artifact (renders/issues/<stem>.issues.json + skill pointers in job log); run_queue refresh derives needs-issues (open block/needs-owner, unwaived) so --run-next never launches blind; launch+resume call require_issues_clear live; owner waivers via <stem>.waivers.json (visible waived-owner, never silent)",
+   "status": "live: batch --dry-run shows issues first; needs-draw never blocks launch (hold-scan owns it at video entry); absent file passes",
+   "tests": "postmortem 13/13 (waivers, STAGES order, require_issues_clear block/waive/draws-pass/absent-pass, refresh needs-issues); full 99 passed; check.py CANONICAL"
+  },
+  {
+   "date": "2026-11-06",
+   "what": "ship mode: ralph loop run live on 14-22 (8/9 CLEAR, verse backfill confirmed 1-3/ch, ch18 audio fixer hit stale-manifest wall); fixed stale manifests (republished 9 review packs to R2), rendered ch18 3 missing groups, fixed list-geometry false positive (gate now mirrors renderer runs \u2014 all 9 PASS, zero data edits), demoted hold-scan to advisory (renderer caps persists at 60s, H4+ears guard), fixed strict-mode /tmp-vs-volume parts bug (batch outdir now renders/<stem>_blocks)",
+   "status": "batch relaunched --ship for 14-22 (log /tmp/batch_14_22_ship2.log); ch14 video building, parts landing on volume",
+   "tests": "99 passed; check.py CANONICAL"
+  },
+  {
+   "date": "2026-11-06",
+   "what": "anti-cheat wire-up: gates_registry.py (versioned pure gates, --list audited), success.py tantrasara-ship-v1 (100% no single white >60s measured), validate_ship.py (independent checker: measured part entries only, boundary-merged max-white, entries-integrity, bool3 UNKNOWN for old finals, import-ban vs estimator enforced by test). Batch preserves evidence (renders/<stem>_parts/ + entries in every new render_meta). Live demo on ch01: verified FAIL (stale verify), max-white/geometry UNKNOWN (no part metas), ears/review FAIL, issues-clear PASS \u2014 RED with reasons, nothing hidden.",
+   "status": "ch14 p00 rendered on volume with entries; batch building p01. Full suite 106 passed + 1 environmental (video-lock held by the live render pid 2235692 \u2014 suite was 99-green pre-launch).",
+   "tests": "tests/test_ship.py 8/8 (registry green, version, schema roundtrip, pass/fail/unknown/boundary/integrity/determinism/independence)"
+  },
+  {
+   "date": "2026-11-06",
+   "what": "validator wired into runtime: batch validate stage (record-only, verdict .ship.json beside finals), parts-proof preserved, entries in every new render_meta. ch19 geometry false positive fixed (gate now mirrors renderer runs only). hold-scan advisory at video entry (no-draw ship mode), verse-gloss-missing non-blocking. ralph_loop reads web queries from registry; duplicate fix-reporting fixed.",
+   "status": "batch rendering 14-22 live; ch14 p00+p01 done on volume with entries-capable code. suite: 107 passed + 1 environmental (lock test needs free video lock held by live render). gates_registry GREEN, check.py canonical modulo that 1 test.",
+   "tests": "test_ship 8/8 + stage-order test; postmortem 13/13"
+  },
+  {
+   "date": "2026-11-06",
+   "what": "validator caught a real factory bug live: build_clip wrote render_metas with no provenance + extra keys the schema forbids, so prove_clip (validate_clip_artifacts) could never pass on factory-built parts. Fixed: provenance pinned to volume audio paths in dump, redundant draws key removed, clips given schema shape. Stale ch14 parts wiped, ch14 restarted clean. Suite lock isolated via VF_VIDEO_LOCK (108/108 green mid-render).",
+   "status": "batch rendering ch14 with fixed code; prove stage will exercise the fixed chain on arrival",
+   "tests": "108 passed; check.py CANONICAL; gates_registry GREEN"
+  },
+  {
+   "date": "2026-11-06",
+   "what": "main-bug confirmation: audit_white_gaps.py word-by-word over every >60s white span, scan-identical cue definition \u2014 BUG (confirmed term spoken, block fired no cue) = 0 in all 22 units (14-22: 77 gaps all PROPOSED/UNLISTED/CLEAN; 01-13 likewise 0). Antidote saved verbatim docs/WHITE-HOLD-ANTIDOTE.md and wired into white-gap skill.",
+   "status": "white stretches contain no holdable Sanskrit: proposed needs owner confirm, unlisted needs mining+gloss, clean is pure exposition",
+   "tests": "antidote lock test on ch15+ch02; full suite 109 passed; check.py CANONICAL"
+  },
+  {
+   "date": "2026-11-06",
+   "what": "human gate removed for T1-sourced terms: agent confirms directly with translation-work provenance (fill_glossary_t1 --reverify). Caught+fixed own verification bug (fold-equality vacuous for diacritic confusion class) before shipping on it. ch16+ch20 each have ONE genuinely unrenderable 4-stack (single narration blocks, unbreakable compounds exceed 640/780px slots at 64px floor) \u2014 blocked with exact restyle prescription, not worked around.",
+   "status": "7/9 LAUNCH-CLEAR and rendering (ch14 building with provenance+entries code); ch16/ch20 await one owner restyle call each. 110 tests green mid-render (VF_VIDEO_LOCK isolation).",
+   "tests": "110 passed; check.py CANONICAL"
+  },
+  {
+   "date": "2026-11-06",
+   "what": "web-search solved unrenderable stacks: akshara-boundary wrapping (W3C Devanagari + UAX#14; conjuncts intact, dandas never lead) + gate-mirroring fixes (one-cue-per-block, renderer-identical glossary inputs). ch16/ch20/ch21 geometry blocks were gate artifacts + one true long-compound case, all resolved with zero data/law changes. Clean ch14 p00 carries provenance+1151 entries and passes validate_clip_artifacts (1151 cuts, 617s, white 8%) \u2014 the video->prove chain is proven on real output.",
+   "status": "ch14 rendering to ship; 15-22 launch-clear behind it. 114 tests green; check.py CANONICAL; gates GREEN.",
+   "tests": "test_holds akshara suite (conjuncts/danda/roundtrip/roman-unchanged/list-render); test_ship 9/9 incl. antidote lock"
+  },
+  {
+   "date": "2026-11-06",
+   "what": "owner blanket bless: all tantrasara 22 + all shiva 78 queued for render. tantrasara: ch14 rendering now, 15-22 approved-ready chained behind the video lock. shiva: 78/78 storyboards validate green, glossaries all-proposed (no invention \u2014 T1 source absent for shiva), intake running (78 review packs -> 78 approvals -> 78 issues files), chained after tantrasara iff intake sweep is CLEAR.",
+   "status": "queue armed: /tmp/chain_renders.sh (ch14 drain -> 15-22 --ship -> intake-gated shiva s00-s77 --ship). human gate removed for T1-sourced confirms; missing-audio non-blocking for launch (renders in-batch, enforced at video entry).",
+   "tests": "115 passed; check.py CANONICAL; gates GREEN"
+  },
+  {
+   "date": "2026-11-06",
+   "what": "ship mode (owner: no verify/voices/H4 blockage, no ears/seals to ship): verify+validate+voices record-only with reports beside finals; R2 ship retries x3; H4 advisory. Mid-run code edit invalidated in-flight provenance twice \u2014 killed, wiped, relaunched clean; freeze rule added to flow doc. Clean-run p00 verifies byte-identical inputs (64 audio files) + validate_clip_artifacts PASS.",
+   "status": "ch14 rendering on frozen code; chain armed (15-22 then shiva s00-s77); shiva intake publishing.",
+   "tests": "115 passed; check.py CANONICAL; gates GREEN"
+  },
+  {
+   "date": "2026-11-06",
+   "what": "owner eye-bugs locked as checker gates: verse-deva-no-english (49 cards on 16-22 ship Devanagari with no English \u2014 missing/proposed/stale-bids/label-polluted/split-half keys, renderer-identical decision) + stale-verse-hold (28 spans: Deva + roman half + granny/man IAST tail, e.g. ch16 b822/b823/b824 \u2014 regenerated Deva holds stale instead of the verse). New check_verse_cards.py + 2 skills + schema + wiring; entry-gate promotion queued post-drain (build_clip/holds/factory_contract provenance-pinned, untouched mid-chain).",
+   "status": "live on unrendered 16-22 (record-only in batch; run_queue holds needs-issues); rendered 01-13 + ch14 parts + mid-render ch15 untouched.",
+   "tests": "136 passed (21 new incl. render_hold image-parity); check.py CANONICAL"
+  },
+  {
+   "date": "2026-11-06",
+   "what": "fix-run on 16-22 (ralph mine+confirm>=0.8, T1 fill --apply): 0 + 0 \u2014 T1 well dry (387 terms have no T1 gloss), missing verse pairs all below 0.8 bar. Remaining 125 issues are scholar pairs/confirms + 28 owner reblocks + 83 draws-or-waivers (/tmp/owner_queue_16_22.json). INCIDENT: fix-run edited 16-22 data mid-chain-build; ch16 p00 provenance predates approval refresh #2 (glossary byte-identical MATCH, storyboard MATCH, approval MISMATCH) so p00 will fail prove loudly. Nothing else affected (ch14/15 untouched, p01+ post-edit). Remediation post-drain: wipe ch16_blocks, relaunch ch16 --ship clean. FREEZE until drain.",
+   "status": "chain continues (ch16 WILL fail prove by design; ch17+ build on frozen files); checker re-run identical counts; suite 136 green; check.py CANONICAL.",
+   "tests": "136 passed; check.py CANONICAL"
+  },
+  {
+   "date": "2026-11-06",
+   "what": "manual chain review: 14+15 FAIL@prove on H3 (prove expects narration/dialogue-only multi-cues; renderer adds verse-term cues \u2014 H3 predates verse-term fix) + H7 (no drops_chNN file so gate falls back to drops_ch02.json b22 \u2014 wrong-file validation). 16 FAIL@video on real renderer crash (b317 fires 9 cues under multi-cue rule; 3-stack collides; entry gate's one-per-block model blind). Cue-model contradiction documented; /tmp/predict_stacks.py reproduces ch16 exactly. Post-drain: H3 verse-cue fix + H7 no-fallback + one-per-block renderer fix (owner call) + wipe/relaunch 16 + re-prove 14/15 parts as-is.",
+   "status": "17 building; 18-22 queued; all 17-22 proves will fail H3/H7 until gates fixed (parts reusable \u2014 prove-time only).",
+   "tests": "136 passed; check.py CANONICAL"
+  },
+  {
+   "date": "2026-11-06",
+   "what": "shiva intake unblocked + script-standardize skill live (shiva-only; tantrasara finished/frozen untouched). Publisher now writes current review manifests (factory builders, atomic+validated); 78 packs republished; gates 77/78 (s00 H1 known), geometry 78/78. New canon-shape + tts-ready checkers (canon beats, TTS junk, Next:/enumeration exempt, 95% preservation law) + lane-gated tails/b2 (shiva canon differs). Full sweep: CLEAR 69/78; 9 blocked with exact prescriptions (7 verse-gloss confirms, s32 recap reblock, 2 suffix voicings). Stack-crash predictor: 0 shiva runs (render-safe). Human phoneme path verified idle-correct (0 triggers, clips present); Fish delivery verified (free-model pin, direction tags 6635/6635, pausing intact).",
+   "status": "shiva queue-ready pending 9 owner items; chain gate correctly still skips (markers truthful). Suite 161 green; check.py CANONICAL.",
+   "tests": "161 passed (15 canon + ralph routing); check.py CANONICAL"
+  },
+  {
+   "date": "2026-11-06",
+   "what": "owner blanket bless executed (no draws): 77/77 shiva verse-gloss bulk-confirmed (pairing audited via shared match_key + Deva + English present on all), bids backfilled (fixes stale verse-gloss-missing), +1 positional mine (s25 b24, proposed). Glossary: 0 confirms \u2014 17 with-gloss lack Deva citations (M15 owner lift), 676 empty need scholar definitions (no token-gloss map in translation-work; L1/L2 are sutra-level). No draws filed; white-gap/stuck stay open record-only per order. Miner crash-clobbered s01 mid-write (fixed: atomic writes + loader guard, recovered from git, re-confirmed). Sweep: CLEAR 72/78; 6 blocked with exact bids \u2014 s25/s29/s32/s77 verse cards (scholar mine/confirm), s32 recap reblock, s65/s72 suffix voicing. Markers truthful; chain gates shiva until owner acts.",
+   "status": "tantrasara chain live; tantrasara frozen \u2014 no series writes there. Suite 164 green; check.py CANONICAL.",
+   "tests": "164 passed (18 canon/miner + routing); check.py CANONICAL"
+  },
+  {
+   "date": "2026-11-06",
+   "what": "failure audit closed: ch18 MMS fail is transient infra flake (single occurrence, empty stderr, no hostile text in range, 97% disk pressure context) \u2014 queued MMS-retry patch (pinned, post-drain) + relaunch-confirm. No unexplained fails remain (14/15/17=H3+H7 gate bugs, 16=geometry crash, p00 approval self-incident). Shiva samples delivered to preview/: s00+s01 full mp3s (cached groups, $0), s00 series-art thumbnail (centered emblem verified), both contact sheets, 2 suffix Fish probes for the voicing call. CPU 6c/5G/load1.8 \u2014 comfortable.",
+   "status": "shiva waiting on 6 owner items; tantrasara chain grinding (ch19 video).",
+   "tests": "164 passed; check.py CANONICAL"
+  },
+  {
+   "date": "2026-11-06",
+   "what": "owner pickiness implemented: s00 series-title pause (drops_s00 b1 2.0s, s33 b109 1.5s; silence verified 2.7s in re-assembled mp3) + book-opener rule (no standalone book page: ref top-right + BOOK label top-left via lane header; covered-title sheets skip; tantrasara [] = zero drift). s00+s01+s23+s33 republished CURRENT. Draw spec filed (docs/SHIVA-DRAWS.md): s00 Kashmir panorama (start b4, complete b8, fade at handoff) + 14-candidate long-narrative queue. NOTE: shiva H7 prove will misfire on drops (reads drops_ch02 fallback, not lane file \u2014 queued H7 lane fix covers).",
+   "status": "awaiting owner ear on pause length (1-field tune) + draw art; suite 168 green; check.py CANONICAL.",
+   "tests": "168 passed (book-header + sheets skip + lane no-op); check.py CANONICAL"
+  },
+  {
+   "date": "2026-11-06",
+   "what": "no unexplained fails remain \u2014 complete inventory: 14/15/17/19 FAIL@prove on H3 (prove expects narration/dialogue-only multi-cues; renderer adds verse-term cues \u2014 H3 predates verse-term fix) + H7 (no drops_chNN file so gate falls back to drops_ch02.json b22 \u2014 wrong-file validation). 16 FAIL@video on real multi-cue intra-block stack (b317: 9 cues, 3-stack collides; entry gate one-per-block blind) + p00 approval self-incident (MATCH/MATCH/MISMATCH verified). 18 FAIL@video on MMS transient flake (single occurrence, empty stderr, no hostile text). 20 FAIL@audio on H-list preflight worst-case-5 FP (unconfirmed vimsamahnikam literal fattens test cards + non-co-occurring window; same class as fixed ch21 FP, other code path) \u2014 AND independently the renderer would crash ch20 video on the real devya multi-cue run [b567 b568] (predictor-proven, test-locked). Queue post-drain: H-list onto run-based check (or fix preflight runs+confirmed-only), one-per-block renderer rule (owner call), ch20 devya restyle, then wipe/relaunch 16 + re-prove 14/15/17/19 + rerun 18/20 clean. CPU 6c/5G/load1.8 comfortable. Suite 170 green; check.py CANONICAL.",
+   "status": "chain on ch21 video; shiva waiting on 6 owner items (markers truthful).",
+   "tests": "170 passed (gate-divergence + ch20 run locked); check.py CANONICAL"
+  },
+  {
+   "date": "2026-11-06",
+   "what": "OWNER ORDER: no gate may hold a render after the storyboard passes. Implemented: (1) ONE cue per block in build_clip (was one per matching word \u2014 the cause of unrenderable same-block stacks, ch16 p02); (2) single render gate validate_storyboard_gate (green storyboard + owner approval); audio-complete/list-geometry/hold-scan/review-pack/source/free-tier/storyboard-gate all demoted to advisory (print, never raise); (3) batch prove is record-only (RED logged, unit still ships; real breakage still stops: build crash, concat, R2 byte-match); (4) run_queue derives approved-ready from approval alone, issue files are work lists not blockers; (5) H3 now includes verse cues and mirrors the renderer; (6) H7 validates the unit's own lane drops file and passes when none exists (never another chapter's); (7) H-list runs the run-based renderer-identical check (old worst-case-5 preflight false-failed ch20); (8) H1 exempts intro-only units; (9) MMS: 3-attempt retry + RECURSIVE chunking (single split left 305-word halves dying \u2014 ch18 p02); splitter extracted to pure.recursive_split_index with a no-progress-proof test; (10) stack-crash predictor retired from runtime (renderer rule now matches gates); cue-model.md is the normative law.",
+   "status": "chain stopped cleanly, ch14-22 block dirs wiped (672M, poisoned by old-code provenance), batch relaunched detached on fixed code (14..22 --ship). ch20 no longer blocks at audio and cannot crash on devya run (one cue/block).",
+   "tests": "174 passed (recursive splitter invariant, cue-model, gate demotion, prove record-only); check.py CANONICAL"
   }
  ]
 }

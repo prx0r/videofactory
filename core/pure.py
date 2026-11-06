@@ -44,6 +44,35 @@ def split_index(block_counts, cut_frac, n_disp):
     return min(max(best, 1), n_disp - 1)
 
 
+def recursive_split_index(block_counts, n_disp, target_frac=0.5):
+    """Cut index for RECURSIVE chunking (build_clip MMS splitter).
+
+    Prefers a real block boundary strictly inside the span (so blocks are
+    never split across align pieces), nearest the target fraction of the
+    words. When no interior boundary exists — one block alone exceeds the
+    pressure ceiling — it falls back to a word-middle cut, which still
+    keeps a strict interior index. That guarantee matters: a split that
+    cannot shrink (returns 0 or n_disp) loops forever, so this function
+    ALWAYS returns 1 <= at <= n_disp - 1 for n_disp >= 2.
+    Pure and unit-tested (the "block-boundary snap lives in pure core"
+    contract).
+    """
+    if n_disp < 2:
+        return 0
+    target = n_disp * target_frac
+    run, best, bestd, lo = 0, None, None, 0
+    for c in block_counts:
+        run += c
+        if lo < run < n_disp:
+            dd = abs(run - target)
+            if bestd is None or dd < bestd:
+                bestd, best = dd, run
+        lo = run
+    if best is not None:
+        return best
+    return max(1, min(n_disp - 1, int(round(target))))
+
+
 def plan_groups(blocks):
     """The shared grouping rule: consecutive same-section same-voice;
     voice-none and figure/label/meta skipped (visual-only); opener kept

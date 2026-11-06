@@ -34,12 +34,18 @@ def main():
     limit = int(args[args.index('--limit') + 1]) if '--limit' in args else 0
     import gates as _g
     import factory_contract as _fc
-    _g.entry_check('render', 'bundle', _fc.validate_bundle, sb_path, require_approval=not dry)
-    if not dry:
-        _g.entry_check('render', 'review-pack', _fc.require_current_review_pack, sb_path)
-        _g.entry_check('render', 'source', _fc.verify_storyboard_source, sb_path)
-        _g.entry_check('render', 'storyboard-gate', _fc.require_storyboard_gate, sb_path)
-        _g.entry_check('render', 'free-tier', _fc.require_free_tier)
+    # ONE render gate (owner order 2026-11-06): green storyboard + owner
+    # approval. Everything else (review pack, source rebuild, planning
+    # gate, free-tier pin) is advisory/record-only — it prints, it never
+    # holds the line up.
+    if dry:
+        _g.entry_check('render', 'storyboard', _fc.validate_bundle, sb_path)
+    else:
+        _g.entry_check('render', 'storyboard', _fc.validate_storyboard_gate, sb_path)
+        _g.advisory('render', 'review-pack', _fc.require_current_review_pack, sb_path)
+        _g.advisory('render', 'source', _fc.verify_storyboard_source, sb_path)
+        _g.advisory('render', 'storyboard-gate', _fc.require_storyboard_gate, sb_path)
+        _g.advisory('render', 'free-tier', _fc.require_free_tier)
     sb = json.load(open(sb_path, encoding='utf-8'))
     ch = slug(sb.get('title', 'chapter')) or 'chapter'
     groups, cur = [], []

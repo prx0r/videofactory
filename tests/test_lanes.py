@@ -56,13 +56,20 @@ class TestDispatch(unittest.TestCase):
         self.assertIsNone(out['header'])
 
     def test_intro_args_shiva(self):
+        # Canon: no funny title on screen, ever. Book-opener units carry
+        # the book label top-left; everything else gets ref-only headers.
         blocks = [{'id': 'b_opener', 'section': 'opener', 'type': 'opener', 'voice': 'none', 'text': '[bell]'},
                   {'id': 'b1', 'section': 's', 'type': 'title', 'voice': 'granny', 'text': 'Some Sutra 1.1'},
                   {'id': 'b2', 'section': 's', 'type': 'narration', 'voice': 'granny',
                    'text': '1.1 — The Funny Title'}]
         out = lane_api.intro_args('/home/ubuntu/tantrasara/shiva/storyboards/storyboard_s01.json', blocks, {})
         self.assertFalse(out['numeral'])
-        self.assertEqual(out['header'], {'ref': '1.1', 'title': 'The Funny Title'})
+        self.assertEqual(out['header'], {'ref': '1.1', 'title': ''})
+        book = [{'id': 'b_opener', 'section': 'opener', 'type': 'opener', 'voice': 'none', 'text': '[bell]'},
+                {'id': 'b1', 'section': 's', 'type': 'title', 'voice': 'granny', 'text': 'Śiva Sūtras 1.1'},
+                {'id': 'b2', 'section': 's', 'type': 'title', 'voice': 'granny', 'text': 'BOOK I — ŚĀKTOPĀYA'}]
+        out = lane_api.intro_args('/home/ubuntu/tantrasara/shiva/storyboards/storyboard_s01.json', book, {})
+        self.assertEqual(out['header'], {'ref': '1.1', 'title': 'BOOK I — ŚĀKTOPĀYA'})
 
 
 

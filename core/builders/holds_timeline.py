@@ -38,11 +38,18 @@ def main():
             lines.append(f"{b['id']}: {b['type'].upper()} — {b['text'][:80].strip()}")
         if b['type'] == 'dialogue' or b.get('directed', '').startswith('[long pause]'):
             lines.append(f"{b['id']}: TONE BREAK")
-        if b['type'] not in ('narration', 'dialogue'):
+        if b['type'] not in ('narration', 'dialogue', 'verse'):
             continue
         words = [w for w in b['text'].strip().split() if re.search(r'\w', w, re.U)]
         for i, word in enumerate(words, 1):
-            key = fold(word.strip('.,!?;:\'"—-'))
+            raw = word.strip('.,!?;:\'"—-')
+            key = fold(raw)
+            if key not in gl and re.search(r'[\u0900-\u097F]', raw):
+                try:
+                    import holds as _H
+                    key = fold(_H.to_iast(raw))
+                except Exception:
+                    pass
             if key not in gl:
                 continue
             term = gl[key]

@@ -57,8 +57,21 @@ def slug(s):
 def main():
     # no lock here: build_clip claims per range (parent must never hold
     # what its child checks — it would refuse its own parent).
+    # Fail fast before any video burns: bundle approval + audio-complete
+    # + list geometry (ch14-22 postmortem: hours wasted, then prove died).
+    import factory_contract as _fc
+    import gates as _g
     sb_path, outdir = sys.argv[1], sys.argv[2]
     cap = float(sys.argv[3]) if len(sys.argv) > 3 else 600.0
+    # ONE gate decides a render: the storyboard (green + owner approval +
+    # matching review pack). Owner order 2026-11-06: after that, nothing
+    # holds the line up. Audio-complete / list-geometry / hold-scan still
+    # run and print (defects stay visible + recorded) but are advisory.
+    _g.entry_check('video', 'storyboard', _fc.validate_storyboard_gate, sb_path)
+    _g.advisory('video', 'audio-complete', _fc.require_audio_complete, sb_path)
+    _g.advisory('video', 'list-geometry', _fc.require_list_geometry, sb_path)
+    # hold-scan stays advisory exactly as before (ship mode: no draws).
+    _g.advisory('video', 'hold-scan-60s', _fc.require_hold_scan, sb_path)
     sb = json.load(open(sb_path, encoding='utf-8'))
     byid = {b['id']: b for b in sb['blocks']}
     ch = slug(sb.get('title', 'chapter')) or 'chapter'

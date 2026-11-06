@@ -60,3 +60,15 @@ def intro_args(sb_path, blocks, glossary=None):
             'title': mod.title_for(blocks, glossary),
             'header': mod.header(blocks, glossary),
             'numeral': mod.numeral_for(unit)}
+
+
+def covered_title_bids(sb_path, blocks):
+    """Title block ids the intro thumbnail already carries, so sheets
+    must not burn a standalone page for them (video never shows title
+    cards — intro scope holds the thumbnail, elsewhere they play over
+    white/persist). Lanes opt in; default is [] (no behavior change)."""
+    _, mod = for_path(sb_path)
+    fn = getattr(mod, 'covered_title_bids', None)
+    if fn is None:
+        return []
+    return fn(blocks)

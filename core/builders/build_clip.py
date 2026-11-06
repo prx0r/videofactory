@@ -86,46 +86,24 @@ def to_iast(s):
 
 def main():
     # one video build at a time (M21/M28): fixed /tmp paths clobber
-    # across concurrent builds. run_blocks also claims; this covers
-    # direct invocations too.
-    _me = str(os.getpid())
-    _holder = None
+    # across concurrent builds. fcntl lock (not PID text) so stale
+    # /tmp/video_build.lock content can never fake or block a holder —
+    # the tantrasara postmortem found ps(1) error text in the lock.
+    import gates as _g
+    import factory_contract as _fc
+    _sb, _bids, _out = sys.argv[1], sys.argv[2].split(','), sys.argv[3]
     try:
-        with open('/tmp/video_build.lock') as _f:
-            _holder = _f.read().strip()
-    except OSError:
-        pass
-    if _holder and _holder != _me:
-        try:
-            with open(f'/proc/{_holder}/cmdline', 'rb') as _f:
-                _hcmd = _f.read().replace(b'\0', b' ').decode()
-            if not ('build_clip.py' in _hcmd or 'run_blocks.py' in _hcmd
-                    or 'overnight.py' in _hcmd):
-                _holder = None
-        except (OSError, ValueError):
-            _holder = None
-    if _holder and _holder != _me:
-        sys.exit(f'video lock held by pid {_holder} — one build at a time')
-    with open('/tmp/video_build.lock', 'w') as _f:
-        _f.write(_me)
-    try:
-        import gates as _g
-        import factory_contract as _fc
-        _sb, _bids, _out = sys.argv[1], sys.argv[2].split(','), sys.argv[3]
-        _g.entry_check('video', 'bundle', _fc.validate_bundle, _sb, require_approval=True)
-        _g.entry_check('video', 'review-pack', _fc.require_current_review_pack, _sb)
-        _g.entry_check('video', 'source', _fc.verify_storyboard_source, _sb)
-        _g.entry_check('video', 'storyboard-gate', _fc.require_storyboard_gate, _sb)
-        _g.entry_check('video', 'output-on-volume', _fc.require_volume_output, _out)
-        _main_inner()
-    finally:
-        try:
-            with open('/tmp/video_build.lock') as _f:
-                _mine = _f.read().strip() == _me
-            if _mine:
-                os.remove('/tmp/video_build.lock')
-        except OSError:
-            pass
+        with _fc.video_build_lock():
+            _g.entry_check('video', 'bundle', _fc.validate_bundle, _sb, require_approval=True)
+            _g.entry_check('video', 'review-pack', _fc.require_current_review_pack, _sb)
+            _g.entry_check('video', 'source', _fc.verify_storyboard_source, _sb)
+            _g.entry_check('video', 'storyboard-gate', _fc.require_storyboard_gate, _sb)
+            _g.entry_check('video', 'audio-complete', _fc.require_audio_complete, _sb, _bids)
+            _g.entry_check('video', 'list-geometry', _fc.require_list_geometry, _sb)
+            _g.entry_check('video', 'output-on-volume', _fc.require_volume_output, _out)
+            _main_inner()
+    except _fc.ContractError as exc:
+        sys.exit(f'video lock held or gate failed: {exc} — one build at a time')
 
 
 def _main_inner():
@@ -173,8 +151,14 @@ def _main_inner():
     for g in groups:
         text = ' '.join(x.get('directed', x['text']) for x in g)
         f = group_wav(ch, _sec_slug[g[0]['section']], g[0]['voice'], text)
-        assert f, f"missing render for {g[0]['id']}..{g[-1]['id']}"
+        if not f:
+            import factory_contract as _fc2
+            raise _fc2.ContractError(f"missing render for {g[0]['id']}..{g[-1]['id']} voice={g[0]['voice']} — "
+                                      f"run render_chapter first (ch18 b340 precedent), never ship without audio)")
         wavs.append((f, g))
+    # Provenance pins VOLUME paths (never staged /tmp copies — those vanish
+    # after the build and later validation must re-hash the same files).
+    _wavs_vol = [p for p, _ in wavs]
     # Stage wavs to local disk with retries (M21 kin): the volume mount
     # flakes reads under load ("Impossible to open" / I/O error), which
     # crashes node with empty stderr — indistinguishable from data bugs.
@@ -210,60 +194,104 @@ def _main_inner():
     # MMS align each group
     os.makedirs('/tmp/mmsclip', exist_ok=True)
 
-    def _align_one(wav, ali_words, lang, tag):
+    def _align_one(wav, ali_words, lang, tag, tries=3):
+        # MMS is memory-hungry (measured: a 278-word group drove node to
+        # 7.6GB and the kernel OOM-killed it). Tenacity here does NOT
+        # silently retry a process that dies for lack of RAM — it returns
+        # None so the caller can split smaller. Genuine transient flake
+        # (empty output, no signal) still gets up to `tries` attempts.
+        import time as _rt
         _wp, _op = f'/tmp/mmsclip/cw{tag}.json', f'/tmp/mmsclip/ct{tag}.json'
         json.dump(ali_words, open(_wp, 'w'), ensure_ascii=False)
-        # delete any stale output first: a crashed align must fail LOUD
-        # here, never silently validate the previous chapter's rows (M21)
-        if os.path.exists(_op):
-            os.remove(_op)
-        _r = subprocess.run(['node', ALIGN, wav, _wp, _op, lang],
-                            capture_output=True, text=True,
-                            env={**os.environ, 'NODE_PATH': NODE_MOD})
-        assert os.path.exists(_op), f'MMS failed {tag}: {_r.stderr[-300:]}'
-        return json.load(open(_op, encoding='utf-8'))
+        _last, _killed = '', False
+        for _a in range(tries):
+            # delete any stale output first: a crashed align must never
+            # validate the previous chapter's rows here (M21)
+            if os.path.exists(_op):
+                os.remove(_op)
+            _r = subprocess.run(['node', ALIGN, wav, _wp, _op, lang],
+                                capture_output=True, text=True,
+                                env={**os.environ, 'NODE_PATH': NODE_MOD})
+            if os.path.exists(_op):
+                return json.load(open(_op, encoding='utf-8'))
+            _last = (_r.stderr or '')[-300:]
+            if _r.returncode in (-9, 137):
+                _killed = True  # OOM/SIGKILL: retrying same size is futile
+                print(f'align {tag}: OOM-killed at {len(wav)}B / {len(ali_words)} words '
+                      f'— will split smaller', flush=True)
+                break
+            print(f'align {tag}: attempt {_a + 1}/{tries} died (rc={_r.returncode}), retrying', flush=True)
+            _rt.sleep(2 * (_a + 1))
+        print(f'align {tag}: giving up at this size ({_last[:120]})', flush=True)
+        return None
+
+    # Memory ceiling, not a rule of thumb: 278 words OOMed, 200 words never
+    # has. Split recursively (never once — a single split left 305-word
+    # halves dying, ch18 p02) and split AGAIN whenever the aligner is
+    # killed, so a unit can never fail on alignment memory.
+    _ALIGN_WORDS = 200
+    _ALIGN_FLOOR = 12  # below this a piece must align or the audio is broken
 
     def _chunked_align(f, disp, ali, lang, gi, g):
-        # Oversized groups (>200 words) OOM-kill the aligner (proven:
-        # 200 words pass, 412 die — then 278/299-word groups died 4x
-        # each 2026-11-05 while same-size siblings passed, so the line
-        # is pressure-dependent, not exact: 200 keeps every half in
-        # the safest zone with margin). Split at a measured silence near
-        # the block boundary closest to the middle, align halves,
-        # offset the second. Audio, groups, hashes untouched.
-        if len(disp) <= 200:
-            return _align_one(f, ali, lang, gi)
+        # Split until EVERY piece is at/below the 200-word pressure
+        # ceiling (a single split left 305-word halves dying in the aligner
+        # — ch18 p02 precedent; split recursively, never once). Silence
+        # cut snapped to block boundaries; offsets re-applied going up.
+        _counts = [len([w for w in _b['text'].strip().split() if re.search(r'\w', w, re.U)])
+                   for _b in g]
+        return _align_recursive(f, disp, ali, lang, str(gi), 0.0, _counts)
+
+    def _align_recursive(f, disp, ali, lang, tag, off, counts, force_split=False):
+        if len(disp) <= _ALIGN_WORDS and not force_split:
+            rows = _align_one(f, ali, lang, tag)
+            if rows is not None:
+                if off:
+                    for _r in rows:
+                        _r['t_on'] = round(_r['t_on'] + off, 3)
+                        _r['t_off'] = round(_r['t_off'] + off, 3)
+                return rows
+            if len(disp) <= _ALIGN_FLOOR:
+                raise RuntimeError(
+                    f'MMS cannot align {len(disp)} words ({tag}) after retries — '
+                    f'audio or word list is broken, not memory')
+            print(f'group {tag}: align failed at {len(disp)} words — splitting smaller', flush=True)
+            force_split = True
         _dur = float(subprocess.run(
             ['ffprobe', '-v', 'error', '-show_entries', 'format=duration',
              '-of', 'default=nw=1:nk=1', f],
             capture_output=True, text=True).stdout.strip())
         _sil = subprocess.run(
-            ['ffmpeg', '-v', 'info', '-i', f,
-             '-af', 'silencedetect=noise=-35dB:d=0.4', '-f', 'null', '-'],
+            ['ffmpeg', '-v', 'error', '-i', f, '-af',
+             'silencedetect=noise=-35dB:d=0.4', '-f', 'null', '-'],
             capture_output=True, text=True).stderr
         _gaps = re.findall(r'silence_start: ([\d.]+)\nsilence_end: ([\d.]+)', _sil)
         _mids = sorted((float(a) + float(b)) / 2 for a, b in _gaps)
-        _cut = _dur / 2
+        _cut = _dur / 2 if _dur > 0 else 0
         if _mids:
             _cut = min(_mids, key=lambda m: abs(m - _dur / 2))
-        # word index nearest the cut, snapped to a block boundary so no
-        # block's words ever split across chunks
-        _counts = [len([w for w in _b['text'].strip().split() if re.search(r'\w', w, re.U)])
-                     for _b in g]
-        # block-boundary snap lives in the pure core (unit-tested)
-        _at = _pure.split_index(_counts, _cut / _dur if _dur > 0 else 0.5, len(disp))
-        print(f'group {gi}: chunked align at {_cut:.1f}s (silence-measured)', flush=True)
-        _lo, _hi = f'/tmp/mmsclip/ch{gi}a.wav', f'/tmp/mmsclip/ch{gi}b.wav'
+        # snap to a block boundary strictly inside this span; fall back to
+        # a word-middle split (still 1:1) when one block alone exceeds the
+        # ceiling — the no-split case would loop forever. Pure + tested.
+        _at = _pure.recursive_split_index(
+            counts, len(disp), (_cut / _dur) if _dur > 0 else 0.5)
+        _lo, _hi = f'/tmp/mmsclip/ch{tag}a.wav', f'/tmp/mmsclip/ch{tag}b.wav'
         subprocess.run(['ffmpeg', '-y', '-v', 'error', '-i', f,
                         '-t', str(_cut), _lo], check=True)
         subprocess.run(['ffmpeg', '-y', '-v', 'error', '-ss', str(_cut), '-i', f,
                         _hi], check=True)
-        _r1 = _align_one(_lo, ali[:_at] or ali[:1], lang, f'{gi}a')
-        _r2 = _align_one(_hi, ali[_at:] or ali[-1:], lang, f'{gi}b')
-        for _r in _r2:
-            _r['t_on'] = round(_r['t_on'] + _cut, 3)
-            _r['t_off'] = round(_r['t_off'] + _cut, 3)
-        return _r1 + _r2
+        print(f'group {tag}: chunked align at {_cut:.1f}s (silence-measured)', flush=True)
+        # partition block counts at the cut so deeper levels keep snapping
+        # to real boundaries (approximate only where one block was split —
+        # snap quality, never mapping: word indices stay exact).
+        _lcounts, _rcounts, _acc = [], [], 0
+        for _c in counts:
+            (_lcounts if _acc + _c <= _at else _rcounts).append(_c)
+            _acc += _c
+        _left = _align_recursive(_lo, disp[:_at] or disp[:1], ali[:_at] or ali[:1],
+                                 lang, tag + 'a', off, _lcounts or [len(disp[:_at]) or 1])
+        _right = _align_recursive(_hi, disp[_at:] or disp[-1:], ali[_at:] or ali[-1:],
+                                  lang, tag + 'b', off + _cut, _rcounts or [len(disp[_at:]) or 1])
+        return _left + _right
 
     al = []
     for i, (f, g) in enumerate(wavs):
@@ -453,15 +481,26 @@ def _main_inner():
             _gl[k] = {'deva': v.get('deva', ''), 'gloss': v.get('gloss', ''),
                       'literal': v.get('literal', '') if v.get('literal_status') == 'confirmed' else ''}
     print(f'confirmed glossary terms: {len(_gl)}', flush=True)
-    # verse cards: Deva + IAST (plus full term layers on glossed singles
-    # via _gl). Whole-chant T1/L3 layers parked — see BUILD-NOTES.
+    # verse gloss (T1 literal + L3/L4 final): English under verse Devanagari.
+    # Video shows confirmed only (sheets show proposed for review).
+    _vg = {}
+    try:
+        _vp = _lane.get('verse')
+        if _vp and os.path.exists(_vp):
+            _rawvg = json.load(open(_vp, encoding='utf-8'))
+            _vg = {v.get('match_key', k): v for k, v in _rawvg.items() if isinstance(v, dict)}
+            print(f'verse gloss entries: {len(_vg)}', flush=True)
+    except Exception as _e:
+        print(f'verse gloss unavailable: {_e}', flush=True)
+    # verse cards: Deva + IAST + verse-gloss English (plus full term layers
+    # on glossed singles via _gl).
     # holds: verse cards while chanting, clean white once speech starts.
     # (owner: no title cards shown; Sanskrit clears when granny takes over)
     _holds = _H.build_holds([b for b in blocks if b['type'] != 'title' or True])
     hold_for = {}
     _blank = Image.new('RGB', (W, H), LIGHT)
     for h in _holds:
-        img = _H.render_hold(h, None, _gl)
+        img = _H.render_hold(h, None, _gl, _vg, confirmed_only=True)
         for b in h:
             hold_for[b['id']] = img
     # title blocks never shown: map them (and opener) appropriately
@@ -510,17 +549,53 @@ def _main_inner():
                          len(flat))
     _first_verse_fi = next((i for i, (b, *_r) in enumerate(flat) if b['type'] == 'verse'),
                            len(flat))  # no chant in range: verse holds never fire
-    # term cues: (start, end, image) from confirmed glossary mentions
+    # term cues: (start, end, image) from confirmed glossary mentions.
+    # Verse chants fire too (postmortem fix): when verse voice chants a
+    # Devanagari/IAST glossary term, the term card holds after the chant
+    # while granny continues — otherwise the term never appears and granny
+    # plays over white/stale. Verse card still shows DURING the chant
+    # (hold_img returns verse first); the cue surfaces after.
     import unicodedata as _ud
     _fold = lambda s: ''.join(c for c in _ud.normalize('NFD', s.lower()) if _ud.category(c) != 'Mn')
+
+    def _verse_key(w):
+        c = w.strip('.,!?;:\'"—-')
+        if not c:
+            return None
+        f = _fold(c)
+        if f in _gl:
+            return f
+        if re.search(r'[\u0900-\u097F]', c):
+            try:
+                f2 = _fold(_H.to_iast(c))
+                if f2 in _gl:
+                    return f2
+            except Exception:
+                pass
+        return None
+
     _cue_starts = {}
+    _cued_blocks = set()
     for (b, k, t_on, sw, sub, t_off) in flat:
-        if b['type'] not in ('narration', 'dialogue'):
+        if b['type'] not in ('narration', 'dialogue', 'verse'):
+            continue
+        # ONE cue per block (first matching word): the word-level flat
+        # repeats every block per word row, which used to defeat the
+        # per-block break and fire one cue per matching word. A same-block
+        # multi-cue run built unrenderable stacks mid-render (ch16 p02
+        # precedent) that no entry gate could predict. Re-mentions across
+        # blocks still fire (each block cues once).
+        if b['id'] in _cued_blocks:
             continue
         for j, w in enumerate(sw):
-            key = _fold(w.strip('.,!?;:\'"—-'))
-            if key in _gl and (b['id'], j) not in _cue_starts:
+            if b['type'] == 'verse':
+                key = _verse_key(w)
+            else:
+                key = _fold(w.strip('.,!?;:\'"—-'))
+                key = key if key in _gl else None
+            if key and (b['id'], j) not in _cue_starts:
                 _cue_starts[(b['id'], j)] = key
+                _cued_blocks.add(b['id'])
                 break
     _events = []
     for (b, k, t_on, sw, sub, t_off) in flat:
@@ -631,6 +706,19 @@ def _main_inner():
         t = flat[fi][2]
         if fi < _intro_end_fi:
             return _PRE_IMG  # thumbnail for the intro only; white for mid-chapter ranges
+        # anu-case (skill tantrasara-holds): lone glossed chant renders as
+        # a TERM hold (all four layers), stays up through following
+        # narration like a term card — never clears the instant speech resumes.
+        if b['type'] == 'verse' and _is_single_glossed_verse(b):
+            _k = _fold(b['text'].strip('.,!?;:\'"—-'))
+            if _k not in _gl:
+                try:
+                    _k = _fold(_H.to_iast(b['text'].strip('.,!?;:\'"—-')))
+                except Exception:
+                    pass
+            if _k in _term_imgs:
+                return _term_imgs[_k]
+            return hold_for.get(b['id'], _blank)
         if b['type'] == 'verse':
             return hold_for.get(b['id'], _blank)
         for _n, (s, e, key) in enumerate(_cues):
@@ -649,6 +737,8 @@ def _main_inner():
         t = flat[fi][2]
         if fi < _intro_end_fi:
             return _PRE_KIND
+        if b['type'] == 'verse' and _is_single_glossed_verse(b):
+            return 'term-single-verse'
         if b['type'] == 'verse':
             return 'verse'
         for _n, (s, e, key) in enumerate(_cues):
@@ -1015,14 +1105,22 @@ def _main_inner():
         _bid = flat[_fi][0]['id']
         _meta_drops[_bid] = {'pause': _drops.get(_bid, {}).get('pause'),
                              'at': round(_tend, 2)}
+    # Provenance binds these bytes to their inputs (prove re-validates).
+    # 'draws' removed 2026-11-06: byte-identical to 'drops', no consumers.
+    import factory_contract as _fc3
+    _prov = _fc3.clip_inputs(sys.argv[1], bids, _wavs_vol)
+    _prov.update(video_sha256=_fc3.sha256(sys.argv[3]),
+                 subs_sha256=_fc3.sha256(os.path.splitext(sys.argv[3])[0] + '.subs.json'))
     _json.dump({'cuts': idx, 'duration': round(_dur, 2),
                 'white_pct': round(100 * _cov.get('white', 0) / _tot),
                 'coverage': {k: round(v) for k, v in sorted(_cov.items())},
+                'entries': [{'dur': round(float(du), 4), 'kind': str(hk or 'thumbnail')}
+                            for (_i, du, hk) in entries],
                 'cues': [{'t': round(s, 2), 'key': k} for s, e, k in _cues],
                 'bids': bids,
-                'draws': _meta_draws,
                 'clips': _meta_clips,
-                'drops': _meta_drops},
+                'drops': _meta_drops,
+                'provenance': _prov},
                open(os.path.splitext(sys.argv[3])[0] + '.render_meta.json', 'w'))
     shutil.rmtree(fdir, ignore_errors=True)  # frames are transient; mp4+meta+subs persist
     for _cdir in _clip_dirs:

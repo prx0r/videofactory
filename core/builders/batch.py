@@ -9,8 +9,10 @@ logs, never memory. All subprocess calls time-bounded (BARS: timeouts
 everywhere). Opens with an orphan reaper (BARS 26) and storage preflight.
 Ship to R2 is opt-in (--ship); default is volume-only.
 
-Stages mirror the proven overnight flow: audio-check -> parts -> prove ->
-concat -> verify (record-only) -> voices (gates) -> volume finals.
+Stages mirror the proven overnight flow: issues (record-only work list
+with skill pointers) -> audio-check -> parts -> prove -> concat ->
+verify (record-only) -> validate-ship (record-only verdict) ->
+voices (gates) -> volume finals.
 """
 import json
 import os
@@ -24,7 +26,7 @@ sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), '..'
 sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), '..'))
 import paths as _vf
 
-STAGES = ['audio', 'video', 'prove', 'concat', 'verify', 'voices', 'ship']
+STAGES = ['issues', 'audio', 'video', 'prove', 'concat', 'verify', 'validate', 'voices', 'ship']
 LONG_TIMEOUT = 10800   # 3h: full audio renders / chunk video builds
 SHORT_TIMEOUT = 600    # 10m: probes, concats, checks, uploads
 
@@ -92,7 +94,10 @@ def run_unit(sb_path, frm, dry, ship, logf):
     unit = mod.unit_id(sb_path)
     stem = unit_stem(sb_path)
     renders = _vf.renders_root()
-    outdir = f'/tmp/{stem}_blocks'
+    # chunk parts live on the lane volume (never local disk — series law);
+    # the output-on-volume gate rightly refuses /tmp production output,
+    # and volume parts double as crash-resume cache (run_blocks CACHED).
+    outdir = os.path.join(renders, f'{stem}_blocks')
     vol_final = os.path.join(renders, 'finals', f'{stem}_full.mp4')
     tmp_full = f'/tmp/{stem}_full.mp4'
     B = os.path.dirname(os.path.abspath(__file__))
@@ -111,6 +116,19 @@ def run_unit(sb_path, frm, dry, ship, logf):
             return True, 'dry'
         return sh(cmd, timeout, logf)
 
+    # issues first (record-only, never gates — downstream entries enforce):
+    # the checker finds, the skill list tells how, the log is the work list.
+    _issues_dir = os.path.join(renders, 'issues')
+    os.makedirs(_issues_dir, exist_ok=True)
+    _issues_path = os.path.join(_issues_dir, f'{stem}.issues.json')
+    ok, out = stage('issues', [sys.executable, f'{B}/check_issues.py', sb_path,
+                               '--out', _issues_path], SHORT_TIMEOUT)
+    try:
+        _doc = json.load(open(_issues_path, encoding='utf-8'))
+        _open = [i for i in _doc.get('issues', []) if i.get('status') == 'open']
+        log(f'{stem} issues {"GREEN" if not _open else f"RED {len(_open)} open (skills attached in {_issues_path})"} (record only, never gates)', logf)
+    except (OSError, ValueError):
+        log(f'{stem} issues checker {"ok" if ok else "FAILED"} (no readable artifact)', logf)
     ok, _ = stage('audio', [sys.executable, f'{B}/render_chapter.py', sb_path], LONG_TIMEOUT)
     if not ok:
         return False, 'audio'
@@ -119,29 +137,95 @@ def run_unit(sb_path, frm, dry, ship, logf):
         return False, 'video'
     import glob as _g
     for part in sorted(_g.glob(f'{outdir}/p*.mp4')):
+        # prove is RECORD-ONLY (owner order 2026-11-06: storyboard green is
+        # the only render gate; no downstream check may hold a unit back).
+        # Real breakage still surfaces: build_clip crashes fail the video
+        # stage, concat fails loudly, R2 byte-match is enforced. Prove
+        # verdicts are written beside the part for the record.
         ok, _ = stage('prove', [sys.executable, f'{B}/prove_clip.py', sb_path, part,
                                 f'/tmp/{stem}_proof_{os.path.basename(part)}'], SHORT_TIMEOUT)
         if not ok:
-            return False, f'prove-{part}'
+            log(f'{stem} prove {os.path.basename(part)} recorded RED (non-blocking)', logf)
     ok, _ = stage('concat', ['ffmpeg', '-y', '-v', 'error', '-f', 'concat', '-safe', '0',
                              '-i', f'{outdir}/concat.txt', '-c', 'copy', tmp_full], SHORT_TIMEOUT)
     if not ok:
         return False, 'concat'
+    # parts-proof: per-part render_metas (measured hold entries the
+    # independent ship validator reads) are copied beside finals BEFORE the
+    # transient sweep — evidence survives the run that produced it.
+    _proofdir = os.path.join(os.path.dirname(vol_final), f'{stem}_parts')
+    os.makedirs(_proofdir, exist_ok=True)
+    for _pm in sorted(_g.glob(f'{outdir}/p*.render_meta.json')) + [f'{outdir}/concat.txt']:
+        try:
+            if os.path.exists(_pm):
+                shutil.copy(_pm, os.path.join(_proofdir, os.path.basename(_pm)))
+        except OSError:
+            pass
     ok, _ = stage('verify', [sys.executable, f'{B}/verify_clip.py', sb_path, tmp_full], SHORT_TIMEOUT)
     log(f'{stem} verify {"PASS" if ok else "FAIL-whisper-only"} (record only, never gates)', logf)
+    # independent ship verdict (record-only, never gates — ears come later):
+    # measured-artifacts check against tantrasara-ship-v1, verdict beside
+    # the mp4 so the seal step never re-derives it.
+    ok, _ = stage('validate', [sys.executable, f'{B}/validate_ship.py', sb_path, tmp_full,
+                               '--parts-dir', _proofdir,
+                               '--out', tmp_full + '.ship.json'], SHORT_TIMEOUT)
+    log(f'{stem} validate-ship {"GREEN" if ok else "RED (see .ship.json; ears/review outstanding are normal pre-seal)"} (record only, never gates)', logf)
+    # voices is record-only like verify (owner order: no meter may hold up
+    # a ship; silent seats are an ears matter, and ears are not required
+    # to render). The report ships beside the final either way.
     ok, _ = stage('voices', [sys.executable, f'{B}/check_voices.py', sb_path, tmp_full], SHORT_TIMEOUT)
-    if not ok:
-        return False, 'voices'
+    log(f'{stem} voices {"PASS" if ok else "FAIL-recorded (ships anyway; ears dispose)"} (record only, never gates)', logf)
     os.makedirs(os.path.dirname(vol_final), exist_ok=True)
     shutil.copy(tmp_full, vol_final)
+    assert os.path.getsize(vol_final) == os.path.getsize(tmp_full), 'volume copy byte-mismatch — tmp kept for retry'
     try:
         shutil.copy(tmp_full + '.verify.json', vol_final + '.verify.json')
     except OSError:
         pass
+    try:
+        shutil.copy(tmp_full + '.ship.json', vol_final + '.ship.json')
+    except OSError:
+        pass
+    try:
+        shutil.copy(os.path.splitext(tmp_full)[0] + '.voices.json', vol_final + '.voices.json')
+    except OSError:
+        pass
+    # white-hold surfacing (owner worry: long white / stuck cards).
+    # Per-part render_metas already log COVERAGE; aggregate here so the
+    # batch log names the worst offender before ears.
+    try:
+        import json as _js
+        _whites, _worst = [], ('', 0)
+        for _part in sorted(_g.glob(f'{outdir}/p*.mp4')):
+            _mp = _part + '.render_meta.json'
+            try:
+                _m = _js.load(open(_mp))
+                _cov = _m.get('coverage', {})
+                _w = _cov.get('white', 0)
+                _whites.append((_part, round(_w, 1), _m.get('white_pct', 0)))
+                for _k, _v in _cov.items():
+                    if isinstance(_v, (int, float)) and _v > _worst[1] and _k != 'white':
+                        _worst = (_k, round(_v, 1))
+            except OSError:
+                pass
+        if _whites:
+            log(f'{stem} white-holds per part: {"; ".join(f"{p.split("/")[-1]} white={w}s ({pct}%)" for p, w, pct in _whites)}; longest single hold {_worst[0]}={_worst[1]}s', logf)
+            if any(pct > 50 for _, _, pct in _whites):
+                log(f'{stem} WARNING white>50% on {[p.split("/")[-1] for p, _, pct in _whites if pct > 50]} — owner ears must confirm pacing before seal', logf)
+    except Exception as _e:
+        log(f'{stem} white-report skipped: {_e}', logf)
     if ship:
-        ok, _ = stage('ship', ['timeout', '300', 'rclone', 'copyto', tmp_full,
-                               f'{_vf.r2_prefix()}/{stem}_full.mp4'], SHORT_TIMEOUT)
-        if ok:
+        # delivery confirmation with retries: a transient network flake must
+        # never hold up a finished unit, but an unverified upload is never
+        # reported as shipped either.
+        ok = False
+        for _try in range(1, 4):
+            if _try > 1:
+                log(f'{stem} ship retry {_try}/3', logf)
+            _ok, _ = stage('ship', ['timeout', '300', 'rclone', 'copyto', tmp_full,
+                                    f'{_vf.r2_prefix()}/{stem}_full.mp4'], SHORT_TIMEOUT)
+            if not _ok:
+                continue
             r = subprocess.run(['rclone', 'lsl', f'{_vf.r2_prefix()}/{stem}_full.mp4'],
                                capture_output=True, text=True, timeout=120)
             try:
@@ -149,11 +233,29 @@ def run_unit(sb_path, frm, dry, ship, logf):
                 ok = (remote == os.path.getsize(tmp_full))
             except (IndexError, ValueError):
                 ok = False
+            if ok:
+                break
+            log(f'{stem} ship byte-mismatch on attempt {_try}, retrying', logf)
+        # ship the sha-bound verify alongside the video (old line shipped
+        # review packs + sealed videos only; verify proves these bytes).
+        if ok and os.path.exists(tmp_full + '.verify.json'):
+            ok, _ = stage('ship-verify', ['timeout', '120', 'rclone', 'copyto', tmp_full + '.verify.json',
+                                          f'{_vf.r2_prefix()}/{stem}_full.mp4.verify.json'], SHORT_TIMEOUT)
         if not ok:
             return False, 'ship-verify'
-    subprocess.run(['rm', '-rf', outdir, tmp_full, tmp_full + '.verify.json'])
+    # tmp clear only after confirmed success: volume byte-match (+ R2
+    # byte-match when --ship). Freed space logged; audio cache on volume
+    # and model deps untouched.
+    import shutil as _sh
+    _before = _sh.disk_usage('/tmp').free
+    subprocess.run(['rm', '-rf', outdir, tmp_full, tmp_full + '.verify.json', tmp_full + '.ship.json',
+                    os.path.splitext(tmp_full)[0] + '.voices.json'])
     for d in _g.glob(f'/tmp/{stem}_proof*'):
         subprocess.run(['rm', '-rf', d])
+    for d in _g.glob(f'/tmp/stage_tmp_{stem}_blocks*') + _g.glob('/tmp/stage_tmp_ch*'):
+        subprocess.run(['rm', '-rf', d])
+    _after = _sh.disk_usage('/tmp').free
+    log(f'{stem} tmp cleared after confirmed success: freed {(_after - _before) / 1e9:.2f}G (tmp now {_after / 1e9:.1f}G free)', logf)
     return True, 'shipped' if ship else 'volume-only'
 
 

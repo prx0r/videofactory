@@ -89,8 +89,22 @@ def main():
         conf = [k for k, vv in gl.items() if isinstance(vv, dict) and vv.get('status') == 'confirmed']
         nodeva = [k for k in conf if not gl[k].get('deva')]
         check('V5 confirmed terms carry citation Deva', not nodeva, str(nodeva[:3]))
+        nogloss = [k for k in conf if not (gl[k].get('gloss') or '').strip()]
+        check('V5b confirmed terms carry gloss (no bulk-confirm empties)', not nogloss, str(nogloss[:5]))
+        machine = [k for k in conf if gl[k].get('deva_status') in ('machine', 'machine-lossy')]
+        check('V5c no machine Deva confirmed (owner pass required)', not machine, str(machine[:5]))
         paren = [k for k in conf if '(' in gl[k].get('literal', '') or ')' in gl[k].get('literal', '')]
         check('V7 literals use square brackets', not paren, str(paren[:3]))
+        # list geometry: run-based, renderer-identical (the old
+        # preflight_list_geometry worst-case-5 model false-failed ch20 by
+        # stacking cards that never co-occur and fattening test cards with
+        # an unconfirmed literal). Advisory from video entry; recorded here.
+        try:
+            import factory_contract as _fcg
+            _fcg.require_list_geometry(sb_path)
+            check('H-list geometry fits above subtitles', True)
+        except Exception as exc:
+            check('H-list geometry fits above subtitles', False, str(exc)[:300])
     else:
         check('glossary present', False, glp)
 
@@ -111,24 +125,59 @@ def main():
     first = blocks[0] if blocks else None
     intro_end = next((b for b in blocks[1:] if is_break(b, first)), None)
     intro_dur = (times[intro_end['id']][0] - 0.0) if intro_end else t
-    check('H1 intro thumbnail <=60s', intro_dur <= 60,
+    # A unit whose whole content IS the intro (series opener: no chant, no
+    # section break) is intro-only by nature — the thumbnail holding it is
+    # data, not a defect (s00/shiva H1 precedent).
+    _has_break = intro_end is not None
+    check('H1 intro thumbnail <=60s', (not _has_break) or intro_dur <= 60,
           f'intro to {intro_end["id"] if intro_end else "end"} ≈ {intro_dur:.0f}s')
 
     # H8: hold-change simulation (thumbnail, verse, cues clamped at next
     # cue/event, persist singles) — max unchanged stretch. Builder rule:
-    # EVERY term mention fires at its own onset (re-mentions re-fire).
+    # EVERY term mention fires at its own onset (re-mentions re-fire),
+    # INCLUDING verse chants (postmortem fix: verse Devanagari/IAST terms
+    # hold as term cards after the chant while granny continues).
     conf = {k for k, vv in gl.items() if isinstance(vv, dict) and vv.get('status') == 'confirmed'}
+    try:
+        import holds as _H2
+        _to_iast = _H2.to_iast
+    except Exception:
+        _to_iast = lambda s: s
+
+    def _vkey(w):
+        c = w.strip('.,!?;:\'"—-')
+        f = fold(c)
+        if f in conf:
+            return f
+        if re.search(r'[\u0900-\u097F]', c):
+            try:
+                f2 = fold(_to_iast(c))
+                if f2 in conf:
+                    return f2
+            except Exception:
+                pass
+        return None
+
     cues = []
     for b in blocks:
-        if b['type'] not in ('narration', 'dialogue'):
+        if b['type'] not in ('narration', 'dialogue', 'verse'):
             continue
         t0, t1 = times[b['id']]
         _split = [w for w in b['text'].strip().split() if re.search(r'\w', w, re.U)]
         for _ji, w in enumerate(_split):
-            c = fold(w.strip('.,!?;:\'"—-'))
-            if c in conf:
+            # verse: Devanagari/IAST transliterated then folded; narration:
+            # folded directly. ONE cue per block (first match) — exactly the
+            # renderer's rule (build_clip breaks per block); every-mention
+            # counting invents stacks the renderer never shows.
+            if b['type'] == 'verse':
+                c = _vkey(w)
+            else:
+                f = fold(w.strip('.,!?;:\'"—-'))
+                c = f if f in conf else None
+            if c:
                 # estimate: word onset by position (measured onsets decide)
                 cues.append((t0 + (t1 - t0) * _ji / max(1, len(_split)), b['id'], c))
+                break
     ev = sorted(set([times[b['id']][0] for b in blocks
                      if b['type'] in ('verse', 'title', 'figure', 'dialogue')
                      or b.get('directed', '').startswith('[long pause]')]))

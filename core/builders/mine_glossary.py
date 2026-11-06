@@ -21,8 +21,20 @@ CAPS = 'ĀĪŪṚṜḶṂḤṄÑṬḌṆŚṢ'
 WORD = f'[A-Za-zāīūṛṝḷṃḥṅñṭḍṇśṣ{CAPS}·-]+'
 
 def main():
-    for ch in ['02', '03', '04', '05', '07', '08', '09', '10', '11', '12', '13',
-               '14', '15', '16', '17', '18', '19', '20', '21', '22']:
+    import argparse as _ap
+    _p = _ap.ArgumentParser()
+    _p.add_argument('--out', default=None, help='output dir for mined drafts (default: factory proposed/)')
+    _p.add_argument('--chapters', default='02,03,04,05,07,08,09,10,11,12,13,14,15,16,17,18,19,20,21,22')
+    _a, _unknown = _p.parse_known_args()
+    # Never overwrite series glossaries by default (postmortem: full-lane
+    # remine wiped Deva citations). Factory writes to proposed/; promotion
+    # to the series repo is an explicit owner action with --out=<series dir>.
+    _factory_proposed = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', '..', 'projects', 'tantrasara', 'proposed')
+    outdir = _a.out or _factory_proposed
+    os.makedirs(outdir, exist_ok=True)
+    if os.path.abspath(outdir) == os.path.abspath(BASE):
+        raise SystemExit('refusing to overwrite series glossaries: pass --out=<factory proposed dir>')
+    for ch in [c.strip() for c in _a.chapters.split(',') if c.strip()]:
         sb = json.load(open(f'{BASE}/storyboard_ch{ch}.json'))
         terms = {}
         for b in sb['blocks']:
@@ -53,9 +65,9 @@ def main():
             if m:
                 gl[k]['gloss'] = m.group(0)[len(surf):].strip(' ,')[:80]
                 gl[k]['note'] = 'appositive-mined, confirm'
-        json.dump(gl, open(f'{BASE}/glossary_ch{ch}.json', 'w'), ensure_ascii=False, indent=1)
+        json.dump(gl, open(os.path.join(outdir, f'glossary_ch{ch}.proposed.json'), 'w'), ensure_ascii=False, indent=1)
         filled = sum(1 for v in gl.values() if v['gloss'])
-        print(f'ch{ch}: {len(gl)} terms, {filled} appositive glosses')
+        print(f'ch{ch}: {len(gl)} terms, {filled} appositive glosses -> {outdir}/glossary_ch{ch}.proposed.json')
 
 
 if __name__ == '__main__':

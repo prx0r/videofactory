@@ -70,15 +70,16 @@
      }
     }
    },
-   "deva_status": {
-    "enum": [
-     "machine",
-     "machine-lossy",
-     "web",
-     "owner",
-     "legacy"
-    ]
-   }
+    "deva_status": {
+     "enum": [
+      "machine",
+      "machine-lossy",
+      "machine-verified",
+      "web",
+      "owner",
+      "legacy"
+     ]
+    }
   },
   "dependentRequired": {
    "literal": [

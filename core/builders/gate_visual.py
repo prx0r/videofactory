@@ -56,15 +56,29 @@ def main():
         conf = [k for k, vv in gl.items() if isinstance(vv, dict) and vv.get('status') == 'confirmed']
         nodeva = [k for k in conf if not (isinstance(gl[k], dict) and gl[k].get('deva'))]
         check('V5 confirmed terms carry citation Deva', not nodeva, str(nodeva[:3]))
+        nogloss = [k for k in conf if not ((gl[k].get('gloss') or '').strip())]
+        check('V5b confirmed terms carry gloss (no bulk-confirm empties)', not nogloss, str(nogloss[:5]))
+        machine = [k for k in conf if gl[k].get('deva_status') in ('machine', 'machine-lossy')]
+        check('V5c no machine Deva confirmed (owner pass required)', not machine, str(machine[:5]))
         paren = [k for k in conf if isinstance(gl[k], dict) and ('(' in gl[k].get('literal', '') or ')' in gl[k].get('literal', ''))]
         check('V7 literals use square brackets', not paren, str(paren[:3]))
+        try:
+            sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+            import holds as _H
+            _H.preflight_list_geometry(gl)
+            check('H-list geometry fits above subtitles', True)
+        except Exception as exc:
+            check('H-list geometry fits above subtitles', False, str(exc)[:300])
     else:
         check('glossary resolved (no term cards without it)', False, 'no --glossary given')
 
     # H3 render_meta cues match storyboard run scan
     if '--meta' in opt:
         m = json.load(open(opt['--meta'], encoding='utf-8'))
-        check('H4 white within band', m.get('white_pct', 0) <= 85 or m.get('duration', 0) <= 60,
+        # H4 is advisory only (owner order 2026-11-04 "get them live", upheld
+        # 2026-11-06: white is a data state, never a defect; H8 + ears own
+        # pacing). The number is still reported for the record.
+        check('H4 white within band (advisory, never gates)', True,
               f"white {m.get('white_pct')}%")
         _starts_top = not m.get('bids') or m['bids'][0] == 'b1'
         if _starts_top:
@@ -81,42 +95,62 @@ def main():
             have = set(m['bids'])
             sb_blocks = [b for b in sb_blocks if b['id'] in have or b['id'] == 'b_opener']
         terms = {k for k, vv in gl.items() if isinstance(vv, dict) and vv.get('status') == 'confirmed'} if gl else set()
-        # builder rule: EVERY term mention fires at its own word onset
-        # (one flat row yields one new cue; re-mentions re-fire).
+        # renderer rule: ONE cue per block (first matching word), narration
+        # AND verse (verse chants fire term cues too — postmortem fix).
+        # Mirrors build_clip exactly, or H3 invents cues/flags real ones.
+        import sys as _sysv
+        _sysv.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+        try:
+            import holds as _Hv
+            _to_iast_v = _Hv.to_iast
+        except Exception:
+            _to_iast_v = lambda s: s
         exp = []
         for b in sb_blocks:
-            if b.get('type') not in ('narration', 'dialogue'):
+            if b.get('type') not in ('narration', 'dialogue', 'verse'):
                 continue
             # builder-exact tokenization: whitespace split, \w filter
             # (glued em-dash pairs do NOT split — matches build_clip).
             for w in b['text'].strip().split():
                 if not re.search(r'\w', w, re.U):
                     continue
-                c = fold(w.strip('.,!?;:\'"—-'))
-                if c in terms:
+                raw = w.strip('.,!?;:\'"—-')
+                if b.get('type') == 'verse':
+                    c = fold(raw)
+                    if c not in terms and re.search(r'[\u0900-\u097F]', raw):
+                        try:
+                            c = fold(_to_iast_v(raw))
+                        except Exception:
+                            pass
+                    c = c if c in terms else None
+                else:
+                    c = fold(raw)
+                    c = c if c in terms else None
+                if c:
                     exp.append(c)
+                    break
         check('H3 cue order matches storyboard', mcues == exp, f'{len(mcues)} cues')
-        # drops: every filed drop applied in the render (lane/ch-specific
-        # file — never any drops_*.json that happens to sort last)
-        import glob as _gg2
+        # drops: every filed drop applied in the render (lane-aware path —
+        # a unit with no drops file validates against NOTHING, never
+        # another chapter's file; shiva lane resolves shiva drops).
         _dp = None
-        _lane_ch = re.search(r'ch(\d+)', sb_path)
-        _lane_ch = _lane_ch.group(1).zfill(2) if _lane_ch else None
-        _wanted = f'drops_ch{_lane_ch}.json' if _lane_ch else None
-        for _cand in glob.glob(os.path.join(os.path.dirname(os.path.abspath(sb_path)), 'drops_*.json')):
-            if _wanted is None or os.path.basename(_cand) == _wanted:
-                _dp = _cand
-                break
-        if _dp is None:
-            _cands = glob.glob(os.path.join(os.path.dirname(os.path.abspath(sb_path)), 'drops_*.json'))
-            _dp = _cands[0] if _cands else None
-        if _dp:
+        try:
+            import holds as _Hd
+            _dp = _Hd.lane_for(os.path.abspath(sb_path)).get('drops')
+        except Exception:
+            _dp = None
+        if _dp is None or not os.path.exists(_dp):
+            check('H7 drops applied', True, 'no drops file for this unit')
+        else:
             _dfile = json.load(open(_dp, encoding='utf-8'))
             _dmeta = m.get('drops', {})
             # chunk-scoped: only drops rendered in this range's bids
             # can apply here; the rest belong to sibling chunks.
             _rbids = set(m.get('bids', []))
             _in_range = {k for k in _dfile if not _rbids or k in _rbids}
+            # a group-final drop mid-group in this part means build_clip
+            # would have split it — trust the renderer's own applied set
+            # and only fail when a filed in-range drop was silently lost.
             check('H7 drops applied', _in_range <= set(_dmeta),
                   f'file={sorted(_in_range)} meta={sorted(_dmeta)}')
             check('H7 every drop justified', all(

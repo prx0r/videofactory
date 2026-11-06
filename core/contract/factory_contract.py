@@ -187,8 +187,21 @@ def validate_bundle(storyboard, require_approval=False):
         unknown = set(entry.get('cue_blocks', [])) - known
         if unknown:
             raise ContractError(f"{paths['glossary']}: {key}: unknown cue blocks {sorted(unknown)}")
-        if entry['status'] == 'confirmed' and any(c in entry.get('literal', '') for c in '()'):
-            raise ContractError(f"{paths['glossary']}: {key}: literal uses parentheses (V7)")
+        if entry['status'] == 'confirmed':
+            # Fail-closed data discipline (tantrasara ch16/17/19/20/22 postmortem):
+            # bulk-confirm flipped auto-mined terms with empty gloss and
+            # machine-lossy Deva to confirmed. Schema already requires
+            # non-empty gloss + Devanagari, but surface an explicit,
+            # actionable message here so the fix (fill gloss / proposed-flip /
+            # owner Deva) is attached, and never let machine Deva ship.
+            if not (entry.get('gloss') or '').strip():
+                raise ContractError(f"{paths['glossary']}: {key}: confirmed with empty gloss — "
+                                    f"fill gloss or flip to proposed (M15)")
+            if entry.get('deva_status') in ('machine', 'machine-lossy'):
+                raise ContractError(f"{paths['glossary']}: {key}: confirmed with {entry['deva_status']} Deva — "
+                                    f"owner Deva pass required before render (M15/M23)")
+            if any(c in entry.get('literal', '') for c in '()'):
+                raise ContractError(f"{paths['glossary']}: {key}: literal uses parentheses (V7)")
         if entry.get('literal_status') == 'confirmed':
             raise ContractError(f"{paths['glossary']}: {key}: confirmed literals need an owner rule resolution "
                                 '(GATES V4 says never display them; D3 and the renderer allow them)')
@@ -249,6 +262,222 @@ def validate_clip_range(bundle, bids):
         raise ContractError('clip starts mid-hold; choose a group boundary at a chant or tone break')
 
 
+def require_audio_complete(storyboard, bids=None):
+    """Every spoken block in range must have its content-hash wav on volume.
+
+    Catches tantrasara ch18 b340-class gaps before video burns hours:
+    build_clip asserted 'missing render' deep inside the render. This gate
+    runs at entry (pre-audio-check + video entry) with the bid attached.
+    """
+    import glob as _glob
+    import hashlib as _hashlib
+    import re as _re
+    bundle = validate_bundle(storyboard)
+    paths = bundle['paths']
+    sb = bundle['storyboard']
+    by_id = {b['id']: b for b in sb['blocks']}
+    if bids is None:
+        bids = [b['id'] for b in sb['blocks'] if b['id'] != 'b_opener' and b['voice'] != 'none']
+    else:
+        bids = [bid for bid in bids if by_id.get(bid, {}).get('voice') != 'none']
+    if not bids:
+        raise ContractError('audio-complete: no spoken blocks in range')
+    title = _re.sub(r'[^a-z0-9]+', '-', (sb.get('title') or '').lower()).strip('-')[:40] or 'chapter'
+    # section dir scheme mirrors build_clip exactly (indexed fallback).
+    sec_seen = {}
+    for b in sb['blocks']:
+        if b['section'] not in sec_seen:
+            sec_seen[b['section']] = len(sec_seen)
+    sec_slug = {s: (_re.sub(r'[^a-z0-9]+', '-', s.lower()).strip('-')[:40] or f'sec{i:02d}')
+                for s, i in sec_seen.items()}
+    # regroup exactly like the renderers (same-section same-voice atoms).
+    groups, cur = [], []
+    for bid in bids:
+        b = by_id[bid]
+        if cur and (cur[0]['section'], cur[0]['voice']) != (b['section'], b['voice']):
+            groups.append(cur)
+            cur = []
+        cur.append(b)
+    if cur:
+        groups.append(cur)
+    missing = []
+    for g in groups:
+        text = ' '.join(x.get('directed', x['text']) for x in g)
+        h = _hashlib.sha1(f"{g[0]['voice']}|{text}".encode()).hexdigest()[:12]
+        pat = f"{RENDER_VOLUME}/{title}/groups/{sec_slug[g[0]['section']]}/*_{g[0]['voice']}_{h}.wav"
+        if not _glob.glob(pat):
+            missing.append(f"{g[0]['id']}..{g[-1]['id']}")
+    if missing:
+        raise ContractError(f"missing audio render for {len(missing)} group(s): "
+                            f"{missing[:5]} — run render_chapter first (ch18 b340 precedent)")
+    return True
+
+
+def require_hold_scan(storyboard, max_hold=60.0):
+    """No visual hold past max_hold without a filed draw/overlay/release.
+
+    Owner law 2026-11-05/06: max hold for anything is caught in the
+    storyboard estimate at 60s; anything over means look for bugs. The
+    classic bug was verse chanting a term with no term card (cues watched
+    narration/dialogue only) while granny continued — fixed by verse-term
+    cues, but remaining >60s spans still need sleepdrawn draws filed per
+    gap, never auto-mutated. This gate runs scan_holds headlessly at entry
+    (estimates @150wpm; measured onsets decide at render) and fails with
+    the offending spans + reasoning attached.
+    """
+    import subprocess as _sp
+    import sys as _sys
+    from pathlib import Path as _P
+    scan = _P(ROOT) / 'scan_holds.py'
+    r = _sp.run([_sys.executable, str(scan), str(storyboard), '--max', str(max_hold)],
+                capture_output=True, text=True)
+    if r.returncode:
+        out = (r.stdout or '')[-2000:]
+        raise ContractError(f'hold scan RED past {max_hold:.0f}s (file draw/overlay/release per gap):\n{out}')
+    return True
+
+
+def require_list_geometry(storyboard):
+    """Every rendered list-stack state must fit above the subtitle zone.
+
+    Catches tantrasara ch15/ch21 'conveyor collides with subtitle zone':
+    a 160-block range with a long-gloss stack passed storyboard + audio,
+    then died hours into video inside holds.render_list. This gate renders
+    exactly the card states the renderer will show — progressive prefixes
+    of each contiguous cue run (build_clip accumulates run keys[:p] and
+    render_list slides the last 5) — headlessly at entry (no audio, no
+    video) and fails with the offending keys attached so the owner
+    splits/restyles the list. Windows that never co-occur on screen are
+    never tested (a plain cue-order slide over-counts across event gaps).
+    """
+    bundle = validate_bundle(storyboard)
+    import holds as _H
+    # Mirror build_clip's _gl construction EXACTLY (confirmed terms only,
+    # literal only when literal_status is confirmed). The gate renders the
+    # same inputs or it hallucinates collisions the renderer never sees —
+    # that false positive blocked ch21 (an unconfirmed literal fattened a
+    # bottom-slot card past the subtitle zone).
+    gl = {}
+    for k, v in bundle['glossary'].items():
+        if not (isinstance(v, dict) and v.get('status') == 'confirmed' and v.get('gloss')):
+            continue
+        gl[k] = {'deva': v.get('deva', ''), 'gloss': v.get('gloss', ''),
+                 'literal': v.get('literal', '') if v.get('literal_status') == 'confirmed' else ''}
+    import re as _re
+    import unicodedata as _ud
+
+    def _fold(s):
+        return ''.join(c for c in _ud.normalize('NFD', s.lower()) if _ud.category(c) != 'Mn')
+    sb = bundle['storyboard']
+    # estimated cue spans, same model as gate_storyboard H8 (@150wpm).
+    _WPM = 150.0
+    _blocks = [b for b in sb['blocks'] if b['id'] != 'b_opener' and b['voice'] != 'none']
+    _t, _times = 0.99, {}
+    for _b in _blocks:
+        _n = len(_b['text'].split())
+        _times[_b['id']] = (_t, _t + _n / _WPM * 60.0)
+        _t += _n / _WPM * 60.0 + 0.3
+    conf = set(gl)
+    # ONE cue per block (first matching word) — exactly the renderer's rule
+    # (build_clip keys cues by (block, first-match) and breaks; scan_holds
+    # does the same). Every-mention counting invents stacks the renderer
+    # never shows — that false positive blocked ch20 (b568 fires 1 cue,
+    # not 3).
+    _cues = []
+    for _b in _blocks:
+        if _b['type'] not in ('narration', 'dialogue', 'verse'):
+            continue
+        _t0, _t1 = _times[_b['id']]
+        _words = [_w for _w in _b['text'].strip().split() if _re.search(r'\w', _w, _re.U)]
+        for _ji, _w in enumerate(_words):
+            _raw = _w.strip('.,!?;:\'"—-')
+            _c = _fold(_raw)
+            if _c not in conf and _re.search(r'[\u0900-\u097F]', _raw):
+                try:
+                    _c = _fold(_H.to_iast(_raw))
+                except Exception:
+                    pass
+            if _c in conf:
+                _cues.append((_t0 + (_t1 - _t0) * _ji / max(1, len(_words)), _b['id'], _c))
+                break
+    _ev = sorted(set([_times[_b['id']][0] for _b in _blocks
+                      if _b['type'] in ('verse', 'title', 'figure', 'dialogue')
+                      or _b.get('directed', '').startswith('[long pause]')]))
+
+    def _nxt(_t0):
+        for _e in _ev:
+            if _e > _t0 + 0.05:
+                return _e
+        return _t
+    _spans = sorted([[s, _nxt(s), k] for s, _, k in _cues])
+    for _i in range(len(_spans) - 1):
+        _spans[_i][1] = min(_spans[_i][1], _spans[_i + 1][0])
+    # maximal contiguous chains = exactly the runs build_clip accumulates.
+    _runs, _cur = [], []
+    for _i, _sp in enumerate(_spans):
+        _cur.append(_sp[2])
+        if _i + 1 >= len(_spans) or abs(_sp[1] - _spans[_i + 1][0]) >= 1e-9:
+            _runs.append(_cur)
+            _cur = []
+    for _run in _runs:
+        for _p in range(2, len(_run) + 1):
+            _win = _run[max(0, _p - 5):_p]
+            try:
+                _H.render_list(_win, gl)
+            except AssertionError as exc:
+                raise ContractError(f"list geometry would collide in run {str(_run[:6])[:90]} "
+                                    f"at depth {_p} ({exc}): keys={_win} — split or restyle the list") from exc
+    return True
+
+
+def require_issues_clear(storyboard, issues_dir=None):
+    """Launch gate for the issue-skill loop: no open block/needs-owner issues.
+
+    Reads <issues_dir>/<stem>.issues.json (written by check_issues.py, e.g.
+    from the batch issues stage), applies the sibling <stem>.waivers.json,
+    and raises naming the open blockers with their skills. Absent issues
+    file passes (checker has not run for this unit yet — nothing to gate
+    on). needs-draw kinds never block here (video entry reports them;
+    draws filed later). verse-gloss-missing never blocks launch either:
+    Devanagari-only verse cards are the law-compliant baseline (shipped
+    01-13 render the same) — the gloss is a later upgrade. missing-audio
+    never blocks launch: the batch audio stage exists precisely to render
+    it, and require_audio_complete enforces completeness at video entry.
+    Waived-owner issues are visible but never gate.
+    """
+    import json as _js
+    import os as _os
+    import re as _re
+    base = _os.path.basename(str(storyboard))
+    stem = _os.path.splitext(base[len('storyboard_'):] if base.startswith('storyboard_') else base)[0]
+    if issues_dir is None:
+        issues_dir = _os.path.join(RENDER_VOLUME, 'issues')
+    ipath = _os.path.join(str(issues_dir), f'{stem}.issues.json')
+    if not _os.path.exists(ipath):
+        return True
+    doc = read_json(ipath)
+    validate_schema('issues', doc, ipath)
+    wpath = _os.path.join(str(issues_dir), f'{stem}.waivers.json')
+    waived = set()
+    if _os.path.exists(wpath):
+        try:
+            wv = read_json(wpath)
+            waived = set(wv.get('waived', [])) if isinstance(wv, dict) else set()
+        except ContractError:
+            pass
+    _NONBLOCKING_KINDS = ('verse-gloss-missing', 'missing-audio')
+    open_blockers = [i for i in doc.get('issues', [])
+                     if i.get('status') == 'open' and i.get('id') not in waived
+                     and i.get('severity') in ('block', 'needs-owner')
+                     and i.get('kind') not in _NONBLOCKING_KINDS]
+    if open_blockers:
+        first = '; '.join(f"{i['id']}({i['kind']}): {i['detail'][:100]} -> core/skills/{i['skill']}.md"
+                          for i in open_blockers[:4])
+        raise ContractError(f'{stem}: {len(open_blockers)} open issue(s) block launch: {first} '
+                            f'(resolve via skill, or file {stem}.waivers.json with owner reason)')
+    return True
+
+
 def verify_storyboard_source(storyboard, check_environment=True):
     """Rebuild into a temporary file and compare content without mutating it."""
     bundle = validate_bundle(storyboard)
@@ -283,6 +512,21 @@ def require_storyboard_gate(storyboard):
                             capture_output=True, text=True)
     if result.returncode:
         raise ContractError('storyboard gate failed: ' + (result.stdout + result.stderr)[-1000:])
+    return True
+
+
+def validate_storyboard_gate(storyboard):
+    """THE render gate (owner order 2026-11-06): a render runs iff the
+    storyboard passes.
+
+    Green storyboard schema + owner approval for these exact bytes. That
+    is the whole gate: no audio, geometry, review-pack, hold or proof
+    check may hold a render up after this passes. Everything else is
+    advisory/record-only — defects stay visible in logs and sidecars but
+    never stop the line. Approval is the owner act, never self-granted;
+    it is part of "passes storyboard", not a separate hurdle.
+    """
+    validate_bundle(storyboard, require_approval=True)
     return True
 
 
@@ -321,10 +565,19 @@ def chunk_boundary_clears(previous, following):
             or after.get('directed', '').startswith('[long pause]'))
 
 
+def _lock_path(path=None):
+    """Production lock by default; VF_VIDEO_LOCK isolates tests/dev so the
+    suite stays green while the overnight line renders (no shared /tmp).
+    An explicit path always wins (queue lock, per-test locks)."""
+    if path is not None:
+        return Path(path)
+    return Path(os.environ.get('VF_VIDEO_LOCK', str(VIDEO_LOCK)))
+
+
 @contextlib.contextmanager
-def video_build_lock(path=VIDEO_LOCK):
+def video_build_lock(path=None):
     """Hold an OS-level lock for the whole build; a PID file alone races."""
-    with open(path, 'a+', encoding='utf-8') as f:
+    with open(_lock_path(path), 'a+', encoding='utf-8') as f:
         try:
             fcntl.flock(f.fileno(), fcntl.LOCK_EX | fcntl.LOCK_NB)
         except BlockingIOError as exc:
@@ -343,9 +596,9 @@ def video_build_lock(path=VIDEO_LOCK):
             fcntl.flock(f.fileno(), fcntl.LOCK_UN)
 
 
-def video_lock_holder(path=VIDEO_LOCK):
+def video_lock_holder(path=None):
     """Report an actual held lock, not a stale or recycled PID."""
-    with open(path, 'a+', encoding='utf-8') as f:
+    with open(_lock_path(path), 'a+', encoding='utf-8') as f:
         try:
             fcntl.flock(f.fileno(), fcntl.LOCK_EX | fcntl.LOCK_NB)
         except BlockingIOError:

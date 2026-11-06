@@ -108,3 +108,58 @@ class TestMotionApplies(unittest.TestCase):
 
 if __name__ == '__main__':
     unittest.main()
+
+
+class RecursiveSplitIndex(unittest.TestCase):
+    """Locks the MMS chunker invariant: a split ALWAYS makes progress.
+
+    A non-interior index (0 or n) would recurse forever — the ch18 p02
+    death mode was a single split leaving 305-word halves; the fix splits
+    recursively, and this pure function must always yield an interior cut.
+    """
+
+    def test_always_interior(self):
+        import pure
+        cases = [
+            ([162, 1, 7, 1, 18, 1, 611, 1, 8], 811),
+            ([611], 611),
+            ([50] * 20, 1000),
+            ([900, 100], 1000),
+            ([1], 2),
+            ([200, 200, 200], 600),
+        ]
+        for counts, n in cases:
+            at = pure.recursive_split_index(counts, n, 0.5)
+            self.assertTrue(1 <= at <= n - 1, (counts, n, at))
+
+    def test_prefers_block_boundary(self):
+        import pure
+        self.assertEqual(pure.recursive_split_index([100, 100, 100], 300, 0.5), 100)
+
+    def test_falls_back_to_word_middle_for_one_giant_block(self):
+        import pure
+        at = pure.recursive_split_index([611], 611, 0.5)
+        self.assertIn(at, (305, 306))  # word-middle, interior
+
+    def test_recursion_terminates_under_ceiling(self):
+        import pure
+
+        def sim(counts, ndisp, depth=0):
+            self.assertLess(depth, 60, 'chunker recursion did not converge')
+            if ndisp <= 200:
+                return [ndisp]
+            at = pure.recursive_split_index(counts, ndisp, 0.5)
+            self.assertTrue(1 <= at <= ndisp - 1)
+            lc, rc, acc = [], [], 0
+            for c in counts:
+                (lc if acc + c <= at else rc).append(c)
+                acc += c
+            # mirror build_clip: children recurse on disp[:_at] / disp[_at:],
+            # so the word length is the CUT length, never sum(counts).
+            return (sim(lc or [at], at, depth + 1)
+                    + sim(rc or [ndisp - at], ndisp - at, depth + 1))
+
+        for counts, n in (([611], 611), ([162, 1, 7, 1, 18, 1, 611, 1, 8], 811), ([50] * 20, 1000)):
+            pieces = sim(counts, n)
+            self.assertLessEqual(max(pieces), 200, pieces)
+            self.assertEqual(sum(pieces), n, pieces)

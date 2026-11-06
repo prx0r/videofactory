@@ -28,7 +28,22 @@ def main():
     for ch in chs:
         mp4 = f'/tmp/ch{ch}_full.mp4'
         ver = mp4 + '.verify.json'
-        ok = os.path.exists(mp4) and os.path.exists(ver) and json.load(open(ver)).get('pass')
+        # ch04 postmortem: a finals mp4 shipped with no verify.json at all.
+        # Refuse anything unverified loudly (never silently dropped), and
+        # prefer the sha-bound gate (video+storyboard+checker+transcript)
+        # over a bare pass flag when the storyboard resolves.
+        ok = False
+        try:
+            sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'contract'))
+            import factory_contract as _fc
+            _sb = os.path.join(_vf.repo_root(), 'storyboard_ch6.json' if ch == '06' else f'storyboard_ch{ch}.json')
+            if os.path.exists(_sb):
+                _fc.require_verified_video(_sb, mp4)
+                ok = True
+            else:
+                ok = os.path.exists(mp4) and os.path.exists(ver) and json.load(open(ver)).get('pass')
+        except Exception:
+            ok = False
         (ready if ok else skipped).append(ch)
     print(f'ready: {ready}')
     print(f'skipped (no verified mp4): {skipped}')

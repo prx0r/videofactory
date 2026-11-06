@@ -64,10 +64,12 @@ def main():
         step('series-data-visible', bool(found), f'{len(found)} storyboards via {repo}')
     except Exception as e:
         step('series-data-visible', False, str(e)[:200])
-    print('VF_GATES mode:', os.environ.get('VF_GATES', 'compat'),
-          '(strict=gates raise; compat=log-and-continue)')
-    if strict and os.environ.get('VF_GATES') != 'strict':
-        step('strict-mode', False, 'set VF_GATES=strict')
+    print('VF_GATES mode:', os.environ.get('VF_GATES', 'strict'),
+          '(strict=gates raise; compat=log-and-continue, migration only)')
+    if os.environ.get('VF_GATES', 'strict') != 'strict':
+        step('strict-mode', False, f"VF_GATES={os.environ.get('VF_GATES')} — production must run strict (ch14-22 compat debt)")
+    if strict and os.environ.get('VF_GATES', 'strict') != 'strict':
+        step('strict-flag', False, 'set VF_GATES=strict')
     print('RESULT ' + ('CANONICAL' if not fails else f'{len(fails)} FAILING'))
     return 1 if fails else 0
 

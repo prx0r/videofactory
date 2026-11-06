@@ -43,3 +43,9 @@ def title_for(blocks, glossary=None):
 
 def header(blocks, glossary=None):
     return None  # tantrasara header is numeral + title, not a ref block
+
+
+def covered_title_bids(blocks):
+    """Tantrasara keeps every sheet card (blessed contact sheets, frozen
+    line) — the intro thumbnail never absorbs a title here."""
+    return []

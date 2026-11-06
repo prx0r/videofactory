@@ -1,0 +1,5 @@
+# THE WHITE-HOLD ANTIDOTE (verified 2026-11-06, all 22 units, BUG 0)
+
+A white stretch past 60 seconds is never assumed empty. Every flagged gap is audited word by word against the glossary, with the storyboard's own cue simulation as the single definition of "fired." A CONFIRMED term spoken in a block that fired no cue is a cue-engine defect, and the render stops until the engine is fixed — zero such cases exist. A PROPOSED term spoken stays white by design until the owner confirms it. An UNLISTED Sanskrit-shaped word stays white because no English gloss exists for it — mining backlog, never a render bug, never invented on the card. Pure English exposition stays white because there is nothing to hold.
+
+No holdable Sanskrit hides in the white. The checker proves it before the render, the validator measures it after, and the owner disposes the rest by ear. This file is the antidote: run the audit, read the buckets, fix BUGs in the engine, confirm PROPOSED with the owner, mine UNLISTED with scholarship — never mute the white, never invent the card.

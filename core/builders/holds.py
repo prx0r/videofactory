@@ -618,13 +618,32 @@ def render_list(keys, glossary):
         _col(W / 2, POS_MIDDLE['y'], *items[-1], POS_MIDDLE['maxw'],
              84, 32, 28, 40)
     for (x0, y0, x1, y1) in boxes:
-        assert y1 <= SUB_Y, 'conveyor collides with subtitle zone'
+        assert y1 <= SUB_Y, f'conveyor collides with subtitle zone (keys={keys[-POS_WINDOW:]}) — split or restyle the list'
     for i in range(len(boxes)):
         for j in range(i + 1, len(boxes)):
             a, b = boxes[i], boxes[j]
             overlap = a[0] < b[2] and b[0] < a[2] and a[1] < b[3] and b[1] < a[3]
-            assert not overlap, 'conveyor slots overlap — split or restyle the list'
+            assert not overlap, f'conveyor slots overlap (keys={keys[-POS_WINDOW:]}) — split or restyle the list'
     return im
+
+
+def preflight_list_geometry(glossary):
+    """Headless fail-fast for video: worst-case 5-window must fit.
+
+    Same renderer as video (render_list), no audio/video cost. Raises
+    ValueError naming the offending keys so gate_storyboard / gate_visual /
+    factory_contract.require_list_geometry fail before hours burn.
+    """
+    confirmed = {k: v for k, v in (glossary or {}).items()
+                 if isinstance(v, dict) and v.get('status') == 'confirmed'}
+    if not confirmed:
+        return True
+    ranked = sorted(confirmed, key=lambda k: len(str(confirmed[k].get('gloss', ''))) + len(str(confirmed[k].get('literal', ''))), reverse=True)
+    try:
+        render_list(ranked[:5], confirmed)
+    except AssertionError as exc:
+        raise ValueError(f'list geometry would collide: {exc}') from exc
+    return True
 
 
 def to_deva(s):
@@ -703,6 +722,61 @@ def render_term_card(deva, iast, literal, final, DSZ=84, ISZ=32, LSZ=28,
     return im
 
 
+def split_aksharas(word):
+    """Split a word into orthographic syllables (aksharas) for line breaking.
+
+    Breaks are allowed ONLY between whole aksharas — never inside a
+    halant-joined conjunct, never detaching a dependent vowel sign /
+    anusvara / visarga / nukta, never stranding a danda at a line start,
+    and never splitting ASCII digit runs. This is the W3C Devanagari rule
+    (break inside words only with clusters intact) plus UAX #14 ZWSP as an
+    explicit break opportunity. U+200B itself is consumed (zero-width).
+    Non-Devanagari text is returned whole (roman wrapping is unchanged).
+    """
+    HALANT = '\u094d'
+    ATTACH = set('\u093e\u093f\u0940\u0941\u0942\u0943\u0944\u0945\u0946\u0947\u0948'
+                 '\u094a\u094b\u094c\u093c\u0902\u0903\u0951\u0952\u0953\u0954\u200d\u200c')
+    DEVA_DIGITS = set('\u0966\u0967\u0968\u0969\u096a\u096b\u096c\u096d\u096e\u096f')
+    parts, cur = [], ''
+    for ch in word:
+        o = ord(ch)
+        is_deva_letter = (0x0905 <= o <= 0x0939) or (0x0958 <= o <= 0x0961)
+        if ch == '\u200b':
+            if cur:
+                parts.append(cur)
+                cur = ''
+            continue
+        if not cur:
+            cur = ch
+        elif ch == '-':
+            # ASCII hyphen: break opportunity AFTER it (UAX #14 BA).
+            cur += ch
+            parts.append(cur)
+            cur = ''
+        elif ch == HALANT or ch in ATTACH or (is_deva_letter and cur.endswith(HALANT)):
+            cur += ch  # halant itself, conjunct continuation, dependent sign: never split
+        elif ch in ('\u0964', '\u0965'):
+            cur += ch  # danda stays with its line (W3C: never leads)
+        elif (ch.isdigit() or ch in DEVA_DIGITS) and cur and (cur[-1].isdigit() or cur[-1] in DEVA_DIGITS):
+            cur += ch
+        elif is_deva_letter or '\u0900' <= ch <= '\u097f':
+            parts.append(cur)
+            cur = ch
+        else:
+            # non-Devanagari mid-word (punctuation etc.): keep scanning so
+            # roman runs never gain intra-word breaks from this path.
+            cur += ch
+    if cur:
+        parts.append(cur)
+    # a word with no Devanagari gets no akshara treatment downstream;
+    # signal that by returning it whole when nothing split.
+    if len(parts) <= 1:
+        return [word]
+    if not any('\u0900' <= c <= '\u097f' for c in word):
+        return [word]
+    return parts
+
+
 def wrap_lines(draw, text, font, maxw=1750):
     lines, cur = [], ''
     for w in text.split():
@@ -714,13 +788,37 @@ def wrap_lines(draw, text, font, maxw=1750):
             cur = t
     if cur:
         lines.append(cur)
+    # an overlong single token with Devanagari re-wraps between whole
+    # aksharas (never inside conjuncts); roman-only tokens keep the old
+    # fail-loud behavior downstream. Only the tail line can overflow (all
+    # flushed lines already fit), so only it is ever rebuilt.
+    if lines and draw.textlength(lines[-1], font=font) > maxw \
+            and re.search(r'[\u0900-\u097F]', lines[-1]) \
+            and ' ' not in lines[-1].strip():
+        tail = split_aksharas(lines[-1])
+        if len(tail) > 1:
+            lines.pop()
+            open_line = ''
+            for ak in tail:
+                t = open_line + ak
+                if open_line and draw.textlength(t, font=font) > maxw:
+                    lines.append(open_line)
+                    open_line = ak
+                else:
+                    open_line = t
+            if open_line:
+                lines.append(open_line)
     return lines
 
 
-def render_hold(hold, sub_text=None, glossary=None):
-    """Verse cards: Deva + IAST per line; single-word glossed chants resolve
-    via glossary to the full four term layers. Callers gate: sheets pass
-    proposed for review, video passes confirmed only.
+def render_hold(hold, sub_text=None, glossary=None, verse_gloss=None, confirmed_only=True):
+    """Verse cards: Deva + IAST per line + English literal/final underneath.
+
+    Single-word glossed chants resolve via glossary to the full four term
+    layers. Multi-line verses resolve via verse_gloss (T1 frozen literal +
+    L3/L4 final, keyed by verse_match_key) so English sits under every
+    Devanagari block. Callers gate: sheets pass proposed for review, video
+    passes confirmed only (verse_gloss bulk-confirm like glossaries).
 
     New card types register via register_hold() instead of editing this
     dispatch — sheets and video share them automatically."""
@@ -759,10 +857,18 @@ def render_hold(hold, sub_text=None, glossary=None):
             lines = [s for s in lines if s]
             if not lines:
                 continue
+            # block-level verse gloss (T1 frozen literal + L3/L4 final):
+            # English underneath multi-line Devanagari. Sheets show
+            # proposed for review; video shows confirmed only.
+            vg = (verse_gloss or {}).get(verse_match_key(b['text']), None)
+            vg_lit, vg_fin = '', ''
+            if isinstance(vg, dict) and (vg.get('literal') or vg.get('final')):
+                if not confirmed_only or vg.get('status') == 'confirmed':
+                    vg_lit, vg_fin = vg.get('literal', ''), vg.get('final', '')
             # per-line: lone glossed chants resolve to full term layers;
-            # all other verse lines are Devanagari ONLY — subtitles already
-            # carry the romanised (owner call 2026-11-04).
-            for s in lines:
+            # other verse lines are Devanagari + verse-gloss English —
+            # subtitles already carry the romanised (owner call 2026-11-04).
+            for li, s in enumerate(lines):
                 deva_part, roman_part = split_scripts(s)
                 # lookup by content hash of the Sanskrit half (M12-proof):
                 # the author's roman half IS the IAST key; transliterate
@@ -788,6 +894,10 @@ def render_hold(hold, sub_text=None, glossary=None):
                     except Exception:
                         deva = deva_part or s
                     gloss, literal, iast = '', '', ''
+                    # block verse-gloss English under the Devanagari:
+                    # attach once (last line) so long literals don't repeat.
+                    if li == len(lines) - 1 and (vg_lit or vg_fin):
+                        literal, gloss = vg_lit, vg_fin
                 if d.textlength(deva, font=F(FD, 84)) <= 1700:
                     dl.append({'deva': [(deva, 84)] if deva.strip() else [], 'iast': [iast] if iast else [],
                                'literal': [literal] if literal else [], 'final': [gloss] if gloss else []})

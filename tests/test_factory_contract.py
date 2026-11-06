@@ -36,6 +36,11 @@ class FactoryFixture(unittest.TestCase):
         self.temp = tempfile.TemporaryDirectory()
         self.addCleanup(self.temp.cleanup)
         self.root = Path(self.temp.name)
+        # isolate the video lock: the suite must stay green while the
+        # overnight line renders (production /tmp lock untouched).
+        self._prev_lock = os.environ.get('VF_VIDEO_LOCK')
+        os.environ['VF_VIDEO_LOCK'] = str(self.root / 'video_build.lock')
+        self.addCleanup(self._restore_lock)
         self.sb = self.root / 'storyboard_ch01.json'
         self.gl = self.root / 'glossary_ch01.json'
         self.ap = self.root / 'approved_ch01.json'
@@ -55,6 +60,12 @@ class FactoryFixture(unittest.TestCase):
                                      'status': 'confirmed', 'cue_blocks': ['b1']}})
         self.approve()
         self.make_review_pack()
+
+    def _restore_lock(self):
+        if self._prev_lock is None:
+            os.environ.pop('VF_VIDEO_LOCK', None)
+        else:
+            os.environ['VF_VIDEO_LOCK'] = self._prev_lock
 
     @staticmethod
     def write(path, value):

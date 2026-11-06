@@ -19,6 +19,16 @@ def main():
     lane = H.lane_for(sys.argv[1])
     _ch = lane['ch']
     gl = json.load(open(lane['glossary'], encoding='utf-8')) if os.path.exists(lane['glossary']) else {}
+    # verse gloss (T1 literal + L3/L4 final): sheets show proposed for
+    # review, video shows confirmed only — English under every Devanagari.
+    vg = {}
+    try:
+        _vp = lane.get('verse')
+        if _vp and os.path.exists(_vp):
+            _raw = json.load(open(_vp, encoding='utf-8'))
+            vg = {v.get('match_key', k): v for k, v in _raw.items() if isinstance(v, dict)}
+    except Exception:
+        vg = {}
     groups = H.build_holds(sb['blocks'])
     flat = sb['blocks']
     idx = {b['id']: i for i, b in enumerate(flat)}
@@ -28,12 +38,21 @@ def main():
     _sb_arg = sys.argv[1] if len(sys.argv) > 1 and not sys.argv[1].startswith('-') else ''
     _intro = _api.intro_args(_sb_arg or 'tantrasara/storyboard_ch01.json', sb['blocks'], gl)
     _title = _intro['title']
+    # standalone sheet pages for titles the intro thumbnail already
+    # carries (lane-owned list; tantrasara returns [] — frozen line
+    # untouched). Video never shows title cards, so sheets must not
+    # invent pages for them either.
+    _covered = set(_api.covered_title_bids(_sb_arg or 'tantrasara/storyboard_ch01.json', sb['blocks']))
     for hi, h in enumerate(groups):
         last_id = h[-1]['id']
+        if len(h) == 1 and h[0]['id'] in _covered and h[0].get('type') == 'title':
+            # intro thumbnail already carries this title (lane-owned list);
+            # video never shows title cards, so sheets burn no page for it.
+            continue
         if h[0].get('id') == 'b_opener':
             # sheets show the same intro bug the video burns
             _ih = H.intro_hold(_ch, _title, lane['assets'], lane['thumbbox'], _intro['numeral'], lane['art_center'], _intro['header'])
-            im = _ih if _ih is not None else H.render_hold(h, None, gl)
+            im = _ih if _ih is not None else H.render_hold(h, None, gl, vg, confirmed_only=False)
             fn = f'{out}/hold{hi:03d}.png'
             im.save(fn)
             files.append(fn)
@@ -46,7 +65,7 @@ def main():
                 sub = ' '.join(H.to_iast(w) if _re.search(r'[\u0900-\u097F]', w) else w
                                for w in b['text'][:140].split())
                 break
-        im = H.render_hold(h, sub if sub else None, gl)
+        im = H.render_hold(h, sub if sub else None, gl, vg, confirmed_only=False)
         fn = f'{out}/hold{hi:03d}.png'
         im.save(fn)
         files.append(fn)

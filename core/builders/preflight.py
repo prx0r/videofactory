@@ -51,16 +51,10 @@ def main():
     except Exception:
         vol = -1
     check('volume >=4G', vol < 0 or vol >= 4, 'ship finals + clear volume')
-    holder, alive = '', False
-    try:
-        holder = open('/tmp/video_build.lock').read().strip()
-        if holder:
-            with open(f'/proc/{holder}/cmdline', 'rb') as f:
-                cmd = f.read().replace(b'\0', b' ').decode()
-            alive = 'build_clip.py' in cmd or 'run_blocks.py' in cmd
-    except (OSError, ValueError):
-        pass
-    check('no live video build', not alive, f'pid {holder} holds the lock')
+    # fcntl truth, never PID-text (postmortem: ps error text in lock file).
+    import factory_contract as _fc
+    holder = _fc.video_lock_holder()
+    check('no live video build', not holder, f'{holder} holds the lock' if holder else '')
     for ch in chs:
         ap = f'{BASE}/approved_ch{ch}.json'
         if not os.path.exists(ap):
@@ -73,8 +67,11 @@ def main():
         except OSError:
             ok = False
         check(f'ch{ch} approval SHAs match', ok, 'republish + re-bless')
-    # V5 across lanes (scoped to requested chapters)
+    # V5 across lanes (scoped to requested chapters): Deva + gloss +
+    # no machine Deva confirmed + list geometry (ch14-22 postmortem).
     import glob as _g
+    sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+    import holds as _H
     for gp in sorted(_g.glob(f'{BASE}/glossary_ch*.json')):
         if '.draft' in gp:
             continue
@@ -87,6 +84,19 @@ def main():
         m = re.search(r'ch(\d+)', gp).group(1).zfill(2)
         check(f'ch{m} V5 confirmed carry Deva', not bad,
               f'{len(bad)} terms need owner Deva or proposed-flip')
+        nogloss = [k for k, v in gl.items() if isinstance(v, dict)
+                   and v.get('status') == 'confirmed' and not (v.get('gloss') or '').strip()]
+        check(f'ch{m} V5b confirmed carry gloss', not nogloss,
+              f'{len(nogloss)} empties: {nogloss[:3]} — fill or proposed-flip')
+        machine = [k for k, v in gl.items() if isinstance(v, dict)
+                   and v.get('status') == 'confirmed' and v.get('deva_status') in ('machine', 'machine-lossy')]
+        check(f'ch{m} V5c no machine Deva confirmed', not machine,
+              f'{len(machine)} terms need owner Deva pass: {machine[:3]}')
+        try:
+            _H.preflight_list_geometry(gl)
+            check(f'ch{m} list geometry fits', True)
+        except Exception as exc:
+            check(f'ch{m} list geometry fits', False, str(exc)[:200])
     # audio cache per blessed chapter (0 missing)
     sys.path.insert(0, BASE)
     import holds as H

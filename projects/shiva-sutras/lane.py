@@ -39,11 +39,15 @@ def title_for(blocks, glossary=None):
 
 
 def header(blocks, glossary=None):
-    """Sutra ref (top-right) + funny title (top-left) from the unit itself:
-    ref from the H1, title from the heading line."""
-    ref, title = None, None
+    """Sutra ref (top-right) + header title (top-left) from the unit itself.
+
+    Title rule (owner call): book-opener units (s01/s23/s33) show the BOOK
+    label top-left; every other unit shows nothing (canon: no funny on
+    screen, refs never spoken). The ref always comes from the H1.
+    """
+    ref, title, book = None, '', None
     for b in blocks:
-        t = b.get('text', '').strip()
+        t = (b.get('text') or '').strip()
         if b.get('id') == 'b_opener':
             continue
         if b.get('type') == 'title' and ref is None:
@@ -51,11 +55,25 @@ def header(blocks, glossary=None):
             if m:
                 ref = m.group(1)
             continue
-        if ref and title is None and b.get('type') == 'narration':
-            m = re.match(r'^\d+\.\d+\s*—\s*(.+)$', t)
-            if m:
-                title = m.group(1).strip()
-                break
+        if b.get('type') == 'title' and re.match(r'BOOK\s+[IVX]+\b', t):
+            book = t
+    if book is not None:
+        title = book
     if not ref:
         return None
     return {'ref': ref, 'title': title or ''}
+
+
+def covered_title_bids(blocks):
+    """Title blocks the intro thumbnail already carries, so sheets must
+    not burn a standalone page for them (video never shows title cards —
+    intro scope holds the thumbnail, everywhere else they play over
+    white/persist). b1 ref titles always; the book marker when present."""
+    out = []
+    for b in blocks:
+        if b.get('id') == 'b_opener' or b.get('type') != 'title':
+            continue
+        t = (b.get('text') or '').strip()
+        if b.get('id') == 'b1' or re.match(r'BOOK\s+[IVX]+\b', t):
+            out.append(b['id'])
+    return out

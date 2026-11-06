@@ -17,8 +17,8 @@ import time
 sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'contract'))
 import paths as _vf
 
-from factory_contract import (ContractError, read_json, require_current_review_pack, require_verified_video,
-                              require_voice_energy, validate_bundle,
+from factory_contract import (ContractError, read_json, require_current_review_pack, require_issues_clear,
+                              require_verified_video, require_voice_energy, validate_bundle,
                               video_build_lock, video_lock_holder)
 from proof_contract import require_reviewed_assembly
 from qwen_review import require_disposition
@@ -93,11 +93,24 @@ def refresh(reg):
                 video_ok = True
             except (OSError, ContractError):
                 pass
+        # Issues are a WORK LIST, never a blocker (owner order 2026-11-06:
+        # after the storyboard passes, nothing holds a render up). The
+        # checker's findings are attached as data; --run-next launches.
+        issues_note = ''
+        issues_path = FINALS_DIR.parent / 'issues' / f"{'ch6' if ch == '06' else 'ch' + ch}.issues.json"
+        if issues_path.exists():
+            try:
+                require_issues_clear(sb, issues_path.parent)
+            except ContractError as _ie:
+                issues_note = str(_ie)[:200]
         if video_ok:
             st['stage'] = 'rendered-awaiting-ears'
         elif video.exists():
             st['stage'] = 'video-needs-review'
-        elif ap_ok and man_ok:
+        elif ap_ok:
+            # approval (the owner act) is what makes a unit ready. Review
+            # packs and issue files are records, never readiness gates
+            # (owner order 2026-11-06).
             st['stage'] = 'approved-ready'
         elif man_ok:
             st['stage'] = 'review-published'
@@ -124,14 +137,15 @@ def main():
             if not re.fullmatch(r'0[1-9]|1[0-9]|2[0-2]', ch):
                 parser.error('--resume must name a chapter from 01 to 22')
             st = reg['tantrasara'].get(ch)
-            if not isinstance(st, dict) or st.get('stage') not in ('pending-review', 'failed', 'video-needs-review'):
+            if not isinstance(st, dict) or st.get('stage') not in ('pending-review', 'failed', 'video-needs-review', 'needs-issues'):
                 raise ContractError(f'ch{ch} has no stopped job to resume')
             sb = BASE / ('storyboard_ch6.json' if ch == '06' else f'storyboard_ch{ch}.json')
             validate_bundle(sb, require_approval=True)
-            require_current_review_pack(sb)
+            # storyboard+approval is the gate; review pack / issues are
+            # recording only (owner order 2026-11-06).
             st['stage'] = 'approved-ready'
             st.setdefault('resume_from', 'video')
-            print(f'ch{ch} eligible for retry from {st["resume_from"]}; gates still apply')
+            print(f'ch{ch} eligible for retry from {st["resume_from"]}; storyboard gate applies')
         if (args.refresh or args.resume) and not args.dry_run:
             save_registry(reg)
         active = [ch for ch, st in reg.get('tantrasara', {}).items()
@@ -148,7 +162,6 @@ def main():
                 # Validate even when the registry was not refreshed this run.
                 sb = BASE / ('storyboard_ch6.json' if ch == '06' else f'storyboard_ch{ch}.json')
                 validate_bundle(sb, require_approval=True)
-                require_current_review_pack(sb)
                 log = Path(f'/tmp/runall_ch{ch}.log')
                 cmd = [sys.executable, str(BASE / 'run_all.py'), '--chapters', ch]
                 if st.get('resume_from'):

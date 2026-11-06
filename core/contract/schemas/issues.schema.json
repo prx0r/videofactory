@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Checker issues with skill resolutions",
+  "type": "object",
+  "required": ["version", "unit", "storyboard_sha256", "issues"],
+  "additionalProperties": false,
+  "properties": {
+    "version": {"const": 1},
+    "unit": {"type": "string", "pattern": "^([0-9]{2}|s[0-9]{2})$"},
+    "storyboard_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "issues": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "kind", "severity", "detail", "skill"],
+        "additionalProperties": false,
+        "properties": {
+          "id": {"type": "string", "pattern": "^[a-z0-9-]+$"},
+          "kind": {          "enum": ["verse-term-unheld", "white-gap", "stuck-term", "empty-gloss", "machine-deva", "missing-audio", "list-geometry", "hold-scan-red", "verse-gloss-missing", "verse-deva-no-english", "stale-verse-hold", "stack-crash", "canon-shape", "tts-ready"]},
+          "severity": {"enum": ["block", "needs-draw", "needs-owner"]},
+          "detail": {"type": "string", "minLength": 1},
+          "blocks": {"type": "array", "items": {"type": "string"}},
+          "skill": {"type": "string", "pattern": "^[a-z0-9-]+$"},
+          "status": {"enum": ["open", "resolved", "waived-owner"]},
+          "resolution_note": {"type": "string"}
+        }
+      }
+    }
+  }
+}
