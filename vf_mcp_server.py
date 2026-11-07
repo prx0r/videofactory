@@ -1,14 +1,17 @@
 #!/usr/bin/env python3
 """Videofactory MCP server — agent control plane for the video factory (stdio).
 
-Exposes the whole factory to agents: board status, per-unit stages, issues,
-the storyboard+approval render gate, logs, finals, canonical check, test
-suite, and gated unit launches (one video build at a time — the server
-refuses when the video path is busy, and refuses renders without approval).
+Senses (read-only): vf_projects, vf_status, vf_units, vf_unit, vf_issues,
+vf_gate, vf_logs, vf_finals, vf_check, vf_tests, vf_skills, vf_skill.
+Decides: vf_triage (gate verdict + per-issue skill routing + recommended step).
+Acts: vf_launch (gated immediate render), vf_queue (gated render in the next
+gap), vf_pack (zip finals), vf_publish (R2 upload + byte-verify),
+vf_skill_propose (stage a researched skill; commit separately).
 
-Reads never write. The ONLY mutating tool is vf_launch, which enforces the
+Reads never write, except the five act tools — and those enforce the
 standing owner order (2026-11-06): storyboard green + owner approval is the
-only render gate.
+only render gate; one video build at a time. Owner-only acts (approvals,
+waivers, ears, seals) are deliberately NOT exposed.
 
 Usage:
     python3 /home/ubuntu/videofactory/vf_mcp_server.py
@@ -109,6 +112,161 @@ def _stem_aliases(stem):
         return [stem]
     prefix, digits = m.group(1), m.group(2)
     return list(dict.fromkeys([stem, f"{prefix}{int(digits):02d}", f"{prefix}{int(digits)}"]))
+
+
+def _pack_name(series, digits):
+    """Zip name for a digit set: contiguous 15-22 collapses, else joins."""
+    ds = sorted(set(int(d) for d in digits))
+    if len(ds) > 1 and ds == list(range(ds[0], ds[-1] + 1)):
+        return f"{series}-{ds[0]}-{ds[-1]}.zip"
+    return f"{series}-{'+'.join(str(d) for d in ds)}.zip"
+
+
+def _recommend_action(approved, green, final_bytes, busy):
+    """Next-action derivation (pure; tested in tests/test_mcp.py)."""
+    if not (approved and green):
+        missing = [name for name, ok in
+                   (("approval", approved), ("storyboard-green", green)) if not ok]
+        return "blocked-owner: needs " + " + ".join(missing)
+    if final_bytes:
+        return "awaiting-ears: final exists; owner ears dispose, then seal"
+    if busy:
+        return "ready-queue: gate passes but video path busy — vf_queue"
+    return "ready-launch: gate passes and video path free — vf_launch"
+
+
+def _skill_kind_ok(kind):
+    return bool(re.fullmatch(r"[a-z0-9-]{3,40}", kind or ""))
+
+
+def _publish_targets_ok(local_path, key):
+    """Allowlist for uploads: local must live under ~/vol, key under a lane prefix."""
+    try:
+        lp = os.path.realpath(os.path.expanduser(local_path))
+        vol = os.path.realpath(os.path.expanduser("~/vol"))
+        if os.path.commonpath([lp, vol]) != vol:
+            return False, "local_path must live under ~/vol"
+    except ValueError:
+        return False, "bad local_path"
+    if not re.fullmatch(r"(tantrasara|shiva)/[\w][\w\-./]*\.\w+", key or "") or ".." in key:
+        return False, "key must look like tantrasara/<name>.ext (no ..)"
+    if not os.path.isfile(lp):
+        return False, "local file missing"
+    return True, ""
+
+
+def _publish_sync(local_path, key, timeout=900):
+    """rclone copyto (mount-flake tolerant) + lsl size + HEAD byte-verify."""
+    remote = f"r2:svread-audio/{key}"
+    rc, out = _sh(["rclone", "copyto", local_path, remote,
+                   "--local-no-check-updated", "--transfers", "1"], timeout=timeout)
+    if rc != 0:
+        return {"published": False, "reason": f"copyto rc={rc}: {out[-300:]}"}
+    size = os.path.getsize(local_path)
+    rc2, out2 = _sh(["rclone", "lsl", remote], timeout=120)
+    try:
+        remote_size = int(out2.strip().split()[0])
+    except (IndexError, ValueError):
+        return {"published": False, "reason": f"lsl unreadable: {out2[-200:]}"}
+    if remote_size != size:
+        return {"published": False, "reason": f"byte-mismatch local={size} remote={remote_size}"}
+    url = f"{PUB_BASE}/{key}"
+    try:
+        import urllib.request
+        req = urllib.request.Request(url, method="HEAD")
+        with urllib.request.urlopen(req, timeout=60) as r:
+            if r.status == 200 and int(r.headers.get("Content-Length", -1)) == size:
+                return {"published": True, "url": url, "bytes": size,
+                        "verified": "HEAD-byte-match"}
+            return {"published": True, "url": url, "bytes": size,
+                    "verified": f"HEAD-{r.status}"}
+    except Exception as e:
+        return {"published": True, "url": url, "bytes": size,
+                "verified": f"HEAD-unchecked: {str(e)[:120]}"}
+
+
+def _launch_detached(project, unit, ship, env, stem, tag="vf_launch"):
+    log = f"/tmp/vf_mcp_{stem}.log"
+    cmd = [sys.executable, os.path.join(ROOT, "core", "builders", "batch.py"),
+           "--project", project, "--units", unit] + (["--ship"] if ship else [])
+    with open(log, "a", encoding="utf-8") as lf:
+        lf.write(f"== {tag} {project}/{unit} {time.strftime('%FT%TZ', time.gmtime())}\n")
+        lf.flush()
+        p = subprocess.Popen(cmd, stdout=lf, stderr=subprocess.STDOUT,
+                             stdin=subprocess.DEVNULL, env=env,
+                             start_new_session=True, cwd=ROOT)
+    return {"launched": True, "pid": p.pid, "log": log,
+            "note": "detached; poll vf_logs or the unit log"}
+
+
+def _register_process(name, pid, log, note):
+    try:
+        p = os.path.join(ROOT, "REGISTRY.json")
+        d = json.load(open(p, encoding="utf-8"))
+        d.setdefault("processes", {})[name] = {
+            "pid": str(pid), "log": log,
+            "started": time.strftime("%FT%TZ", time.gmtime()), "note": note}
+        json.dump(d, open(p, "w", encoding="utf-8"), indent=1)
+    except (OSError, ValueError):
+        pass
+
+
+_WAITER_TPL = """#!/bin/bash
+# vf_queue waiter for @@PROJECT@@/@@UNIT@@ — launches into the next video-path gap.
+set -u
+LOG="@@LOG@@"
+exec >>"$LOG" 2>&1
+echo "== vf_queue @@PROJECT@@/@@UNIT@@ waiter start $(date -u +%FT%TZ)"
+export VF_REPO="@@REPO@@" VF_RENDERS="@@RENDERS@@" VF_R2="@@R2@@" VF_SERIES="@@SERIES@@"
+python3 - "@@SB@@" <<'PYEOF'
+import os, sys
+sys.path.insert(0, os.path.expanduser('~/videofactory/core/builders'))
+sys.path.insert(0, os.path.expanduser('~/videofactory/core/contract'))
+sys.path.insert(0, os.path.expanduser('~/videofactory/core'))
+from factory_contract import validate_bundle
+try:
+    validate_bundle(sys.argv[1], require_approval=True)
+    print('gate: storyboard + approval OK')
+except Exception as e:
+    print('gate refused: %s' % e)
+    sys.exit(3)
+PYEOF
+if [ $? -ne 0 ]; then echo "gate failed — waiter exiting"; exit 3; fi
+N=0
+while [ $N -lt @@MAXPOLLS@@ ]; do
+  if ! pgrep -f "core/builders/(batch|build_clip|run_blocks|render_chapter|prove_clip)[.]py" >/dev/null 2>&1; then
+    sleep 5
+    if ! pgrep -f "core/builders/(batch|build_clip|run_blocks|render_chapter|prove_clip)[.]py" >/dev/null 2>&1; then
+      break
+    fi
+  fi
+  sleep 30
+  N=$((N + 1))
+done
+echo "-- gap won $(date -u +%FT%TZ)"
+cd ~/videofactory
+python3 core/builders/batch.py --project @@PROJECT@@ --units @@UNIT@@ @@SHIPFLAG@@
+echo "== vf_queue @@PROJECT@@/@@UNIT@@ done rc=$? $(date -u +%FT%TZ)"
+"""
+
+
+def _queue_waiter(project, unit, ship, env, sb, stem, max_wait_h=12):
+    log = f"/tmp/vf_queue_{stem}.log"
+    script = f"/tmp/vf_queue_{stem}.sh"
+    body = (_WAITER_TPL.replace("@@LOG@@", log).replace("@@PROJECT@@", project)
+            .replace("@@UNIT@@", unit).replace("@@REPO@@", env["VF_REPO"])
+            .replace("@@RENDERS@@", env["VF_RENDERS"]).replace("@@R2@@", env["VF_R2"])
+            .replace("@@SERIES@@", env["VF_SERIES"]).replace("@@SB@@", sb)
+            .replace("@@MAXPOLLS@@", str(max(1, int(max_wait_h * 120))))
+            .replace("@@SHIPFLAG@@", "--ship" if ship else ""))
+    open(script, "w", encoding="utf-8").write(body)
+    os.chmod(script, 0o755)
+    p = subprocess.Popen(["setsid", "bash", script], stdout=subprocess.DEVNULL,
+                         stderr=subprocess.DEVNULL, stdin=subprocess.DEVNULL,
+                         start_new_session=True)
+    _register_process(f"queue-{stem}", p.pid, log, f"vf_queue {project}/{unit} waiter")
+    return {"queued": True, "log": log,
+            "note": "waiter polls every 30s; launches into the next gap"}
 
 
 def _unit_state(project, unit):
@@ -406,6 +564,115 @@ async def vf_skill(kind: str) -> str:
 
 
 @mcp.tool()
+async def vf_triage(project: str, unit: str) -> str:
+    """Action list for a unit: gate verdict, per-issue skill routing (agent-fixable vs owner call), recommended next step.
+
+    This is the tool to call when deciding what to DO about a unit.
+
+    Args:
+        project: Lane name (tantrasara, shiva-sutras)
+        unit: Unit id (tantrasara 14 / ch14, shiva s12)
+    """
+    def _work():
+        st = _unit_state(project, unit)
+        sb = st["storyboard"]
+        rc, _ = _sh([sys.executable,
+                     os.path.join(ROOT, "core", "builders", "gate_storyboard.py"), sb],
+                    timeout=120)
+        sys.path.insert(0, os.path.join(ROOT, "core", "contract"))
+        import factory_contract as C
+        try:
+            C.validate_bundle(sb, require_approval=True)
+            approved = True
+        except Exception:
+            approved = False
+        green = rc == 0
+        try:
+            skills_reg = json.load(open(os.path.join(ROOT, "core", "skills",
+                                                     "REGISTRY.json"), encoding="utf-8"))
+            skills = skills_reg.get("skills", {})
+        except (OSError, ValueError):
+            skills = {}
+        _, stem, env, _ = _resolve_storyboard(project, unit)
+        issues = []
+        for s in _stem_aliases(stem):
+            p = os.path.join(env["VF_RENDERS"], "issues", f"{s}.issues.json")
+            if os.path.exists(p):
+                try:
+                    issues = json.load(open(p, encoding="utf-8")).get("issues", [])
+                except (OSError, ValueError):
+                    issues = []
+                break
+        actions = []
+        for i in issues:
+            kind = i.get("skill") or re.sub(r"-\d+$", "", i.get("id", ""))
+            meta = skills.get(kind, {})
+            status = str(i.get("status", "open"))
+            if status.startswith("waived"):
+                act = "recorded-waiver, nothing to do"
+            elif status != "open":
+                act = f"status {status}, nothing to do"
+            elif meta.get("auto"):
+                act = f"agent-fixable now via vf_skill({kind})"
+            elif meta:
+                act = f"owner call (confirm/waive/draw) — see vf_skill({kind})"
+            else:
+                act = "no skill registered — research, fix, vf_skill_propose"
+            actions.append({"id": i.get("id"), "severity": i.get("severity"),
+                            "status": status, "kind": kind,
+                            "auto": meta.get("auto"), "needs_owner": meta.get("needs_owner"),
+                            "action": act})
+        busy = bool(_builders_running())
+        st["gate"] = {"storyboard_green": green, "approved": approved,
+                      "may_render": bool(green and approved)}
+        st["recommended"] = _recommend_action(approved, green, st["final"], busy)
+        st["actions"] = actions
+        return st
+    try:
+        return json.dumps(await _run_sync(_work), indent=2)
+    except (FileNotFoundError, ValueError) as e:
+        return json.dumps({"error": str(e)[:300]})
+
+
+@mcp.tool()
+async def vf_skill_propose(kind: str, content: str, web_query: str = "",
+                           auto: bool = False) -> str:
+    """Stage a new or updated issue skill (writes core/skills/<kind>.md + REGISTRY entry). Commit separately.
+
+    Use after researching a fix (web search, solved notes) for an issue kind
+    with no skill. Flow: research -> draft here -> test the fix -> commit
+    skill + fix together.
+
+    Args:
+        kind: Skill/issue kind, lowercase hyphenated (verse-gloss-missing)
+        content: Full skill markdown (symptom, diagnosis, fix, process note)
+        web_query: Search query that solves this class again
+        auto: True only if agents may apply it unsupervised
+    """
+    def _work():
+        if not _skill_kind_ok(kind):
+            return {"staged": False,
+                    "reason": "kind must match [a-z0-9-]{3,40}"}
+        sdir = os.path.join(ROOT, "core", "skills")
+        path = os.path.join(sdir, f"{kind}.md")
+        existed = os.path.exists(path)
+        open(path, "w", encoding="utf-8").write(
+            content if content.endswith("\n") else content + "\n")
+        rp = os.path.join(sdir, "REGISTRY.json")
+        reg = json.load(open(rp, encoding="utf-8"))
+        reg.setdefault("skills", {})[kind] = {
+            "file": f"{kind}.md", "auto": bool(auto),
+            "needs_owner": not bool(auto), "web_query": web_query}
+        json.dump(reg, open(rp, "w", encoding="utf-8"), indent=2)
+        return {"staged": True, "path": path, "updated_existing": existed,
+                "note": "review the file, verify the fix it describes, then commit skill + fix together"}
+    try:
+        return json.dumps(await _run_sync(_work), indent=2)
+    except (OSError, ValueError) as e:
+        return json.dumps({"error": str(e)[:300]})
+
+
+@mcp.tool()
 async def vf_check() -> str:
     """Run the canonical factory gate (check.py). Exit 0 = CANONICAL."""
     def _work():
@@ -468,20 +735,126 @@ async def vf_launch(project: str, unit: str, ship: bool = True) -> str:
         if busy:
             return {"launched": False,
                     "reason": f"one-video law: video path busy ({len(busy)} builders)"}
-        log = f"/tmp/vf_mcp_{stem}.log"
-        cmd = [sys.executable,
-               os.path.join(ROOT, "core", "builders", "batch.py"),
-               "--project", project, "--units", unit] + (["--ship"] if ship else [])
-        with open(log, "a", encoding="utf-8") as lf:
-            lf.write(f"== vf_launch {project}/{unit} "
-                     f"{time.strftime('%FT%TZ', time.gmtime())}\n")
-            lf.flush()
-            p = subprocess.Popen(cmd, stdout=lf, stderr=subprocess.STDOUT,
-                                 stdin=subprocess.DEVNULL, env=env,
-                                 start_new_session=True, cwd=ROOT)
-        return {"launched": True, "pid": p.pid, "log": log,
-                "note": "detached; poll vf_logs or the unit log"}
+        return _launch_detached(project, unit, ship, env, stem)
     return json.dumps(await _run_sync(_work), indent=2)
+
+
+@mcp.tool()
+async def vf_queue(project: str, unit: str, ship: bool = True,
+                   max_wait_h: int = 12) -> str:
+    """Queue a gated render into the next video-path gap (waiter pattern — never sleep-blocks the agent).
+
+    Enforces the render gate now; refuses only when the gate fails. When the
+    path is busy, spawns a detached waiter that polls and launches batch
+    itself. Registered on the board under processes/queue-<stem>.
+
+    Args:
+        project: Lane name (tantrasara, shiva-sutras)
+        unit: Unit id (tantrasara 14 / ch14, shiva s12)
+        ship: Upload to R2 on success (default true)
+        max_wait_h: Waiter gives up after this many hours (default 12)
+    """
+    def _work():
+        if not re.fullmatch(r"[\w.\-]+", unit or ""):
+            return {"queued": False, "reason": "bad unit id"}
+        try:
+            sb, stem, env, cfg = _resolve_storyboard(project, unit)
+        except (FileNotFoundError, ValueError) as e:
+            return {"queued": False, "reason": str(e)[:200]}
+        rc, _ = _sh([sys.executable,
+                     os.path.join(ROOT, "core", "builders", "gate_storyboard.py"), sb],
+                    timeout=120)
+        sys.path.insert(0, os.path.join(ROOT, "core", "contract"))
+        import factory_contract as C
+        try:
+            C.validate_bundle(sb, require_approval=True)
+        except Exception as e:
+            return {"queued": False,
+                    "reason": f"render gate refused (approval): {str(e)[:200]}"}
+        if rc != 0:
+            return {"queued": False,
+                    "reason": "render gate refused (storyboard not green)"}
+        if not _builders_running():
+            return _launch_detached(project, unit, ship, env, stem, tag="vf_queue")
+        return _queue_waiter(project, unit, ship, env, sb, stem, max_wait_h)
+    return json.dumps(await _run_sync(_work), indent=2)
+
+
+@mcp.tool()
+async def vf_publish(local_path: str, key: str) -> str:
+    """Publish a file to R2 (copyto, mount-flake tolerant) + byte-verify (lsl size + HEAD).
+
+    Local must live under ~/vol; key like tantrasara/<name>.ext (no ..).
+
+    Args:
+        local_path: Volume file to upload (~/vol/.../renders/finals/...)
+        key: Destination under svread-audio (tantrasara/ch15-22.zip)
+    """
+    def _work():
+        ok, reason = _publish_targets_ok(local_path, key)
+        if not ok:
+            return {"published": False, "reason": reason}
+        lp = os.path.realpath(os.path.expanduser(local_path))
+        return _publish_sync(lp, key)
+    return json.dumps(await _run_sync(_work), indent=2)
+
+
+@mcp.tool()
+async def vf_pack(project: str, units: str, publish: bool = True) -> str:
+    """Zip shipped finals for comma unit ids (stored, no recompress) + optional R2 publish.
+
+    Args:
+        project: Lane name (tantrasara, shiva-sutras)
+        units: Comma unit ids (15,16,17,18,19,20,21,22)
+        publish: Upload the zip to R2 with HEAD verify (default true)
+    """
+    def _work():
+        env, cfg = _project_env(project)
+        stems, missing = [], []
+        for u in [x.strip() for x in units.split(",") if x.strip()]:
+            try:
+                _, stem, _, _ = _resolve_storyboard(project, u)
+            except (FileNotFoundError, ValueError):
+                missing.append(u)
+                continue
+            hit = next((s for s in _stem_aliases(stem)
+                        if os.path.exists(os.path.join(
+                            env["VF_RENDERS"], "finals", f"{s}_full.mp4"))), None)
+            if hit is None:
+                missing.append(u)
+                continue
+            stems.append(hit)
+        if not stems:
+            return {"packed": False, "reason": f"no finals (missing: {missing})"}
+        digits = sorted({int(re.sub(r"\D", "", s)) for s in stems})
+        name = _pack_name(cfg.get("series", project), digits)
+        dest = os.path.join(env["VF_RENDERS"], "finals", name)
+        need = sum(os.path.getsize(os.path.join(
+            env["VF_RENDERS"], "finals", f"{s}_full.mp4")) for s in stems) + 100 * 10**6
+        try:
+            st = os.statvfs(os.path.dirname(dest))
+            if st.f_bavail * st.f_frsize < need:
+                return {"packed": False, "reason": "volume too full for zip"}
+        except OSError as e:
+            return {"packed": False, "reason": str(e)[:200]}
+        import zipfile
+        zf = zipfile.ZipFile(dest, "w", zipfile.ZIP_STORED)
+        for s in stems:
+            zf.write(os.path.join(env["VF_RENDERS"], "finals", f"{s}_full.mp4"),
+                     f"{s}_full.mp4")
+        zf.close()
+        out = {"packed": True, "zip": dest, "bytes": os.path.getsize(dest),
+               "missing": missing}
+        if publish:
+            r2path = env["VF_R2"]
+            tail = r2path.split(":", 1)[1] if ":" in r2path else r2path
+            prefix = tail.split("/", 1)[1] if "/" in tail else cfg.get("series", project)
+            out["upload"] = _publish_sync(dest, f"{prefix}/{name}")
+        return out
+    try:
+        return json.dumps(await _run_sync(_work), indent=2)
+    except (OSError, ValueError) as e:
+        return json.dumps({"error": str(e)[:300]})
 
 
 @mcp.resource("vf://registry")

@@ -98,7 +98,14 @@
   }
  ],
  "locks": {},
- "processes": {},
+ "processes": {
+  "tantrasara-ch14-waiter": {
+   "pid": "2515435",
+   "log": "/tmp/batch_ch14_retry.log",
+   "started": "2026-11-07T04:52:29Z",
+   "note": "ch14 --ship slips into next supervisor gap (draw-skip fix f25c734); gate storyboard+approval OK"
+  }
+ },
  "rules": [
   "storyboard green + owner approval is the ONLY gate that can stop a render (owner order 2026-11-06)",
   "one video build at a time (lock)",
@@ -273,6 +280,12 @@
    "what": "OWNER ORDER: no gate may hold a render after the storyboard passes. Implemented: (1) ONE cue per block in build_clip (was one per matching word \u2014 the cause of unrenderable same-block stacks, ch16 p02); (2) single render gate validate_storyboard_gate (green storyboard + owner approval); audio-complete/list-geometry/hold-scan/review-pack/source/free-tier/storyboard-gate all demoted to advisory (print, never raise); (3) batch prove is record-only (RED logged, unit still ships; real breakage still stops: build crash, concat, R2 byte-match); (4) run_queue derives approved-ready from approval alone, issue files are work lists not blockers; (5) H3 now includes verse cues and mirrors the renderer; (6) H7 validates the unit's own lane drops file and passes when none exists (never another chapter's); (7) H-list runs the run-based renderer-identical check (old worst-case-5 preflight false-failed ch20); (8) H1 exempts intro-only units; (9) MMS: 3-attempt retry + RECURSIVE chunking (single split left 305-word halves dying \u2014 ch18 p02); splitter extracted to pure.recursive_split_index with a no-progress-proof test; (10) stack-crash predictor retired from runtime (renderer rule now matches gates); cue-model.md is the normative law.",
    "status": "chain stopped cleanly, ch14-22 block dirs wiped (672M, poisoned by old-code provenance), batch relaunched detached on fixed code (14..22 --ship). ch20 no longer blocks at audio and cannot crash on devya run (one cue/block).",
    "tests": "174 passed (recursive splitter invariant, cue-model, gate demotion, prove record-only); check.py CANONICAL"
+  },
+  {
+   "date": "2026-11-07",
+   "what": "MCP second round (dogfood-driven): vf_triage/skill-propose/publish/pack/queue + vf_projects/skills + ch6/ch06 aliases; docs/MCP.md (processes, when-to-use, troubleshooting, skills)",
+   "status": "18 tools live; check CANONICAL",
+   "tests": "test_mcp.py pure-helper suite (both runners)"
   }
  ],
  "render_gate": "storyboard green + owner approval (owner order 2026-11-06); everything else advisory/record-only"
