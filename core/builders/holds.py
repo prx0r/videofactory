@@ -208,6 +208,21 @@ def draws_for(sb_path):
     return d
 
 
+def draw_start_skip(draw_key, start_kind):
+    """Ship-mode staging rule (owner order 2026-11-06: storyboard green +
+    approval is the only render gate; defects are recorded, never blocking).
+
+    A draw staged onto a live Sanskrit card is skipped for this range with
+    a loud log line, never a crash. Returns the skip line, or None when the
+    draw may render (starts on white blank). Restage prescription: clear
+    the Sanskrit hold first (drop/cue), then draw.
+    """
+    if start_kind == 'white':
+        return None
+    return (f'draw {draw_key} SKIPPED: must start on white blank, found {start_kind} — '
+            'stage it after a hold-clear (record-only, never gates)')
+
+
 def draw_progress(base_im, asset_path, p):
     """Sleepdraw: fade a raster image in from white on a base card.
     p in [0,1] is asset opacity (0 = unstarted white, 1 = complete).

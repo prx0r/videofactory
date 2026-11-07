@@ -771,8 +771,14 @@ def _main_inner():
         _sfi = next((_fi for _fi, (_bb, *_r) in enumerate(flat) if _bb['id'] == _dk), None)
         assert _sfi is not None, f'draw {_dk}: start bid not in this range'
         _skind = hold_kind(flat[_sfi][0], _sfi)
-        assert _skind == 'white', (f'draw {_dk}: must start on white blank, found {_skind} — '
-                                   'clear the Sanskrit hold first (drop/cue), then draw')
+        # Ship mode (owner order 2026-11-06): a draw staged onto a live
+        # Sanskrit card is skipped with a loud log, never a crash
+        # (ch14 p05 precedent: draw b989 over term:yavat killed the unit
+        # twice). Restage: clear the hold first, then draw.
+        _skip = _H.draw_start_skip(_dk, _skind)
+        if _skip is not None:
+            print(_skip, flush=True)
+            continue
         _asset = _dspec['asset']
         assert os.path.exists(_asset), f'draw {_dk}: asset missing: {_asset}'
         _clear = _dspec.get('clear', 'cut')

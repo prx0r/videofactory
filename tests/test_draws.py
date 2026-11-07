@@ -65,6 +65,25 @@ class TestDrawProgress(unittest.TestCase):
         d = H.draw_progress(self.base, self.asset, 1.0)
         self.assertEqual(list(c.getdata()), list(d.getdata()))
 
+    def test_draw_start_skip(self):
+        # Ship mode (owner order 2026-11-06): draw staged onto a live
+        # Sanskrit card skips record-only, never crashes (ch14 b989
+        # over term:yavat killed the unit twice).
+        self.assertIsNone(H.draw_start_skip('b989', 'white'))
+        for kind in ['term:yavat', 'verse', 'term-single-verse',
+                     'verse-hold:b12', 'stack:key']:
+            line = H.draw_start_skip('b989', kind)
+            self.assertIsNotNone(line)
+            self.assertIn('b989', line)
+            self.assertIn(kind, line)
+            self.assertIn('SKIPPED', line)
+        # the renderer honors it (no assert on staging law anymore)
+        import pathlib
+        src = pathlib.Path(__file__).parent.joinpath(
+            '..', 'core', 'builders', 'build_clip.py').read_text()
+        self.assertIn('draw_start_skip', src)
+        self.assertNotIn('assert _skind', src)
+
     def test_draws_spec_validation(self):
         import json
         good = {'b2': {'asset': self.asset, 'complete_bid': 'b9',
