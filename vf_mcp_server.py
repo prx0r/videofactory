@@ -102,13 +102,29 @@ def _resolve_storyboard(project, unit):
     return sb, os.path.splitext(base)[0], env, cfg
 
 
+def _stem_aliases(stem):
+    """Legacy digit variants (ch6 files live beside ch06 finals/approvals)."""
+    m = re.match(r"^([a-zA-Z_]+)(\d+)$", stem)
+    if not m:
+        return [stem]
+    prefix, digits = m.group(1), m.group(2)
+    return list(dict.fromkeys([stem, f"{prefix}{int(digits):02d}", f"{prefix}{int(digits)}"]))
+
+
 def _unit_state(project, unit):
     """Derived unit state from artifacts only (never launches, never writes)."""
     sb, stem, env, cfg = _resolve_storyboard(project, unit)
     repo, renders = env["VF_REPO"], env["VF_RENDERS"]
-    appr = glob.glob(os.path.join(repo, "**", f"approved_{stem}.json"), recursive=True)
-    final = os.path.join(renders, "finals", f"{stem}_full.mp4")
-    issues_p = os.path.join(renders, "issues", f"{stem}.issues.json")
+    stems = _stem_aliases(stem)
+    appr = []
+    for s in stems:
+        appr += glob.glob(os.path.join(repo, "**", f"approved_{s}.json"), recursive=True)
+    final = next((os.path.join(renders, "finals", f"{s}_full.mp4") for s in stems
+                  if os.path.exists(os.path.join(renders, "finals", f"{s}_full.mp4"))),
+                 os.path.join(renders, "finals", f"{stem}_full.mp4"))
+    issues_p = next((os.path.join(renders, "issues", f"{s}.issues.json") for s in stems
+                     if os.path.exists(os.path.join(renders, "issues", f"{s}.issues.json"))),
+                    os.path.join(renders, "issues", f"{stem}.issues.json"))
     open_n, waived_n = 0, 0
     try:
         doc = json.load(open(issues_p, encoding="utf-8"))
@@ -140,6 +156,22 @@ def _unit_state(project, unit):
 
 
 # ─── Board ──────────────────────────────────────────────────
+
+@mcp.tool()
+async def vf_projects() -> str:
+    """Discover render lanes (projects/*/project.json): names, series, unit schemes."""
+    def _work():
+        out = []
+        for name in _projects():
+            try:
+                cfg = _project_cfg(name)
+                out.append({"lane": name, "series": cfg.get("series", name),
+                            "units": cfg.get("unit_target"),
+                            "scheme": cfg.get("unit_scheme")})
+            except (OSError, ValueError) as e:
+                out.append({"lane": name, "error": str(e)[:200]})
+        return {"lanes": out}
+    return json.dumps(await _run_sync(_work), indent=2)
 
 @mcp.tool()
 async def vf_status() -> str:
@@ -218,8 +250,10 @@ async def vf_unit(project: str, unit: str) -> str:
         st["storyboard_sha256"] = hashlib.sha256(
             open(st["storyboard"], "rb").read()).hexdigest()[:16]
         sb, stem, env, cfg = _resolve_storyboard(project, unit)
-        parts = sorted(glob.glob(os.path.join(
-            env["VF_RENDERS"], "finals", f"{stem}_parts", "p*.render_meta.json")))
+        parts = []
+        for s in _stem_aliases(stem):
+            parts += sorted(glob.glob(os.path.join(
+                env["VF_RENDERS"], "finals", f"{s}_parts", "p*.render_meta.json")))
         st["parts_with_meta"] = len(parts)
         return st
     try:
@@ -324,6 +358,47 @@ async def vf_finals(project: str = "tantrasara") -> str:
                 "url": f"{PUB_BASE}/{prefix}/{stem}_full.mp4",
             })
         return {"project": project, "finals": out}
+    try:
+        return json.dumps(await _run_sync(_work), indent=2)
+    except (OSError, ValueError) as e:
+        return json.dumps({"error": str(e)[:300]})
+
+
+@mcp.tool()
+async def vf_skills() -> str:
+    """Issue-kind to skill lookup (core/skills/REGISTRY.json): which skill fixes which issue, auto vs needs-owner."""
+    def _work():
+        reg = json.load(open(os.path.join(ROOT, "core", "skills", "REGISTRY.json"),
+                             encoding="utf-8"))
+        return {"flow": reg.get("flow", ""),
+                "skills": {k: {"file": v.get("file"), "auto": v.get("auto"),
+                               "needs_owner": v.get("needs_owner")}
+                           for k, v in reg.get("skills", {}).items()}}
+    try:
+        return json.dumps(await _run_sync(_work), indent=2)
+    except (OSError, ValueError) as e:
+        return json.dumps({"error": str(e)[:300]})
+
+
+@mcp.tool()
+async def vf_skill(kind: str) -> str:
+    """Full fix prescription for an issue kind (the linked skill markdown). Only registered kinds serve.
+
+    Args:
+        kind: Issue kind from vf_issues (white-gap, missing-audio, verse-gloss-missing, ...)
+    """
+    def _work():
+        reg = json.load(open(os.path.join(ROOT, "core", "skills", "REGISTRY.json"),
+                             encoding="utf-8"))
+        meta = reg.get("skills", {}).get(kind)
+        if meta is None:
+            return {"error": f"unknown skill kind '{kind}'",
+                    "known": sorted(reg.get("skills", {}))}
+        content = open(os.path.join(ROOT, "core", "skills", meta["file"]),
+                       encoding="utf-8").read()
+        return {"kind": kind, "auto": meta.get("auto"),
+                "needs_owner": meta.get("needs_owner"),
+                "web_query": meta.get("web_query"), "content": content}
     try:
         return json.dumps(await _run_sync(_work), indent=2)
     except (OSError, ValueError) as e:
