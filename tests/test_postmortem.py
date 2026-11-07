@@ -384,5 +384,29 @@ class PostmortemLocks(unittest.TestCase):
                 self.assertEqual(reg['tantrasara']['01']['stage'], 'approved-ready')
 
 
+class TestMcpServerNameLock(unittest.TestCase):
+    def test_no_root_mcp_server_shadow(self):
+        # propose_draws imports sleepdraw's `mcp_server` module by bare name.
+        # A root-level videofactory/mcp_server.py shadows it on sys.path
+        # (python -m puts cwd first): _seals() then returns OUR module and
+        # bank tests die on .presets() AttributeError instead of the
+        # designed RuntimeError-unavailable path. The factory MCP server
+        # must never claim that name (ours: vf_mcp_server.py).
+        self.assertFalse((ROOT / 'mcp_server.py').exists(),
+                         'root mcp_server.py shadows sleepdraw mcp_server import')
+        self.assertTrue((ROOT / 'vf_mcp_server.py').exists())
+
+    def test_seals_unavailable_is_runtime_error(self):
+        # With sleepdraw absent, bank reuse still works; fresh drafting
+        # raises RuntimeError (caught by propose), never AttributeError.
+        import propose_draws as P
+        try:
+            seals = P._seals()
+        except RuntimeError:
+            return
+        self.assertTrue(callable(getattr(seals, 'presets', None)),
+                        '_seals() returned a module without presets()')
+
+
 if __name__ == '__main__':
     unittest.main()
