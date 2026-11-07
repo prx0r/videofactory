@@ -1,112 +1,287 @@
 # MCP control plane (videofactory MCP server, stdio)
 
-`vf_mcp_server.py` exposes the whole factory to agents over MCP stdio
-(registered in opencode as `videofactory`; restart opencode after config
-changes). 18 tools + 2 resources. Reads never write; the five act tools
-enforce factory law instead of trusting the caller.
+`vf_mcp_server.py` is the agent-facing front door of the video factory. Any
+MCP-capable agent — opencode, Claude, a headless driver — gets the same
+eighteen tools and two resources, over stdio, with factory law enforced
+server-side instead of trusted client-side.
 
-## The law the server enforces
+```
+agent ──MCP stdio──▶ vf_mcp_server.py ──┬──▶ builders (gates, renders)
+                                        ├──▶ artifacts (storyboards, finals, issues)
+                                        └──▶ board (REGISTRY.json)
+```
 
-- Render gate (owner order 2026-11-06): storyboard green + owner approval is
-  the ONLY gate. `vf_launch` / `vf_queue` refuse anything else.
-- One video build at a time: launch refuses while builders run; queue waits.
-- Free Fish only, UNCAST never defaults, Deva/gloss owner-only — these live
-  in the builders, the server never bypasses them.
-- Deliberately NOT exposed: approvals, waivers, ears, seals. Owner acts stay
-  human. Agents get everything up to the gate and the launch past it.
+Reads never write. The five act tools (`vf_launch`, `vf_queue`, `vf_pack`,
+`vf_publish`, `vf_skill_propose`) are the only writers, and each one
+enforces the rule that covers it. Everything an agent needs to run the line
+is here; everything that must stay human is absent (see §6).
 
-## Processes (which tools, in order)
+## 1. Setup
 
-### Run the line: status → triage → skill → gate → launch
-1. `vf_projects` — discover lanes (tantrasara 22 chNN, shiva-sutras 78 sNN).
-2. `vf_status` — board: gate mode, milestones, live builders, vol/tmp free,
-   driver log tails. Call first, always.
-3. `vf_units(project)` — stage table. `vf_unit(project, unit)` — deep state
-   (approval, final bytes, ship verdict, parts).
-4. `vf_triage(project, unit)` — THE decision tool: gate verdict, per-issue
-   routing (agent-fixable / owner call / recorded-waiver), recommended step
-   (`ready-launch` → `vf_launch`, `ready-queue` → `vf_queue`,
-   `blocked-owner` → stop and report, `awaiting-ears` → hands off).
-5. `vf_issues` + `vf_skill(kind)` — issue detail + full fix prescription.
-6. `vf_launch` (path free) or `vf_queue` (path busy — waiter polls and
-   launches into the next gap, never sleep-blocks the agent).
-7. `vf_logs` — follow the unit log. `vf_finals` — confirm the mp4 + URL.
+opencode entry (global config `~/.config/opencode/opencode.jsonc`):
 
-### Research → skill loop (web search to prescription)
-1. Agent hits an issue kind with no skill (`vf_triage` says "no skill
-   registered").
-2. Agent researches with its OWN tools (web search, repo archaeology). The
-   server never searches the web — scholarship happens outside, staging
-   inside.
-3. `vf_skill(kind)` for neighboring kinds first — most "new" issues are
-   variants (white-gap vs stuck-term).
-4. `vf_skill_propose(kind, content, web_query, auto)` — stages
-   `core/skills/<kind>.md` + REGISTRY entry (`auto: true` ONLY if agents may
-   apply it unsupervised; otherwise `needs_owner: true`). Commit skill + fix
-   together, same commit as the fix (flow law in skills/REGISTRY.json).
-5. Re-run the checker, re-triage, confirm the issue class clears.
+```json
+"videofactory": {
+  "type": "local",
+  "command": ["python3", "/home/ubuntu/videofactory/vf_mcp_server.py"],
+  "working_directory": "/home/ubuntu/videofactory",
+  "enabled": true,
+  "timeout": 180000
+}
+```
 
-### Publish a download (pack → ship → verify)
-`vf_pack(project, units, publish=true)` zips shipped finals (stored, no
-recompress) and uploads via the same path as `vf_publish`: rclone copyto
-with `--local-no-check-updated` (volume-mount mtimes flutter — plain copyto
-fails phantom "source updated" errors), then lsl size match, then HEAD
-Content-Length match. Returns the public URL only on byte match.
+Notes:
 
-## When to use what (and what NOT to touch)
+- `command` is an array, `type` is required. Validate JSON before saving,
+  keep `$schema`, then quit and restart opencode — config is not hot
+  reloaded; the running session keeps the old set until restart.
+- `timeout` 180s covers the slow tools (`vf_tests` full ≈ 95s, `vf_check`
+  runs the whole unittest suite). The default 30s would kill them mid-run.
+- The server needs the factory venv python only if builders need it; plain
+  `python3` matches how the overnight supervisor runs.
+- Name rule that cost us a red suite once: the file MUST stay
+  `vf_mcp_server.py`. Bare `mcp_server` is sleepdraw's module name
+  (`propose_draws.py` imports it); a root-level `mcp_server.py` shadows it
+  and breaks bank tests. Lock test: `TestMcpServerNameLock`.
 
-| Situation | Tool | Never do this instead |
+## 2. Concepts (read this once)
+
+- **Lane**: a series (`tantrasara` — 22 chapters, `chNN`; `shiva-sutras` —
+  78 units, `sNN`). `vf_projects` lists them; every other tool takes a lane.
+- **Unit**: one renderable piece (`14`, `ch14`, `s24` all accepted — digits
+  are normalized through the lane). Legacy split: ch06 storyboards use the
+  `ch6` stem while finals/approvals say `ch06`; the server tries both digit
+  variants everywhere, so agents never care.
+- **Render gate** (owner order 2026-11-06): storyboard green + owner
+  approval. It is the ONLY thing that can stop a render. Every downstream
+  check is advisory/record-only. `vf_gate` evaluates it; `vf_launch` and
+  `vf_queue` refuse without it, with the reason named.
+- **One-video law**: one video build at a time (fixed `/tmp` paths +
+  `/tmp/video_build.lock`). Launch refuses while builders run; queue waits.
+- **Issues, not errors**: `check_issues.py` writes per-unit
+  `issues/<stem>.issues.json`. Each issue has a kind, severity, status
+  (`open` vs `waived-owner`), and a skill pointer. Open + record-only never
+  blocks a render — it routes work.
+- **Skills**: `core/skills/<kind>.md` fix prescriptions, indexed by
+  `core/skills/REGISTRY.json` with `auto` (agent may apply unsupervised) vs
+  `needs_owner` (agent stages, owner disposes). Flow law lives at the top of
+  that REGISTRY file.
+
+## 3. Tool reference
+
+Calling convention: all tools return JSON strings. Errors are
+`{"error": ...}` or `{"launched": false, "reason": ...}` — never an
+exception, never silence.
+
+### Sense
+
+**`vf_projects()`** — lane discovery. Returns lanes with series, unit
+count, id scheme. Call before anything when you don't know the factory.
+
+**`vf_status()`** — the board snapshot. Gate mode, milestone table, locks,
+live-builder count, vol/tmp free GB, tails of the overnight / batch / ch14
+/ chain logs. Call first in every session: it tells you what is running,
+whether the path is free, and whether disk is the problem.
+
+**`vf_units(project)`** — whole-lane stage table derived from artifacts
+(finals, approvals, issues). Stages: `approved-ready` (gated, unrendered),
+`video-needs-review` (final exists, ears/seal outstanding), `needs-review`
+(no approval yet), `missing-storyboard`. Example row:
+`{"unit": "14", "stage": "approved-ready", "final": 0, "issues_open": 9}`.
+
+**`vf_unit(project, unit)`** — deep state for one unit: storyboard path +
+short sha, approval present, final bytes, open/waived counts, ship verdict,
+parts-with-meta count.
+
+**`vf_issues(project, unit)`** — the raw issues file. Each entry carries
+`id`, `kind`, `severity`, `detail`, `blocks`, `skill`, `status`.
+
+**`vf_gate(project, unit)`** — evaluates ONLY the render gate:
+`storyboard_green`, `approved`, `may_render`. Example (ch14):
+`{"storyboard_green": true, "approved": true, "may_render": true}`.
+If `may_render` is false, stop — nothing downstream can help.
+
+**`vf_logs(name, lines=40)`** — tails allowlisted `/tmp` logs (`batch`,
+`overnight`, `batch_ch14_retry`, `chain_renders`, …). Names are allowlisted;
+path traversal is refused.
+
+**`vf_finals(project)`** — shipped mp4s with bytes, ship verdicts, and
+public R2 URLs (`https://pub-…r2.dev/<lane>/<stem>_full.mp4`).
+
+**`vf_check()`** — runs `check.py`; `{"canonical": true}` or the failing
+tail. The factory definition of done for code changes.
+
+**`vf_tests(scope="quick")`** — quick subset (draws/postmortem/ship,
+seconds) or `full` (≈2 min). Must pass under the caller's timeout.
+
+### Decide
+
+**`vf_triage(project, unit)`** — the decision tool; start here whenever the
+question is "what should I do about X?" Returns unit state + gate verdict +
+every issue joined to its skill metadata (`auto` / `needs_owner`) with a
+concrete action each:
+
+- `recorded-waiver, nothing to do` — never re-litigate waivers.
+- `agent-fixable now via vf_skill(<kind>)` — `auto: true`, apply it.
+- `owner call (…) — see vf_skill(<kind>)` — diagnose, stage the artifact,
+  file the exact question.
+- `no skill registered — research, fix, vf_skill_propose` — the research
+  loop (§4).
+
+…plus one `recommended` line for the unit as a whole:
+
+| recommended | meaning | next tool |
 |---|---|---|
-| What should I do about unit X? | `vf_triage` | guess from raw files |
-| Is the path free / what runs? | `vf_status` | `ps` + vibes |
-| Render now | `vf_launch` (refuses if busy/ungated) | run batch.py by hand |
-| Render when free | `vf_queue` | sleep-loop polling |
-| Fix an issue | `vf_skill(kind)` then apply | improvise the fix |
-| New issue class solved | `vf_skill_propose` + commit | keep it in chat |
-| Ship a zip / file | `vf_pack` / `vf_publish` | bare rclone (no verify) |
-| Factory healthy? | `vf_check` (CANONICAL?) | assume |
-| Suite green? | `vf_tests` (quick default) | skip tests |
+| `blocked-owner: needs …` | gate fails | stop, report what is missing |
+| `ready-launch` | gate passes, path free | `vf_launch` |
+| `ready-queue` | gate passes, path busy | `vf_queue` |
+| `awaiting-ears` | final exists | hands off to owner ears/seal |
 
-Agents must not: approve, waive, seal (no tools — by design); edit frozen
-series data; run two video builds; `rclone copy` to a filename (creates a
-directory — always copyto); trust mount reads blindly (retry).
+Real example (ch14 while shiva renders): gate green+approved,
+`ready-queue`, 4 waived items recorded, 9 open white-gap/stuck-term items
+routed to owner calls.
 
-## Skills (linked, not pasted)
+### Act
 
-`vf_skills` lists every kind with `auto` / `needs_owner`. `vf_skill(kind)`
-serves the full markdown. Severity routing:
+**`vf_launch(project, unit, ship=true)`** — renders one unit detached via
+`batch.py --ship` (or volume-only with `ship=false`). Enforces gate, then
+one-video law; returns `{launched, pid, log}` or `{launched: false,
+reason}`. Logs to `/tmp/vf_mcp_<stem>.log`; batch detail also lands in
+`/tmp/batch.log`. Never kills anything to make room.
 
-- `auto: true` (missing-audio, verse-term-unheld): agent applies the skill
-  now, re-checks, moves on.
-- `needs_owner: true` (white-gap, stuck-term, machine-deva, verse cards…):
-  agent diagnoses, stages the artifact (draw spec, mined gloss), and files
-  the exact owner question. Owner confirms in bulk; engineer flips status,
-  never edits glosses silently.
-- waived-owner: recorded, nothing to do — never re-litigate.
+**`vf_queue(project, unit, ship=true, max_wait_h=12)`** — same gate, but
+when the path is busy it spawns a detached waiter (registered on the board
+as `processes/queue-<stem>`) that polls every 30s and launches batch into
+the next gap itself — the agent never sleep-blocks. Re-checks the gate at
+launch time. If the path is free it launches immediately (same code path as
+`vf_launch`).
 
-## Troubleshooting
+**`vf_pack(project, units, publish=true)`** — zips shipped finals
+(`ZIP_STORED`, no recompress — mp4s don't shrink) as
+`<series>-<first>-<last>.zip` (contiguous) or `<series>-<a>+<b>.zip`,
+checks volume room first, lists units with no final instead of failing,
+optionally publishes. Built from the exact flow that shipped the
+`tantrasara-ch15-22.zip` download.
 
-- `vf_launch` refuses "video path busy": normal — use `vf_queue`, or wait.
-  Never kill another unit's build to jump the queue.
-- `vf_launch`/`vf_queue` refuse on gate: fix the storyboard (green) or get
-  approval (owner). No flag overrides this.
-- `/tmp` 100%: batch tmp (`*_full.mp4`, `stage_*`, `verify_frames`,
-  `probes`) leaks when a unit fails post-ship; sweep stale transients only —
-  never model caches (whisper/MMS), never another lane's dirs, never live
-  `mmsclip`/`mms_grp.f32` while a build runs.
-- Mount flakes (`Input/output error`, phantom mtime changes): retry, or
-  `rclone copy` down. `vf_publish` already passes
-  `--local-no-check-updated` for this.
-- `NotImplemented: Not Implemented` (501) on first R2 attempt: transient —
-  retry succeeds (the batch ship loop does 3 attempts).
-- `import mcp_server` collisions: root must NEVER contain `mcp_server.py`
-  (sleepdraw owns that module name; ours is `vf_mcp_server.py` — lock test
-  in tests/test_postmortem.py).
-- ch6 vs ch06: legacy stem split — the server tries both digit variants for
-  finals/approvals/issues. New lanes: keep one stem scheme (docs/UNITS.md).
-- Suite runner differences: pytest and `unittest discover` resolve sys.path
-  differently (`python -m` puts cwd first). Tests must pass under BOTH —
-  check.py runs unittest; never rely on bare module names (importlib by path).
-- Config edits: validate JSON, keep `$schema`, restart opencode (no hot
-  reload). If opencode won't start, `OPENCODE_DISABLE_PROJECT_CONFIG=1` /
-  `OPENCODE_PURE=1` escape hatches (customize-opencode skill).
+**`vf_publish(local_path, key)`** — R2 upload with proof: allowlist (local
+must live under `~/vol`, key like `tantrasara/<name>.ext`, no `..`),
+`rclone copyto --local-no-check-updated` (volume-mount mtimes flutter and
+plain copyto dies on phantom "source updated" errors), lsl size match, then
+HEAD `Content-Length` match. Returns the public URL only on byte match;
+anything else is `{published: false, reason}` with the evidence attached.
+
+**`vf_skill_propose(kind, content, web_query="", auto=false)`** — stages a
+researched skill: writes `core/skills/<kind>.md`, registers it
+(`needs_owner` defaults to `not auto`). Kinds are `[a-z0-9-]{3,40}`.
+Staging only — review the file, verify the fix it describes, then commit
+skill + fix together (the flow law). `auto: true` is a safety claim: set it
+only if agents may apply the skill unsupervised.
+
+### Resources
+
+- `vf://registry` — live `REGISTRY.json` (milestones, locks, processes,
+  observations).
+- `vf://render-gate` — the gate law in one object (for agents that need the
+  rule, not the board).
+
+## 4. Processes end to end
+
+### Running the line (the daily loop)
+
+`vf_status` → `vf_units` → pick a unit → `vf_triage` → follow `recommended`.
+Fix `auto` issues via `vf_skill`; stage owner questions for the rest.
+`vf_launch`/`vf_queue` → `vf_logs` → `vf_finals`. Close with `vf_check`
+when code changed. Owner ears dispose; nobody else seals.
+
+### Research → skill (web search to prescription)
+
+The server never searches the web — scholarship happens with the agent's
+own tools, staging happens here:
+
+1. `vf_triage` reports "no skill registered" for a kind.
+2. Read neighboring skills first (`white-gap` before inventing a pacing
+   skill; `verse-term-unheld` before a cue skill) — most new issues are
+   variants.
+3. Research outside (web search, `docs/`, git history, the failing artifact).
+   The skill's `web_query` field should be the query that would find the
+   answer again.
+4. `vf_skill_propose` with symptom → diagnosis → fix → process note. If the
+   fix touches builders, implement + test it first.
+5. Re-run the checker, re-triage, confirm the class clears, commit skill +
+   fix together. A skill without a proven fix is a wish.
+
+### Publishing a download
+
+`vf_pack(project, "15,16,17,18,19,20,21,22")` → `{"packed": true,
+"bytes": …, "upload": {"published": true, "url": …, "verified":
+"HEAD-byte-match"}}` → hand the URL out. If `missing` is non-empty, those
+units never shipped — triage them, don't re-zip blindly.
+
+## 5. Skills reference
+
+`vf_skills` is the live table (kind → file, `auto`, `needs_owner`); query
+it rather than memorizing. At the time of writing, 15 skills:
+canon-shape, cue-model, empty-gloss, hold-scan-red, list-geometry,
+machine-deva, missing-audio, stack-crash, stale-verse-hold, stuck-term,
+tts-ready, verse-deva-no-english, verse-gloss-missing, verse-term-unheld,
+white-gap. Known-auto (agent applies now): missing-audio,
+verse-term-unheld. Everything else routes through the owner except recorded
+waivers, which are done and never re-litigated. Full routing logic is one
+call away: `vf_triage`.
+
+## 6. What is NOT here (on purpose)
+
+No approve / waive / seal / ears tools. No glossary editing. No series-data
+writes. No kill switches for other units' builds. If an agent needs any of
+these, that is the system telling it to stop and ask the owner — the gap is
+the guardrail.
+
+## 7. Troubleshooting
+
+- **Launch refused, "video path busy"** — normal. `vf_queue` and walk away.
+  Never kill another build to jump the queue; the overnight supervisor's
+  `drain()` will simply wait for you if you win a gap fairly.
+- **Launch/queue refused on gate** — fix the storyboard to green, or get
+  approval. There is no override flag and there never will be.
+- **`/tmp` 100%** — batch tmp (`*_full.mp4`, `stage_*`, `verify_frames`,
+  `probes`) leaks when a unit fails after shipping. Sweep stale transients
+  only: never model caches (whisper, MMS onnx, `mmsmod`), never another
+  lane's dirs, never live `mmsclip` / `mms_grp.f32` while a build runs.
+  `vf_status` shows `tmp_free_gb` — check it before launching big units.
+- **Mount flakes** (`Input/output error`, phantom mtime changes, `ls`
+  ENOENT that self-heals): retry the read, or `rclone copy` the file down.
+  `stage ..._blocks` disappearing mid-listing is the same flake.
+- **R2 501 `NotImplemented` on first attempt** — transient; the second
+  attempt succeeds (batch ship loop does 3 attempts; so does experience).
+- **Root `mcp_server.py`** — must never exist here; sleepdraw owns that
+  module name and `propose_draws` imports it bare. Ours is
+  `vf_mcp_server.py` (`TestMcpServerNameLock`).
+- **ch6 vs ch06** — legacy stem split; the server probes both digit
+  variants for finals/approvals/issues/parts. New lanes: one stem scheme
+  (docs/UNITS.md).
+- **pytest green, check.py red (or vice versa)** — the runners resolve
+  `sys.path` differently (`python -m` prepends cwd). Tests must pass under
+  both; load modules by path (importlib), never by bare name.
+- **opencode doesn't see the server** — restart opencode (no hot reload).
+  Broken config: `OPENCODE_DISABLE_PROJECT_CONFIG=1` or `OPENCODE_PURE=1`
+  to start, fix, restart. Keep `$schema` in the config file.
+- **A tool hangs past timeout** — `vf_tests full` and `vf_check` need the
+  180s server timeout; with the default 30s opencode kills them mid-run and
+  it looks like a server bug. It isn't.
+
+## 8. FAQ
+
+- *Why did triage say ready-queue and not launch?* Builders were running.
+  Queue; the waiter launches into the next gap and the supervisor's drain
+  absorbs the delay.
+- *The unit has open issues — can it still render?* Yes, if the gate
+  passes. Issues are a work list, not a gate (owner order). `vf_launch`
+  will say so by launching.
+- *Who seals a video?* The owner, ears first. `awaiting-ears` is a full
+  stop for agents.
+- *Where do I watch a render?* The `log` path returned by launch/queue,
+  via `vf_logs`, plus `/tmp/batch.log` for builder detail.
+- *How do I add a tool?* Implement in `vf_mcp_server.py` (pure helpers up
+  top, tested in `tests/test_mcp.py`), smoke it over stdio, extend this
+  doc's §3, run `check.py` to CANONICAL, commit + push. Reads before
+  writes; gates before launches; no owner-only acts, ever.
