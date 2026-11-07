@@ -408,5 +408,39 @@ class TestMcpServerNameLock(unittest.TestCase):
                         '_seals() returned a module without presets()')
 
 
+class TestAudioCompleteMirror(unittest.TestCase):
+    S00 = os.path.expanduser('~/tantrasara/shiva/storyboards/storyboard_s00.json')
+
+    def test_s00_drop_split_groups_pass(self):
+        # s00 precedent 2026-11-07: drops_s00 pauses at b1, so audio holds
+        # b1 | b2..b17 — but the gate hashed b1..b17 as one group and cried
+        # missing twice, and the supervisor gave up. The gate must regroup
+        # exactly like render_chapter (phoneme carve-outs + drop splits).
+        if not os.path.exists(self.S00):
+            self.skipTest('series repo absent')
+        self.assertTrue(C.require_audio_complete(self.S00))
+
+    def test_figure_blocks_never_hashed(self):
+        # render_chapter skips figure/label/meta blocks (visual-only); the
+        # gate must skip them too or their text poisons the content hash.
+        if not os.path.exists(self.S00):
+            self.skipTest('series repo absent')
+        sb = dict(json.load(open(self.S00, encoding='utf-8')))
+        blocks = [b for b in sb['blocks'] if b['id'] in ('b_opener', 'b1', 'b2', 'b3')]
+        by_id = {b['id']: dict(b) for b in blocks}
+        by_id['b2'] = dict(by_id['b2'], type='figure')
+        fake = dict(sb, blocks=[by_id[i] for i in ('b_opener', 'b1', 'b2', 'b3')])
+        with mock.patch.object(C, 'validate_bundle',
+                               return_value={'paths': {}, 'storyboard': fake}):
+            try:
+                C.require_audio_complete(self.S00)
+                missing = []
+            except C.ContractError as e:
+                missing = str(e)
+        self.assertNotIn('b1..b3', str(missing),
+                         'figure b2 must split/exclude, never merge hashes')
+        self.assertNotIn('b2', str(missing).split('group(s):')[-1].split('—')[0])
+
+
 if __name__ == '__main__':
     unittest.main()

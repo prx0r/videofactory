@@ -290,16 +290,29 @@ def require_audio_complete(storyboard, bids=None):
             sec_seen[b['section']] = len(sec_seen)
     sec_slug = {s: (_re.sub(r'[^a-z0-9]+', '-', s.lower()).strip('-')[:40] or f'sec{i:02d}')
                 for s, i in sec_seen.items()}
-    # regroup exactly like the renderers (same-section same-voice atoms).
+    # regroup EXACTLY like render_chapter (s00 precedent 2026-11-07: the gate
+    # hashed b1..b17 as one group while impact drops had split b1 off, so it
+    # cried missing over audio that existed). Visual-only blocks skipped,
+    # phoneme carve-outs + impact-drop splits mirrored — same functions,
+    # same order. A gate that disagrees with the renderer is a false
+    # machine; missing audio stays a hard stop (real breakage).
+    import sys as _sys2
+    _sys2.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)),
+                                      '..', 'builders'))
+    from holds import split_after, split_phoneme_groups, drops_for
+    spoken = [by_id[bid] for bid in bids
+              if by_id.get(bid, {}).get('id') != 'b_opener'
+              and by_id.get(bid, {}).get('voice') != 'none'
+              and by_id.get(bid, {}).get('type') not in ('figure', 'label', 'meta')]
     groups, cur = [], []
-    for bid in bids:
-        b = by_id[bid]
+    for b in spoken:
         if cur and (cur[0]['section'], cur[0]['voice']) != (b['section'], b['voice']):
             groups.append(cur)
             cur = []
         cur.append(b)
     if cur:
         groups.append(cur)
+    groups = split_after(split_phoneme_groups(groups), set(drops_for(storyboard)))
     missing = []
     for g in groups:
         text = ' '.join(x.get('directed', x['text']) for x in g)
