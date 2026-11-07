@@ -26,7 +26,7 @@ sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), '..'
 sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), '..'))
 import paths as _vf
 
-STAGES = ['issues', 'audio', 'video', 'prove', 'concat', 'verify', 'validate', 'voices', 'ship']
+STAGES = ['issues', 'audio', 'video', 'prove', 'concat', 'verify', 'validate', 'voices', 'ship', 'ship-verify']
 LONG_TIMEOUT = 10800   # 3h: full audio renders / chunk video builds
 SHORT_TIMEOUT = 600    # 10m: probes, concats, checks, uploads
 
