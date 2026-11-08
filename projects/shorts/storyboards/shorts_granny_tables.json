@@ -24,8 +24,36 @@
   "target_s": 60
  },
  "hook": "cold open on first line",
- "est_s": 25.6,
+ "est_s": 37.2,
  "lines": [
+  {
+   "directed": "And although the rays are distinguishable in their manifestations, they are not some fundamentally foreign power independent of their source.",
+   "maps_to": [
+    "s40-b42"
+   ],
+   "voice": "granny"
+  },
+  {
+   "directed": "This is the metaphor Vasugupta uses.",
+   "maps_to": [
+    "s40-b43"
+   ],
+   "voice": "granny"
+  },
+  {
+   "directed": "Kara.",
+   "maps_to": [
+    "s40-b44"
+   ],
+   "voice": "granny"
+  },
+  {
+   "directed": "A ray.",
+   "maps_to": [
+    "s40-b45"
+   ],
+   "voice": "granny"
+  },
   {
    "directed": "The world is the radiance of consciousness.",
    "maps_to": [

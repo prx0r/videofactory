@@ -24,8 +24,36 @@
   "target_s": 60
  },
  "hook": "cold open on first line",
- "est_s": 18.0,
+ "est_s": 33.6,
  "lines": [
+  {
+   "directed": "But from the standpoint of Trika, the ultimate reality of consciousness is not exhausted by any of these states.",
+   "maps_to": [
+    "s07-b31"
+   ],
+   "voice": "granny"
+  },
+  {
+   "directed": "The accomplished yogi recognises that reality through their transformations.",
+   "maps_to": [
+    "s07-b32"
+   ],
+   "voice": "granny"
+  },
+  {
+   "directed": "Imagine three films being projected onto a screen.",
+   "maps_to": [
+    "s07-b33"
+   ],
+   "voice": "granny"
+  },
+  {
+   "directed": "An action film.",
+   "maps_to": [
+    "s07-b34"
+   ],
+   "voice": "granny"
+  },
   {
    "directed": "A romantic comedy.",
    "maps_to": [

@@ -24,8 +24,15 @@
   "target_s": 60
  },
  "hook": "cold open on first line",
- "est_s": 21.6,
+ "est_s": 31.2,
  "lines": [
+  {
+   "directed": "And those statements can become deeply entangled with our sense of identity.",
+   "maps_to": [
+    "s65-b32"
+   ],
+   "voice": "granny"
+  },
   {
    "directed": "Now, Kṣemarāja says that the realised yogi experiences pleasure and pain differently.",
    "maps_to": [
@@ -58,6 +65,20 @@
    "directed": "Because it doesn’t require denying the experience.",
    "maps_to": [
     "s65-b38"
+   ],
+   "voice": "granny"
+  },
+  {
+   "directed": "The yogi can still experience pleasure.",
+   "maps_to": [
+    "s65-b39"
+   ],
+   "voice": "granny"
+  },
+  {
+   "directed": "The yogi can still experience pain.",
+   "maps_to": [
+    "s65-b40"
    ],
    "voice": "granny"
   }

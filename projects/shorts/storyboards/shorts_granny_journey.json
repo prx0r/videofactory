@@ -22,8 +22,57 @@
   "target_s": 60
  },
  "hook": "cold open on first line",
- "est_s": 16.8,
+ "est_s": 32.4,
  "lines": [
+  {
+   "directed": "And others work through embodied practices, breath, concentration, and activity.",
+   "maps_to": [
+    "ch01-b96"
+   ],
+   "voice": "granny"
+  },
+  {
+   "directed": "That’s āṇavopāya.",
+   "maps_to": [
+    "ch01-b97"
+   ],
+   "voice": "granny"
+  },
+  {
+   "directed": "Four possibilities.",
+   "maps_to": [
+    "ch01-b98"
+   ],
+   "voice": "granny"
+  },
+  {
+   "directed": "One reality.",
+   "maps_to": [
+    "ch01-b99"
+   ],
+   "voice": "granny"
+  },
+  {
+   "directed": "And I’m going to explain each of them.",
+   "maps_to": [
+    "ch01-b100"
+   ],
+   "voice": "granny"
+  },
+  {
+   "directed": "But understand this before we go any further.",
+   "maps_to": [
+    "ch01-b101"
+   ],
+   "voice": "granny"
+  },
+  {
+   "directed": "You are not trying to manufacture Śiva.",
+   "maps_to": [
+    "ch01-b102"
+   ],
+   "voice": "granny"
+  },
   {
    "directed": "You are not trying to construct some new divine identity.",
    "maps_to": [

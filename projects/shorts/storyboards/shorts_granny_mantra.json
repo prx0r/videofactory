@@ -22,7 +22,7 @@
   "target_s": 60
  },
  "hook": "cold open on first line",
- "est_s": 17.2,
+ "est_s": 29.6,
  "lines": [
   {
    "directed": "“The mind is mantra.”",
@@ -42,6 +42,20 @@
    "directed": "Apparently we’re about to find out how the very mind that binds you can become an instrument of liberation.",
    "maps_to": [
     "s22-b106"
+   ],
+   "voice": "granny"
+  },
+  {
+   "directed": "And we’re getting into mantra, effort, the guru, Mātṛkā, sacrificial offering, and the rather wonderful declaration that knowledge is food.",
+   "maps_to": [
+    "s22-b107"
+   ],
+   "voice": "granny"
+  },
+  {
+   "directed": "Ten sūtras. An entire theory of the transformative power of awareness.",
+   "maps_to": [
+    "s22-b108"
    ],
    "voice": "granny"
   }

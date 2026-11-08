@@ -23,8 +23,15 @@
   "target_s": 60
  },
  "hook": "cold open on first line",
- "est_s": 17.6,
+ "est_s": 28.8,
  "lines": [
+  {
+   "directed": "And the guru brings them through the entire universe, from the lowest tattva to the highest, until nothing remains as an independent reality standing outside consciousness.",
+   "maps_to": [
+    "ch14-b1054"
+   ],
+   "voice": "granny"
+  },
   {
    "directed": "And at the end?",
    "maps_to": [
@@ -50,6 +57,13 @@
    "directed": "The entire bloody universe was installed in you so that you could recognise there was never an ultimate separation between you and Śiva in the first place.",
    "maps_to": [
     "ch14-b1058"
+   ],
+   "voice": "granny"
+  },
+  {
+   "directed": "Absolute magnificence.",
+   "maps_to": [
+    "ch14-b1059"
    ],
    "voice": "granny"
   }

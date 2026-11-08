@@ -24,8 +24,43 @@
   "target_s": 60
  },
  "hook": "cold open on first line",
- "est_s": 15.2,
+ "est_s": 32.8,
  "lines": [
+  {
+   "directed": "It’s in the fundamental identification of the subject.",
+   "maps_to": [
+    "s72-b94"
+   ],
+   "voice": "granny"
+  },
+  {
+   "directed": "And now Vasugupta gives us the solution.",
+   "maps_to": [
+    "s72-b95"
+   ],
+   "voice": "granny"
+  },
+  {
+   "directed": "Not simply suppressing all desire by force.",
+   "maps_to": [
+    "s72-b96"
+   ],
+   "voice": "granny"
+  },
+  {
+   "directed": "Not constructing a new ego whose proudest achievement is having no desires.",
+   "maps_to": [
+    "s72-b97"
+   ],
+   "voice": "granny"
+  },
+  {
+   "directed": "But the disclosure of fullness through stable recognition of consciousness.",
+   "maps_to": [
+    "s72-b98"
+   ],
+   "voice": "granny"
+  },
   {
    "directed": "And when that recognition becomes established, the condition of being the limited individual is said to dissolve.",
    "maps_to": [

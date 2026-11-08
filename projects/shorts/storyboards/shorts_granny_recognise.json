@@ -24,8 +24,50 @@
   "target_s": 60
  },
  "hook": "cold open on first line",
- "est_s": 12.8,
+ "est_s": 32.4,
  "lines": [
+  {
+   "directed": "Because Vasugupta is not claiming that everyone who has experienced turya will automatically remain established in it.",
+   "maps_to": [
+    "s54-b76"
+   ],
+   "voice": "granny"
+  },
+  {
+   "directed": "Quite the opposite.",
+   "maps_to": [
+    "s54-b77"
+   ],
+   "voice": "granny"
+  },
+  {
+   "directed": "The next two sūtras address what happens when the recognition becomes interrupted.",
+   "maps_to": [
+    "s54-b78"
+   ],
+   "voice": "granny"
+  },
+  {
+   "directed": "And they are absolutely brilliant.",
+   "maps_to": [
+    "s54-b79"
+   ],
+   "voice": "granny"
+  },
+  {
+   "directed": "Because we’re about to encounter something deeply familiar.",
+   "maps_to": [
+    "s54-b80"
+   ],
+   "voice": "granny"
+  },
+  {
+   "directed": "You recognise the truth.",
+   "maps_to": [
+    "s54-b81"
+   ],
+   "voice": "granny"
+  },
   {
    "directed": "You forget.",
    "maps_to": [

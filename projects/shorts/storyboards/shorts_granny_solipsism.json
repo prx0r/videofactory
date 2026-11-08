@@ -23,8 +23,29 @@
   "target_s": 60
  },
  "hook": "cold open on first line",
- "est_s": 20.0,
+ "est_s": 33.6,
  "lines": [
+  {
+   "directed": "The waking universe, from the supreme standpoint of Trika, is also understood as an expression of consciousness.",
+   "maps_to": [
+    "s69-b74"
+   ],
+   "voice": "granny"
+  },
+  {
+   "directed": "But not simply a private dream produced by your personal human mind.",
+   "maps_to": [
+    "s69-b75"
+   ],
+   "voice": "granny"
+  },
+  {
+   "directed": "That distinction is absolutely essential.",
+   "maps_to": [
+    "s69-b76"
+   ],
+   "voice": "granny"
+  },
   {
    "directed": "Universal consciousness is not identical to the ordinary individual imagination.",
    "maps_to": [

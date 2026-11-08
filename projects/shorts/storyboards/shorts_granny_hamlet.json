@@ -25,7 +25,7 @@
   "target_s": 60
  },
  "hook": "cold open on first line",
- "est_s": 20.0,
+ "est_s": 34.0,
  "lines": [
   {
    "directed": "And the role becomes the apparent totality of existence.",
@@ -66,6 +66,48 @@
    "directed": "Still contemplating the skull.",
    "maps_to": [
     "s41-b78"
+   ],
+   "voice": "granny"
+  },
+  {
+   "directed": "Somebody tries to offer him a sandwich.",
+   "maps_to": [
+    "s41-b79"
+   ],
+   "voice": "granny"
+  },
+  {
+   "directed": "“BEGONE, WRETCH, THE KINGDOM IS LOST.”",
+   "maps_to": [
+    "s41-b80"
+   ],
+   "voice": "granny"
+  },
+  {
+   "directed": "Mate.",
+   "maps_to": [
+    "s41-b81"
+   ],
+   "voice": "granny"
+  },
+  {
+   "directed": "You’re in a theatre.",
+   "maps_to": [
+    "s41-b82"
+   ],
+   "voice": "granny"
+  },
+  {
+   "directed": "The performance finished twenty minutes ago.",
+   "maps_to": [
+    "s41-b83"
+   ],
+   "voice": "granny"
+  },
+  {
+   "directed": "That’s an imperfect but helpful analogy for the structure of contraction.",
+   "maps_to": [
+    "s41-b84"
    ],
    "voice": "granny"
   }
