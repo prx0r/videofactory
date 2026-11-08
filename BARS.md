@@ -111,3 +111,8 @@ the law.
     used sparingly, for effect. The mix stays ours — clip audio never
     renders. Pre-rendered once (scaled, looped/trimmed, 15fps); frames
     transient like all motion.
+33. Stitched audio is byte-exact or it is corrupt: silence gaps in whole
+    frames only (integer frame math — float seconds round to odd bytes and
+    poison the tail; precedent 2026-11-08, Roady Hamlet died at ~5s).
+    Verify before upload: total bytes even, header size matches data,
+    clean ffmpeg decode end to end. Never trust the stitcher.
