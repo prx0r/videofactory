@@ -1,0 +1,63 @@
+{
+ "unit": "shorts_roady_hamlet",
+ "source": {
+  "lane": "shiva-sutras",
+  "unit": "s41",
+  "bids": [
+   "b73",
+   "b74",
+   "b75",
+   "b76",
+   "b77",
+   "b78"
+  ]
+ },
+ "emblem": {
+  "file": "cinema.gif"
+ },
+ "format": {
+  "ar": "9:16",
+  "fps": 30,
+  "size": [
+   1080,
+   1920
+  ],
+  "target_s": 60
+ },
+ "hook": "roady cold open on the GIF",
+ "lines": [
+  {
+   "directed": "So boom, picture dis geezer yeah? Proper actor, top of his game.",
+   "maps_to": [
+    "s41-b73",
+    "s41-b74"
+   ],
+   "voice": "roadman"
+  },
+  {
+   "directed": "Gets so deep into playing Hamlet, yeah, he forgets he is one. Walks off stage still doing it.",
+   "maps_to": [
+    "s41-b74",
+    "s41-b75"
+   ],
+   "voice": "roadman"
+  },
+  {
+   "directed": "Out here stressing about Denmark, beefing with Claudius, crying over his dad, holding a skull and that.",
+   "maps_to": [
+    "s41-b75",
+    "s41-b76",
+    "s41-b77",
+    "s41-b78"
+   ],
+   "voice": "roadman"
+  },
+  {
+   "directed": "Someone offers man a sandwich and he is still in Elsinore, innit. That is literally you lot, every day.",
+   "maps_to": [
+    "s41-b79"
+   ],
+   "voice": "roadman"
+  }
+ ]
+}
