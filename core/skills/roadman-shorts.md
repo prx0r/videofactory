@@ -47,3 +47,11 @@ Check the graph before writing; file every aired bit back as a node.
    means rewrite, never repeat.
 5. CLOSE with the mutter after Big G takes the mic.
 Infinite bits: every granny minute × every GIF × unmapped triples.
+
+## Profile (core/knowledge/roady-profile.json)
+One file holds his whole act: core theory (biggest claims, smallest
+venue, no self-knowledge), five licensed techniques (deflation,
+pull-back-and-reveal, repetition-erosion, bathos, sincerity), four
+violations that work, three mutation operators, and timing — GIF up in
+the first 3s, a punch every 12–20s, setup holds ≥2.5s, 45–75s total,
+punch word last, 0.35s breaths. Write to the profile, not to taste.
