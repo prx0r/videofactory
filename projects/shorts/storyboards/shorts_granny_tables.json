@@ -1,0 +1,65 @@
+{
+ "unit": "shorts_granny_tables",
+ "source": {
+  "lane": "shiva-sutras",
+  "unit": "s40",
+  "bids": [
+   "b46",
+   "b47",
+   "b48",
+   "b49",
+   "b50"
+  ]
+ },
+ "emblem": {
+  "file": "open-doorway.png"
+ },
+ "format": {
+  "ar": "9:16",
+  "fps": 30,
+  "size": [
+   1080,
+   1920
+  ],
+  "target_s": 60
+ },
+ "hook": "cold open on first line",
+ "est_s": 25.6,
+ "lines": [
+  {
+   "directed": "The world is the radiance of consciousness.",
+   "maps_to": [
+    "s40-b46"
+   ],
+   "voice": "granny"
+  },
+  {
+   "directed": "And this is enormously significant because it means liberation isn’t simply a withdrawal from objectivity.",
+   "maps_to": [
+    "s40-b47"
+   ],
+   "voice": "granny"
+  },
+  {
+   "directed": "It’s a transformation in the recognition of objectivity.",
+   "maps_to": [
+    "s40-b48"
+   ],
+   "voice": "granny"
+  },
+  {
+   "directed": "You’re not supposed to sit there with your eyes closed forever, desperately trying to avoid the existence of tables.",
+   "maps_to": [
+    "s40-b49"
+   ],
+   "voice": "granny"
+  },
+  {
+   "directed": "You’re supposed to recognise the fundamental nature of the reality in which the tables appear.",
+   "maps_to": [
+    "s40-b50"
+   ],
+   "voice": "granny"
+  }
+ ]
+}

@@ -1,0 +1,65 @@
+{
+ "unit": "shorts_granny_blue",
+ "source": {
+  "lane": "shiva-sutras",
+  "unit": "s65",
+  "bids": [
+   "b33",
+   "b34",
+   "b36",
+   "b37",
+   "b38"
+  ]
+ },
+ "emblem": {
+  "file": "mirror-empty.png"
+ },
+ "format": {
+  "ar": "9:16",
+  "fps": 30,
+  "size": [
+   1080,
+   1920
+  ],
+  "target_s": 60
+ },
+ "hook": "cold open on first line",
+ "est_s": 21.6,
+ "lines": [
+  {
+   "directed": "Now, Kṣemarāja says that the realised yogi experiences pleasure and pain differently.",
+   "maps_to": [
+    "s65-b33"
+   ],
+   "voice": "granny"
+  },
+  {
+   "directed": "They become apprehended as idantā — this-ness.",
+   "maps_to": [
+    "s65-b34"
+   ],
+   "voice": "granny"
+  },
+  {
+   "directed": "Just as a blue object appears before awareness, pleasure and pain can appear without becoming the ultimate identity of the conscious subject.",
+   "maps_to": [
+    "s65-b36"
+   ],
+   "voice": "granny"
+  },
+  {
+   "directed": "And this is a magnificent distinction.",
+   "maps_to": [
+    "s65-b37"
+   ],
+   "voice": "granny"
+  },
+  {
+   "directed": "Because it doesn’t require denying the experience.",
+   "maps_to": [
+    "s65-b38"
+   ],
+   "voice": "granny"
+  }
+ ]
+}

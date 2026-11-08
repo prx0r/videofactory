@@ -1,0 +1,57 @@
+{
+ "unit": "shorts_granny_installed",
+ "source": {
+  "lane": "tantrasara",
+  "unit": "ch14",
+  "bids": [
+   "b1055",
+   "b1056",
+   "b1057",
+   "b1058"
+  ]
+ },
+ "emblem": {
+  "file": "seed-soil.gif"
+ },
+ "format": {
+  "ar": "9:16",
+  "fps": 30,
+  "size": [
+   1080,
+   1920
+  ],
+  "target_s": 60
+ },
+ "hook": "cold open on first line",
+ "est_s": 17.6,
+ "lines": [
+  {
+   "directed": "And at the end?",
+   "maps_to": [
+    "ch14-b1055"
+   ],
+   "voice": "granny"
+  },
+  {
+   "directed": "The disciple attains the nature of Śiva.",
+   "maps_to": [
+    "ch14-b1056"
+   ],
+   "voice": "granny"
+  },
+  {
+   "directed": "The very reality they were seeking.",
+   "maps_to": [
+    "ch14-b1057"
+   ],
+   "voice": "granny"
+  },
+  {
+   "directed": "The entire bloody universe was installed in you so that you could recognise there was never an ultimate separation between you and Śiva in the first place.",
+   "maps_to": [
+    "ch14-b1058"
+   ],
+   "voice": "granny"
+  }
+ ]
+}

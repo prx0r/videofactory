@@ -1,0 +1,49 @@
+{
+ "unit": "shorts_granny_mantra",
+ "source": {
+  "lane": "shiva-sutras",
+  "unit": "s22",
+  "bids": [
+   "b104",
+   "b105",
+   "b106"
+  ]
+ },
+ "emblem": {
+  "file": "om-reveal.gif"
+ },
+ "format": {
+  "ar": "9:16",
+  "fps": 30,
+  "size": [
+   1080,
+   1920
+  ],
+  "target_s": 60
+ },
+ "hook": "cold open on first line",
+ "est_s": 17.2,
+ "lines": [
+  {
+   "directed": "“The mind is mantra.”",
+   "maps_to": [
+    "s22-b104"
+   ],
+   "voice": "granny"
+  },
+  {
+   "directed": "Which is a spectacular statement, considering Vasugupta has just spent twenty-two sūtras explaining why ordinary mental limitation is the problem.",
+   "maps_to": [
+    "s22-b105"
+   ],
+   "voice": "granny"
+  },
+  {
+   "directed": "Apparently we’re about to find out how the very mind that binds you can become an instrument of liberation.",
+   "maps_to": [
+    "s22-b106"
+   ],
+   "voice": "granny"
+  }
+ ]
+}

@@ -1,0 +1,73 @@
+{
+ "unit": "shorts_granny_hamlet",
+ "source": {
+  "lane": "shiva-sutras",
+  "unit": "s41",
+  "bids": [
+   "b73",
+   "b74",
+   "b75",
+   "b76",
+   "b77",
+   "b78"
+  ]
+ },
+ "emblem": {
+  "file": "cinema.gif"
+ },
+ "format": {
+  "ar": "9:16",
+  "fps": 30,
+  "size": [
+   1080,
+   1920
+  ],
+  "target_s": 60
+ },
+ "hook": "cold open on first line",
+ "est_s": 20.0,
+ "lines": [
+  {
+   "directed": "And the role becomes the apparent totality of existence.",
+   "maps_to": [
+    "s41-b73"
+   ],
+   "voice": "granny"
+  },
+  {
+   "directed": "Imagine an actor who becomes so absorbed in playing Hamlet that he forgets he’s an actor.",
+   "maps_to": [
+    "s41-b74"
+   ],
+   "voice": "granny"
+  },
+  {
+   "directed": "He wanders around after the performance convinced that Denmark is in crisis.",
+   "maps_to": [
+    "s41-b75"
+   ],
+   "voice": "granny"
+  },
+  {
+   "directed": "He’s still fighting with Claudius.",
+   "maps_to": [
+    "s41-b76"
+   ],
+   "voice": "granny"
+  },
+  {
+   "directed": "Still mourning his father.",
+   "maps_to": [
+    "s41-b77"
+   ],
+   "voice": "granny"
+  },
+  {
+   "directed": "Still contemplating the skull.",
+   "maps_to": [
+    "s41-b78"
+   ],
+   "voice": "granny"
+  }
+ ]
+}

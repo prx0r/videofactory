@@ -1,0 +1,65 @@
+{
+ "unit": "shorts_granny_recognise",
+ "source": {
+  "lane": "shiva-sutras",
+  "unit": "s54",
+  "bids": [
+   "b82",
+   "b83",
+   "b84",
+   "b85",
+   "b86"
+  ]
+ },
+ "emblem": {
+  "file": "wave-vortex.gif"
+ },
+ "format": {
+  "ar": "9:16",
+  "fps": 30,
+  "size": [
+   1080,
+   1920
+  ],
+  "target_s": 60
+ },
+ "hook": "cold open on first line",
+ "est_s": 12.8,
+ "lines": [
+  {
+   "directed": "You forget.",
+   "maps_to": [
+    "s54-b82"
+   ],
+   "voice": "granny"
+  },
+  {
+   "directed": "You remember again.",
+   "maps_to": [
+    "s54-b83"
+   ],
+   "voice": "granny"
+  },
+  {
+   "directed": "You become distracted.",
+   "maps_to": [
+    "s54-b84"
+   ],
+   "voice": "granny"
+  },
+  {
+   "directed": "You recognise again.",
+   "maps_to": [
+    "s54-b85"
+   ],
+   "voice": "granny"
+  },
+  {
+   "directed": "And Vasugupta is going to explain the entire cycle through the relationship between the middle of experience and its conscious source.",
+   "maps_to": [
+    "s54-b86"
+   ],
+   "voice": "granny"
+  }
+ ]
+}

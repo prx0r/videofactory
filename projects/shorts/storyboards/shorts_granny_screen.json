@@ -1,0 +1,65 @@
+{
+ "unit": "shorts_granny_screen",
+ "source": {
+  "lane": "shiva-sutras",
+  "unit": "s07",
+  "bids": [
+   "b35",
+   "b36",
+   "b37",
+   "b38",
+   "b39"
+  ]
+ },
+ "emblem": {
+  "file": "cinema.gif"
+ },
+ "format": {
+  "ar": "9:16",
+  "fps": 30,
+  "size": [
+   1080,
+   1920
+  ],
+  "target_s": 60
+ },
+ "hook": "cold open on first line",
+ "est_s": 18.0,
+ "lines": [
+  {
+   "directed": "A romantic comedy.",
+   "maps_to": [
+    "s07-b35"
+   ],
+   "voice": "granny"
+  },
+  {
+   "directed": "And an entirely black film in which nothing happens.",
+   "maps_to": [
+    "s07-b36"
+   ],
+   "voice": "granny"
+  },
+  {
+   "directed": "The images differ.",
+   "maps_to": [
+    "s07-b37"
+   ],
+   "voice": "granny"
+  },
+  {
+   "directed": "But the screen is not destroyed whenever the film changes.",
+   "maps_to": [
+    "s07-b38"
+   ],
+   "voice": "granny"
+  },
+  {
+   "directed": "Now take that metaphor carefully: unlike an ordinary screen, Śiva is not an inert support. Śiva is self-aware and free.",
+   "maps_to": [
+    "s07-b39"
+   ],
+   "voice": "granny"
+  }
+ ]
+}

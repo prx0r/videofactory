@@ -1,0 +1,49 @@
+{
+ "unit": "shorts_granny_journey",
+ "source": {
+  "lane": "tantrasara",
+  "unit": "ch01",
+  "bids": [
+   "b103",
+   "b104",
+   "b106"
+  ]
+ },
+ "emblem": {
+  "file": "dawn-break.gif"
+ },
+ "format": {
+  "ar": "9:16",
+  "fps": 30,
+  "size": [
+   1080,
+   1920
+  ],
+  "target_s": 60
+ },
+ "hook": "cold open on first line",
+ "est_s": 16.8,
+ "lines": [
+  {
+   "directed": "You are not trying to construct some new divine identity.",
+   "maps_to": [
+    "ch01-b103"
+   ],
+   "voice": "granny"
+  },
+  {
+   "directed": "The reality you’re seeking is already the nature of the very consciousness by which you’re seeking it.",
+   "maps_to": [
+    "ch01-b104"
+   ],
+   "voice": "granny"
+  },
+  {
+   "directed": "The entire spiritual journey is Śiva appearing to forget himself, and Śiva recognising himself again.",
+   "maps_to": [
+    "ch01-b106"
+   ],
+   "voice": "granny"
+  }
+ ]
+}

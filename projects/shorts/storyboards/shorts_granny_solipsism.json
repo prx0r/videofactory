@@ -1,0 +1,57 @@
+{
+ "unit": "shorts_granny_solipsism",
+ "source": {
+  "lane": "shiva-sutras",
+  "unit": "s69",
+  "bids": [
+   "b77",
+   "b78",
+   "b79",
+   "b82"
+  ]
+ },
+ "emblem": {
+  "file": "lotus-rain.gif"
+ },
+ "format": {
+  "ar": "9:16",
+  "fps": 30,
+  "size": [
+   1080,
+   1920
+  ],
+  "target_s": 60
+ },
+ "hook": "cold open on first line",
+ "est_s": 20.0,
+ "lines": [
+  {
+   "directed": "Universal consciousness is not identical to the ordinary individual imagination.",
+   "maps_to": [
+    "s69-b77"
+   ],
+   "voice": "granny"
+  },
+  {
+   "directed": "The supreme Aham is not the contracted ego.",
+   "maps_to": [
+    "s69-b78"
+   ],
+   "voice": "granny"
+  },
+  {
+   "directed": "And therefore Trika’s account of cosmic manifestation is not the claim that the world exists merely because your private personality imagines it.",
+   "maps_to": [
+    "s69-b79"
+   ],
+   "voice": "granny"
+  },
+  {
+   "directed": "The individual mind itself is a manifestation within universal consciousness.",
+   "maps_to": [
+    "s69-b82"
+   ],
+   "voice": "granny"
+  }
+ ]
+}

@@ -1,0 +1,65 @@
+{
+ "unit": "shorts_granny_nobodydies",
+ "source": {
+  "lane": "shiva-sutras",
+  "unit": "s72",
+  "bids": [
+   "b99",
+   "b100",
+   "b102",
+   "b103",
+   "b104"
+  ]
+ },
+ "emblem": {
+  "file": "lamp-flame.gif"
+ },
+ "format": {
+  "ar": "9:16",
+  "fps": 30,
+  "size": [
+   1080,
+   1920
+  ],
+  "target_s": 60
+ },
+ "hook": "cold open on first line",
+ "est_s": 15.2,
+ "lines": [
+  {
+   "directed": "And when that recognition becomes established, the condition of being the limited individual is said to dissolve.",
+   "maps_to": [
+    "s72-b99"
+   ],
+   "voice": "granny"
+  },
+  {
+   "directed": "Which sounds alarming.",
+   "maps_to": [
+    "s72-b100"
+   ],
+   "voice": "granny"
+  },
+  {
+   "directed": "But don’t worry.",
+   "maps_to": [
+    "s72-b102"
+   ],
+   "voice": "granny"
+  },
+  {
+   "directed": "Nobody needs to die.",
+   "maps_to": [
+    "s72-b103"
+   ],
+   "voice": "granny"
+  },
+  {
+   "directed": "This is about the end of a particular mode of self-identification.",
+   "maps_to": [
+    "s72-b104"
+   ],
+   "voice": "granny"
+  }
+ ]
+}
