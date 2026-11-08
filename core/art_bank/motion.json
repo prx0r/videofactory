@@ -197,6 +197,221 @@
     "shiva-sutras": []
    },
    "status": "wanted"
+  },
+  {
+   "id": "leaning-wall",
+   "motif": "figure leaning on a vanishing wall",
+   "used_in": {
+    "nibbana": [
+     "n02"
+    ]
+   },
+   "status": "wanted"
+  },
+  {
+   "id": "mirror-empty",
+   "motif": "small hand mirror reflecting nothing",
+   "used_in": {
+    "nibbana": [
+     "n03"
+    ]
+   },
+   "status": "wanted"
+  },
+  {
+   "id": "jewel-pond",
+   "motif": "jewel glinting in pond water, reached for",
+   "used_in": {
+    "nibbana": [
+     "n04"
+    ]
+   },
+   "status": "wanted"
+  },
+  {
+   "id": "passbook",
+   "motif": "stamped savings passbook, merit accounting",
+   "used_in": {
+    "nibbana": [
+     "n06"
+    ]
+   },
+   "status": "wanted"
+  },
+  {
+   "id": "carpenter-tools",
+   "motif": "carpenter plane with fresh shavings",
+   "used_in": {
+    "nibbana": [
+     "n04",
+     "n10"
+    ]
+   },
+   "status": "wanted"
+  },
+  {
+   "id": "chariot-team",
+   "motif": "seven chariots, one destination",
+   "used_in": {
+    "nibbana": [
+     "n10"
+    ]
+   },
+   "status": "wanted"
+  },
+  {
+   "id": "relay-runner",
+   "motif": "runner passing a flame-baton onward",
+   "used_in": {
+    "nibbana": [
+     "n10"
+    ]
+   },
+   "status": "wanted"
+  },
+  {
+   "id": "mara-army",
+   "motif": "shadow army approaching at dusk",
+   "used_in": {
+    "nibbana": [
+     "n10"
+    ]
+   },
+   "status": "wanted"
+  },
+  {
+   "id": "grasping-hand",
+   "motif": "hand closing on drifting smoke",
+   "used_in": {
+    "nibbana": [
+     "n07"
+    ]
+   },
+   "status": "wanted"
+  },
+  {
+   "id": "knotted-thread",
+   "motif": "single tangled knot, loose ends",
+   "used_in": {
+    "nibbana": [
+     "n01"
+    ]
+   },
+   "status": "wanted"
+  },
+  {
+   "id": "signpost",
+   "motif": "signpost with arms pointing every way",
+   "used_in": {
+    "nibbana": [
+     "n01"
+    ]
+   },
+   "status": "wanted"
+  },
+  {
+   "id": "crystal-clear",
+   "motif": "clear quartz cluster on white",
+   "used_in": {
+    "paramarthasara": [
+     "p01"
+    ]
+   },
+   "status": "wanted"
+  },
+  {
+   "id": "rice-bowl",
+   "motif": "plain bowl of rice, steam rising",
+   "used_in": {
+    "paramarthasara": [
+     "p02"
+    ]
+   },
+   "status": "wanted"
+  },
+  {
+   "id": "spiderweb-dew",
+   "motif": "dewed web, spider at center",
+   "used_in": {
+    "paramarthasara": [
+     "p03"
+    ]
+   },
+   "status": "wanted"
+  },
+  {
+   "id": "sunrise-water",
+   "motif": "sunrise over still water",
+   "used_in": {
+    "paramarthasara": [
+     "p04"
+    ]
+   },
+   "status": "wanted"
+  },
+  {
+   "id": "open-doorway",
+   "motif": "open door onto bright white",
+   "used_in": {
+    "paramarthasara": [
+     "p05"
+    ]
+   },
+   "status": "wanted"
+  },
+  {
+   "id": "skullbowl-line",
+   "motif": "empty skull-bowl, single line drawing",
+   "used_in": {
+    "paramarthasara": [
+     "p06"
+    ]
+   },
+   "status": "wanted"
+  },
+  {
+   "id": "dawn-break",
+   "motif": "first light splitting night cloud",
+   "used_in": {
+    "paramarthasara": [
+     "p07"
+    ]
+   },
+   "status": "wanted"
+  },
+  {
+   "id": "rainbow-body",
+   "motif": "figure dissolving into rainbow light",
+   "used_in": {
+    "tibetan-dead": [
+     "d05"
+    ]
+   },
+   "status": "wanted"
+  },
+  {
+   "id": "yama-scales",
+   "motif": "scales weighing a feather against a heart",
+   "used_in": {
+    "tibetan-dead": [
+     "d02"
+    ],
+    "deathworks": [
+     "madman",
+     "ancestors"
+    ]
+   },
+   "status": "wanted"
+  },
+  {
+   "id": "rising-corpse",
+   "motif": "shrouded figure sitting upright",
+   "used_in": {
+    "deathworks": [
+     "madman"
+    ]
+   },
+   "status": "wanted"
   }
  ]
 }
