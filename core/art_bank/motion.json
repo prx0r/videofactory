@@ -389,8 +389,12 @@
      "p05"
     ]
    },
-   "status": "wanted",
-   "brief": "An open door onto pure white. Why: the temple is everywhere (p05). No building."
+   "status": "banked-described",
+   "brief": "An open door onto pure white. Why: the temple is everywhere (p05). No building.",
+   "depicts": "A plain white door standing open onto white.",
+   "means": "The temple-is-everywhere opening.",
+   "file": "motion/open-doorway.gif",
+   "note": "ChatGPT procedural draft from queue briefs (manifest: not engraving quality); promote by re-render."
   },
   {
    "id": "skullbowl-line",
@@ -400,8 +404,12 @@
      "p06"
     ]
    },
-   "status": "wanted",
-   "brief": "An empty skull-bowl, single-line drawing. Why: cremation chapter (p06). Line only, reverent."
+   "status": "banked-described",
+   "brief": "An empty skull-bowl, single-line drawing. Why: cremation chapter (p06). Line only, reverent.",
+   "depicts": "A skull-cup rendered in clean line work.",
+   "means": "Mortality held lightly; cremation chapter.",
+   "file": "motion/skullbowl-line.gif",
+   "note": "ChatGPT procedural draft from queue briefs (manifest: not engraving quality); promote by re-render."
   },
   {
    "id": "dawn-break",
@@ -411,8 +419,12 @@
      "p07"
     ]
    },
-   "status": "wanted",
-   "brief": "First light splitting night cloud over water. Why: recognition as daybreak (p07). Brighter sibling of sunrise-water."
+   "status": "banked-described",
+   "brief": "First light splitting night cloud over water. Why: recognition as daybreak (p07). Brighter sibling of sunrise-water.",
+   "depicts": "Faint cloud lines over still sea lines, minimal.",
+   "means": "First light, barely there; daybreak.",
+   "file": "motion/dawn-break.gif",
+   "note": "ChatGPT procedural draft from queue briefs (manifest: not engraving quality); promote by re-render."
   },
   {
    "id": "rainbow-body",
@@ -422,8 +434,12 @@
      "d05"
     ]
    },
-   "status": "wanted",
-   "brief": "A seated figure dissolving upward into rainbow light bands. Why: fruition image (d05). Joyful, not spooky."
+   "status": "banked-described",
+   "brief": "A seated figure dissolving upward into rainbow light bands. Why: fruition image (d05). Joyful, not spooky.",
+   "depicts": "A seated figure dissolving upward, pale rainbow wash.",
+   "means": "Fruition without spectacle.",
+   "file": "motion/rainbow-body.gif",
+   "note": "ChatGPT procedural draft from queue briefs (manifest: not engraving quality); promote by re-render."
   },
   {
    "id": "yama-scales",
@@ -437,8 +453,12 @@
      "ancestors"
     ]
    },
-   "status": "wanted",
-   "brief": "Balanced scales, feather on one pan, heart on other. Why: judgment beats (d02, madman, ancestors)."
+   "status": "banked-described",
+   "brief": "Balanced scales, feather on one pan, heart on other. Why: judgment beats (d02, madman, ancestors).",
+   "depicts": "A balanced scale, two pans level.",
+   "means": "Judgment beats; the weighing.",
+   "file": "motion/yama-scales.gif",
+   "note": "ChatGPT procedural draft from queue briefs (manifest: not engraving quality); promote by re-render."
   },
   {
    "id": "rising-corpse",
@@ -448,8 +468,12 @@
      "madman"
     ]
    },
-   "status": "wanted",
-   "brief": "A shrouded figure sitting upright, minimal lines. Why: tukdam/mummy beats. Stillness, never horror."
+   "status": "banked-described",
+   "brief": "A shrouded figure sitting upright, minimal lines. Why: tukdam/mummy beats. Stillness, never horror.",
+   "depicts": "A shrouded figure lying still, horizontal calm.",
+   "means": "The fact of death, held.",
+   "file": "motion/rising-corpse.gif",
+   "note": "ChatGPT procedural draft from queue briefs (manifest: not engraving quality); promote by re-render."
   },
   {
    "id": "campfire",
@@ -796,6 +820,21 @@
    },
    "status": "wanted",
    "brief": "A scroll unrolling one line at a time, endless paper.. Blue-ink engraving on white, minimal, one moving element, no text, seamless loop."
+  },
+  {
+   "id": "sunrise-mountain",
+   "file": "motion/sunrise-mountain.gif",
+   "depicts": "Mountain waters at sunrise, painterly full-bleed.",
+   "means": "Remembrance vista for dawn chapters.",
+   "use": "paramarthasara p04/p07 pending white-mat or exception.",
+   "used_in": {
+    "paramarthasara": [
+     "p04",
+     "p07"
+    ]
+   },
+   "status": "banked-described",
+   "note": "Full-bleed exception candidate; white law requires mat or owner exception."
   }
  ]
 }
