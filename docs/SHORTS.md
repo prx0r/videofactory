@@ -47,6 +47,20 @@ is one thing: spanda, prakasa, what is Siva? Source of truth for the
 voice: translation-work `paramarthasara/ROADMAN-v1.DRAFT.json` (all 105
 verses in roadman, machine draft pending owner review — register bans
 cap/fr/bussin/vibe/delulu/lowkey).
+
+## Roady grammar (owner thesis 2026-11-08 — Tandava cut)
+- GIF AS BIG AS POSSIBLE. The picture fills the frame; captions ride
+  over its quiet zones. Small-emblem minimalism is for the long-form
+  cards, not for Roady.
+- ALWAYS ABOUT THE GIF ON SCREEN. Every line points at the picture.
+  New GIF pops up first, Roady reacts second: "ok we got a new one" —
+  then he interprets it live (e.g. cinema GIF up BEFORE any film talk).
+- MADE-UP WORDS, TRUE DOCTRINE. He mints words freely ("syllogical")
+  and is always accidentally stating the absolute truth. That gap IS
+  the comedy — wrong words, right Dharma, every time.
+- CLOSING TAG. After Big G takes over, Roady gets the last mutter:
+  "nah she's proper rude innit. Sounds kinda leng tho." He watches
+  the screen with the viewer throughout.
 ## Roady-to-Big-G handoff (owner style bible 2026-11-08)
 Two-minute shape. First 60 seconds: Roady G in roadman, META — he
 explains the GIF on screen ("so boom, look at dis stunning AI generated
