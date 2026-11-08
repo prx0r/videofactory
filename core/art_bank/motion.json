@@ -11,7 +11,8 @@
    "used_in": {
     "nibbana": [
      "n02",
-     "n09"
+     "n09",
+     "n10"
     ]
    },
    "status": "banked-described",
@@ -25,7 +26,9 @@
    "motif": "cinema projector, the show",
    "used_in": {
     "nibbana": [
-     "n03"
+     "n02",
+     "n03",
+     "n08"
     ]
    },
    "status": "banked-described",
@@ -66,7 +69,9 @@
    "file": "motion/lotus-rain.gif",
    "motif": "lotus leaf in rain, non-stick",
    "used_in": {
-    "nibbana": []
+    "nibbana": [
+     "n06"
+    ]
    },
    "status": "banked-described",
    "depicts": "Lotus leaf beaded with rain that will not stick.",
@@ -94,7 +99,8 @@
    "motif": "hands letting sand fall",
    "used_in": {
     "nibbana": [
-     "n08"
+     "n08",
+     "n07"
     ]
    },
    "status": "banked-described",
@@ -122,7 +128,8 @@
    "motif": "raft on water, abandon after crossing",
    "used_in": {
     "nibbana": [
-     "n10"
+     "n10",
+     "n06"
     ]
    },
    "status": "banked-described",
@@ -137,7 +144,7 @@
    "used_in": {
     "nibbana": [
      "n01",
-     "n03"
+     "n07"
     ]
    },
    "status": "banked-described",
@@ -150,9 +157,9 @@
    "motif": "fire going out, smoke rising",
    "used_in": {
     "nibbana": [
-     "n01"
-    ],
-    "shiva-sutras": []
+     "n01",
+     "n07"
+    ]
    },
    "status": "wanted"
   },
@@ -213,7 +220,9 @@
    "motif": "small hand mirror reflecting nothing",
    "used_in": {
     "nibbana": [
-     "n03"
+     "n03",
+     "n04",
+     "n09"
     ]
    },
    "status": "wanted"
@@ -223,6 +232,7 @@
    "motif": "jewel glinting in pond water, reached for",
    "used_in": {
     "nibbana": [
+     "n03",
      "n04"
     ]
    },
@@ -233,7 +243,9 @@
    "motif": "stamped savings passbook, merit accounting",
    "used_in": {
     "nibbana": [
-     "n06"
+     "n06",
+     "n07",
+     "n08"
     ]
    },
    "status": "wanted"
@@ -243,8 +255,8 @@
    "motif": "carpenter plane with fresh shavings",
    "used_in": {
     "nibbana": [
-     "n04",
-     "n10"
+     "n10",
+     "n04"
     ]
    },
    "status": "wanted"
@@ -274,7 +286,7 @@
    "motif": "shadow army approaching at dusk",
    "used_in": {
     "nibbana": [
-     "n10"
+     "n08"
     ]
    },
    "status": "wanted"
@@ -284,7 +296,7 @@
    "motif": "hand closing on drifting smoke",
    "used_in": {
     "nibbana": [
-     "n07"
+     "lane-wide"
     ]
    },
    "status": "wanted"
@@ -294,7 +306,10 @@
    "motif": "single tangled knot, loose ends",
    "used_in": {
     "nibbana": [
-     "n01"
+     "n03",
+     "n06",
+     "n07",
+     "n09"
     ]
    },
    "status": "wanted"
