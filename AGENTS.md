@@ -38,6 +38,7 @@ no approval no render; per-stage logs always; max progress per attempt.
 FACTORY-SPEC.md → docs/law/README.md (how law applies) → RUNTIME →
 PIPELINE → GATES → BARS.md → docs/UNITS.md (series digit conventions) →
 docs/VISUALS.md (visual priority ladder + GIF/draw theses, all lanes) →
+docs/GIFS.md (motion bank maker sheet) →
 PERMISSIONS.md → REGISTRY.json. Skills: casting/cards references.
 Law docs in docs/law/ are read-only; amend in the series repo first.
 
