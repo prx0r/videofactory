@@ -6,7 +6,8 @@ vf_gate, vf_logs, vf_finals, vf_catalog, vf_motion, vf_check, vf_tests, vf_skill
 Decides: vf_triage (gate verdict + per-issue skill routing + recommended step).
 Acts: vf_launch (gated immediate render), vf_queue (gated render in the next
 gap), vf_pack (zip finals), vf_publish (R2 upload + byte-verify),
-vf_skill_propose (stage a researched skill; commit separately).
+vf_skill_propose (stage a researched skill; commit separately),
+vf_shorts_mine (find shorts candidates), vf_roady_pack (derivation packet).
 
 Reads never write, except the five act tools — and those enforce the
 standing owner order (2026-11-06): storyboard green + owner approval is the
@@ -592,6 +593,176 @@ async def vf_motion(status: str = "", lane: str = "", query: str = "") -> str:
     """
     def _work():
         return _motion_query(status or None, lane or None, query or None)
+    try:
+        return json.dumps(await _run_sync(_work), indent=2)
+    except (OSError, ValueError) as e:
+        return json.dumps({"error": str(e)[:300]})
+
+
+def _score_spans(blocks):
+    """Shorts candidates from storyboard blocks (pure; tested).
+
+    Kinds: verse-centered spans, man-voice exchanges, closers. Scores
+    completeness (60-170 words), verse presence, exchange shape.
+    Returns [{bids, words, est_s, kind, reason}] sorted by score.
+    """
+    cands = []
+    n = len(blocks)
+    for i, b in enumerate(blocks):
+        if b.get('voice') == 'verse' and len(b.get('text', '').split()) < 25:
+            span = [x['id'] for x in blocks[max(0, i - 4):i + 5]
+                    if x.get('voice') == 'granny']
+            words = sum(len(y['text'].split()) for y in blocks if y['id'] in span)
+            if 60 <= words <= 170:
+                cands.append({"bids": span, "words": words,
+                              "est_s": round(words / 2.5, 1),
+                              "kind": "verse-centered",
+                              "reason": "chant + gloss arc, self-contained",
+                              "score": 3 + (words >= 75)})
+    run, start = [], None
+    for i, b in enumerate(blocks):
+        if b.get('voice') == 'man':
+            if start is None:
+                start = i
+            run.append(b['id'])
+        else:
+            if len(run) >= 3:
+                words = sum(len(blocks[j]['text'].split()) for j in range(start, i))
+                if 20 <= words <= 120:
+                    cands.append({"bids": list(run), "words": words,
+                                  "est_s": round(words / 2.5, 1),
+                                  "kind": "exchange",
+                                  "reason": "man-voice run, skeptic energy",
+                                  "score": 2})
+            run, start = [], None
+    tail = [x['id'] for x in blocks[-6:] if x.get('voice') == 'granny']
+    words = sum(len(y['text'].split()) for y in blocks if y['id'] in tail)
+    if 40 <= words <= 150:
+        cands.append({"bids": tail, "words": words, "est_s": round(words / 2.5, 1),
+                      "kind": "closer", "reason": "closing beats land endings",
+                      "score": 1})
+    return sorted(cands, key=lambda c: -c["score"])
+
+
+def _roady_packet_data(short_name):
+    """Derivation packet for handcrafting a Roady version (pure data join).
+
+    Reads the granny short storyboard + motion bank + comedy graph + Roady
+    profile. Returns granny lines, GIF options (with watch notes), SO/LM
+    options, and register. Creative writing stays human/agent-side.
+    """
+    base = os.path.join(ROOT, "projects", "shorts", "storyboards", short_name + ".json")
+    try:
+        short = json.load(open(base, encoding="utf-8"))
+    except (OSError, ValueError):
+        return {"error": f"unknown short '{short_name}'"}
+    lines = short.get("lines", [])
+    text = " ".join(l.get("directed", "") for l in lines)
+    bank = _motion_query()
+    gif_options = []
+    for e in bank.get("entries", []):
+        if e.get("status") not in ("banked", "banked-described"):
+            continue
+        blob = json.dumps(e).lower()
+        if any(w in text.lower() for w in e.get("id", "").replace("-", " ").split()):
+            gif_options.append({"id": e["id"], "motif": e.get("motif"),
+                                "watch": e.get("watch"), "why": "motif words in granny text"})
+    try:
+        graph = json.load(open(os.path.join(ROOT, "core", "knowledge", "comedy-graph.json"),
+                               encoding="utf-8"))
+        triples = []
+        for node in graph.get("nodes", []):
+            triples.append({"id": node.get("id"), "so": node.get("so"),
+                            "lm": node.get("lm"), "situation": node.get("situation")})
+    except (OSError, ValueError):
+        triples = []
+    try:
+        profile = json.load(open(os.path.join(ROOT, "core", "knowledge", "roady-profile.json"),
+                               encoding="utf-8"))
+        register = {"markers": profile.get("register", {}).get("markers", []),
+                    "banned": profile.get("register", {}).get("banned", []),
+                    "closing_tag": "nah she's proper rude innit. Sounds kinda leng tho."}
+    except (OSError, ValueError, KeyError):
+        register = {}
+    return {"short": short_name,
+            "granny_lines": [{"directed": l.get("directed"), "maps_to": l.get("maps_to")}
+                             for l in lines],
+            "est_s": short.get("est_s"),
+            "gif_options": gif_options,
+            "so_lm_options": triples[:24],
+            "register": register,
+            "voice": {"seat": "roadman", "model": "fish-audio/s2.1-pro-free",
+                      "voice_id": "e64e97ef91304e2894cd72ff03b86d97"}}
+
+
+@mcp.tool()
+async def vf_shorts_mine(project: str, unit: str = "") -> str:
+    """Find shorts candidates in long-form units (verse spans, exchanges, closers).
+
+    Scores completeness, self-containment, and shape. Read-only; write the
+    chosen ones as projects/shorts/storyboards/<name>.json (verbatim +
+    maps_to + emblem) like the existing fifty.
+
+    Args:
+        project: Lane name (tantrasara, shiva-sutras, nibbana, ...)
+        unit: Unit id ("" = whole lane, capped at 12 candidates)
+    """
+    def _work():
+        import lane_api as _api
+        env, cfg = _project_env(project)
+        mod = _api.load_lane(project)
+        if unit:
+            units = [unit]
+        else:
+            target = int(cfg.get("unit_target", 0) or 0)
+            scheme = cfg.get("unit_scheme", "chNN")
+            if scheme == "chNN":
+                units = [f"{i:02d}" for i in range(1, (target or 22) + 1)]
+            elif scheme == "nNN":
+                units = [f"n{i:02d}" for i in range(1, (target or 10) + 1)]
+            elif scheme == "pNN":
+                units = [f"p{i:02d}" for i in range(1, (target or 7) + 1)]
+            elif scheme == "dNN":
+                units = [f"d{i:02d}" for i in range(1, (target or 5) + 1)]
+            elif scheme == "wNN":
+                units = [f"w{i:02d}" for i in range(1, (target or 5) + 1)]
+            elif scheme == "vNN":
+                units = [f"v{i:02d}" for i in range(1, (target or 36) + 1)]
+            else:
+                units = [f"s{i:02d}" for i in range(0, (target or 78))]
+        out = []
+        for u in units:
+            try:
+                sb, _, _, _ = _resolve_storyboard(project, u)
+                blocks = json.load(open(sb, encoding="utf-8"))["blocks"]
+            except (FileNotFoundError, ValueError, KeyError):
+                continue
+            for c in _score_spans(blocks)[:3]:
+                c["unit"] = u
+                out.append(c)
+            if len(out) >= 12:
+                break
+        return {"project": project, "candidates": out}
+    try:
+        return json.dumps(await _run_sync(_work), indent=2)
+    except (OSError, ValueError) as e:
+        return json.dumps({"error": str(e)[:300]})
+
+
+@mcp.tool()
+async def vf_roady_pack(short: str) -> str:
+    """Derivation packet for handcrafting a Roady version of a granny short.
+
+    Joins granny lines + GIF options (with watch notes) + SO/LM triples
+    from the comedy graph + Roady register. The creative reword stays
+    human/agent-side per the roadman-shorts skill; this tool gathers
+    everything it needs. Read-only.
+
+    Args:
+        short: Shorts unit id (e.g. shorts_granny_hamlet)
+    """
+    def _work():
+        return _roady_packet_data(short)
     try:
         return json.dumps(await _run_sync(_work), indent=2)
     except (OSError, ValueError) as e:

@@ -2,7 +2,7 @@
 
 `vf_mcp_server.py` is the agent-facing front door of the video factory. Any
 MCP-capable agent — opencode, Claude, a headless driver — gets the same
-twenty tools and three resources, over stdio, with factory law enforced
+twenty-two tools and three resources, over stdio, with factory law enforced
 server-side instead of trusted client-side.
 
 ```
@@ -187,6 +187,16 @@ only if agents may apply the skill unsupervised.
 GIF motifs with depictions, placements, maker briefs, and the wanted
 queue. Filter by status (`banked`, `banked-described`, `wanted`), lane,
 or free text. Read-only; ChatGPT works the `wanted` queue from here.
+
+**`vf_shorts_mine(project, unit="")`** — finds shorts candidates in
+long-form units: verse-centered spans, man-voice exchanges, closers,
+scored for completeness and shape. Read-only; write chosen ones as
+`projects/shorts/storyboards/<name>.json` (verbatim + maps_to + emblem).
+
+**`vf_roady_pack(short)`** — derivation packet for handcrafting a Roady
+version of a granny short: granny lines + GIF options with watch notes +
+SO/LM triples from the comedy graph + Roady register. The creative
+reword stays human/agent-side per the roadman-shorts skill. Read-only.
 
 ### Resources
 

@@ -82,6 +82,15 @@ material already on screen; three beats max (two same-kind, turn on
 the third); punch word last, nothing after it. Roady rambles, Big G
 deadpans — never both at once.
 
+## Automation (as good as the video line)
+Mine with `vf_shorts_mine` (verse spans, exchanges, closers, scored).
+Write picks as `projects/shorts/storyboards/<name>.json`: verbatim lines
++ maps_to source bids + emblem + 9:16 format block. Derive Roady versions
+with `vf_roady_pack` (granny lines, GIF options, SO/LM triples, register)
+then handcraft the reword one at a time — currently at shorts 11–20 of
+the 50, Roady derivations to follow the same order. Topics live in
+`projects/shorts/index.json` (no-repeat law enforced there).
+
 ## Volume
 Pilot 3–5 shorts per long unit (tantrasara chapters, early shiva units
 first — several already run near shorts length). Scale to hundreds only

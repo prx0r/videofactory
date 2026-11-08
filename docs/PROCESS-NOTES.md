@@ -50,3 +50,7 @@ warning disposition (paratrishika) · thumbnails (trilogy/paratrishika)
 - Per-video catalog: core/builders/catalog.py (vf_catalog).
 - Lane logs: <repo>/[NIBBANA|PARAM|TIBETAN|DEATHWORKS|PARA]-INTAKE.md.
 - Skills: core/skills/ (vf_skills, vf_skill, vf_skill_propose).
+- Shorts automation: vf_shorts_mine + vf_roady_pack (MCP tools over pure
+  helpers, tested), index + no-repeat law at projects/shorts/index.json,
+  automation section in docs/SHORTS.md. Granny shorts at 20/50; Roady
+  handcrafts follow one at a time per the roadman-shorts skill.
