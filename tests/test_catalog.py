@@ -22,6 +22,8 @@ class TestCatalog(unittest.TestCase):
         self.assertEqual(len(C._unit_ids({"unit_target": 78, "unit_scheme": "sNN"})), 78)
         self.assertEqual(C._unit_ids({"unit_target": 10, "unit_scheme": "nNN"})[0], "n01")
         self.assertEqual(C._unit_ids({"unit_target": 7, "unit_scheme": "pNN"})[-1], "p07")
+        self.assertEqual(C._unit_ids({"unit_target": 5, "unit_scheme": "dNN"}), ["d%02d" % i for i in range(1, 6)])
+        self.assertEqual(C._unit_ids({"unit_target": 5, "unit_scheme": "wNN"}), ["w%02d" % i for i in range(1, 6)])
 
     def test_stem_aliases(self):
         self.assertEqual(C._stem_aliases("n01"), ["n01", "n1"])

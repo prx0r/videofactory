@@ -161,7 +161,8 @@
      "n07"
     ]
    },
-   "status": "wanted"
+   "status": "wanted",
+   "brief": "A dying flame above cooling ash, last smoke thread rising straight. Blue-ink engraving, white ground. Why: the extinction thesis in one image (n01 opening, n07 lamp chapter)."
   },
   {
    "id": "surgeon",
@@ -213,7 +214,8 @@
      "n02"
     ]
    },
-   "status": "wanted"
+   "status": "wanted",
+   "brief": "A lone figure leaning on a wall that fades to white. Why: dependence mistaken for stability (n02)."
   },
   {
    "id": "mirror-empty",
@@ -225,7 +227,8 @@
      "n09"
     ]
    },
-   "status": "wanted"
+   "status": "wanted",
+   "brief": "Small oval hand mirror reflecting blank white. Why: the owner-inventing danger-object (n03/n04/n09)."
   },
   {
    "id": "jewel-pond",
@@ -236,7 +239,8 @@
      "n04"
     ]
    },
-   "status": "wanted"
+   "status": "wanted",
+   "brief": "One jewel glinting just under pond ripples, half-seen. Why: existent-or-not, the two-lunatics object (n03/n04)."
   },
   {
    "id": "passbook",
@@ -248,7 +252,8 @@
      "n08"
     ]
    },
-   "status": "wanted"
+   "status": "wanted",
+   "brief": "A stamped savings passbook, columns of merit-ink. Why: the merit-accounting joke engine (n06-n08)."
   },
   {
    "id": "carpenter-tools",
@@ -259,7 +264,8 @@
      "n04"
     ]
    },
-   "status": "wanted"
+   "status": "wanted",
+   "brief": "A wood plane with fresh curled shavings. Why: self-critique made object (n10, n04 planks)."
   },
   {
    "id": "chariot-team",
@@ -269,7 +275,8 @@
      "n10"
     ]
    },
-   "status": "wanted"
+   "status": "wanted",
+   "brief": "Seven chariots receding toward one horizon point. Why: many vehicles, one destination (n10). Distant, minimal."
   },
   {
    "id": "relay-runner",
@@ -279,7 +286,8 @@
      "n10"
     ]
    },
-   "status": "wanted"
+   "status": "wanted",
+   "brief": "A runner passing a small flame-baton onward. Why: the practice relay (n10). Motion: handoff loop."
   },
   {
    "id": "mara-army",
@@ -289,7 +297,8 @@
      "n08"
     ]
    },
-   "status": "wanted"
+   "status": "wanted",
+   "brief": "Low dark treeline advancing at dusk, torches. Why: the death chapter mustering (n08). Keep distant, no gore."
   },
   {
    "id": "grasping-hand",
@@ -299,7 +308,8 @@
      "lane-wide"
     ]
    },
-   "status": "wanted"
+   "status": "wanted",
+   "brief": "An open hand closing on drifting smoke. Why: the most recurrent image lane-wide; appropriation failing."
   },
   {
    "id": "knotted-thread",
@@ -312,7 +322,8 @@
      "n09"
     ]
    },
-   "status": "wanted"
+   "status": "wanted",
+   "brief": "One tangled knot with loose ends on white. Why: self-tie across n03-n09."
   },
   {
    "id": "signpost",
@@ -332,7 +343,8 @@
      "p01"
     ]
    },
-   "status": "wanted"
+   "status": "wanted",
+   "brief": "Clear quartz cluster, sharp and colorless. Why: verse 6 hinge, clarity that adds nothing (p01)."
   },
   {
    "id": "rice-bowl",
@@ -342,7 +354,8 @@
      "p02"
     ]
    },
-   "status": "wanted"
+   "status": "wanted",
+   "brief": "A plain full bowl of rice, steam curling. Why: enlightenment via rice, verse 18 (p02). Humble, no garnish."
   },
   {
    "id": "spiderweb-dew",
@@ -352,7 +365,8 @@
      "p03"
     ]
    },
-   "status": "wanted"
+   "status": "wanted",
+   "brief": "Dewed web with spider at center, radial symmetry. Why: self-trapped Siva (p03)."
   },
   {
    "id": "sunrise-water",
@@ -362,7 +376,8 @@
      "p04"
     ]
    },
-   "status": "wanted"
+   "status": "wanted",
+   "brief": "Sunrise over still water, one horizontal gold band. Why: remembrance not travel (p04). Minimal."
   },
   {
    "id": "open-doorway",
@@ -372,7 +387,8 @@
      "p05"
     ]
    },
-   "status": "wanted"
+   "status": "wanted",
+   "brief": "An open door onto pure white. Why: the temple is everywhere (p05). No building."
   },
   {
    "id": "skullbowl-line",
@@ -382,7 +398,8 @@
      "p06"
     ]
    },
-   "status": "wanted"
+   "status": "wanted",
+   "brief": "An empty skull-bowl, single-line drawing. Why: cremation chapter (p06). Line only, reverent."
   },
   {
    "id": "dawn-break",
@@ -392,7 +409,8 @@
      "p07"
     ]
    },
-   "status": "wanted"
+   "status": "wanted",
+   "brief": "First light splitting night cloud over water. Why: recognition as daybreak (p07). Brighter sibling of sunrise-water."
   },
   {
    "id": "rainbow-body",
@@ -402,7 +420,8 @@
      "d05"
     ]
    },
-   "status": "wanted"
+   "status": "wanted",
+   "brief": "A seated figure dissolving upward into rainbow light bands. Why: fruition image (d05). Joyful, not spooky."
   },
   {
    "id": "yama-scales",
@@ -416,7 +435,8 @@
      "ancestors"
     ]
    },
-   "status": "wanted"
+   "status": "wanted",
+   "brief": "Balanced scales, feather on one pan, heart on other. Why: judgment beats (d02, madman, ancestors)."
   },
   {
    "id": "rising-corpse",
@@ -426,7 +446,8 @@
      "madman"
     ]
    },
-   "status": "wanted"
+   "status": "wanted",
+   "brief": "A shrouded figure sitting upright, minimal lines. Why: tukdam/mummy beats. Stillness, never horror."
   }
  ]
 }

@@ -380,6 +380,14 @@ async def vf_units(project: str = "tantrasara") -> str:
         scheme = cfg.get("unit_scheme", "chNN")
         if scheme == "chNN":
             ids = [f"{i:02d}" for i in range(1, (target or 22) + 1)]
+        elif scheme == "nNN":
+            ids = [f"n{i:02d}" for i in range(1, (target or 10) + 1)]
+        elif scheme == "pNN":
+            ids = [f"p{i:02d}" for i in range(1, (target or 7) + 1)]
+        elif scheme == "dNN":
+            ids = [f"d{i:02d}" for i in range(1, (target or 5) + 1)]
+        elif scheme == "wNN":
+            ids = [f"w{i:02d}" for i in range(1, (target or 5) + 1)]
         else:
             ids = [f"s{i:02d}" for i in range(0, (target or 78))]
         for u in ids:

@@ -43,6 +43,10 @@ def _unit_ids(cfg):
         return [f'n{i:02d}' for i in range(1, (target or 10) + 1)]
     if scheme == 'pNN':
         return [f'p{i:02d}' for i in range(1, (target or 7) + 1)]
+    if scheme == 'dNN':
+        return [f'd{i:02d}' for i in range(1, (target or 5) + 1)]
+    if scheme == 'wNN':
+        return [f'w{i:02d}' for i in range(1, (target or 5) + 1)]
     return []
 
 
@@ -54,6 +58,15 @@ def _chapter_title(repo, lane, unit, mod):
         cands = [_o.path.join(repo, 'chapters', f'n{digits}.md')]
     elif lane in ('paramarthasara',):
         cands = [_o.path.join(repo, 'chapters', f'p{digits}.md')]
+    elif lane in ('tibetan-dead',):
+        cands = [_o.path.join(repo, 'chapters', f'd{digits}.md')]
+    elif lane in ('deathworks',):
+        _slugs = ['heist', 'escape', 'rebirth', 'madman', 'ancestors']
+        try:
+            _i = max(0, min(int(digits or 1) - 1, 4))
+        except ValueError:
+            _i = 0
+        cands = [_o.path.join(repo, 'chapters', f'{_slugs[_i]}.md')]
     elif lane in ('shiva-sutras', 'shiva'):
         cands = [_o.path.join(repo, 'shiva', 'chapters', f's{digits}.md')]
     else:
@@ -63,7 +76,7 @@ def _chapter_title(repo, lane, unit, mod):
             text = open(path, encoding='utf-8').read()
         except OSError:
             continue
-        if lane == 'nibbana':
+        if lane in ('nibbana', 'tibetan-dead'):
             for pat in (r'^## (.+)$', r'^### (.+)$'):
                 m = _re.search(pat, text, _re.M)
                 if m:
@@ -82,6 +95,8 @@ def _chapter_title(repo, lane, unit, mod):
 
 def _thumbnail(assets_dir, stems):
     """Per-unit stem art, else series fallback, else None."""
+    if not assets_dir:
+        return {'file': None, 'kind': 'none'}
     for stem in stems:
         hit = _o.path.join(assets_dir, f'{stem}.png')
         if _o.path.isfile(hit):
@@ -123,7 +138,7 @@ def _row(project, mod, env, unit):
             ship = _j.load(open(final + '.ship.json', encoding='utf-8')).get('ship', None)
         except (OSError, ValueError):
             ship = None
-    assets = _o.path.join(repo, mod.paths(repo, _re.sub(r'\D', '', unit).zfill(2)).get('assets', 'assets') if hasattr(mod, 'paths') else 'assets')
+    assets = None
     try:
         assets = mod.paths(repo, _re.sub(r'\D', '', unit).zfill(2))['assets']
     except (KeyError, AttributeError, TypeError, ValueError):
@@ -182,7 +197,7 @@ def main():
         _j.dump(doc, open(out, 'w', encoding='utf-8'), indent=1)
         print(f'catalog: {len(rows)} units -> {out}')
     else:
-        print(_j.dumps(doc, indent=1)[:4000])
+        print(_j.dumps(doc, ensure_ascii=False))
     return 0
 
 
