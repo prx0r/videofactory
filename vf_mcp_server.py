@@ -388,6 +388,8 @@ async def vf_units(project: str = "tantrasara") -> str:
             ids = [f"d{i:02d}" for i in range(1, (target or 5) + 1)]
         elif scheme == "wNN":
             ids = [f"w{i:02d}" for i in range(1, (target or 5) + 1)]
+        elif scheme == "vNN":
+            ids = [f"v{i:02d}" for i in range(1, (target or 36) + 1)]
         else:
             ids = [f"s{i:02d}" for i in range(0, (target or 78))]
         for u in ids:

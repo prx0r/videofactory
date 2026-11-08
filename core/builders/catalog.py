@@ -47,6 +47,8 @@ def _unit_ids(cfg):
         return [f'd{i:02d}' for i in range(1, (target or 5) + 1)]
     if scheme == 'wNN':
         return [f'w{i:02d}' for i in range(1, (target or 5) + 1)]
+    if scheme == 'vNN':
+        return [f'v{i:02d}' for i in range(1, (target or 36) + 1)]
     return []
 
 
@@ -67,6 +69,8 @@ def _chapter_title(repo, lane, unit, mod):
         except ValueError:
             _i = 0
         cands = [_o.path.join(repo, 'chapters', f'{_slugs[_i]}.md')]
+    elif lane in ('paratrishika',):
+        cands = [_o.path.join(repo, 'chapters', f'v{digits}.md')]
     elif lane in ('shiva-sutras', 'shiva'):
         cands = [_o.path.join(repo, 'shiva', 'chapters', f's{digits}.md')]
     else:
@@ -76,7 +80,7 @@ def _chapter_title(repo, lane, unit, mod):
             text = open(path, encoding='utf-8').read()
         except OSError:
             continue
-        if lane in ('nibbana', 'tibetan-dead'):
+        if lane in ('nibbana', 'tibetan-dead', 'paratrishika'):
             for pat in (r'^## (.+)$', r'^### (.+)$'):
                 m = _re.search(pat, text, _re.M)
                 if m:
