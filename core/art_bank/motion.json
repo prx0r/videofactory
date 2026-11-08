@@ -161,8 +161,9 @@
      "n07"
     ]
    },
-   "status": "wanted",
-   "brief": "A dying flame above cooling ash, last smoke thread rising straight. Blue-ink engraving, white ground. Why: the extinction thesis in one image (n01 opening, n07 lamp chapter)."
+   "status": "superseded-banked",
+   "brief": "A dying flame above cooling ash, last smoke thread rising straight. Blue-ink engraving, white ground. Why: the extinction thesis in one image (n01 opening, n07 lamp chapter).",
+   "note": "fulfilled by logs-fire / hand-mirror"
   },
   {
    "id": "surgeon",
@@ -227,8 +228,9 @@
      "n09"
     ]
    },
-   "status": "wanted",
-   "brief": "Small oval hand mirror reflecting blank white. Why: the owner-inventing danger-object (n03/n04/n09)."
+   "status": "superseded-banked",
+   "brief": "Small oval hand mirror reflecting blank white. Why: the owner-inventing danger-object (n03/n04/n09).",
+   "note": "fulfilled by logs-fire / hand-mirror"
   },
   {
    "id": "jewel-pond",
@@ -448,6 +450,159 @@
    },
    "status": "wanted",
    "brief": "A shrouded figure sitting upright, minimal lines. Why: tukdam/mummy beats. Stillness, never horror."
+  },
+  {
+   "id": "campfire",
+   "file": "motion/campfire.gif",
+   "depicts": "A campfire burning among logs, flames lively.",
+   "means": "Fire alive (counterpoint to going-out).",
+   "use": "plays nibbana:n01",
+   "used_in": {
+    "nibbana": [
+     "n01"
+    ]
+   },
+   "status": "banked-described"
+  },
+  {
+   "id": "calm-sea",
+   "file": "motion/calm-sea.gif",
+   "depicts": "Calm sea under a wide sky, gentle swell.",
+   "means": "Settled water; post-whirlpool calm.",
+   "use": "plays nibbana:n07",
+   "used_in": {
+    "nibbana": [
+     "n07"
+    ]
+   },
+   "status": "banked-described"
+  },
+  {
+   "id": "seed-soil",
+   "file": "motion/seed-soil.gif",
+   "depicts": "A seed resting in dark soil, about to stir.",
+   "means": "Latency before arising; banyan-seed beats.",
+   "use": "plays nibbana:, paramarthasara:",
+   "used_in": {
+    "nibbana": [],
+    "paramarthasara": []
+   },
+   "status": "banked-described"
+  },
+  {
+   "id": "palm-reading",
+   "file": "motion/palm-reading.gif",
+   "depicts": "An open palm offered up for reading.",
+   "means": "The hand that wants its fortune told; self-inspection.",
+   "use": "plays nibbana:",
+   "used_in": {
+    "nibbana": []
+   },
+   "status": "banked-described"
+  },
+  {
+   "id": "watermill",
+   "file": "motion/watermill.gif",
+   "depicts": "A turning watermill wheel beside its hut.",
+   "means": "Effort-wheel turning without arriving; mechanical practice.",
+   "use": "plays nibbana:",
+   "used_in": {
+    "nibbana": []
+   },
+   "status": "banked-described"
+  },
+  {
+   "id": "om-reveal",
+   "file": "motion/om-reveal.gif",
+   "depicts": "The syllable om revealed stroke by stroke on white.",
+   "means": "First-sound emblem; Malini wheel opening.",
+   "use": "plays paramarthasara:, paratrishika:",
+   "used_in": {
+    "paramarthasara": [],
+    "paratrishika": []
+   },
+   "status": "banked-described"
+  },
+  {
+   "id": "pond-water",
+   "file": "motion/pond-water.gif",
+   "depicts": "Still pond water with soft rings.",
+   "means": "Stilled surface; jewel-pond without the jewel (kept).",
+   "use": "plays nibbana:n03,n04",
+   "used_in": {
+    "nibbana": [
+     "n03",
+     "n04"
+    ]
+   },
+   "status": "banked-described"
+  },
+  {
+   "id": "book-cup",
+   "file": "motion/book-cup.gif",
+   "depicts": "A hand setting down a book beside a cup.",
+   "means": "Study laid down; practice over reading.",
+   "use": "plays nibbana:",
+   "used_in": {
+    "nibbana": []
+   },
+   "status": "banked-described"
+  },
+  {
+   "id": "hand-mirror",
+   "file": "motion/hand-mirror.gif",
+   "depicts": "A hand raising a small oval mirror.",
+   "means": "The owner-inventing danger-object, in hand.",
+   "use": "plays nibbana:n03,n04,n09",
+   "used_in": {
+    "nibbana": [
+     "n03",
+     "n04",
+     "n09"
+    ]
+   },
+   "status": "banked-described"
+  },
+  {
+   "id": "leaning-monk",
+   "file": "motion/leaning-monk.gif",
+   "depicts": "A robed monk dozing upright against a stone wall.",
+   "means": "Dependence as rest; leaning-wall alternate (seated, sleeping).",
+   "use": "plays nibbana:n02",
+   "used_in": {
+    "nibbana": [
+     "n02"
+    ]
+   },
+   "status": "banked-described"
+  },
+  {
+   "id": "lamp-extinguish",
+   "file": "motion/lamp-extinguish.gif",
+   "depicts": "An ornate oil lamp, flame guttering out.",
+   "means": "The going-out, shown happening.",
+   "use": "plays nibbana:n01,n07",
+   "used_in": {
+    "nibbana": [
+     "n01",
+     "n07"
+    ]
+   },
+   "status": "banked-described"
+  },
+  {
+   "id": "logs-fire",
+   "file": "motion/logs-fire.gif",
+   "depicts": "Split logs catching full flame.",
+   "means": "Fire established; pair with extinguish for the arc.",
+   "use": "plays nibbana:n01,n07",
+   "used_in": {
+    "nibbana": [
+     "n01",
+     "n07"
+    ]
+   },
+   "status": "banked-described"
   }
  ]
 }
