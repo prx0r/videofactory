@@ -1,1 +1,202 @@
-{"format": "motion-bank-v1", "law": "GIFs are earned by recurrence (house VISUALS.md). Files here are canonical; lane copies are caches. First frame doubles as the still emblem.", "source": "owner-made 2026-11-08 (ChatGPT series + engraved vortex)", "style": "blue-ink pencil-engraving on white, ~310x414, 12 frames, loop, 0.5-1.5MB, no text", "entries": [{"id": "dog-water", "file": "motion/dog-water.gif", "motif": "dog at water with its reflection", "used_in": {"nibbana": ["n02", "n09"]}, "status": "banked"}, {"id": "cinema", "file": "motion/cinema.gif", "motif": "cinema projector, the show", "used_in": {"nibbana": ["n03"]}, "status": "banked"}, {"id": "donkey-carrot", "file": "motion/donkey-carrot.gif", "motif": "donkey chasing carrot on a stick", "used_in": {"nibbana": ["n04"]}, "status": "banked"}, {"id": "sewing-machine", "file": "motion/sewing-machine.gif", "motif": "sewing machine, the final stitch", "used_in": {"nibbana": ["n10"]}, "status": "banked"}, {"id": "lotus-rain", "file": "motion/lotus-rain.gif", "motif": "lotus leaf in rain, non-stick", "used_in": {"nibbana": []}, "status": "banked"}, {"id": "lamp-flame", "file": "motion/lamp-flame.gif", "motif": "oil lamp flame", "used_in": {"nibbana": ["n01", "n07"]}, "status": "banked"}, {"id": "hands-sand", "file": "motion/hands-sand.gif", "motif": "hands letting sand fall", "used_in": {"nibbana": ["n08"]}, "status": "banked"}, {"id": "magician", "file": "motion/magician.gif", "motif": "stage magician, the trick", "used_in": {"nibbana": ["n09"]}, "status": "banked"}, {"id": "raft", "file": "motion/raft.gif", "motif": "raft on water, abandon after crossing", "used_in": {"nibbana": ["n10"]}, "status": "banked"}, {"id": "wave-vortex", "file": "motion/wave-vortex.gif", "motif": "engraved wave gathering to calm", "used_in": {"nibbana": ["n01", "n03"]}, "status": "banked"}, {"id": "fire-out", "motif": "fire going out, smoke rising", "used_in": {"nibbana": ["n01"], "shiva-sutras": []}, "status": "wanted"}, {"id": "surgeon", "motif": "surgeon at work", "used_in": {"nibbana": ["n01"]}, "status": "wanted"}, {"id": "fire", "motif": "fire, dominant chant-image (27x)", "used_in": {"shiva-sutras": []}, "status": "wanted"}, {"id": "seed", "motif": "seed (22x)", "used_in": {"shiva-sutras": []}, "status": "wanted"}, {"id": "ocean", "motif": "ocean (12x)", "used_in": {"shiva-sutras": []}, "status": "wanted"}, {"id": "wheel", "motif": "wheel turning", "used_in": {"shiva-sutras": []}, "status": "wanted"}]}
+{
+ "format": "motion-bank-v1",
+ "law": "GIFs are earned by recurrence (house VISUALS.md). Files here are canonical; lane copies are caches. First frame doubles as the still emblem.",
+ "source": "owner-made 2026-11-08 (ChatGPT series + engraved vortex)",
+ "style": "blue-ink pencil-engraving on white, ~310x414, 12 frames, loop, 0.5-1.5MB, no text",
+ "entries": [
+  {
+   "id": "dog-water",
+   "file": "motion/dog-water.gif",
+   "motif": "dog at water with its reflection",
+   "used_in": {
+    "nibbana": [
+     "n02",
+     "n09"
+    ]
+   },
+   "status": "banked-described",
+   "depicts": "A puppy at a pond edge gazing at its own reflection in still water.",
+   "means": "The self meeting itself; the owner smuggled into the story. Play wherever recognition misfires.",
+   "use": "n02 leaning-mechanics, n09 dog chapter. Never as mere cuteness."
+  },
+  {
+   "id": "cinema",
+   "file": "motion/cinema.gif",
+   "motif": "cinema projector, the show",
+   "used_in": {
+    "nibbana": [
+     "n03"
+    ]
+   },
+   "status": "banked-described",
+   "depicts": "A vintage projector beaming a landscape onto a screen in a dark room.",
+   "means": "Consciousness as projection; the show that needs no world behind it.",
+   "use": "n03 cinema trick. Pairs with magician, never same span."
+  },
+  {
+   "id": "donkey-carrot",
+   "file": "motion/donkey-carrot.gif",
+   "motif": "donkey chasing carrot on a stick",
+   "used_in": {
+    "nibbana": [
+     "n04"
+    ]
+   },
+   "status": "banked-described",
+   "depicts": "A donkey pulling a cart, chasing a carrot dangled ahead of it.",
+   "means": "Goalless pursuit; the goal recedes because the chase produces it.",
+   "use": "n04 pond-jewel and carrot beats."
+  },
+  {
+   "id": "sewing-machine",
+   "file": "motion/sewing-machine.gif",
+   "motif": "sewing machine, the final stitch",
+   "used_in": {
+    "nibbana": [
+     "n10"
+    ]
+   },
+   "status": "banked-described",
+   "depicts": "An antique sewing machine mid-stitch, thread running.",
+   "means": "Stitching a self together; the final stitch never made. Closing energy.",
+   "use": "n10 seamstress and finale. Nowhere else."
+  },
+  {
+   "id": "lotus-rain",
+   "file": "motion/lotus-rain.gif",
+   "motif": "lotus leaf in rain, non-stick",
+   "used_in": {
+    "nibbana": []
+   },
+   "status": "banked-described",
+   "depicts": "Lotus leaf beaded with rain that will not stick.",
+   "means": "Non-grasping awareness; contact without ownership.",
+   "use": "General purity beats; n06 non-appropriation."
+  },
+  {
+   "id": "lamp-flame",
+   "file": "motion/lamp-flame.gif",
+   "motif": "oil lamp flame",
+   "used_in": {
+    "nibbana": [
+     "n01",
+     "n07"
+    ]
+   },
+   "status": "banked-described",
+   "depicts": "A lit oil lamp, flame leaning in dark air.",
+   "means": "Attention itself; the flame that goes out is also the one that sees.",
+   "use": "n01 fire beats, n07 exhausted-lamp chapter (counterpoint: lit vs out)."
+  },
+  {
+   "id": "hands-sand",
+   "file": "motion/hands-sand.gif",
+   "motif": "hands letting sand fall",
+   "used_in": {
+    "nibbana": [
+     "n08"
+    ]
+   },
+   "status": "banked-described",
+   "depicts": "Open hands letting dry sand run through.",
+   "means": "Release; possession failing in real time.",
+   "use": "n08 sandcastle chapter. Hands, never fists."
+  },
+  {
+   "id": "magician",
+   "file": "motion/magician.gif",
+   "motif": "stage magician, the trick",
+   "used_in": {
+    "nibbana": [
+     "n09"
+    ]
+   },
+   "status": "banked-described",
+   "depicts": "A stage magician presenting a levitation, audience watching.",
+   "means": "The trick of consciousness; total conviction, nothing behind it.",
+   "use": "n09 magic-show chapter. Never alongside cinema in one span."
+  },
+  {
+   "id": "raft",
+   "file": "motion/raft.gif",
+   "motif": "raft on water, abandon after crossing",
+   "used_in": {
+    "nibbana": [
+     "n10"
+    ]
+   },
+   "status": "banked-described",
+   "depicts": "A figure on a bamboo raft, hand trailing in the water.",
+   "means": "The vehicle to abandon after crossing; means, not home.",
+   "use": "n10 raft beats. Never as travel scenery."
+  },
+  {
+   "id": "wave-vortex",
+   "file": "motion/wave-vortex.gif",
+   "motif": "engraved wave gathering to calm",
+   "used_in": {
+    "nibbana": [
+     "n01",
+     "n03"
+    ]
+   },
+   "status": "banked-described",
+   "depicts": "Engraved wave gathering itself toward calm water.",
+   "means": "Agitation resolving without going anywhere; the whirlpool ending.",
+   "use": "n01/n03 whirlpool expositions; closing-adjacent calm."
+  },
+  {
+   "id": "fire-out",
+   "motif": "fire going out, smoke rising",
+   "used_in": {
+    "nibbana": [
+     "n01"
+    ],
+    "shiva-sutras": []
+   },
+   "status": "wanted"
+  },
+  {
+   "id": "surgeon",
+   "motif": "surgeon at work",
+   "used_in": {
+    "nibbana": [
+     "n01"
+    ]
+   },
+   "status": "wanted"
+  },
+  {
+   "id": "fire",
+   "motif": "fire, dominant chant-image (27x)",
+   "used_in": {
+    "shiva-sutras": []
+   },
+   "status": "wanted"
+  },
+  {
+   "id": "seed",
+   "motif": "seed (22x)",
+   "used_in": {
+    "shiva-sutras": []
+   },
+   "status": "wanted"
+  },
+  {
+   "id": "ocean",
+   "motif": "ocean (12x)",
+   "used_in": {
+    "shiva-sutras": []
+   },
+   "status": "wanted"
+  },
+  {
+   "id": "wheel",
+   "motif": "wheel turning",
+   "used_in": {
+    "shiva-sutras": []
+   },
+   "status": "wanted"
+  }
+ ]
+}
