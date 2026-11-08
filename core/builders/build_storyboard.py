@@ -306,7 +306,7 @@ def validate(sb):
         if b['voice'] == 'UNCAST':
             errs.append(f"{b['id']}: quote needs casting decision — add to overrides [{b['text'][:60]}]")
             continue
-        if b['voice'] not in ('granny', 'man', 'verse', 'none'):
+        if b['voice'] not in ('granny', 'man', 'verse', 'roadman', 'none'):
             errs.append(f"{b['id']}: bad voice {b['voice']}")
             continue
         b['directed'] = apply_direction(b)

@@ -87,7 +87,10 @@ class TestCentralizedAssets(unittest.TestCase):
         cfg_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'projects', 'tantrasara', 'project.json')
         cfg = json.load(open(cfg_path, encoding='utf-8'))
         self.assertEqual(set(cfg['voices']), {'granny', 'man', 'verse'})
-        self.assertEqual(_vf.voices(), cfg['voices'])
+        v = _vf.voices()
+        for k in ('granny', 'man', 'verse'):
+            self.assertEqual(v[k], cfg['voices'][k])
+        self.assertEqual(v['roadman'], 'e64e97ef91304e2894cd72ff03b86d97')
 
     def test_font_faces_resolve(self):
         f = _vf.fonts()

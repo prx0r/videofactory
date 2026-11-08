@@ -577,5 +577,23 @@ class PipelineTests(FactoryFixture):
         self.assertAlmostEqual(assemble_proven.duration(output), sum(assemble_proven.duration(p) for p in parts), delta=0.3)
 
 
+class TestRoadmanSeat(unittest.TestCase):
+    def test_voices_include_roadman(self):
+        import paths as V
+        self.assertEqual(V.voices()['roadman'], 'e64e97ef91304e2894cd72ff03b86d97')
+
+    def test_validator_accepts_roadman(self):
+        import build_storyboard as B
+        sb = {'title': 't', 'blocks': [
+            {'id': 'b1', 'section': 's', 'type': 'narration', 'voice': 'granny', 'text': 'Hello.'},
+            {'id': 'b2', 'section': 's', 'type': 'dialogue', 'voice': 'roadman', 'text': '"Listen, mate."'},
+        ]}
+        for b in sb['blocks']:
+            b['directed'] = B.apply_direction(b)
+        errs, warns = B.validate(sb)
+        self.assertEqual(errs, [])
+        self.assertEqual(warns, [])
+
+
 if __name__ == '__main__':
     unittest.main()

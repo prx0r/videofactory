@@ -72,6 +72,7 @@ def voices():
         'granny': v.get('granny', '614f8afd83f841048c040b2c6234d2c1'),
         'man': v.get('man', 'fcfd5ebf496949ed9f76b3a533ee4738'),
         'verse': v.get('verse', '4e873c37d4cb439e9bccc4dc1f633290'),
+        'roadman': v.get('roadman', 'e64e97ef91304e2894cd72ff03b86d97'),
     }
 
 

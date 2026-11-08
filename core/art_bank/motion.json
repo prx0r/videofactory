@@ -405,7 +405,8 @@
    "means": "The temple-is-everywhere opening.",
    "file": "motion/open-doorway.gif",
    "note": "ChatGPT procedural draft from queue briefs (manifest: not engraving quality); promote by re-render.",
-   "watch": "A white door swings slowly open onto white."
+   "watch": "A white door swings slowly open onto white.",
+   "use": "Threshold beats: entries, exits, thresholds crossed."
   },
   {
    "id": "skullbowl-line",
@@ -421,7 +422,8 @@
    "means": "Mortality held lightly; cremation chapter.",
    "file": "motion/skullbowl-line.gif",
    "note": "ChatGPT procedural draft from queue briefs (manifest: not engraving quality); promote by re-render.",
-   "watch": "Near-still line bowl; the faintest shimmer."
+   "watch": "Near-still line bowl; the faintest shimmer.",
+   "use": "Cremation-ground chapters; mortality held lightly."
   },
   {
    "id": "dawn-break",
@@ -437,7 +439,8 @@
    "means": "First light, barely there; daybreak.",
    "file": "motion/dawn-break.gif",
    "note": "ChatGPT procedural draft from queue briefs (manifest: not engraving quality); promote by re-render.",
-   "watch": "Clouds thin, first light strengthens over still water."
+   "watch": "Clouds thin, first light strengthens over still water.",
+   "use": "Remembrance and daybreak chapters (p04/p07 pattern)."
   },
   {
    "id": "rainbow-body",
@@ -453,7 +456,8 @@
    "means": "Fruition without spectacle.",
    "file": "motion/rainbow-body.gif",
    "note": "ChatGPT procedural draft from queue briefs (manifest: not engraving quality); promote by re-render.",
-   "watch": "A seated figure brightens then dims, breathing light."
+   "watch": "A seated figure brightens then dims, breathing light.",
+   "use": "Fruition without spectacle; light-body beats."
   },
   {
    "id": "yama-scales",
@@ -473,7 +477,8 @@
    "means": "Judgment beats; the weighing.",
    "file": "motion/yama-scales.gif",
    "note": "ChatGPT procedural draft from queue briefs (manifest: not engraving quality); promote by re-render.",
-   "watch": "The pans sway gently, never settling."
+   "watch": "The pans sway gently, never settling.",
+   "use": "Judgment and weighing beats across death lanes."
   },
   {
    "id": "rising-corpse",
@@ -489,7 +494,8 @@
    "means": "The fact of death, held.",
    "file": "motion/rising-corpse.gif",
    "note": "ChatGPT procedural draft from queue briefs (manifest: not engraving quality); promote by re-render.",
-   "watch": "A shrouded form rises slightly, then settles back."
+   "watch": "A shrouded form rises slightly, then settles back.",
+   "use": "Tukdam/mummy beats; stillness, never horror."
   },
   {
    "id": "campfire",
@@ -1007,6 +1013,107 @@
    "used_in": {},
    "status": "wanted",
    "brief": "A long queue shuffling forward one step at a time.. Blue-ink engraving on white, minimal, one moving element, no text, seamless loop. Roady-first approved: everyday scenes welcome."
+  },
+  {
+   "id": "yogic-ascension",
+   "file": "yogic-ascension.gif",
+   "status": "banked-described",
+   "depicts": "Seated yogi, luminous channels rising spine to crown.",
+   "means": "Awakening current rising through the centers.",
+   "use": "Paratrishika shakti chapters.",
+   "watch": "Loop seam invisible.",
+   "used_in": {
+    "paratrishika": []
+   }
+  },
+  {
+   "id": "yogic-cycle",
+   "file": "yogic-cycle.gif",
+   "status": "banked-described",
+   "depicts": "Energy cycling up the spine in panel sequence.",
+   "means": "Cyclic ascent and return of the current.",
+   "use": "Paratrishika wheel-of-energies units.",
+   "watch": "Loop seam invisible.",
+   "used_in": {
+    "paratrishika": []
+   }
+  },
+  {
+   "id": "scroll-unroll",
+   "file": "scroll-unroll.gif",
+   "status": "banked-described",
+   "depicts": "Engraved scroll unrolling, text revealed line by line.",
+   "means": "Teachings disclosed in sequence.",
+   "use": "Bardo instruction readings; sermon-manual chapters.",
+   "watch": "Loop seam invisible.",
+   "used_in": {
+    "tibetan-dead": [
+     "d01",
+     "d02"
+    ],
+    "nibbana": [
+     "n10"
+    ]
+   }
+  },
+  {
+   "id": "lamp-row",
+   "file": "lamp-row.gif",
+   "status": "banked-described",
+   "depicts": "Row of engraved offering lamps, flames alive.",
+   "means": "Offerings kept burning; remembrance held.",
+   "use": "Flame-family chapters; butter-lamp beats.",
+   "watch": "Loop seam invisible.",
+   "used_in": {
+    "nibbana": [
+     "n01",
+     "n07"
+    ],
+    "tibetan-dead": [
+     "d01"
+    ]
+   }
+  },
+  {
+   "id": "prayer-hands",
+   "file": "prayer-hands.gif",
+   "status": "banked-described",
+   "depicts": "Cupped hands raised, rays parting between palms.",
+   "means": "Supplication; calling on the guides.",
+   "use": "Phowa devotion; ancestor-prayer chapters.",
+   "watch": "Loop seam invisible.",
+   "used_in": {
+    "tibetan-dead": [
+     "d-before"
+    ],
+    "deathworks": [
+     "ancestors"
+    ]
+   }
+  },
+  {
+   "id": "yogic-awakening",
+   "file": "yogic-awakening.gif",
+   "status": "banked-described",
+   "depicts": "Seated figure, heart and crown igniting in sequence.",
+   "means": "Centers lighting in order.",
+   "use": "Paratrishika cakra/phoneme-emission chapters.",
+   "watch": "Loop seam invisible.",
+   "used_in": {
+    "paratrishika": []
+   }
+  },
+  {
+   "id": "yogic-flow",
+   "file": "yogic-flow.gif",
+   "status": "banked-described",
+   "depicts": "Seated figure, current streaming hands to crown.",
+   "means": "Current in full circulation.",
+   "use": "Paratrishika full-current chapters.",
+   "watch": "Loop seam invisible.",
+   "used_in": {
+    "paratrishika": []
+   }
   }
  ]
 }
