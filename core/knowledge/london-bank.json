@@ -1,0 +1,216 @@
+{
+ "format": "london-bank-v1",
+ "law": "Allusion-grade only: places, foods, rituals as comedy material. Never reproduce lyrics or routines. Map each use to doctrine + unit.",
+ "entries": [
+  {
+   "id": "morleys",
+   "place": "Morley's / Chicken Cottage",
+   "kind": "food",
+   "angle": "Hot wings at 2am after the motive dies. Desire, immediate and specific.",
+   "doctrine": [
+    "craving",
+    "n07",
+    "n08"
+   ]
+  },
+  {
+   "id": "nandos-cheeky",
+   "place": "Cheeky Nando's",
+   "kind": "food",
+   "angle": "The sacred pilgrimage oftness; PERiometer as merit index.",
+   "doctrine": [
+    "craving",
+    "merit"
+   ]
+  },
+  {
+   "id": "greggs",
+   "place": "Greggs sausage roll",
+   "kind": "food",
+   "angle": "Steak bake eschatology: the best things are 90p and gone by noon.",
+   "doctrine": [
+    "impermanence"
+   ]
+  },
+  {
+   "id": "meal-deal",
+   "place": "Tesco \u00a33.50 meal deal",
+   "kind": "food",
+   "angle": "Main + snack + drink, fixed price: karma economy, merit accounting.",
+   "doctrine": [
+    "n06",
+    "merit"
+   ]
+  },
+  {
+   "id": "jd-sports",
+   "place": "JD Sports, creps wall",
+   "kind": "shops",
+   "angle": "Boxfresh hierarchy; identity you can buy, weekly drop dharma.",
+   "doctrine": [
+    "self",
+    "grasping"
+   ]
+  },
+  {
+   "id": "footlocker",
+   "place": "Footlocker Oxford St",
+   "kind": "shops",
+   "angle": "Tourist-trap twin of JD; wanting as window shopping.",
+   "doctrine": [
+    "craving"
+   ]
+  },
+  {
+   "id": "turkish-barbers",
+   "place": "Turkish barbers, fifteen quid skinfade",
+   "kind": "shops",
+   "angle": "Trim the self, emerge a new man; anatta with hot towels.",
+   "doctrine": [
+    "n02",
+    "self"
+   ]
+  },
+  {
+   "id": "primark",
+   "place": "Primark Marble Arch",
+   "kind": "shops",
+   "angle": "Everything costs nothing and falls apart: impermanence, high street edition.",
+   "doctrine": [
+    "impermanence"
+   ]
+  },
+  {
+   "id": "harrods",
+   "place": "Harrods, green bags, no backpacks",
+   "kind": "posh-contrast",
+   "angle": "The sacred/profane axis in one building; desire with a dress code.",
+   "doctrine": [
+    "craving",
+    "n05"
+   ]
+  },
+  {
+   "id": "poundland",
+   "place": "Poundland",
+   "kind": "shops",
+   "angle": "Harrods inverted; same grasping, smaller receipt.",
+   "doctrine": [
+    "craving"
+   ]
+  },
+  {
+   "id": "night-bus",
+   "place": "The N-prefix night bus",
+   "kind": "transit",
+   "angle": "Bardo transit: between states, fluorescent-lit, nobody's home.",
+   "doctrine": [
+    "death",
+    "n08"
+   ]
+  },
+  {
+   "id": "oyster-beep",
+   "place": "Oyster/contactless beep",
+   "kind": "transit",
+   "angle": "Merit deducted per journey; the gate always knows your balance.",
+   "doctrine": [
+    "karma",
+    "n06"
+   ]
+  },
+  {
+   "id": "mind-the-gap",
+   "place": "Mind the gap",
+   "kind": "transit",
+   "angle": "The teaching, announced every 3 minutes, ignored by millions.",
+   "doctrine": [
+    "heedfulness"
+   ]
+  },
+  {
+   "id": "santander-bike",
+   "place": "Boris bike, wobbly",
+   "kind": "transit",
+   "angle": "Borrowed vehicle, returned dented: the body.",
+   "doctrine": [
+    "body"
+   ]
+  },
+  {
+   "id": "notting-hill",
+   "place": "Carnival, behind the truck",
+   "kind": "ritual",
+   "angle": "Collective effervescence; joy that needs no owner.",
+   "doctrine": [
+    "n07",
+    "joy"
+   ]
+  },
+  {
+   "id": "shisha-lounge",
+   "place": "Edgware Road shisha lounge",
+   "kind": "ritual",
+   "angle": "Smoke contemplation; watching things dissolve socially.",
+   "doctrine": [
+    "impermanence"
+   ]
+  },
+  {
+   "id": "fives-cage",
+   "place": "Powerleague cage, Tuesday night",
+   "kind": "ritual",
+   "angle": "Samsara with bibs; same game, different suffering.",
+   "doctrine": [
+    "n10"
+   ]
+  },
+  {
+   "id": "bookies",
+   "place": "William Hill FOBT corner",
+   "kind": "shops",
+   "angle": "Craving with a spin button; merit burned at 20-second intervals.",
+   "doctrine": [
+    "craving",
+    "karma"
+   ]
+  },
+  {
+   "id": "stairwell",
+   "place": "Estate stairwell link-up",
+   "kind": "places",
+   "angle": "The real sangha meets where the cameras don't.",
+   "doctrine": [
+    "community"
+   ]
+  },
+  {
+   "id": "balcony-view",
+   "place": "Balcony over the ends at dusk",
+   "kind": "places",
+   "angle": "Surveying your whole realm; king of two postcodes.",
+   "doctrine": [
+    "self",
+    "conceit"
+   ]
+  },
+  {
+   "id": "rain-grey",
+   "place": "Grey sky that never quite rains",
+   "kind": "weather",
+   "angle": "Background dukkha; low-level hum of the city.",
+   "doctrine": [
+    "feeling"
+   ]
+  },
+  {
+   "id": "corner-shop",
+   "place": "The corner shop at 11pm",
+   "kind": "shops",
+   "angle": "Desire's chapel, always open; the shelf of instant relief.",
+   "doctrine": [
+    "craving"
+   ]
+  }
+ ]
+}
