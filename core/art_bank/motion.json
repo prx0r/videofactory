@@ -613,6 +613,189 @@
     ]
    },
    "status": "banked-described"
+  },
+  {
+   "id": "prakasa-light",
+   "motif": "Pure light radiating outward from a center point, steady pulse.",
+   "why": "Consciousness as light itself (prak\u0101\u015ba).",
+   "used_in": {
+    "paramarthasara": [
+     "p01"
+    ],
+    "paratrishika": [],
+    "shiva-sutras": []
+   },
+   "status": "wanted",
+   "brief": "Pure light radiating outward from a center point, steady pulse.. Blue-ink engraving on white, minimal, one moving element, no text, seamless loop."
+  },
+  {
+   "id": "vimarsa-mirror",
+   "motif": "Light bending back to regard its own source, figure-eight flow.",
+   "why": "Self-awareness (vimar\u015ba): light knowing itself.",
+   "used_in": {
+    "paramarthasara": [],
+    "paratrishika": []
+   },
+   "status": "wanted",
+   "brief": "Light bending back to regard its own source, figure-eight flow.. Blue-ink engraving on white, minimal, one moving element, no text, seamless loop."
+  },
+  {
+   "id": "spanda-throb",
+   "motif": "A single point gently expanding and contracting, breathing rhythm.",
+   "why": "The throb (spanda): reality pulsing. Slow loop.",
+   "used_in": {
+    "paramarthasara": [],
+    "shiva-sutras": []
+   },
+   "status": "wanted",
+   "brief": "A single point gently expanding and contracting, breathing rhythm.. Blue-ink engraving on white, minimal, one moving element, no text, seamless loop."
+  },
+  {
+   "id": "aham-knot",
+   "motif": "The syllable A tightening then loosening like a knot untying.",
+   "why": "The I-sense forming and releasing (aham).",
+   "used_in": {
+    "paramarthasara": [],
+    "paratrishika": []
+   },
+   "status": "wanted",
+   "brief": "The syllable A tightening then loosening like a knot untying.. Blue-ink engraving on white, minimal, one moving element, no text, seamless loop."
+  },
+  {
+   "id": "hridaya-lotus",
+   "motif": "A closed lotus bud opening one petal at a time, looping.",
+   "why": "The Heart opening (h\u1e5bdaya). Pairs with knot imagery.",
+   "used_in": {
+    "paramarthasara": []
+   },
+   "status": "wanted",
+   "brief": "A closed lotus bud opening one petal at a time, looping.. Blue-ink engraving on white, minimal, one moving element, no text, seamless loop."
+  },
+  {
+   "id": "bindu-point",
+   "motif": "One luminous point with faint concentric rings spreading.",
+   "why": "The point-source (bindu); emanation without moving.",
+   "used_in": {
+    "paratrishika": [],
+    "paramarthasara": []
+   },
+   "status": "wanted",
+   "brief": "One luminous point with faint concentric rings spreading.. Blue-ink engraving on white, minimal, one moving element, no text, seamless loop."
+  },
+  {
+   "id": "nada-wave",
+   "motif": "Concentric sound-ripples from an unseen center.",
+   "why": "Primordial sound (n\u0101da) before letters.",
+   "used_in": {
+    "paratrishika": []
+   },
+   "status": "wanted",
+   "brief": "Concentric sound-ripples from an unseen center.. Blue-ink engraving on white, minimal, one moving element, no text, seamless loop."
+  },
+  {
+   "id": "dawn-ray",
+   "motif": "A single ray widening across dark water to daylight.",
+   "why": "First light; awakening beats anywhere.",
+   "used_in": {
+    "nibbana": [],
+    "tibetan-dead": [],
+    "deathworks": []
+   },
+   "status": "wanted",
+   "brief": "A single ray widening across dark water to daylight.. Blue-ink engraving on white, minimal, one moving element, no text, seamless loop."
+  },
+  {
+   "id": "moon-disc",
+   "motif": "A full moon clearing slow cloud, halo steady.",
+   "why": "Calm witness; night chapters, death watches.",
+   "used_in": {
+    "tibetan-dead": [],
+    "deathworks": []
+   },
+   "status": "wanted",
+   "brief": "A full moon clearing slow cloud, halo steady.. Blue-ink engraving on white, minimal, one moving element, no text, seamless loop."
+  },
+  {
+   "id": "star-field",
+   "motif": "Stars slowly wheeling overhead, one fixed pole star.",
+   "why": "Vast time; finale skies.",
+   "used_in": {
+    "nibbana": [
+     "n10"
+    ],
+    "paratrishika": []
+   },
+   "status": "wanted",
+   "brief": "Stars slowly wheeling overhead, one fixed pole star.. Blue-ink engraving on white, minimal, one moving element, no text, seamless loop."
+  },
+  {
+   "id": "breath-body",
+   "motif": "A reclining outline, breath rising and falling in the chest.",
+   "why": "The body breathing itself; bardo and tukdam beats.",
+   "used_in": {
+    "tibetan-dead": [],
+    "deathworks": []
+   },
+   "status": "wanted",
+   "brief": "A reclining outline, breath rising and falling in the chest.. Blue-ink engraving on white, minimal, one moving element, no text, seamless loop."
+  },
+  {
+   "id": "channel-body",
+   "motif": "Three vertical channels with slow ascending glow dots.",
+   "why": "Subtle body; phowa and yogic departure.",
+   "used_in": {
+    "tibetan-dead": [],
+    "deathworks": [
+     "heist"
+    ]
+   },
+   "status": "wanted",
+   "brief": "Three vertical channels with slow ascending glow dots.. Blue-ink engraving on white, minimal, one moving element, no text, seamless loop."
+  },
+  {
+   "id": "corpse-quiet",
+   "motif": "A shrouded form utterly still, dust motes drifting.",
+   "why": "The fact of death, held without horror.",
+   "used_in": {
+    "deathworks": [
+     "madman",
+     "ancestors"
+    ]
+   },
+   "status": "wanted",
+   "brief": "A shrouded form utterly still, dust motes drifting.. Blue-ink engraving on white, minimal, one moving element, no text, seamless loop."
+  },
+  {
+   "id": "folded-hands",
+   "motif": "Two hands slowly joining in a\u00f1jali, holding, releasing.",
+   "why": "Devotion concentrating then releasing into praise.",
+   "used_in": {
+    "shiva-sutras": [],
+    "paramarthasara": []
+   },
+   "status": "wanted",
+   "brief": "Two hands slowly joining in a\u00f1jali, holding, releasing.. Blue-ink engraving on white, minimal, one moving element, no text, seamless loop."
+  },
+  {
+   "id": "temple-lamps",
+   "motif": "A row of small flames bowing in one direction, night.",
+   "why": "Offered light; evening temple chapters.",
+   "used_in": {
+    "paramarthasara": [],
+    "deathworks": []
+   },
+   "status": "wanted",
+   "brief": "A row of small flames bowing in one direction, night.. Blue-ink engraving on white, minimal, one moving element, no text, seamless loop."
+  },
+  {
+   "id": "hymn-scroll",
+   "motif": "A scroll unrolling one line at a time, endless paper.",
+   "why": "Praise continuing past the singer.",
+   "used_in": {
+    "shiva-sutras": []
+   },
+   "status": "wanted",
+   "brief": "A scroll unrolling one line at a time, endless paper.. Blue-ink engraving on white, minimal, one moving element, no text, seamless loop."
   }
  ]
 }
