@@ -40,6 +40,13 @@ house voices. Candidate status until a test render blesses it — wire
 into lane voices only after ears pass. Roady G = roadman persona;
 Big G = granny herself in third person.
 
+## Roady frame (owner direction 2026-11-08)
+Roady reacts to the GIF as if seeing it for the first time, talking to
+his mate — personal stories allowed to land the image. Each 60 seconds
+is one thing: spanda, prakasa, what is Siva? Source of truth for the
+voice: translation-work `paramarthasara/ROADMAN-v1.DRAFT.json` (all 105
+verses in roadman, machine draft pending owner review — register bans
+cap/fr/bussin/vibe/delulu/lowkey).
 ## Roady-to-Big-G handoff (owner style bible 2026-11-08)
 Two-minute shape. First 60 seconds: Roady G in roadman, META — he
 explains the GIF on screen ("so boom, look at dis stunning AI generated
