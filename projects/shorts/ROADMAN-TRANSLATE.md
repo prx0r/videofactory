@@ -34,52 +34,52 @@ Maps: ch01-b103..b106. GIF: dawn-break up first.
 | # | short | roadman angle | GIF | status |
 |---|-------|---------------|-----|--------|
 | 1 | hamlet | actor forgetting he's acting | cinema | DONE (voiced) |
-| 2 | blue | weather passing the window | mirror-empty | storyboard |
+| 2 | blue | weather passing the window | pond-water.gif | storyboard |
 | 3 | tables | same tables, different eyes | open-doorway | DONE above |
-| 4 | screen | screen never breaks, films do | cinema | storyboard |
-| 5 | nobodydies | username deleted, player remains | lamp-flame | storyboard |
-| 6 | recognise | walking in, forgetting why | wave-vortex | storyboard |
-| 7 | mantra | earworm as engine | om-reveal | storyboard |
-| 8 | solipsism | dreaming the bus | lotus-rain | storyboard |
+| 4 | screen | screen never breaks, films do | cinema.gif | storyboard |
+| 5 | nobodydies | username deleted, player remains | lamp-extinguish.gif | storyboard |
+| 6 | recognise | walking in, forgetting why | wave-vortex.gif | storyboard |
+| 7 | mantra | earworm as engine | om-reveal.gif | storyboard |
+| 8 | solipsism | dreaming the bus | lotus-rain.gif | storyboard |
 | 9 | journey | phone in hand | dawn-break | DONE above |
-| 10 | installed | pre-installed apps | seed-soil | storyboard |
-| 11 | gift | showing beats giving | lamp-extinguish | storyboard |
-| 12 | teacher | lifeguard must swim | book-cup | storyboard |
-| 13 | objects | sunglasses at night | mirror-empty | storyboard |
-| 14 | hidden | password never typed | om-reveal | storyboard |
-| 15 | freedom | glasses on your head | dawn-break | storyboard |
-| 16 | turya | between two songs | wave-vortex | storyboard |
-| 17 | hamsa | breathing in sleep counts reps | magician | storyboard |
-| 18 | finale77 | coming home to home | wave-vortex | storyboard |
-| 19 | heart | pray where the kettle is | lamp-flame | storyboard |
-| 20 | vimarsa | mirror looking at itself | mirror-empty | storyboard |
-| 21 | lamps | torches vs daylight | dawn-break | storyboard |
-| 22 | noritual | microwave vs fire cooking | lamp-flame | storyboard |
-| 23 | tattvas | WiFi everywhere | om-reveal | storyboard |
-| 24 | space | phone storage full of universes | wave-vortex | storyboard |
-| 25 | invented | flatpack, lost manual | magician | storyboard |
-| 26 | kalas | council departments | cinema | storyboard |
-| 27 | apavarga | tight jacket off | mirror-empty | storyboard |
-| 28 | noref | no CV, still hired | lotus-rain | storyboard |
-| 29 | shaktipata | unexpected upgrade | raft | storyboard |
-| 30 | distance | WiFi reaches the garden | hands-sand | storyboard |
-| 31 | beard | Turkish barbers, anatta special | seed-soil | storyboard |
-| 32 | guruneed | can't drive without lessons | dog-water | storyboard |
-| 33 | restlife | after the credits | sunrise-mountain | storyboard |
-| 34 | conduct | house rules at mate's yard | lamp-extinguish | storyboard |
-| 35 | time | clock watching you | hand-mirror | storyboard |
-| 36 | mantraeff | password vs magic word | leaning-monk | storyboard |
-| 37 | prana | central heating system | book-cup | storyboard |
-| 38 | nature | water being wet | pond-water | storyboard |
-| 39 | indiff | lifeguard staying dry | lotus-rain | storyboard |
-| 40 | ocean | swimming without getting wet | rainbow-body | storyboard |
-| 41 | measure | tape measuring itself | open-doorway | storyboard |
-| 42 | birth | cancelled delivery | dawn-break | storyboard |
-| 43 | muppet | snooze-button enlightenment | calm-sea | storyboard |
-| 44 | mfg | bouncer who IS the club | donkey-carrot | storyboard |
-| 45 | noretire | no final whistle | sewing-machine | storyboard |
-| 46 | confuse | arguing with the satnav | cinema | storyboard |
-| 47 | compact | folding map vs satnav | om-reveal | storyboard |
-| 48 | cease | deleting the group chat | hands-sand | storyboard |
-| 49 | recension | group-chat admin history | cinema | storyboard |
-| 50 | nose | smelling your own nose | magician | storyboard |
+| 10 | installed | pre-installed apps | seed-soil.gif | storyboard |
+| 11 | gift | showing beats giving | px-candle.jpg | storyboard |
+| 12 | teacher | lifeguard must swim | book-cup.gif | storyboard |
+| 13 | objects | sunglasses at night | mirror-empty.png | storyboard |
+| 14 | hidden | password never typed | om-reveal.gif | storyboard |
+| 15 | freedom | glasses on your head | dawn-break.gif | storyboard |
+| 16 | turya | between two songs | wave-vortex.gif | storyboard |
+| 17 | hamsa | breathing in sleep counts reps | calm-sea.gif | storyboard |
+| 18 | finale77 | coming home to home | wave-vortex.gif | storyboard |
+| 19 | heart | pray where the kettle is | lamp-flame.gif | storyboard |
+| 20 | vimarsa | mirror looking at itself | mirror-empty.png | storyboard |
+| 21 | lamps | torches vs daylight | dawn-break.gif | storyboard |
+| 22 | noritual | microwave vs fire cooking | calm-sea.gif | storyboard |
+| 23 | tattvas | WiFi everywhere | om-reveal.gif | storyboard |
+| 24 | space | phone storage full of universes | wave-vortex.gif | storyboard |
+| 25 | invented | flatpack, lost manual | magician.gif | storyboard |
+| 26 | kalas | council departments | yama-scales.gif | storyboard |
+| 27 | apavarga | tight jacket off | open-doorway.gif | storyboard |
+| 28 | noref | no CV, still hired | lotus-rain.gif | storyboard |
+| 29 | shaktipata | unexpected upgrade | raft.gif | storyboard |
+| 30 | distance | WiFi reaches the garden | raft.gif | storyboard |
+| 31 | beard | Turkish barbers, anatta special | magician.gif | storyboard |
+| 32 | guruneed | can't drive without lessons | book-cup.gif | storyboard |
+| 33 | restlife | after the credits | sunrise-mountain.gif | storyboard |
+| 34 | conduct | house rules at mate's yard | px-tophat-emblem.png | storyboard |
+| 35 | time | clock watching you | hand-mirror.gif | storyboard |
+| 36 | mantraeff | password vs magic word | book-cup.gif | storyboard |
+| 37 | prana | central heating system | book-cup.gif | storyboard |
+| 38 | nature | water being wet | pond-water.gif | storyboard |
+| 39 | indiff | lifeguard staying dry | yama-scales.gif | storyboard |
+| 40 | ocean | swimming without getting wet | rainbow-body.gif | storyboard |
+| 41 | measure | tape measuring itself | open-doorway.gif | storyboard |
+| 42 | birth | cancelled delivery | campfire.gif | storyboard |
+| 43 | muppet | snooze-button enlightenment | calm-sea.gif | storyboard |
+| 44 | mfg | bouncer who IS the club | donkey-carrot.gif | storyboard |
+| 45 | noretire | no final whistle | sewing-machine.gif | storyboard |
+| 46 | confuse | arguing with the satnav | dog-water.gif | storyboard |
+| 47 | compact | folding map vs satnav | om-reveal.gif | storyboard |
+| 48 | cease | deleting the group chat | wave-vortex.gif | storyboard |
+| 49 | recension | group-chat admin history | book-cup.gif | storyboard |
+| 50 | nose | smelling your own nose | magician.gif | storyboard |
