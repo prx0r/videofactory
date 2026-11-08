@@ -2,7 +2,7 @@
 
 `vf_mcp_server.py` is the agent-facing front door of the video factory. Any
 MCP-capable agent — opencode, Claude, a headless driver — gets the same
-nineteen tools and two resources, over stdio, with factory law enforced
+twenty tools and three resources, over stdio, with factory law enforced
 server-side instead of trusted client-side.
 
 ```
@@ -183,12 +183,19 @@ Staging only — review the file, verify the fix it describes, then commit
 skill + fix together (the flow law). `auto: true` is a safety claim: set it
 only if agents may apply the skill unsupervised.
 
+**`vf_motion(status="", lane="", query="")`** — the motion emblem bank:
+GIF motifs with depictions, placements, maker briefs, and the wanted
+queue. Filter by status (`banked`, `banked-described`, `wanted`), lane,
+or free text. Read-only; ChatGPT works the `wanted` queue from here.
+
 ### Resources
 
 - `vf://registry` — live `REGISTRY.json` (milestones, locks, processes,
   observations).
 - `vf://render-gate` — the gate law in one object (for agents that need the
   rule, not the board).
+- `vf://visuals` — house visual law + GIF maker sheet + draw prompt
+  (`docs/VISUALS.md`, `docs/GIFS.md`, `core/art_bank/draw-prompt.md`).
 
 ## 4. Processes end to end
 

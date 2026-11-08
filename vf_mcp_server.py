@@ -2,7 +2,7 @@
 """Videofactory MCP server — agent control plane for the video factory (stdio).
 
 Senses (read-only): vf_projects, vf_status, vf_units, vf_unit, vf_issues,
-vf_gate, vf_logs, vf_finals, vf_catalog, vf_check, vf_tests, vf_skills, vf_skill.
+vf_gate, vf_logs, vf_finals, vf_catalog, vf_motion, vf_check, vf_tests, vf_skills, vf_skill.
 Decides: vf_triage (gate verdict + per-issue skill routing + recommended step).
 Acts: vf_launch (gated immediate render), vf_queue (gated render in the next
 gap), vf_pack (zip finals), vf_publish (R2 upload + byte-verify),
@@ -559,6 +559,45 @@ async def vf_catalog(project: str = "tantrasara") -> str:
         return json.dumps({"error": str(e)[:300]})
 
 
+def _motion_query(status=None, lane=None, query=None):
+    """Filter the motion bank (pure; tested in tests/test_motion.py)."""
+    try:
+        doc = json.load(open(os.path.join(ROOT, "core", "art_bank", "motion.json"),
+                             encoding="utf-8"))
+    except (OSError, ValueError):
+        return {"entries": [], "error": "motion bank unreadable"}
+    out = []
+    for e in doc.get("entries", []):
+        if status and e.get("status") != status:
+            continue
+        if lane and lane not in (e.get("used_in") or {}):
+            continue
+        if query and query.lower() not in json.dumps(e).lower():
+            continue
+        out.append(e)
+    return {"entries": out, "total": len(doc.get("entries", []))}
+
+
+@mcp.tool()
+async def vf_motion(status: str = "", lane: str = "", query: str = "") -> str:
+    """Motion emblem bank: GIF motifs with depictions, placements, queue.
+
+    GIFs are earned by recurrence (house VISUALS.md); wanted entries carry
+    maker briefs. Read-only.
+
+    Args:
+        status: Filter — "banked", "banked-described", or "wanted" ("" = all)
+        lane: Filter to a lane using an entry (e.g. nibbana, shiva-sutras)
+        query: Substring match across id/motif/brief/placements
+    """
+    def _work():
+        return _motion_query(status or None, lane or None, query or None)
+    try:
+        return json.dumps(await _run_sync(_work), indent=2)
+    except (OSError, ValueError) as e:
+        return json.dumps({"error": str(e)[:300]})
+
+
 @mcp.tool()
 async def vf_skills() -> str:
     """Issue-kind to skill lookup (core/skills/REGISTRY.json): which skill fixes which issue, auto vs needs-owner."""
@@ -899,6 +938,22 @@ async def vf_registry_resource() -> str:
     """Live factory board (REGISTRY.json): milestones, locks, processes, observations."""
     return await _run_sync(
         lambda: open(os.path.join(ROOT, "REGISTRY.json"), encoding="utf-8").read())
+
+
+@mcp.resource("vf://visuals")
+async def vf_visuals_resource() -> str:
+    """House visual law + maker sheets (VISUALS.md, GIFS.md, draw prompt)."""
+    def _work():
+        parts = []
+        for rel in ("docs/VISUALS.md", "docs/GIFS.md",
+                    "core/art_bank/draw-prompt.md"):
+            try:
+                parts.append(f"===== {rel} =====\n" + open(
+                    os.path.join(ROOT, rel), encoding="utf-8").read())
+            except OSError as e:
+                parts.append(f"===== {rel} (missing: {e}) =====")
+        return "\n\n".join(parts)
+    return await _run_sync(_work)
 
 
 @mcp.resource("vf://render-gate")
