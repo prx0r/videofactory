@@ -1,0 +1,655 @@
+{
+ "law": "no two shorts share a source span; emblem reuse allowed only on motif match; new short checks this index first.",
+ "units": 54,
+ "rows": [
+  {
+   "unit": "shorts_granny_apavarga",
+   "topic": "apavarga",
+   "source": "tantrasara:ch11",
+   "words": 97,
+   "est_s": 38.8,
+   "emblem": "mirror-empty.png",
+   "voices": [
+    "granny"
+   ],
+   "status": "storyboard"
+  },
+  {
+   "unit": "shorts_granny_beard",
+   "topic": "beard",
+   "source": "tantrasara:ch18",
+   "words": 80,
+   "est_s": 32.0,
+   "emblem": "seed-soil.gif",
+   "voices": [
+    "granny"
+   ],
+   "status": "storyboard"
+  },
+  {
+   "unit": "shorts_granny_birth",
+   "topic": "birth",
+   "source": "shiva-sutras:s50",
+   "words": 66,
+   "est_s": 26.4,
+   "emblem": "campfire.gif",
+   "voices": [
+    "granny"
+   ],
+   "status": "storyboard"
+  },
+  {
+   "unit": "shorts_granny_blue",
+   "topic": "blue",
+   "source": "shiva-sutras:s65",
+   "words": 78,
+   "est_s": 31.2,
+   "emblem": "mirror-empty.png",
+   "voices": [
+    "granny"
+   ],
+   "status": "storyboard"
+  },
+  {
+   "unit": "shorts_granny_cease",
+   "topic": "cease",
+   "source": "shiva-sutras:s73",
+   "words": 79,
+   "est_s": 31.6,
+   "emblem": "wave-vortex.gif",
+   "voices": [
+    "granny"
+   ],
+   "status": "storyboard"
+  },
+  {
+   "unit": "shorts_granny_compact",
+   "topic": "compact",
+   "source": "shiva-sutras:s63",
+   "words": 82,
+   "est_s": 32.8,
+   "emblem": "om-reveal.gif",
+   "voices": [
+    "granny"
+   ],
+   "status": "storyboard"
+  },
+  {
+   "unit": "shorts_granny_conduct",
+   "topic": "conduct",
+   "source": "tantrasara:ch21",
+   "words": 106,
+   "est_s": 42.4,
+   "emblem": "lamp-extinguish.gif",
+   "voices": [
+    "granny"
+   ],
+   "status": "storyboard"
+  },
+  {
+   "unit": "shorts_granny_confuse",
+   "topic": "confuse",
+   "source": "shiva-sutras:s62",
+   "words": 82,
+   "est_s": 32.8,
+   "emblem": "magician.gif",
+   "voices": [
+    "granny"
+   ],
+   "status": "storyboard"
+  },
+  {
+   "unit": "shorts_granny_distance",
+   "topic": "distance",
+   "source": "tantrasara:ch16",
+   "words": 148,
+   "est_s": 59.2,
+   "emblem": "hands-sand.gif",
+   "voices": [
+    "granny"
+   ],
+   "status": "storyboard"
+  },
+  {
+   "unit": "shorts_granny_finale77",
+   "topic": "finale77",
+   "source": "shiva-sutras:s77",
+   "words": 44,
+   "est_s": 17.6,
+   "emblem": "wave-vortex.gif",
+   "voices": [
+    "granny"
+   ],
+   "status": "storyboard"
+  },
+  {
+   "unit": "shorts_granny_freedom",
+   "topic": "freedom",
+   "source": "shiva-sutras:s45",
+   "words": 37,
+   "est_s": 14.8,
+   "emblem": "dawn-break.gif",
+   "voices": [
+    "granny"
+   ],
+   "status": "storyboard"
+  },
+  {
+   "unit": "shorts_granny_gift",
+   "topic": "gift",
+   "source": "shiva-sutras:s60",
+   "words": 54,
+   "est_s": 21.6,
+   "emblem": "lamp-extinguish.gif",
+   "voices": [
+    "granny"
+   ],
+   "status": "storyboard"
+  },
+  {
+   "unit": "shorts_granny_guruneed",
+   "topic": "guruneed",
+   "source": "tantrasara:ch19",
+   "words": 99,
+   "est_s": 39.6,
+   "emblem": "dog-water.gif",
+   "voices": [
+    "granny"
+   ],
+   "status": "storyboard"
+  },
+  {
+   "unit": "shorts_granny_hamlet",
+   "topic": "hamlet",
+   "source": "shiva-sutras:s41",
+   "words": 85,
+   "est_s": 34.0,
+   "emblem": "cinema.gif",
+   "voices": [
+    "granny"
+   ],
+   "status": "storyboard"
+  },
+  {
+   "unit": "shorts_granny_hamsa",
+   "topic": "hamsa",
+   "source": "shiva-sutras:s59",
+   "words": 36,
+   "est_s": 14.4,
+   "emblem": "magician.gif",
+   "voices": [
+    "granny"
+   ],
+   "status": "storyboard"
+  },
+  {
+   "unit": "shorts_granny_heart",
+   "topic": "heart",
+   "source": "tantrasara:ch13",
+   "words": 83,
+   "est_s": 33.2,
+   "emblem": "lamp-flame.gif",
+   "voices": [
+    "granny"
+   ],
+   "status": "storyboard"
+  },
+  {
+   "unit": "shorts_granny_hidden",
+   "topic": "hidden",
+   "source": "shiva-sutras:s32",
+   "words": 46,
+   "est_s": 18.4,
+   "emblem": "om-reveal.gif",
+   "voices": [
+    "granny"
+   ],
+   "status": "storyboard"
+  },
+  {
+   "unit": "shorts_granny_indiff",
+   "topic": "indiff",
+   "source": "shiva-sutras:s47",
+   "words": 68,
+   "est_s": 27.2,
+   "emblem": "yama-scales.gif",
+   "voices": [
+    "granny"
+   ],
+   "status": "storyboard"
+  },
+  {
+   "unit": "shorts_granny_installed",
+   "topic": "installed",
+   "source": "tantrasara:ch14",
+   "words": 72,
+   "est_s": 28.8,
+   "emblem": "seed-soil.gif",
+   "voices": [
+    "granny"
+   ],
+   "status": "storyboard"
+  },
+  {
+   "unit": "shorts_granny_invented",
+   "topic": "invented",
+   "source": "tantrasara:ch08",
+   "words": 96,
+   "est_s": 38.4,
+   "emblem": "magician.gif",
+   "voices": [
+    "granny"
+   ],
+   "status": "storyboard"
+  },
+  {
+   "unit": "shorts_granny_journey",
+   "topic": "journey",
+   "source": "tantrasara:ch01",
+   "words": 81,
+   "est_s": 32.4,
+   "emblem": "dawn-break.gif",
+   "voices": [
+    "granny"
+   ],
+   "status": "storyboard"
+  },
+  {
+   "unit": "shorts_granny_kalas",
+   "topic": "kalas",
+   "source": "tantrasara:ch10",
+   "words": 103,
+   "est_s": 41.2,
+   "emblem": "cinema.gif",
+   "voices": [
+    "granny"
+   ],
+   "status": "storyboard"
+  },
+  {
+   "unit": "shorts_granny_lamps",
+   "topic": "lamps",
+   "source": "tantrasara:ch02",
+   "words": 67,
+   "est_s": 26.8,
+   "emblem": "dawn-break.gif",
+   "voices": [
+    "granny"
+   ],
+   "status": "storyboard"
+  },
+  {
+   "unit": "shorts_granny_mantra",
+   "topic": "mantra",
+   "source": "shiva-sutras:s22",
+   "words": 74,
+   "est_s": 29.6,
+   "emblem": "om-reveal.gif",
+   "voices": [
+    "granny"
+   ],
+   "status": "storyboard"
+  },
+  {
+   "unit": "shorts_granny_mantraeff",
+   "topic": "mantraeff",
+   "source": "shiva-sutras:s23",
+   "words": 70,
+   "est_s": 28.0,
+   "emblem": "leaning-monk.gif",
+   "voices": [
+    "granny"
+   ],
+   "status": "storyboard"
+  },
+  {
+   "unit": "shorts_granny_measure",
+   "topic": "measure",
+   "source": "shiva-sutras:s49",
+   "words": 68,
+   "est_s": 27.2,
+   "emblem": "open-doorway.gif",
+   "voices": [
+    "granny"
+   ],
+   "status": "storyboard"
+  },
+  {
+   "unit": "shorts_granny_mfg",
+   "topic": "mfg",
+   "source": "shiva-sutras:s56",
+   "words": 63,
+   "est_s": 25.2,
+   "emblem": "donkey-carrot.gif",
+   "voices": [
+    "granny"
+   ],
+   "status": "storyboard"
+  },
+  {
+   "unit": "shorts_granny_muppet",
+   "topic": "muppet",
+   "source": "shiva-sutras:s71",
+   "words": 63,
+   "est_s": 25.2,
+   "emblem": "calm-sea.gif",
+   "voices": [
+    "granny"
+   ],
+   "status": "storyboard"
+  },
+  {
+   "unit": "shorts_granny_nature",
+   "topic": "nature",
+   "source": "shiva-sutras:s39",
+   "words": 92,
+   "est_s": 36.8,
+   "emblem": "pond-water.gif",
+   "voices": [
+    "granny"
+   ],
+   "status": "storyboard"
+  },
+  {
+   "unit": "shorts_granny_nobodydies",
+   "topic": "nobodydies",
+   "source": "shiva-sutras:s72",
+   "words": 82,
+   "est_s": 32.8,
+   "emblem": "lamp-flame.gif",
+   "voices": [
+    "granny"
+   ],
+   "status": "storyboard"
+  },
+  {
+   "unit": "shorts_granny_noref",
+   "topic": "noref",
+   "source": "tantrasara:ch12",
+   "words": 105,
+   "est_s": 42.0,
+   "emblem": "lotus-rain.gif",
+   "voices": [
+    "granny"
+   ],
+   "status": "storyboard"
+  },
+  {
+   "unit": "shorts_granny_noretire",
+   "topic": "noretire",
+   "source": "shiva-sutras:s57",
+   "words": 70,
+   "est_s": 28.0,
+   "emblem": "sewing-machine.gif",
+   "voices": [
+    "granny"
+   ],
+   "status": "storyboard"
+  },
+  {
+   "unit": "shorts_granny_noritual",
+   "topic": "noritual",
+   "source": "tantrasara:ch03",
+   "words": 78,
+   "est_s": 31.2,
+   "emblem": "lamp-flame.gif",
+   "voices": [
+    "granny"
+   ],
+   "status": "storyboard"
+  },
+  {
+   "unit": "shorts_granny_nose",
+   "topic": "nose",
+   "source": "shiva-sutras:s76",
+   "words": 76,
+   "est_s": 30.4,
+   "emblem": "magician.gif",
+   "voices": [
+    "granny"
+   ],
+   "status": "storyboard"
+  },
+  {
+   "unit": "shorts_granny_objects",
+   "topic": "objects",
+   "source": "shiva-sutras:s66",
+   "words": 56,
+   "est_s": 22.4,
+   "emblem": "mirror-empty.png",
+   "voices": [
+    "granny"
+   ],
+   "status": "storyboard"
+  },
+  {
+   "unit": "shorts_granny_ocean",
+   "topic": "ocean",
+   "source": "shiva-sutras:s48",
+   "words": 80,
+   "est_s": 32.0,
+   "emblem": "rainbow-body.gif",
+   "voices": [
+    "granny"
+   ],
+   "status": "storyboard"
+  },
+  {
+   "unit": "shorts_granny_prana",
+   "topic": "prana",
+   "source": "shiva-sutras:s37",
+   "words": 92,
+   "est_s": 36.8,
+   "emblem": "book-cup.gif",
+   "voices": [
+    "granny"
+   ],
+   "status": "storyboard"
+  },
+  {
+   "unit": "shorts_granny_recension",
+   "topic": "recension",
+   "source": "shiva-sutras:s33",
+   "words": 121,
+   "est_s": 48.4,
+   "emblem": "cinema.gif",
+   "voices": [
+    "granny"
+   ],
+   "status": "storyboard"
+  },
+  {
+   "unit": "shorts_granny_recognise",
+   "topic": "recognise",
+   "source": "shiva-sutras:s54",
+   "words": 81,
+   "est_s": 32.4,
+   "emblem": "wave-vortex.gif",
+   "voices": [
+    "granny"
+   ],
+   "status": "storyboard"
+  },
+  {
+   "unit": "shorts_granny_restlife",
+   "topic": "restlife",
+   "source": "tantrasara:ch20",
+   "words": 113,
+   "est_s": 45.2,
+   "emblem": "sunrise-mountain.gif",
+   "voices": [
+    "granny"
+   ],
+   "status": "storyboard"
+  },
+  {
+   "unit": "shorts_granny_screen",
+   "topic": "screen",
+   "source": "shiva-sutras:s07",
+   "words": 84,
+   "est_s": 33.6,
+   "emblem": "cinema.gif",
+   "voices": [
+    "granny"
+   ],
+   "status": "storyboard"
+  },
+  {
+   "unit": "shorts_granny_shaktipata",
+   "topic": "shaktipata",
+   "source": "tantrasara:ch15",
+   "words": 98,
+   "est_s": 39.2,
+   "emblem": "raft.gif",
+   "voices": [
+    "granny"
+   ],
+   "status": "storyboard"
+  },
+  {
+   "unit": "shorts_granny_solipsism",
+   "topic": "solipsism",
+   "source": "shiva-sutras:s69",
+   "words": 84,
+   "est_s": 33.6,
+   "emblem": "lotus-rain.gif",
+   "voices": [
+    "granny"
+   ],
+   "status": "storyboard"
+  },
+  {
+   "unit": "shorts_granny_space",
+   "topic": "space",
+   "source": "tantrasara:ch07",
+   "words": 81,
+   "est_s": 32.4,
+   "emblem": "wave-vortex.gif",
+   "voices": [
+    "granny"
+   ],
+   "status": "storyboard"
+  },
+  {
+   "unit": "shorts_granny_tables",
+   "topic": "tables",
+   "source": "shiva-sutras:s40",
+   "words": 93,
+   "est_s": 37.2,
+   "emblem": "open-doorway.gif",
+   "voices": [
+    "granny"
+   ],
+   "status": "storyboard"
+  },
+  {
+   "unit": "shorts_granny_tattvas",
+   "topic": "tattvas",
+   "source": "tantrasara:ch05",
+   "words": 88,
+   "est_s": 35.2,
+   "emblem": "om-reveal.gif",
+   "voices": [
+    "granny"
+   ],
+   "status": "storyboard"
+  },
+  {
+   "unit": "shorts_granny_teacher",
+   "topic": "teacher",
+   "source": "shiva-sutras:s61",
+   "words": 72,
+   "est_s": 28.8,
+   "emblem": "book-cup.gif",
+   "voices": [
+    "granny"
+   ],
+   "status": "storyboard"
+  },
+  {
+   "unit": "shorts_granny_time",
+   "topic": "time",
+   "source": "tantrasara:ch6",
+   "words": 90,
+   "est_s": 36.0,
+   "emblem": "hand-mirror.gif",
+   "voices": [
+    "granny"
+   ],
+   "status": "storyboard"
+  },
+  {
+   "unit": "shorts_granny_turya",
+   "topic": "turya",
+   "source": "shiva-sutras:s55",
+   "words": 48,
+   "est_s": 19.2,
+   "emblem": "wave-vortex.gif",
+   "voices": [
+    "granny"
+   ],
+   "status": "storyboard"
+  },
+  {
+   "unit": "shorts_granny_vimarsa",
+   "topic": "vimarsa",
+   "source": "tantrasara:ch22",
+   "words": 77,
+   "est_s": 30.8,
+   "emblem": "mirror-empty.png",
+   "voices": [
+    "granny"
+   ],
+   "status": "storyboard"
+  },
+  {
+   "unit": "shorts_roady_hamlet",
+   "topic": "roady hamlet",
+   "source": "shiva-sutras:s41",
+   "words": 66,
+   "est_s": 26.4,
+   "emblem": "cinema.gif",
+   "voices": [
+    "roadman"
+   ],
+   "status": "storyboard"
+  },
+  {
+   "unit": "shorts_s68_receipt",
+   "topic": "s68 receipt",
+   "source": "shiva-sutras:s68",
+   "words": 63,
+   "est_s": 25.2,
+   "emblem": "magician.gif",
+   "voices": [
+    "roadman"
+   ],
+   "status": "storyboard"
+  },
+  {
+   "unit": "shorts_dawn_handoff",
+   "topic": "dawn handoff (roady+big-g)",
+   "source": "nibbana:n03",
+   "words": 213,
+   "est_s": 75.0,
+   "emblem": "dawn-break.gif",
+   "voices": [
+    "granny",
+    "roadman"
+   ],
+   "status": "rendered+R2"
+  },
+  {
+   "unit": "shorts_roady_white_loop",
+   "topic": "white loop (roady original)",
+   "source": "owner-original",
+   "words": 33,
+   "est_s": 15.0,
+   "emblem": null,
+   "voices": [
+    "roadman"
+   ],
+   "status": "storyboard"
+  }
+ ]
+}
