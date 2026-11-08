@@ -939,6 +939,74 @@
    },
    "status": "wanted",
    "brief": "Slow dark water swell rolling under stars.. Blue-ink engraving on white, minimal, one moving element, no text, seamless loop."
+  },
+  {
+   "id": "fifa-night",
+   "motif": "A sofa, glowing TV with a football match, controller in hand, snacks.",
+   "why": "Freedom as Friday night: home, FIFA, mind off. Roady-first opener.",
+   "used_in": {
+    "shorts": [
+     "roady-first"
+    ]
+   },
+   "status": "wanted",
+   "brief": "A sofa, glowing TV with a football match, controller in hand, snacks.. Blue-ink engraving on white, minimal, one moving element, no text, seamless loop. Roady-first approved: everyday scenes welcome."
+  },
+  {
+   "id": "chip-shop",
+   "motif": "A chip shop queue at night, steam, menu board glow.",
+   "why": "Ordinary bliss, no metaphysics required. Everyday-nirvana beats.",
+   "used_in": {},
+   "status": "wanted",
+   "brief": "A chip shop queue at night, steam, menu board glow.. Blue-ink engraving on white, minimal, one moving element, no text, seamless loop. Roady-first approved: everyday scenes welcome."
+  },
+  {
+   "id": "bus-window",
+   "motif": "Rain streaking a night-bus window, city lights smearing.",
+   "why": "Contemplation vehicle; moving while sitting still.",
+   "used_in": {},
+   "status": "wanted",
+   "brief": "Rain streaking a night-bus window, city lights smearing.. Blue-ink engraving on white, minimal, one moving element, no text, seamless loop. Roady-first approved: everyday scenes welcome."
+  },
+  {
+   "id": "kettle-steam",
+   "motif": "A kettle coming to boil, steam thickening then easing.",
+   "why": "Agitation settling by itself; no technique applied.",
+   "used_in": {},
+   "status": "wanted",
+   "brief": "A kettle coming to boil, steam thickening then easing.. Blue-ink engraving on white, minimal, one moving element, no text, seamless loop. Roady-first approved: everyday scenes welcome."
+  },
+  {
+   "id": "pigeon-square",
+   "motif": "Pigeons exploding upward from a square, then resettling.",
+   "why": "Thoughts startled and returning; attention scattering.",
+   "used_in": {},
+   "status": "wanted",
+   "brief": "Pigeons exploding upward from a square, then resettling.. Blue-ink engraving on white, minimal, one moving element, no text, seamless loop. Roady-first approved: everyday scenes welcome."
+  },
+  {
+   "id": "washing-line",
+   "motif": "Shirts snapping on a line in clean wind.",
+   "why": "Simple order restored; small liberations.",
+   "used_in": {},
+   "status": "wanted",
+   "brief": "Shirts snapping on a line in clean wind.. Blue-ink engraving on white, minimal, one moving element, no text, seamless loop. Roady-first approved: everyday scenes welcome."
+  },
+  {
+   "id": "night-fridge",
+   "motif": "Fridge door opening onto midnight light, figure silhouetted.",
+   "why": "3am craving, examined live.",
+   "used_in": {},
+   "status": "wanted",
+   "brief": "Fridge door opening onto midnight light, figure silhouetted.. Blue-ink engraving on white, minimal, one moving element, no text, seamless loop. Roady-first approved: everyday scenes welcome."
+  },
+  {
+   "id": "queue-post",
+   "motif": "A long queue shuffling forward one step at a time.",
+   "why": "Samsara as admin; patience practice.",
+   "used_in": {},
+   "status": "wanted",
+   "brief": "A long queue shuffling forward one step at a time.. Blue-ink engraving on white, minimal, one moving element, no text, seamless loop. Roady-first approved: everyday scenes welcome."
   }
  ]
 }

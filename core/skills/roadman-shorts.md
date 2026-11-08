@@ -55,3 +55,14 @@ pull-back-and-reveal, repetition-erosion, bathos, sincerity), four
 violations that work, three mutation operators, and timing — GIF up in
 the first 3s, a punch every 12–20s, setup holds ≥2.5s, 45–75s total,
 punch word last, 0.35s breaths. Write to the profile, not to taste.
+
+## Roady-first format (owner-ordered 2026-11-08)
+Inverted handoff: Roady OPENS with an everyday bit (FIFA night: freedom
+is coming home, Ultimate Team on, mind off, relaxed innit). Big G
+answers straight (do it without the FIFA: stop cramming it full of
+nonsense for five seconds and you could be relaxed all the time).
+Roady refuses the teaching and keeps the routine (ahh nah, stick to
+the routine). The refusal IS the punchline — liberation offered and
+declined returns as the joke. Canonical example above, verbatim seed.
+Everyday-scene GIFs (chip shop, bus window, kettle, pigeons, queue)
+are first-class bank material under this format.
