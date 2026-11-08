@@ -73,6 +73,15 @@ take it from here — and explains the SAME thing straight (the exact
 video content, condensed to 60 seconds). Bait (charm) then handoff
 (substance). Workflow runs backwards: condense granny to 60s first,
 then generate Roady's 60s off it, then link with the handoff line.
+## Formats (from characters2: bait + standup-60)
+BAIT: the viewer must not know for the first twenty seconds whether
+this is comedy or teaching — hook reads as pure joke, turn reveals the
+doctrine underneath (or reverse: sincere teaching, comic rug-pull).
+STANDUP-60: setup installs a reading, punch replaces it using only
+material already on screen; three beats max (two same-kind, turn on
+the third); punch word last, nothing after it. Roady rambles, Big G
+deadpans — never both at once.
+
 ## Volume
 Pilot 3–5 shorts per long unit (tantrasara chapters, early shiva units
 first — several already run near shorts length). Scale to hundreds only

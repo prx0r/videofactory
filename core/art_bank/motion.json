@@ -18,7 +18,8 @@
    "status": "banked-described",
    "depicts": "A puppy at a pond edge gazing at its own reflection in still water.",
    "means": "The self meeting itself; the owner smuggled into the story. Play wherever recognition misfires.",
-   "use": "n02 leaning-mechanics, n09 dog chapter. Never as mere cuteness."
+   "use": "n02 leaning-mechanics, n09 dog chapter. Never as mere cuteness.",
+   "watch": "Puppy lowers its head toward its reflection; tail gives one wag."
   },
   {
    "id": "cinema",
@@ -34,7 +35,8 @@
    "status": "banked-described",
    "depicts": "A vintage projector beaming a landscape onto a screen in a dark room.",
    "means": "Consciousness as projection; the show that needs no world behind it.",
-   "use": "n03 cinema trick. Pairs with magician, never same span."
+   "use": "n03 cinema trick. Pairs with magician, never same span.",
+   "watch": "Projector beam flickers; the screen image shifts from landscape to blank white."
   },
   {
    "id": "donkey-carrot",
@@ -48,7 +50,8 @@
    "status": "banked-described",
    "depicts": "A donkey pulling a cart, chasing a carrot dangled ahead of it.",
    "means": "Goalless pursuit; the goal recedes because the chase produces it.",
-   "use": "n04 pond-jewel and carrot beats."
+   "use": "n04 pond-jewel and carrot beats.",
+   "watch": "Donkey plods forward; the dangling carrot bobs just out of reach."
   },
   {
    "id": "sewing-machine",
@@ -62,7 +65,8 @@
    "status": "banked-described",
    "depicts": "An antique sewing machine mid-stitch, thread running.",
    "means": "Stitching a self together; the final stitch never made. Closing energy.",
-   "use": "n10 seamstress and finale. Nowhere else."
+   "use": "n10 seamstress and finale. Nowhere else.",
+   "watch": "The needle pumps, thread feeding through cloth."
   },
   {
    "id": "lotus-rain",
@@ -76,7 +80,8 @@
    "status": "banked-described",
    "depicts": "Lotus leaf beaded with rain that will not stick.",
    "means": "Non-grasping awareness; contact without ownership.",
-   "use": "General purity beats; n06 non-appropriation."
+   "use": "General purity beats; n06 non-appropriation.",
+   "watch": "Rain strikes a lotus leaf and beads roll off."
   },
   {
    "id": "lamp-flame",
@@ -91,7 +96,8 @@
    "status": "banked-described",
    "depicts": "A lit oil lamp, flame leaning in dark air.",
    "means": "Attention itself; the flame that goes out is also the one that sees.",
-   "use": "n01 fire beats, n07 exhausted-lamp chapter (counterpoint: lit vs out)."
+   "use": "n01 fire beats, n07 exhausted-lamp chapter (counterpoint: lit vs out).",
+   "watch": "A small flame leans and recovers, steady overall."
   },
   {
    "id": "hands-sand",
@@ -106,7 +112,8 @@
    "status": "banked-described",
    "depicts": "Open hands letting dry sand run through.",
    "means": "Release; possession failing in real time.",
-   "use": "n08 sandcastle chapter. Hands, never fists."
+   "use": "n08 sandcastle chapter. Hands, never fists.",
+   "watch": "Hands build a sandcastle, then waves wash it flat."
   },
   {
    "id": "magician",
@@ -120,7 +127,8 @@
    "status": "banked-described",
    "depicts": "A stage magician presenting a levitation, audience watching.",
    "means": "The trick of consciousness; total conviction, nothing behind it.",
-   "use": "n09 magic-show chapter. Never alongside cinema in one span."
+   "use": "n09 magic-show chapter. Never alongside cinema in one span.",
+   "watch": "Doves appear above the act; the assistant changes pose."
   },
   {
    "id": "raft",
@@ -135,7 +143,8 @@
    "status": "banked-described",
    "depicts": "A figure on a bamboo raft, hand trailing in the water.",
    "means": "The vehicle to abandon after crossing; means, not home.",
-   "use": "n10 raft beats. Never as travel scenery."
+   "use": "n10 raft beats. Never as travel scenery.",
+   "watch": "A figure poles a bamboo raft across; banks slide past."
   },
   {
    "id": "wave-vortex",
@@ -150,7 +159,8 @@
    "status": "banked-described",
    "depicts": "Engraved wave gathering itself toward calm water.",
    "means": "Agitation resolving without going anywhere; the whirlpool ending.",
-   "use": "n01/n03 whirlpool expositions; closing-adjacent calm."
+   "use": "n01/n03 whirlpool expositions; closing-adjacent calm.",
+   "watch": "The vortex churns, collapses, and reforms."
   },
   {
    "id": "fire-out",
@@ -394,7 +404,8 @@
    "depicts": "A plain white door standing open onto white.",
    "means": "The temple-is-everywhere opening.",
    "file": "motion/open-doorway.gif",
-   "note": "ChatGPT procedural draft from queue briefs (manifest: not engraving quality); promote by re-render."
+   "note": "ChatGPT procedural draft from queue briefs (manifest: not engraving quality); promote by re-render.",
+   "watch": "A white door swings slowly open onto white."
   },
   {
    "id": "skullbowl-line",
@@ -409,7 +420,8 @@
    "depicts": "A skull-cup rendered in clean line work.",
    "means": "Mortality held lightly; cremation chapter.",
    "file": "motion/skullbowl-line.gif",
-   "note": "ChatGPT procedural draft from queue briefs (manifest: not engraving quality); promote by re-render."
+   "note": "ChatGPT procedural draft from queue briefs (manifest: not engraving quality); promote by re-render.",
+   "watch": "Near-still line bowl; the faintest shimmer."
   },
   {
    "id": "dawn-break",
@@ -424,7 +436,8 @@
    "depicts": "Faint cloud lines over still sea lines, minimal.",
    "means": "First light, barely there; daybreak.",
    "file": "motion/dawn-break.gif",
-   "note": "ChatGPT procedural draft from queue briefs (manifest: not engraving quality); promote by re-render."
+   "note": "ChatGPT procedural draft from queue briefs (manifest: not engraving quality); promote by re-render.",
+   "watch": "Clouds thin, first light strengthens over still water."
   },
   {
    "id": "rainbow-body",
@@ -439,7 +452,8 @@
    "depicts": "A seated figure dissolving upward, pale rainbow wash.",
    "means": "Fruition without spectacle.",
    "file": "motion/rainbow-body.gif",
-   "note": "ChatGPT procedural draft from queue briefs (manifest: not engraving quality); promote by re-render."
+   "note": "ChatGPT procedural draft from queue briefs (manifest: not engraving quality); promote by re-render.",
+   "watch": "A seated figure brightens then dims, breathing light."
   },
   {
    "id": "yama-scales",
@@ -458,7 +472,8 @@
    "depicts": "A balanced scale, two pans level.",
    "means": "Judgment beats; the weighing.",
    "file": "motion/yama-scales.gif",
-   "note": "ChatGPT procedural draft from queue briefs (manifest: not engraving quality); promote by re-render."
+   "note": "ChatGPT procedural draft from queue briefs (manifest: not engraving quality); promote by re-render.",
+   "watch": "The pans sway gently, never settling."
   },
   {
    "id": "rising-corpse",
@@ -473,7 +488,8 @@
    "depicts": "A shrouded figure lying still, horizontal calm.",
    "means": "The fact of death, held.",
    "file": "motion/rising-corpse.gif",
-   "note": "ChatGPT procedural draft from queue briefs (manifest: not engraving quality); promote by re-render."
+   "note": "ChatGPT procedural draft from queue briefs (manifest: not engraving quality); promote by re-render.",
+   "watch": "A shrouded form rises slightly, then settles back."
   },
   {
    "id": "campfire",
@@ -486,7 +502,8 @@
      "n01"
     ]
    },
-   "status": "banked-described"
+   "status": "banked-described",
+   "watch": "Flames lick upward, smoke threads curling off."
   },
   {
    "id": "calm-sea",
@@ -499,7 +516,8 @@
      "n07"
     ]
    },
-   "status": "banked-described"
+   "status": "banked-described",
+   "watch": "Slow swells rolling under a wide sky, gulls implied."
   },
   {
    "id": "seed-soil",
@@ -511,7 +529,8 @@
     "nibbana": [],
     "paramarthasara": []
    },
-   "status": "banked-described"
+   "status": "banked-described",
+   "watch": "A seed cracks; a sprout rises with roots spreading."
   },
   {
    "id": "palm-reading",
@@ -522,7 +541,8 @@
    "used_in": {
     "nibbana": []
    },
-   "status": "banked-described"
+   "status": "banked-described",
+   "watch": "A finger traces the lines of an offered palm."
   },
   {
    "id": "watermill",
@@ -533,7 +553,8 @@
    "used_in": {
     "nibbana": []
    },
-   "status": "banked-described"
+   "status": "banked-described",
+   "watch": "The great wheel turns; water pours continuously."
   },
   {
    "id": "om-reveal",
@@ -555,7 +576,8 @@
      "total": 21.72
     },
     "mechanism": "ffmpeg setpts on frame stream (2x halve, 0.5x double delays); reverse via -vf reverse; white hold appended at render. Baked to mp4, player-agnostic."
-   }
+   },
+   "watch": "The syllable om forms stroke by stroke, ringed by circular script."
   },
   {
    "id": "pond-water",
@@ -569,7 +591,8 @@
      "n04"
     ]
    },
-   "status": "banked-described"
+   "status": "banked-described",
+   "watch": "A hand ripples pond water; rings spread and settle."
   },
   {
    "id": "book-cup",
@@ -580,7 +603,8 @@
    "used_in": {
     "nibbana": []
    },
-   "status": "banked-described"
+   "status": "banked-described",
+   "watch": "A hand writes in a ledger; a coin appears and vanishes on the page."
   },
   {
    "id": "hand-mirror",
@@ -595,7 +619,8 @@
      "n09"
     ]
    },
-   "status": "banked-described"
+   "status": "banked-described",
+   "watch": "A hand tilts a small mirror: sky, water, then blank white cross it."
   },
   {
    "id": "leaning-monk",
@@ -608,7 +633,8 @@
      "n02"
     ]
    },
-   "status": "banked-described"
+   "status": "banked-described",
+   "watch": "A robed monk slumps, crumbles to dust, and stands again whole."
   },
   {
    "id": "lamp-extinguish",
@@ -622,7 +648,8 @@
      "n07"
     ]
    },
-   "status": "banked-described"
+   "status": "banked-described",
+   "watch": "A lamp flame gutters down to smoke."
   },
   {
    "id": "logs-fire",
@@ -636,7 +663,8 @@
      "n07"
     ]
    },
-   "status": "banked-described"
+   "status": "banked-described",
+   "watch": "Split logs catch, blaze, and sink to embers."
   },
   {
    "id": "prakasa-light",
@@ -834,7 +862,8 @@
     ]
    },
    "status": "banked-described",
-   "note": "Full-bleed exception candidate; white law requires mat or owner exception."
+   "note": "Full-bleed exception candidate; white law requires mat or owner exception.",
+   "watch": "Sun climbs over mountain water; its light path grows toward viewer."
   }
  ]
 }
