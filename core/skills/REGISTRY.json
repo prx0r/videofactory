@@ -105,6 +105,18 @@
       "auto": true,
       "needs_owner": false,
       "web_query": "ffprobe audio video stream duration delta AAC padding Spotify strict mux trim shortest"
+    },
+    "roadman-shorts": {
+      "file": "roadman-shorts.md",
+      "auto": false,
+      "needs_owner": true,
+      "web_query": "Fish Audio expressive TTS direction tags roadman British voice short-form pacing hook retention"
+    },
+    "granny-distill": {
+      "file": "granny-distill.md",
+      "auto": false,
+      "needs_owner": true,
+      "web_query": "distilling long-form to short-form retention-tested educational video condensation hook"
     }
   },
   "decisions": {
