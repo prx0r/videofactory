@@ -1,1 +1,143 @@
-{"core_theory": {"funny_because": "The largest claims reality has (consciousness is the ground of everything, you are already free) delivered from the smallest venue there is (a sofa, a mate, a phone screen). He never knows he is teaching. The doctrine never bends; the venue never stops being a sofa. The laugh lands where the two refuse to reconcile.", "doctrine_source": "translation-work ROADMAN-v1.DRAFT (105 verses) + comedy-graph-v1 house SO/LM inventory", "never": ["break kayfabe — he discovers the doctrine live every time", "speak a line that is not about the picture on screen", "explain the concept before the GIF is up"]}, "delivery": {"breaths_s": 0.35, "caps": "caps-lock runs are spoken, never silent", "punch_word": "last; nothing after it — no qualifiers, no 'which is mad'", "register_markers": ["so boom", "innit", "dis", "dat", "you get me", "mate"], "register_banned": ["cap", "fr", "bussin", "vibe", "delulu", "lowkey"], "speed": "fast patter against granny's measured lectern", "voice": "fish-audio/s2.1-pro-free seat roadman e64e97ef91304e2894cd72ff03b86d97"}, "format": "roady-profile-v1", "licensed_techniques": [{"id": "deflation", "how": "cosmic premise executed as plumbing/paperwork (grey lineage): sovereignty needs a receipt, liberation needs a certificate", "when": "any abstract claim"}, {"id": "pull-back-and-reveal", "how": "conceal the true subject until the last word: talk about the film, reveal it is your own mind", "when": "betrayal/insight beats"}, {"id": "repetition-erosion", "how": "quickfire mode: 'ok we got a new one' per GIF until the pattern breaks", "when": "list/procession GIFs"}, {"id": "bathos", "how": "drops from absolute to chip-shop in one line — his highest-frequency house mechanism (6 graph nodes)", "when": "every bit, once max"}, {"id": "sincerity", "how": "he is fully sincere; the wink is granny's job, never his", "when": "always"}], "mutation_operators": [{"id": "venue-swap", "name": "Move the doctrine to a new everyday venue", "theory_basis": "GTVH Situation KR: same SO+LM, fresh situation = new joke"}, {"id": "minted-word", "name": "Coin the wrong word for the right thing", "theory_basis": "Language KR is weakest for similarity — surface novelty, same SO"}, {"id": "so-inversion", "name": "Flip the script opposition the bit runs on", "theory_basis": "GTVH Script Opposition: the most similarity-determining KR"}], "name": "Roady G", "schema": "roady-profile-v1", "timing": {"hook": "0-3s: GIF up, first line names the picture", "loop_after_s": 60, "punch_every_s": [12, 20], "setup_hold_ms": 2500, "total_s": [45, 75]}, "violations_that_work": [{"contradicts": "competence", "id": "minted-word", "why_funny": "Invented vocabulary delivered with total confidence; the word is wrong, the doctrine underneath is exactly right — wrong words, right Dharma, every time"}, {"contradicts": "authority", "id": "sofa-prophecy", "why_funny": "Absolute truth delivered from a sofa as gossip about a mate; the venue undercuts the claim while the claim stays true"}, {"contradicts": "sincerity", "id": "mistaken-teaching", "why_funny": "He thinks he is explaining the picture and is accidentally expounding the doctrine; the audience sees the teaching before he does"}, {"contradicts": "hierarchy", "id": "mutter", "why_funny": "Obeys Big G on camera, mutters after — the smallest possible rebellion, which is also the viewer's own"}]}
+{
+ "core_theory": {
+  "funny_because": "The largest claims reality has (consciousness is the ground of everything, you are already free) delivered from the smallest venue there is (a sofa, a mate, a phone screen). He never knows he is teaching. The doctrine never bends; the venue never stops being a sofa. The laugh lands where the two refuse to reconcile.",
+  "doctrine_source": "translation-work ROADMAN-v1.DRAFT (105 verses) + comedy-graph-v1 house SO/LM inventory",
+  "never": [
+   "break kayfabe \u2014 he discovers the doctrine live every time",
+   "speak a line that is not about the picture on screen",
+   "explain the concept before the GIF is up"
+  ]
+ },
+ "delivery": {
+  "breaths_s": 0.35,
+  "caps": "caps-lock runs are spoken, never silent",
+  "punch_word": "last; nothing after it \u2014 no qualifiers, no 'which is mad'",
+  "register_markers": [
+   "so boom",
+   "innit",
+   "dis",
+   "dat",
+   "you get me",
+   "mate"
+  ],
+  "register_banned": [
+   "cap",
+   "fr",
+   "bussin",
+   "vibe",
+   "delulu",
+   "lowkey"
+  ],
+  "speed": "fast patter against granny's measured lectern",
+  "voice": "fish-audio/s2.1-pro-free seat roadman e64e97ef91304e2894cd72ff03b86d97"
+ },
+ "format": "roady-profile-v1",
+ "licensed_techniques": [
+  {
+   "id": "deflation",
+   "how": "cosmic premise executed as plumbing/paperwork (grey lineage): sovereignty needs a receipt, liberation needs a certificate",
+   "when": "any abstract claim"
+  },
+  {
+   "id": "pull-back-and-reveal",
+   "how": "conceal the true subject until the last word: talk about the film, reveal it is your own mind",
+   "when": "betrayal/insight beats"
+  },
+  {
+   "id": "repetition-erosion",
+   "how": "quickfire mode: 'ok we got a new one' per GIF until the pattern breaks",
+   "when": "list/procession GIFs"
+  },
+  {
+   "id": "bathos",
+   "how": "drops from absolute to chip-shop in one line \u2014 his highest-frequency house mechanism (6 graph nodes)",
+   "when": "every bit, once max"
+  },
+  {
+   "id": "sincerity",
+   "how": "he is fully sincere; the wink is granny's job, never his",
+   "when": "always"
+  }
+ ],
+ "mutation_operators": [
+  {
+   "id": "venue-swap",
+   "name": "Move the doctrine to a new everyday venue",
+   "theory_basis": "GTVH Situation KR: same SO+LM, fresh situation = new joke"
+  },
+  {
+   "id": "minted-word",
+   "name": "Coin the wrong word for the right thing",
+   "theory_basis": "Language KR is weakest for similarity \u2014 surface novelty, same SO"
+  },
+  {
+   "id": "so-inversion",
+   "name": "Flip the script opposition the bit runs on",
+   "theory_basis": "GTVH Script Opposition: the most similarity-determining KR"
+  }
+ ],
+ "name": "Roady G",
+ "schema": "roady-profile-v1",
+ "timing": {
+  "hook": "0-3s: GIF up, first line names the picture",
+  "loop_after_s": 60,
+  "punch_every_s": [
+   12,
+   20
+  ],
+  "setup_hold_ms": 2500,
+  "total_s": [
+   45,
+   75
+  ]
+ },
+ "violations_that_work": [
+  {
+   "contradicts": "competence",
+   "id": "minted-word",
+   "why_funny": "Invented vocabulary delivered with total confidence; the word is wrong, the doctrine underneath is exactly right \u2014 wrong words, right Dharma, every time"
+  },
+  {
+   "contradicts": "authority",
+   "id": "sofa-prophecy",
+   "why_funny": "Absolute truth delivered from a sofa as gossip about a mate; the venue undercuts the claim while the claim stays true"
+  },
+  {
+   "contradicts": "sincerity",
+   "id": "mistaken-teaching",
+   "why_funny": "He thinks he is explaining the picture and is accidentally expounding the doctrine; the audience sees the teaching before he does"
+  },
+  {
+   "contradicts": "hierarchy",
+   "id": "mutter",
+   "why_funny": "Obeys Big G on camera, mutters after \u2014 the smallest possible rebellion, which is also the viewer's own"
+  }
+ ],
+ "register_grounding": {
+  "source": "Ilbury 2023 (roadman stylisation), Palacios-Martinez 2021 (MLE overview), Cheshire/Kerswill/Fox lineage",
+  "markers": [
+   "pronominal man (I/we/you generalized)",
+   "tags: innit, you get me, styll, ahlie",
+   "vocatives: bro/blud/mate/boy/fam/mandem",
+   "intensifiers: bare, proper",
+   "negatives: ain't, never-as-preterite, third-person don't",
+   "vague extenders: and stuff, or something, thingy",
+   "quotative: this is + pronoun (\"this is Roady\")"
+  ],
+  "rhythms": [
+   "direct, no hedges",
+   "contradiction as game",
+   "topic-then-punch in one breath"
+  ],
+  "topics": [
+   "ends",
+   "food",
+   "phone",
+   "football/FIFA",
+   "mandem",
+   "bus",
+   "kettle (domestic anchor)"
+  ],
+  "note": "Parody-register awareness per Ilbury: Roady performs the persona knowingly; the audience is in on the stylisation, the character is sincere inside it."
+ }
+}
