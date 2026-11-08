@@ -864,6 +864,81 @@
    "status": "banked-described",
    "note": "Full-bleed exception candidate; white law requires mat or owner exception.",
    "watch": "Sun climbs over mountain water; its light path grows toward viewer."
+  },
+  {
+   "id": "breath-rhythm",
+   "motif": "Slow breath bar rising and falling, endless loop.",
+   "why": "The hamsa rhythm; breath as mantra. Universal across lanes.",
+   "used_in": {
+    "shiva-sutras": [
+     "s59"
+    ],
+    "nibbana": [],
+    "tibetan-dead": []
+   },
+   "status": "wanted",
+   "brief": "Slow breath bar rising and falling, endless loop.. Blue-ink engraving on white, minimal, one moving element, no text, seamless loop."
+  },
+  {
+   "id": "waking-eye",
+   "motif": "A single eye opening from sleep, lashes lifting once, loop.",
+   "why": "Emergence from turya boundaries; waking as event.",
+   "used_in": {
+    "shiva-sutras": [
+     "s55"
+    ]
+   },
+   "status": "wanted",
+   "brief": "A single eye opening from sleep, lashes lifting once, loop.. Blue-ink engraving on white, minimal, one moving element, no text, seamless loop."
+  },
+  {
+   "id": "heart-flame",
+   "motif": "A small flame cupped where a heart would be, steady.",
+   "why": "Worship-heart; the happy place as furnace.",
+   "used_in": {
+    "tantrasara": [
+     "ch13"
+    ]
+   },
+   "status": "wanted",
+   "brief": "A small flame cupped where a heart would be, steady.. Blue-ink engraving on white, minimal, one moving element, no text, seamless loop."
+  },
+  {
+   "id": "book-open",
+   "motif": "A closed book opening by itself, pages breathing.",
+   "why": "Hidden mantra revealed; teachings opening themselves.",
+   "used_in": {
+    "shiva-sutras": [
+     "s32"
+    ]
+   },
+   "status": "wanted",
+   "brief": "A closed book opening by itself, pages breathing.. Blue-ink engraving on white, minimal, one moving element, no text, seamless loop."
+  },
+  {
+   "id": "threshold-light",
+   "motif": "Light widening under a door left ajar.",
+   "why": "Freedom as near side, not far side; the finale door.",
+   "used_in": {
+    "shiva-sutras": [
+     "s45",
+     "s77"
+    ]
+   },
+   "status": "wanted",
+   "brief": "Light widening under a door left ajar.. Blue-ink engraving on white, minimal, one moving element, no text, seamless loop."
+  },
+  {
+   "id": "sleep-wave",
+   "motif": "Slow dark water swell rolling under stars.",
+   "why": "Turya boundaries; the states between states.",
+   "used_in": {
+    "shiva-sutras": [
+     "s55"
+    ]
+   },
+   "status": "wanted",
+   "brief": "Slow dark water swell rolling under stars.. Blue-ink engraving on white, minimal, one moving element, no text, seamless loop."
   }
  ]
 }
