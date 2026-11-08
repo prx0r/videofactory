@@ -1,0 +1,80 @@
+{
+ "unit": "shorts_granny_distance",
+ "source": {
+  "lane": "tantrasara",
+  "unit": "ch16",
+  "long_url": "https://pub-87169194562a44fcb8279a799d626c62.r2.dev/tantrasara/ch16_full.mp4"
+ },
+ "emblem": {
+  "file": "hands-sand.gif"
+ },
+ "format": {
+  "ar": "9:16",
+  "fps": 30,
+  "size": [
+   1080,
+   1920
+  ],
+  "target_s": 60
+ },
+ "hook": "cold open on first line",
+ "est_s": 59.2,
+ "lines": [
+  {
+   "directed": "And apparently it’s not just having a particularly impressive collection of flowers.",
+   "maps_to": [
+    "ch16-b177"
+   ],
+   "voice": "granny"
+  },
+  {
+   "directed": "4. What actually makes a deity present?\nRight.",
+   "maps_to": [
+    "ch16-b178"
+   ],
+   "voice": "granny"
+  },
+  {
+   "directed": "Suppose you’re preparing a maṇḍala.",
+   "maps_to": [
+    "ch16-b179"
+   ],
+   "voice": "granny"
+  },
+  {
+   "directed": "And you want the presence of a particular mantra-deity.",
+   "maps_to": [
+    "ch16-b180"
+   ],
+   "voice": "granny"
+  },
+  {
+   "directed": "The presence or proximity of the particular divine power expressed by the mantra.",
+   "maps_to": [
+    "ch16-b182"
+   ],
+   "voice": "granny"
+  },
+  {
+   "directed": "What produces that presence?",
+   "maps_to": [
+    "ch16-b183"
+   ],
+   "voice": "granny"
+  },
+  {
+   "directed": "Abhinavagupta gives an ordered collection of contributing factors.",
+   "maps_to": [
+    "ch16-b184"
+   ],
+   "voice": "granny"
+  },
+  {
+   "directed": "Kriyā — the appropriate ritual actions.\nUpakaraṇa — excellent ritual materials, such as flowers.\nSthāna — a suitable sacred location, such as a pīṭha.\nMaṇḍala — a consecrated diagram, such as the trident and lotus.\nĀkṛti — a particular divine form used for contemplation.\nDīpta-mantra — the mantra itself in its luminous, awakened condition.\nYogin-sambandha — connection with a yogin dedicated to meditation.\nJñānin-sambandha — connection with a knower absorbed in single-minded devotion to the divine.\nAnd he says these are causes of divine presence in their stated progression.",
+   "maps_to": [
+    "ch16-b185"
+   ],
+   "voice": "granny"
+  }
+ ]
+}

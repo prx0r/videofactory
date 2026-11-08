@@ -1,0 +1,73 @@
+{
+ "unit": "shorts_granny_mfg",
+ "source": {
+  "lane": "shiva-sutras",
+  "unit": "s56",
+  "long_url": "https://pub-87169194562a44fcb8279a799d626c62.r2.dev/shiva/s56_full.mp4"
+ },
+ "emblem": {
+  "file": "donkey-carrot.gif"
+ },
+ "format": {
+  "ar": "9:16",
+  "fps": 30,
+  "size": [
+   1080,
+   1920
+  ],
+  "target_s": 60
+ },
+ "hook": "cold open on first line",
+ "est_s": 25.2,
+ "lines": [
+  {
+   "directed": "But if the world is Śiva’s own manifestation, that division cannot be ultimate.",
+   "maps_to": [
+    "s56-b84"
+   ],
+   "voice": "granny"
+  },
+  {
+   "directed": "The point is not to manufacture a private spiritual experience insulated from reality.",
+   "maps_to": [
+    "s56-b85"
+   ],
+   "voice": "granny"
+  },
+  {
+   "directed": "It’s to recognise reality through all its appearances.",
+   "maps_to": [
+    "s56-b86"
+   ],
+   "voice": "granny"
+  },
+  {
+   "directed": "And here we can see why Śāktopāya was so important.",
+   "maps_to": [
+    "s56-b87"
+   ],
+   "voice": "granny"
+  },
+  {
+   "directed": "The mind is mantra.",
+   "maps_to": [
+    "s56-b90"
+   ],
+   "voice": "granny"
+  },
+  {
+   "directed": "Mental activity can become an instrument of recognition when its source is understood.",
+   "maps_to": [
+    "s56-b91"
+   ],
+   "voice": "granny"
+  },
+  {
+   "directed": "And now:",
+   "maps_to": [
+    "s56-b92"
+   ],
+   "voice": "granny"
+  }
+ ]
+}

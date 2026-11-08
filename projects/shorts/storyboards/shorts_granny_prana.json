@@ -1,0 +1,80 @@
+{
+ "unit": "shorts_granny_prana",
+ "source": {
+  "lane": "shiva-sutras",
+  "unit": "s37",
+  "long_url": "https://pub-87169194562a44fcb8279a799d626c62.r2.dev/shiva/s37_full.mp4"
+ },
+ "emblem": {
+  "file": "book-cup.gif"
+ },
+ "format": {
+  "ar": "9:16",
+  "fps": 30,
+  "size": [
+   1080,
+   1920
+  ],
+  "target_s": 60
+ },
+ "hook": "cold open on first line",
+ "est_s": 36.8,
+ "lines": [
+  {
+   "directed": "Prāṇa — one principal form of vital movement.",
+   "maps_to": [
+    "s37-b16"
+   ],
+   "voice": "granny"
+  },
+  {
+   "directed": "Apāna — another, associated with downward-moving or eliminative functions.",
+   "maps_to": [
+    "s37-b17"
+   ],
+   "voice": "granny"
+  },
+  {
+   "directed": "Udāna — an upward-associated vital function, especially important in these subtle-body accounts.",
+   "maps_to": [
+    "s37-b18"
+   ],
+   "voice": "granny"
+  },
+  {
+   "directed": "And the central channel:",
+   "maps_to": [
+    "s37-b19"
+   ],
+   "voice": "granny"
+  },
+  {
+   "directed": "Kṣemarāja describes the reabsorption of vital movement into the middle channel, involving the relation between prāṇa and apāna and the central function of udāna.",
+   "maps_to": [
+    "s37-b21"
+   ],
+   "voice": "granny"
+  },
+  {
+   "directed": "He cites detailed breath-regulation methods from the Svacchandatantra.",
+   "maps_to": [
+    "s37-b22"
+   ],
+   "voice": "granny"
+  },
+  {
+   "directed": "These include inhalation, exhalation, retention and the meditative unification of vital movement.",
+   "maps_to": [
+    "s37-b23"
+   ],
+   "voice": "granny"
+  },
+  {
+   "directed": "The historical text really does prescribe breath practices. It’s not merely using the vocabulary metaphorically.",
+   "maps_to": [
+    "s37-b24"
+   ],
+   "voice": "granny"
+  }
+ ]
+}

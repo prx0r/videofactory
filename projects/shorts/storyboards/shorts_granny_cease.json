@@ -1,0 +1,80 @@
+{
+ "unit": "shorts_granny_cease",
+ "source": {
+  "lane": "shiva-sutras",
+  "unit": "s73",
+  "long_url": "https://pub-87169194562a44fcb8279a799d626c62.r2.dev/shiva/s73_full.mp4"
+ },
+ "emblem": {
+  "file": "wave-vortex.gif"
+ },
+ "format": {
+  "ar": "9:16",
+  "fps": 30,
+  "size": [
+   1080,
+   1920
+  ],
+  "target_s": 60
+ },
+ "hook": "cold open on first line",
+ "est_s": 31.6,
+ "lines": [
+  {
+   "directed": "What ceases is the identification of the Self with the limited puryaṣṭaka as the ultimate knowing subject.",
+   "maps_to": [
+    "s73-b26"
+   ],
+   "voice": "granny"
+  },
+  {
+   "directed": "That is Kṣemarāja’s explanation.",
+   "maps_to": [
+    "s73-b27"
+   ],
+   "voice": "granny"
+  },
+  {
+   "directed": "The jīva as the contracted, desire-driven individual ceases to define the Self.",
+   "maps_to": [
+    "s73-b28"
+   ],
+   "voice": "granny"
+  },
+  {
+   "directed": "And now we encounter an absolutely beautiful expression.",
+   "maps_to": [
+    "s73-b29"
+   ],
+   "voice": "granny"
+  },
+  {
+   "directed": "Delight in one’s own Self.",
+   "maps_to": [
+    "s73-b31"
+   ],
+   "voice": "granny"
+  },
+  {
+   "directed": "Resting in the fullness of the Self.",
+   "maps_to": [
+    "s73-b32"
+   ],
+   "voice": "granny"
+  },
+  {
+   "directed": "The person no longer requires an external object to establish their fundamental completeness.",
+   "maps_to": [
+    "s73-b33"
+   ],
+   "voice": "granny"
+  },
+  {
+   "directed": "And Kṣemarāja contrasts this with the continual outward movement of the bound individual.",
+   "maps_to": [
+    "s73-b34"
+   ],
+   "voice": "granny"
+  }
+ ]
+}

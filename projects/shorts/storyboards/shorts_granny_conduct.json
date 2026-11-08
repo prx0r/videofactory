@@ -1,0 +1,80 @@
+{
+ "unit": "shorts_granny_conduct",
+ "source": {
+  "lane": "tantrasara",
+  "unit": "ch21",
+  "long_url": "https://pub-87169194562a44fcb8279a799d626c62.r2.dev/tantrasara/ch21_full.mp4"
+ },
+ "emblem": {
+  "file": "lamp-extinguish.gif"
+ },
+ "format": {
+  "ar": "9:16",
+  "fps": 30,
+  "size": [
+   1080,
+   1920
+  ],
+  "target_s": 60
+ },
+ "hook": "cold open on first line",
+ "est_s": 42.4,
+ "lines": [
+  {
+   "directed": "If two scriptures make genuinely incompatible assertions about exactly the same reality under identical conditions, there remains a philosophical dispute.",
+   "maps_to": [
+    "ch21-b554"
+   ],
+   "voice": "granny"
+  },
+  {
+   "directed": "But Abhinavagupta is drawing attention to the fact that not every apparent conflict is a genuine conflict concerning the same subject.",
+   "maps_to": [
+    "ch21-b555"
+   ],
+   "voice": "granny"
+  },
+  {
+   "directed": "And then he introduces a rather severe example.",
+   "maps_to": [
+    "ch21-b556"
+   ],
+   "voice": "granny"
+  },
+  {
+   "directed": "7. The example of killing a Brahmin — when scriptural rules seem to clash\nNow the Sanskrit says:",
+   "maps_to": [
+    "ch21-b557"
+   ],
+   "voice": "granny"
+  },
+  {
+   "directed": "Like the killing of a Brahmin and its prohibition.",
+   "maps_to": [
+    "ch21-b559"
+   ],
+   "voice": "granny"
+  },
+  {
+   "directed": "Now, that’s an exceptionally stark example.",
+   "maps_to": [
+    "ch21-b560"
+   ],
+   "voice": "granny"
+  },
+  {
+   "directed": "Some scriptural prescriptions or discussions involving this act can appear to stand in tension with prohibitions against it.",
+   "maps_to": [
+    "ch21-b561"
+   ],
+   "voice": "granny"
+  },
+  {
+   "directed": "And Abhinavagupta invokes the difference in:",
+   "maps_to": [
+    "ch21-b562"
+   ],
+   "voice": "granny"
+  }
+ ]
+}

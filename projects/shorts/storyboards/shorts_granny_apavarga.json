@@ -1,0 +1,80 @@
+{
+ "unit": "shorts_granny_apavarga",
+ "source": {
+  "lane": "tantrasara",
+  "unit": "ch11",
+  "long_url": "https://pub-87169194562a44fcb8279a799d626c62.r2.dev/tantrasara/ch11_full.mp4"
+ },
+ "emblem": {
+  "file": "mirror-empty.png"
+ },
+ "format": {
+  "ar": "9:16",
+  "fps": 30,
+  "size": [
+   1080,
+   1920
+  ],
+  "target_s": 60
+ },
+ "hook": "cold open on first line",
+ "est_s": 38.8,
+ "lines": [
+  {
+   "directed": "Not merely someone who can sit in full lotus while maintaining a particularly impressive expression.",
+   "maps_to": [
+    "ch11-b451"
+   ],
+   "voice": "granny"
+  },
+  {
+   "directed": "Someone possessing real knowledge of the supreme reality.",
+   "maps_to": [
+    "ch11-b452"
+   ],
+   "voice": "granny"
+  },
+  {
+   "directed": "And Abhinavagupta makes an important distinction.",
+   "maps_to": [
+    "ch11-b453"
+   ],
+   "voice": "granny"
+  },
+  {
+   "directed": "If the attraction is toward an unqualified teacher, he classifies it as concealment rather than genuine liberating grace.",
+   "maps_to": [
+    "ch11-b454"
+   ],
+   "voice": "granny"
+  },
+  {
+   "directed": "But if someone begins with an inadequate teacher and later comes to a genuine one, that later movement is attributed to śaktipāta.",
+   "maps_to": [
+    "ch11-b456"
+   ],
+   "voice": "granny"
+  },
+  {
+   "directed": "So the movement toward a true teacher is itself a manifestation of grace.",
+   "maps_to": [
+    "ch11-b457"
+   ],
+   "voice": "granny"
+  },
+  {
+   "directed": "Now, that leads us to a rather important question.",
+   "maps_to": [
+    "ch11-b458"
+   ],
+   "voice": "granny"
+  },
+  {
+   "directed": "What exactly makes a guru genuine?",
+   "maps_to": [
+    "ch11-b459"
+   ],
+   "voice": "granny"
+  }
+ ]
+}

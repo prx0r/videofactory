@@ -1,0 +1,73 @@
+{
+ "unit": "shorts_granny_noref",
+ "source": {
+  "lane": "tantrasara",
+  "unit": "ch12",
+  "long_url": "https://pub-87169194562a44fcb8279a799d626c62.r2.dev/tantrasara/ch12_full.mp4"
+ },
+ "emblem": {
+  "file": "lotus-rain.gif"
+ },
+ "format": {
+  "ar": "9:16",
+  "fps": 30,
+  "size": [
+   1080,
+   1920
+  ],
+  "target_s": 60
+ },
+ "hook": "cold open on first line",
+ "est_s": 42.0,
+ "lines": [
+  {
+   "directed": "Conversely, the highest purification is not dependent upon the physical cleanliness of the body.",
+   "maps_to": [
+    "ch12-b658"
+   ],
+   "voice": "granny"
+  },
+  {
+   "directed": "It’s the recognition of one’s true nature.",
+   "maps_to": [
+    "ch12-b659"
+   ],
+   "voice": "granny"
+  },
+  {
+   "directed": "Now, one additional textual detail.",
+   "maps_to": [
+    "ch12-b660"
+   ],
+   "voice": "granny"
+  },
+  {
+   "directed": "A Sanskrit textual witness also preserves a further closing stanza in a Middle Indo-Aryan vernacular form, beginning:",
+   "maps_to": [
+    "ch12-b661"
+   ],
+   "voice": "granny"
+  },
+  {
+   "directed": "Immersion in supreme bliss.",
+   "maps_to": [
+    "ch12-b664"
+   ],
+   "voice": "granny"
+  },
+  {
+   "directed": "Its message again identifies true bathing with immersion in supreme bliss and the recognition of the highest Self. The stanza is absent from the GRETIL transcription and from the Sanskrit & Trika Shaivism edition, so I’m distinguishing it from the closing Sanskrit verse rather than silently combining the witnesses. १२",
+   "maps_to": [
+    "ch12-b665"
+   ],
+   "voice": "granny"
+  },
+  {
+   "directed": "And now let’s finish in our own words.",
+   "maps_to": [
+    "ch12-b666"
+   ],
+   "voice": "granny"
+  }
+ ]
+}

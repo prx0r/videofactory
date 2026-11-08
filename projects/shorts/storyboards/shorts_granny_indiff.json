@@ -1,0 +1,73 @@
+{
+ "unit": "shorts_granny_indiff",
+ "source": {
+  "lane": "shiva-sutras",
+  "unit": "s47",
+  "long_url": "https://pub-87169194562a44fcb8279a799d626c62.r2.dev/shiva/s47_full.mp4"
+ },
+ "emblem": {
+  "file": "yama-scales.gif"
+ },
+ "format": {
+  "ar": "9:16",
+  "fps": 30,
+  "size": [
+   1080,
+   1920
+  ],
+  "target_s": 60
+ },
+ "hook": "cold open on first line",
+ "est_s": 27.2,
+ "lines": [
+  {
+   "directed": "And now the mind, which was initially bound by its own limited operation, becomes directed towards the very source of manifestation.",
+   "maps_to": [
+    "s47-b95"
+   ],
+   "voice": "granny"
+  },
+  {
+   "directed": "The mind that was absorbed in the branches turns towards the seed.",
+   "maps_to": [
+    "s47-b96"
+   ],
+   "voice": "granny"
+  },
+  {
+   "directed": "And here there’s a wonderful relationship with Śāktopāya.",
+   "maps_to": [
+    "s47-b97"
+   ],
+   "voice": "granny"
+  },
+  {
+   "directed": "Remember:",
+   "maps_to": [
+    "s47-b98"
+   ],
+   "voice": "granny"
+  },
+  {
+   "directed": "The mind is mantra.",
+   "maps_to": [
+    "s47-b101"
+   ],
+   "voice": "granny"
+  },
+  {
+   "directed": "Not every wandering thought automatically functioning as a liberating formula, but mental activity transformed through contemplation of the supreme reality.",
+   "maps_to": [
+    "s47-b102"
+   ],
+   "voice": "granny"
+  },
+  {
+   "directed": "And now:",
+   "maps_to": [
+    "s47-b103"
+   ],
+   "voice": "granny"
+  }
+ ]
+}

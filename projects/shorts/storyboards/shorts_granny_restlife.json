@@ -1,0 +1,80 @@
+{
+ "unit": "shorts_granny_restlife",
+ "source": {
+  "lane": "tantrasara",
+  "unit": "ch20",
+  "long_url": "https://pub-87169194562a44fcb8279a799d626c62.r2.dev/tantrasara/ch20_full.mp4"
+ },
+ "emblem": {
+  "file": "sunrise-mountain.gif"
+ },
+ "format": {
+  "ar": "9:16",
+  "fps": 30,
+  "size": [
+   1080,
+   1920
+  ],
+  "target_s": 60
+ },
+ "hook": "cold open on first line",
+ "est_s": 45.2,
+ "lines": [
+  {
+   "directed": "Graha.",
+   "maps_to": [
+    "ch20-b974"
+   ],
+   "voice": "granny"
+  },
+  {
+   "directed": "A planetary or celestial body considered within the traditional astronomical-astrological system.",
+   "maps_to": [
+    "ch20-b975"
+   ],
+   "voice": "granny"
+  },
+  {
+   "directed": "Abhinavagupta lists combinations involving Citrā and the Moon, Maghā and Jupiter, Tiṣya or Puṣya and the Moon, Pūrvaphālgunī and Mercury, Śravaṇa and Mercury, Śatabhiṣaj and the Moon, Mūlā and the Sun, Rohiṇī and Venus, Viśākhā and Jupiter, and Śravaṇa and the Moon.",
+   "maps_to": [
+    "ch20-b976"
+   ],
+   "voice": "granny"
+  },
+  {
+   "directed": "When the appropriate conjunctions align with the prescribed sequence — with Āśvayuja expressly excepted — the festival becomes:",
+   "maps_to": [
+    "ch20-b977"
+   ],
+   "voice": "granny"
+  },
+  {
+   "directed": "Special-special.",
+   "maps_to": [
+    "ch20-b979"
+   ],
+   "voice": "granny"
+  },
+  {
+   "directed": "The transmitted list isn’t completely transparent as a one-to-one twelve-month mapping, so it would be misleading to invent missing conjunctions to make a perfectly tidy calendar.",
+   "maps_to": [
+    "ch20-b980"
+   ],
+   "voice": "granny"
+  },
+  {
+   "directed": "And if a special condition coincides with another festival, that can be called:",
+   "maps_to": [
+    "ch20-b981"
+   ],
+   "voice": "granny"
+  },
+  {
+   "directed": "Anuparva.",
+   "maps_to": [
+    "ch20-b982"
+   ],
+   "voice": "granny"
+  }
+ ]
+}

@@ -1,0 +1,80 @@
+{
+ "unit": "shorts_granny_birth",
+ "source": {
+  "lane": "shiva-sutras",
+  "unit": "s50",
+  "long_url": "https://pub-87169194562a44fcb8279a799d626c62.r2.dev/shiva/s50_full.mp4"
+ },
+ "emblem": {
+  "file": "campfire.gif"
+ },
+ "format": {
+  "ar": "9:16",
+  "fps": 30,
+  "size": [
+   1080,
+   1920
+  ],
+  "target_s": 60
+ },
+ "hook": "cold open on first line",
+ "est_s": 26.4,
+ "lines": [
+  {
+   "directed": "When liberating knowledge remains undestroyed, birth is extinguished.",
+   "maps_to": [
+    "s50-b18"
+   ],
+   "voice": "granny"
+  },
+  {
+   "directed": "Now, why is this so significant?",
+   "maps_to": [
+    "s50-b19"
+   ],
+   "voice": "granny"
+  },
+  {
+   "directed": "Because we’ve already seen what happens when supreme knowledge subsides.",
+   "maps_to": [
+    "s50-b20"
+   ],
+   "voice": "granny"
+  },
+  {
+   "directed": "Book II ended with the warning:",
+   "maps_to": [
+    "s50-b21"
+   ],
+   "voice": "granny"
+  },
+  {
+   "directed": "When pure knowledge subsides, dreamlike differentiation arises again.",
+   "maps_to": [
+    "s50-b23"
+   ],
+   "voice": "granny"
+  },
+  {
+   "directed": "The practitioner may have attained an extraordinary recognition.",
+   "maps_to": [
+    "s50-b24"
+   ],
+   "voice": "granny"
+  },
+  {
+   "directed": "But if that recognition does not remain established, the conditions of limitation can return.",
+   "maps_to": [
+    "s50-b25"
+   ],
+   "voice": "granny"
+  },
+  {
+   "directed": "And now the complementary statement appears.",
+   "maps_to": [
+    "s50-b26"
+   ],
+   "voice": "granny"
+  }
+ ]
+}

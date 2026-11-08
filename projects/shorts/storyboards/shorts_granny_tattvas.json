@@ -1,0 +1,80 @@
+{
+ "unit": "shorts_granny_tattvas",
+ "source": {
+  "lane": "tantrasara",
+  "unit": "ch05",
+  "long_url": "https://pub-87169194562a44fcb8279a799d626c62.r2.dev/tantrasara/ch05_full.mp4"
+ },
+ "emblem": {
+  "file": "om-reveal.gif"
+ },
+ "format": {
+  "ar": "9:16",
+  "fps": 30,
+  "size": [
+   1080,
+   1920
+  ],
+  "target_s": 60
+ },
+ "hook": "cold open on first line",
+ "est_s": 35.2,
+ "lines": [
+  {
+   "directed": "Even ordinary words can evoke their referents within awareness.",
+   "maps_to": [
+    "ch05-b619"
+   ],
+   "voice": "granny"
+  },
+  {
+   "directed": "Now, in this tantric account, mantra sounds possess another kind of efficacy.",
+   "maps_to": [
+    "ch05-b620"
+   ],
+   "voice": "granny"
+  },
+  {
+   "directed": "Their capacity to awaken contact with consciousness doesn’t depend merely upon conventional semantic meaning.",
+   "maps_to": [
+    "ch05-b621"
+   ],
+   "voice": "granny"
+  },
+  {
+   "directed": "The phoneme can be contemplated as vibration itself.",
+   "maps_to": [
+    "ch05-b622"
+   ],
+   "voice": "granny"
+  },
+  {
+   "directed": "Contact with the pulsation of consciousness.",
+   "maps_to": [
+    "ch05-b624"
+   ],
+   "voice": "granny"
+  },
+  {
+   "directed": "Abhinavagupta discusses phonemes with or without their accompanying vowels.",
+   "maps_to": [
+    "ch05-b625"
+   ],
+   "voice": "granny"
+  },
+  {
+   "directed": "They may be internally articulated or remembered.",
+   "maps_to": [
+    "ch05-b626"
+   ],
+   "voice": "granny"
+  },
+  {
+   "directed": "And the essential point is that their subtle resonance can disclose a mode of awareness that doesn’t require an ordinary object of reference.",
+   "maps_to": [
+    "ch05-b627"
+   ],
+   "voice": "granny"
+  }
+ ]
+}

@@ -1,0 +1,73 @@
+{
+ "unit": "shorts_granny_ocean",
+ "source": {
+  "lane": "shiva-sutras",
+  "unit": "s48",
+  "long_url": "https://pub-87169194562a44fcb8279a799d626c62.r2.dev/shiva/s48_full.mp4"
+ },
+ "emblem": {
+  "file": "rainbow-body.gif"
+ },
+ "format": {
+  "ar": "9:16",
+  "fps": 30,
+  "size": [
+   1080,
+   1920
+  ],
+  "target_s": 60
+ },
+ "hook": "cold open on first line",
+ "est_s": 32.0,
+ "lines": [
+  {
+   "directed": "The Great Lake.",
+   "maps_to": [
+    "s48-b129"
+   ],
+   "voice": "granny"
+  },
+  {
+   "directed": "The oceanic source of manifestation.",
+   "maps_to": [
+    "s48-b130"
+   ],
+   "voice": "granny"
+  },
+  {
+   "directed": "But now we’ll discover why Kṣemarāja’s idea of āsana is much deeper than simply sitting cross-legged on a cushion.",
+   "maps_to": [
+    "s48-b131"
+   ],
+   "voice": "granny"
+  },
+  {
+   "directed": "The next fifteen sūtras also take us through the creation of one’s world, the ending of rebirth, the Mothers associated with the Sanskrit phonemes, the infusion of the fourth state into waking, dreaming and deep sleep like oil, the transformation of breath, and the extraordinary declarations:",
+   "maps_to": [
+    "s48-b132"
+   ],
+   "voice": "granny"
+  },
+  {
+   "directed": "Śivatulyo jāyate.",
+   "maps_to": [
+    "s48-b134"
+   ],
+   "voice": "granny"
+  },
+  {
+   "directed": "One becomes like Śiva.",
+   "maps_to": [
+    "s48-b135"
+   ],
+   "voice": "granny"
+  },
+  {
+   "directed": "And:",
+   "maps_to": [
+    "s48-b136"
+   ],
+   "voice": "granny"
+  }
+ ]
+}
