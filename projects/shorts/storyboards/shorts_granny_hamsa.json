@@ -1,0 +1,58 @@
+{
+ "unit": "shorts_granny_hamsa",
+ "source": {
+  "lane": "shiva-sutras",
+  "unit": "s59",
+  "bids": [
+   "b60",
+   "b61",
+   "b62",
+   "b64"
+  ],
+  "long_url": "https://pub-87169194562a44fcb8279a799d626c62.r2.dev/shiva/s59_full.mp4"
+ },
+ "emblem": {
+  "file": "magician.gif"
+ },
+ "format": {
+  "ar": "9:16",
+  "fps": 30,
+  "size": [
+   1080,
+   1920
+  ],
+  "target_s": 60
+ },
+ "hook": "cold open on first line",
+ "est_s": 14.4,
+ "lines": [
+  {
+   "directed": "And then he cites the Vijñānabhairava.",
+   "maps_to": [
+    "s59-b60"
+   ],
+   "voice": "granny"
+  },
+  {
+   "directed": "Which is where things become particularly interesting.",
+   "maps_to": [
+    "s59-b61"
+   ],
+   "voice": "granny"
+  },
+  {
+   "directed": "Because the text describes spontaneous mantra in relation to the movement of breath.",
+   "maps_to": [
+    "s59-b62"
+   ],
+   "voice": "granny"
+  },
+  {
+   "directed": "The subtle mantra associated with the natural movement of respiration.",
+   "maps_to": [
+    "s59-b64"
+   ],
+   "voice": "granny"
+  }
+ ]
+}

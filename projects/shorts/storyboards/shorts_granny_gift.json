@@ -1,0 +1,66 @@
+{
+ "unit": "shorts_granny_gift",
+ "source": {
+  "lane": "shiva-sutras",
+  "unit": "s60",
+  "bids": [
+   "b3",
+   "b4",
+   "b5",
+   "b6",
+   "b7"
+  ],
+  "long_url": "https://pub-87169194562a44fcb8279a799d626c62.r2.dev/shiva/s60_full.mp4"
+ },
+ "emblem": {
+  "file": "lamp-extinguish.gif"
+ },
+ "format": {
+  "ar": "9:16",
+  "fps": 30,
+  "size": [
+   1080,
+   1920
+  ],
+  "target_s": 60
+ },
+ "hook": "cold open on first line",
+ "est_s": 21.6,
+ "lines": [
+  {
+   "directed": "Dānam ātmajñānam.",
+   "maps_to": [
+    "s60-b3"
+   ],
+   "voice": "granny"
+  },
+  {
+   "directed": "The gift is knowledge of the Self.",
+   "maps_to": [
+    "s60-b4"
+   ],
+   "voice": "granny"
+  },
+  {
+   "directed": "The Greatest Gift Isn’t Money. It’s Helping Somebody Realise What They Actually Are.",
+   "maps_to": [
+    "s60-b5"
+   ],
+   "voice": "granny"
+  },
+  {
+   "directed": "This is absolutely beautiful.",
+   "maps_to": [
+    "s60-b6"
+   ],
+   "voice": "granny"
+  },
+  {
+   "directed": "Because after all the metaphysics, after the entire cosmic theatre, after the extraordinary powers and the subtle bodies and the phonemic goddesses, Vasugupta arrives at something profoundly human.",
+   "maps_to": [
+    "s60-b7"
+   ],
+   "voice": "granny"
+  }
+ ]
+}

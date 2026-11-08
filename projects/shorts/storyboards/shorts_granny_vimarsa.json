@@ -1,0 +1,82 @@
+{
+ "unit": "shorts_granny_vimarsa",
+ "source": {
+  "lane": "tantrasara",
+  "unit": "ch22",
+  "bids": [
+   "b42",
+   "b43",
+   "b44",
+   "b45",
+   "b47",
+   "b48",
+   "b49"
+  ],
+  "long_url": "https://pub-87169194562a44fcb8279a799d626c62.r2.dev/tantrasara/ch22_full.mp4"
+ },
+ "emblem": {
+  "file": "mirror-empty.png"
+ },
+ "format": {
+  "ar": "9:16",
+  "fps": 30,
+  "size": [
+   1080,
+   1920
+  ],
+  "target_s": 60
+ },
+ "hook": "cold open on first line",
+ "est_s": 30.8,
+ "lines": [
+  {
+   "directed": "But neither are we going to mistake it for:",
+   "maps_to": [
+    "ch22-b42"
+   ],
+   "voice": "granny"
+  },
+  {
+   "directed": "“Have a drink, get laid, and congratulations, you’ve achieved enlightenment.”",
+   "maps_to": [
+    "ch22-b43"
+   ],
+   "voice": "granny"
+  },
+  {
+   "directed": "Absolutely bloody not.",
+   "maps_to": [
+    "ch22-b44"
+   ],
+   "voice": "granny"
+  },
+  {
+   "directed": "Because Abhinavagupta’s entire argument concerns the transformation of experience through:",
+   "maps_to": [
+    "ch22-b45"
+   ],
+   "voice": "granny"
+  },
+  {
+   "directed": "Consciousness’s reflexive apprehension of itself.",
+   "maps_to": [
+    "ch22-b47"
+   ],
+   "voice": "granny"
+  },
+  {
+   "directed": "And by the end of this chapter, you’ll see something magnificent.",
+   "maps_to": [
+    "ch22-b48"
+   ],
+   "voice": "granny"
+  },
+  {
+   "directed": "The Kaula ritual isn’t supposed to replace the recognition of Śiva with pleasure. It’s supposed to recognise the supreme consciousness through which pleasure, embodiment, manifestation and their dissolution occur.",
+   "maps_to": [
+    "ch22-b49"
+   ],
+   "voice": "granny"
+  }
+ ]
+}

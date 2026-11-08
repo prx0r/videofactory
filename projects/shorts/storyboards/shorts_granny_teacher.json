@@ -1,0 +1,66 @@
+{
+ "unit": "shorts_granny_teacher",
+ "source": {
+  "lane": "shiva-sutras",
+  "unit": "s61",
+  "bids": [
+   "b34",
+   "b35",
+   "b39",
+   "b40",
+   "b41"
+  ],
+  "long_url": "https://pub-87169194562a44fcb8279a799d626c62.r2.dev/shiva/s61_full.mp4"
+ },
+ "emblem": {
+  "file": "book-cup.gif"
+ },
+ "format": {
+  "ar": "9:16",
+  "fps": 30,
+  "size": [
+   1080,
+   1920
+  ],
+  "target_s": 60
+ },
+ "hook": "cold open on first line",
+ "est_s": 28.8,
+ "lines": [
+  {
+   "directed": "And now the extraordinary implication.",
+   "maps_to": [
+    "s61-b34"
+   ],
+   "voice": "granny"
+  },
+  {
+   "directed": "Only someone established in genuine recognition can fully perform the liberating function of the teacher described in the preceding sūtra.",
+   "maps_to": [
+    "s61-b35"
+   ],
+   "voice": "granny"
+  },
+  {
+   "directed": "But how can someone communicate that recognition if they remain fundamentally confused about their own nature?",
+   "maps_to": [
+    "s61-b39"
+   ],
+   "voice": "granny"
+  },
+  {
+   "directed": "And that’s Kṣemarāja’s question.",
+   "maps_to": [
+    "s61-b40"
+   ],
+   "voice": "granny"
+  },
+  {
+   "directed": "A person who remains entirely subordinate to the powers of differentiated cognition cannot, simply by possessing information, exercise the same transformative authority attributed to the realised teacher.",
+   "maps_to": [
+    "s61-b41"
+   ],
+   "voice": "granny"
+  }
+ ]
+}

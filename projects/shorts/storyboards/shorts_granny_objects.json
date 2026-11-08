@@ -1,0 +1,66 @@
+{
+ "unit": "shorts_granny_objects",
+ "source": {
+  "lane": "shiva-sutras",
+  "unit": "s66",
+  "bids": [
+   "b34",
+   "b35",
+   "b36",
+   "b37",
+   "b38"
+  ],
+  "long_url": "https://pub-87169194562a44fcb8279a799d626c62.r2.dev/shiva/s66_full.mp4"
+ },
+ "emblem": {
+  "file": "mirror-empty.png"
+ },
+ "format": {
+  "ar": "9:16",
+  "fps": 30,
+  "size": [
+   1080,
+   1920
+  ],
+  "target_s": 60
+ },
+ "hook": "cold open on first line",
+ "est_s": 22.4,
+ "lines": [
+  {
+   "directed": "And this is what makes the doctrine so subtle.",
+   "maps_to": [
+    "s66-b34"
+   ],
+   "voice": "granny"
+  },
+  {
+   "directed": "The yogi isn’t simply detached from objects because objects are horrible.",
+   "maps_to": [
+    "s66-b35"
+   ],
+   "voice": "granny"
+  },
+  {
+   "directed": "The yogi recognises their fundamental conscious nature as not dependent upon those objects.",
+   "maps_to": [
+    "s66-b36"
+   ],
+   "voice": "granny"
+  },
+  {
+   "directed": "Now Kṣemarāja makes the point exceptionally strongly.",
+   "maps_to": [
+    "s66-b37"
+   ],
+   "voice": "granny"
+  },
+  {
+   "directed": "The liberated yogi is not internally touched even by the residual impressions of pleasure and pain.",
+   "maps_to": [
+    "s66-b38"
+   ],
+   "voice": "granny"
+  }
+ ]
+}
