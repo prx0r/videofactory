@@ -28,6 +28,14 @@ compose (emblem + karaoke) → verify adapted to 9:16 → publish pack.
 Mirrors the main line minus recording; ears stay mandatory, seals stay
 per-short. Naming: shorts_<lane>_<unit>_<n>.mp4.
 
+## Roadman cut (owner-ordered voice)
+Shorts voice the skeptic in roadman: Fish voice
+`e64e97ef91304e2894cd72ff03b86d97` on `s2.1-pro-free` (free-only law
+holds — voice ID is data, model string stays `-free`). Granny stays
+posh narrator; the comedy is the contrast. Man-dialogue exchanges,
+caps rants, and wrong-view bits go roadman; verse and narration stay
+house voices. Candidate status until a test render blesses it — wire
+into lane voices only after ears pass.
 ## Volume
 Pilot 3–5 shorts per long unit (tantrasara chapters, early shiva units
 first — several already run near shorts length). Scale to hundreds only
