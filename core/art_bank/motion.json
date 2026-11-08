@@ -523,15 +523,14 @@
    },
    "status": "banked-described",
    "direction": {
-    "pattern": "9x@2x then 1x@0.25x then 3s white hold",
+    "pattern": "9x@2x then 1x@0.5x then 3s white hold",
     "timing_s": {
      "fast_pass": 1.44,
-     "slow_pass": 11.52,
+     "slow_pass": 5.76,
      "hold": 3.0,
-     "total": 27.5
+     "total": 21.72
     },
-    "mechanism": "ffmpeg setpts on frame stream (2x halve, 0.25x quadruple delays); reverse via -vf reverse; white hold appended at render. Baked to mp4, player-agnostic.",
-    "status": "banked-described"
+    "mechanism": "ffmpeg setpts on frame stream (2x halve, 0.5x double delays); reverse via -vf reverse; white hold appended at render. Baked to mp4, player-agnostic."
    }
   },
   {
