@@ -2,7 +2,7 @@
 """Videofactory MCP server — agent control plane for the video factory (stdio).
 
 Senses (read-only): vf_projects, vf_status, vf_units, vf_unit, vf_issues,
-vf_gate, vf_logs, vf_finals, vf_check, vf_tests, vf_skills, vf_skill.
+vf_gate, vf_logs, vf_finals, vf_catalog, vf_check, vf_tests, vf_skills, vf_skill.
 Decides: vf_triage (gate verdict + per-issue skill routing + recommended step).
 Acts: vf_launch (gated immediate render), vf_queue (gated render in the next
 gap), vf_pack (zip finals), vf_publish (R2 upload + byte-verify),
@@ -516,6 +516,33 @@ async def vf_finals(project: str = "tantrasara") -> str:
                 "url": f"{PUB_BASE}/{prefix}/{stem}_full.mp4",
             })
         return {"project": project, "finals": out}
+    try:
+        return json.dumps(await _run_sync(_work), indent=2)
+    except (OSError, ValueError) as e:
+        return json.dumps({"error": str(e)[:300]})
+
+
+@mcp.tool()
+async def vf_catalog(project: str = "tantrasara") -> str:
+    """Per-video catalog for a lane: title + thumbnail + state per unit.
+
+    Titles come from chapter source (lane convention); thumbnails resolve
+    per-unit stem art with series fallback. Derived read-only.
+
+    Args:
+        project: Lane name (tantrasara, shiva-sutras, nibbana, paramarthasara)
+    """
+    def _work():
+        env, cfg = _project_env(project)
+        r = subprocess.run([sys.executable, os.path.join(ROOT, "core", "builders", "catalog.py"), project],
+                           capture_output=True, text=True, timeout=240, cwd=ROOT, env=env)
+        try:
+            doc = json.loads(r.stdout or "{}")
+            if doc.get("project") == project:
+                return doc
+        except ValueError:
+            pass
+        return {"error": (r.stdout + r.stderr)[-300:] or "catalog failed"}
     try:
         return json.dumps(await _run_sync(_work), indent=2)
     except (OSError, ValueError) as e:

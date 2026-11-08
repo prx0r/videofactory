@@ -99,6 +99,12 @@
         "scan_holds",
         "audit_white_gaps"
       ]
+    },
+    "av-sync": {
+      "file": "av-sync.md",
+      "auto": true,
+      "needs_owner": false,
+      "web_query": "ffprobe audio video stream duration delta AAC padding Spotify strict mux trim shortest"
     }
   },
   "decisions": {

@@ -2,7 +2,7 @@
 
 `vf_mcp_server.py` is the agent-facing front door of the video factory. Any
 MCP-capable agent — opencode, Claude, a headless driver — gets the same
-eighteen tools and two resources, over stdio, with factory law enforced
+nineteen tools and two resources, over stdio, with factory law enforced
 server-side instead of trusted client-side.
 
 ```
@@ -107,6 +107,12 @@ path traversal is refused.
 
 **`vf_finals(project)`** — shipped mp4s with bytes, ship verdicts, and
 public R2 URLs (`https://pub-…r2.dev/<lane>/<stem>_full.mp4`).
+
+**`vf_catalog(project)`** — per-video catalog: display title (lane
+convention from chapter source) + thumbnail (per-unit stem art or series
+fallback) + state (storyboard sha, approval, stage, final bytes, issues,
+ship) for every unit. Owners drop per-video art at
+`assets/thumbnail/<stem>.png` and it appears here on the next run.
 
 **`vf_check()`** — runs `check.py`; `{"canonical": true}` or the failing
 tail. The factory definition of done for code changes.
