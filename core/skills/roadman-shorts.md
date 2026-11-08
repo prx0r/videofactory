@@ -33,3 +33,17 @@ sacred/profane, eternal/urgent) + a proven LM (bureaucratic-reframe,
 bathos, garden-path) + a FRESH situation from the current chapter.
 Same SO+LM+situation as an existing node = same joke: forbidden.
 Check the graph before writing; file every aired bit back as a node.
+
+## Derivation formula (granny + GIF + graph = bit)
+1. TAKE granny's 60s (the concept, verbatim-mapped) + its GIF (on screen
+   first, big, always talked about).
+2. PICK one house SO + one LM from comedy-graph.json that the granny
+   minute already contains (e.g. owner/owned + literalization for the
+   dog; infinite/petty + bureaucratic-reframe for receipts).
+3. CAST Roady from roady-graph.json: sofa/mate/screen open, personal
+   story that IS the doctrine, minted word allowed, banned register
+   never. He discovers the GIF live; stories riff to explain it better.
+4. CHECK the triple (SO+LM+situation) against the graph — collision
+   means rewrite, never repeat.
+5. CLOSE with the mutter after Big G takes the mic.
+Infinite bits: every granny minute × every GIF × unmapped triples.
