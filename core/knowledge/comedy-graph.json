@@ -1,0 +1,1210 @@
+{
+ "format": "comedy-graph-v1",
+ "law": "same SO+LM+situation = same joke: never repeat the triple. New bits cross a proven SO with a fresh situation.",
+ "nodes": [
+  {
+   "id": "receipt",
+   "lane": "shiva",
+   "unit": "s68",
+   "bids": [
+    "b45",
+    "b47",
+    "b49"
+   ],
+   "gist": "cosmic sovereignty, would-you-like-a-receipt",
+   "so": "infinite/petty",
+   "lm": "bureaucratic-reframe",
+   "situation": "job interview",
+   "target": "seeker",
+   "strategy": "dialogue-exchange"
+  },
+  {
+   "id": "compass",
+   "lane": "nibbana",
+   "unit": "n01",
+   "bids": [
+    "b108",
+    "b109",
+    "b110",
+    "b111"
+   ],
+   "gist": "extinguished fire gone North? South? higher dimension?",
+   "so": "profound/mundane",
+   "lm": "misplaced-concreteness",
+   "situation": "asking directions",
+   "target": "patient",
+   "strategy": "dialogue-exchange"
+  },
+  {
+   "id": "self-litany",
+   "lane": "nibbana",
+   "unit": "n01",
+   "bids": [
+    "b69",
+    "b70",
+    "b71"
+   ],
+   "gist": "this is my body/pain/person",
+   "so": "owner/owned",
+   "lm": "deadpan-list",
+   "situation": "self-inventory",
+   "target": "patient",
+   "strategy": "deadpan-list"
+  },
+  {
+   "id": "dog-water",
+   "lane": "nibbana",
+   "unit": "n09",
+   "bids": [
+    "b126"
+   ],
+   "gist": "dog growling at its reflection",
+   "so": "seer/seen",
+   "lm": "literalization",
+   "situation": "waterside encounter",
+   "target": "patient",
+   "strategy": "anecdote"
+  },
+  {
+   "id": "tuesday-sanskrit",
+   "lane": "shiva",
+   "unit": "s07",
+   "bids": [
+    "b73",
+    "b75",
+    "b77"
+   ],
+   "gist": "where is teacher, when back, Sanskrit Tuesday",
+   "so": "eternal/urgent",
+   "lm": "bathos",
+   "situation": "asking after teacher",
+   "target": "seeker",
+   "strategy": "dialogue-exchange"
+  },
+  {
+   "id": "certificates",
+   "lane": "paramarthasara",
+   "unit": "p07",
+   "bids": [
+    "b1013",
+    "b1015",
+    "b1017"
+   ],
+   "gist": "well I tried / unfortunately not / completed the ritual",
+   "so": "sacred/profane",
+   "lm": "bureaucratic-reframe",
+   "situation": "job interview",
+   "target": "seeker",
+   "strategy": "dialogue-exchange"
+  },
+  {
+   "id": "tea-company",
+   "lane": "nibbana",
+   "unit": "n06",
+   "bids": [
+    "b1031",
+    "b1032",
+    "b1033",
+    "b1034"
+   ],
+   "gist": "lovely tea, buy more, import, build a brand",
+   "so": "sacred/profane",
+   "lm": "garden-path",
+   "situation": "tasting tea",
+   "target": "patient",
+   "strategy": "deadpan-list"
+  },
+  {
+   "id": "salt",
+   "lane": "shiva",
+   "unit": "s05",
+   "bids": [
+    "b91"
+   ],
+   "gist": "could you pass the salt",
+   "so": "infinite/petty",
+   "lm": "bathos",
+   "situation": "dinner table",
+   "target": "monk",
+   "strategy": "one-liner"
+  },
+  {
+   "id": "nobody-dies",
+   "lane": "shiva",
+   "unit": "s72",
+   "bids": [
+    "b102",
+    "b103",
+    "b104"
+   ],
+   "gist": "don't worry, nobody needs to die, end of a mode",
+   "so": "ancient/immediate",
+   "lm": "perspective-shift",
+   "situation": "reassurance",
+   "target": "patient",
+   "strategy": "anecdote"
+  },
+  {
+   "id": "fire-out",
+   "lane": "nibbana",
+   "unit": "n01",
+   "bids": [
+    "b336",
+    "b337"
+   ],
+   "gist": "the fire has gone out; examine what kept it burning",
+   "so": "actual/non-actual",
+   "lm": "literalization",
+   "situation": "fire-watching",
+   "target": "patient",
+   "strategy": "one-liner"
+  },
+  {
+   "id": "exams",
+   "lane": "nibbana",
+   "unit": "n06",
+   "bids": [
+    "b996"
+   ],
+   "gist": "examination results arrive",
+   "so": "sacred/profane",
+   "lm": "bureaucratic-reframe",
+   "situation": "exam hall",
+   "target": "seeker",
+   "strategy": "one-liner"
+  },
+  {
+   "id": "conqueror",
+   "lane": "nibbana",
+   "unit": "n10",
+   "bids": [
+    "b1286"
+   ],
+   "gist": "Monday exquisite pleasures through Friday enlightenment",
+   "so": "eternal/urgent",
+   "lm": "deadpan-list",
+   "situation": "weekly planner",
+   "target": "patient",
+   "strategy": "deadpan-list"
+  },
+  {
+   "id": "mirror-mine",
+   "lane": "nibbana",
+   "unit": "n09",
+   "bids": [
+    "b920",
+    "b921"
+   ],
+   "gist": "this belongs to me; I am this",
+   "so": "owner/owned",
+   "lm": "literalization",
+   "situation": "self-inventory",
+   "target": "patient",
+   "strategy": "deadpan-list"
+  },
+  {
+   "id": "sky-flower",
+   "lane": "paramarthasara",
+   "unit": "p03",
+   "bids": [
+    "b1250",
+    "b1252"
+   ],
+   "gist": "invented a sky flower; lovely, you've invented one",
+   "so": "profound/mundane",
+   "lm": "garden-path",
+   "situation": "scholastic debate",
+   "target": "scholar",
+   "strategy": "dialogue-exchange"
+  },
+  {
+   "id": "stationery",
+   "lane": "paramarthasara",
+   "unit": "p07",
+   "bids": [
+    "b556",
+    "b557",
+    "b558"
+   ],
+   "gist": "certificates embossed; mastered the stationery",
+   "so": "sacred/profane",
+   "lm": "bureaucratic-reframe",
+   "situation": "initiation interview",
+   "target": "seeker",
+   "strategy": "dialogue-exchange"
+  },
+  {
+   "id": "lunch-test",
+   "lane": "paramarthasara",
+   "unit": "p05",
+   "bids": [
+    "b1020",
+    "b1021"
+   ],
+   "gist": "how much time thinking about lunch; extraordinary amount",
+   "so": "ancient/immediate",
+   "lm": "bathos",
+   "situation": "confession",
+   "target": "monk",
+   "strategy": "dialogue-exchange"
+  },
+  {
+   "id": "plank",
+   "lane": "nibbana",
+   "unit": "n10",
+   "bids": [
+    "b107",
+    "b108",
+    "b109",
+    "b110",
+    "b111"
+   ],
+   "gist": "my plank, I made it, craftsmanship, attack on me",
+   "so": "owner/owned",
+   "lm": "perspective-shift",
+   "situation": "workshop",
+   "target": "patient",
+   "strategy": "dialogue-exchange"
+  },
+  {
+   "id": "sandal",
+   "lane": "shiva",
+   "unit": "s05",
+   "bids": [
+    "b85",
+    "b91"
+   ],
+   "gist": "how do I recover the state; could you pass the salt",
+   "so": "seeker/sought",
+   "lm": "bathos",
+   "situation": "asking directions",
+   "target": "seeker",
+   "strategy": "dialogue-exchange"
+  },
+  {
+   "id": "must-not",
+   "lane": "shiva",
+   "unit": "s60",
+   "bids": [
+    "b62",
+    "b63"
+   ],
+   "gist": "excellent; all of you illustrate impossibility",
+   "so": "seeker/sought",
+   "lm": "garden-path",
+   "situation": "classroom",
+   "target": "patient",
+   "strategy": "anecdote"
+  },
+  {
+   "id": "mate-fire",
+   "lane": "nibbana",
+   "unit": "n01",
+   "bids": [
+    "b335"
+   ],
+   "gist": "Mate.",
+   "so": "intimate/distant",
+   "lm": "bathos",
+   "situation": "direct address",
+   "target": "listener",
+   "strategy": "one-liner"
+  },
+  {
+   "id": "who-judges",
+   "lane": "nibbana",
+   "unit": "n04",
+   "bids": [
+    "b1015"
+   ],
+   "gist": "who the fuck are they to judge me (cozied: who are they)",
+   "so": "owner/owned",
+   "lm": "perspective-shift",
+   "situation": "grievance",
+   "target": "patient",
+   "strategy": "one-liner"
+  },
+  {
+   "id": "tree-cow",
+   "lane": "paratrishika",
+   "unit": "v29",
+   "bids": [
+    "b1862",
+    "b1906"
+   ],
+   "gist": "I see a cow; we've assembled all the parts",
+   "so": "actual/non-actual",
+   "lm": "literalization",
+   "situation": "grammar lesson",
+   "target": "scholar",
+   "strategy": "dialogue-exchange"
+  },
+  {
+   "id": "furniture",
+   "lane": "paratrishika",
+   "unit": "v28",
+   "bids": [
+    "b1928",
+    "b1930"
+   ],
+   "gist": "stop taking my furniture; finite person owning objects",
+   "so": "owner/owned",
+   "lm": "perspective-shift",
+   "situation": "property dispute",
+   "target": "patient",
+   "strategy": "dialogue-exchange"
+  },
+  {
+   "id": "calendar",
+   "lane": "paratrishika",
+   "unit": "v28",
+   "bids": [
+    "b1050",
+    "b1051",
+    "b1052"
+   ],
+   "gist": "available Thursday? Monday? before the calendar?",
+   "so": "eternal/urgent",
+   "lm": "bathos",
+   "situation": "scheduling",
+   "target": "seeker",
+   "strategy": "dialogue-exchange"
+  }
+ ],
+ "edges": [
+  {
+   "a": "receipt",
+   "b": "tuesday-sanskrit",
+   "shared": [
+    "TGT:seeker"
+   ]
+  },
+  {
+   "a": "receipt",
+   "b": "salt",
+   "shared": [
+    "SO:infinite/petty"
+   ]
+  },
+  {
+   "a": "receipt",
+   "b": "stationery",
+   "shared": [
+    "LM:bureaucratic-reframe",
+    "TGT:seeker"
+   ]
+  },
+  {
+   "a": "receipt",
+   "b": "sandal",
+   "shared": [
+    "TGT:seeker"
+   ]
+  },
+  {
+   "a": "compass",
+   "b": "self-litany",
+   "shared": [
+    "TGT:patient"
+   ]
+  },
+  {
+   "a": "compass",
+   "b": "dog-water",
+   "shared": [
+    "TGT:patient"
+   ]
+  },
+  {
+   "a": "compass",
+   "b": "tea-company",
+   "shared": [
+    "TGT:patient"
+   ]
+  },
+  {
+   "a": "compass",
+   "b": "nobody-dies",
+   "shared": [
+    "TGT:patient"
+   ]
+  },
+  {
+   "a": "compass",
+   "b": "fire-out",
+   "shared": [
+    "TGT:patient"
+   ]
+  },
+  {
+   "a": "compass",
+   "b": "conqueror",
+   "shared": [
+    "TGT:patient"
+   ]
+  },
+  {
+   "a": "compass",
+   "b": "mirror-mine",
+   "shared": [
+    "TGT:patient"
+   ]
+  },
+  {
+   "a": "compass",
+   "b": "sky-flower",
+   "shared": [
+    "SO:profound/mundane"
+   ]
+  },
+  {
+   "a": "compass",
+   "b": "plank",
+   "shared": [
+    "TGT:patient"
+   ]
+  },
+  {
+   "a": "compass",
+   "b": "must-not",
+   "shared": [
+    "TGT:patient"
+   ]
+  },
+  {
+   "a": "compass",
+   "b": "who-judges",
+   "shared": [
+    "TGT:patient"
+   ]
+  },
+  {
+   "a": "compass",
+   "b": "furniture",
+   "shared": [
+    "TGT:patient"
+   ]
+  },
+  {
+   "a": "self-litany",
+   "b": "tea-company",
+   "shared": [
+    "TGT:patient"
+   ]
+  },
+  {
+   "a": "self-litany",
+   "b": "who-judges",
+   "shared": [
+    "SO:owner/owned",
+    "TGT:patient"
+   ]
+  },
+  {
+   "a": "dog-water",
+   "b": "self-litany",
+   "shared": [
+    "TGT:patient"
+   ]
+  },
+  {
+   "a": "dog-water",
+   "b": "tea-company",
+   "shared": [
+    "TGT:patient"
+   ]
+  },
+  {
+   "a": "dog-water",
+   "b": "nobody-dies",
+   "shared": [
+    "TGT:patient"
+   ]
+  },
+  {
+   "a": "dog-water",
+   "b": "fire-out",
+   "shared": [
+    "LM:literalization",
+    "TGT:patient"
+   ]
+  },
+  {
+   "a": "dog-water",
+   "b": "mirror-mine",
+   "shared": [
+    "LM:literalization",
+    "TGT:patient"
+   ]
+  },
+  {
+   "a": "dog-water",
+   "b": "plank",
+   "shared": [
+    "TGT:patient"
+   ]
+  },
+  {
+   "a": "dog-water",
+   "b": "must-not",
+   "shared": [
+    "TGT:patient"
+   ]
+  },
+  {
+   "a": "dog-water",
+   "b": "who-judges",
+   "shared": [
+    "TGT:patient"
+   ]
+  },
+  {
+   "a": "dog-water",
+   "b": "tree-cow",
+   "shared": [
+    "LM:literalization"
+   ]
+  },
+  {
+   "a": "dog-water",
+   "b": "furniture",
+   "shared": [
+    "TGT:patient"
+   ]
+  },
+  {
+   "a": "certificates",
+   "b": "receipt",
+   "shared": [
+    "LM:bureaucratic-reframe",
+    "TGT:seeker"
+   ]
+  },
+  {
+   "a": "certificates",
+   "b": "tuesday-sanskrit",
+   "shared": [
+    "TGT:seeker"
+   ]
+  },
+  {
+   "a": "certificates",
+   "b": "tea-company",
+   "shared": [
+    "SO:sacred/profane"
+   ]
+  },
+  {
+   "a": "certificates",
+   "b": "exams",
+   "shared": [
+    "SO:sacred/profane",
+    "LM:bureaucratic-reframe",
+    "TGT:seeker"
+   ]
+  },
+  {
+   "a": "certificates",
+   "b": "stationery",
+   "shared": [
+    "SO:sacred/profane",
+    "LM:bureaucratic-reframe",
+    "TGT:seeker"
+   ]
+  },
+  {
+   "a": "certificates",
+   "b": "sandal",
+   "shared": [
+    "TGT:seeker"
+   ]
+  },
+  {
+   "a": "tea-company",
+   "b": "who-judges",
+   "shared": [
+    "TGT:patient"
+   ]
+  },
+  {
+   "a": "salt",
+   "b": "tuesday-sanskrit",
+   "shared": [
+    "LM:bathos"
+   ]
+  },
+  {
+   "a": "salt",
+   "b": "sandal",
+   "shared": [
+    "LM:bathos"
+   ]
+  },
+  {
+   "a": "nobody-dies",
+   "b": "self-litany",
+   "shared": [
+    "TGT:patient"
+   ]
+  },
+  {
+   "a": "nobody-dies",
+   "b": "tea-company",
+   "shared": [
+    "TGT:patient"
+   ]
+  },
+  {
+   "a": "nobody-dies",
+   "b": "plank",
+   "shared": [
+    "LM:perspective-shift",
+    "TGT:patient"
+   ]
+  },
+  {
+   "a": "nobody-dies",
+   "b": "who-judges",
+   "shared": [
+    "LM:perspective-shift",
+    "TGT:patient"
+   ]
+  },
+  {
+   "a": "fire-out",
+   "b": "self-litany",
+   "shared": [
+    "TGT:patient"
+   ]
+  },
+  {
+   "a": "fire-out",
+   "b": "tea-company",
+   "shared": [
+    "TGT:patient"
+   ]
+  },
+  {
+   "a": "fire-out",
+   "b": "nobody-dies",
+   "shared": [
+    "TGT:patient"
+   ]
+  },
+  {
+   "a": "fire-out",
+   "b": "mirror-mine",
+   "shared": [
+    "LM:literalization",
+    "TGT:patient"
+   ]
+  },
+  {
+   "a": "fire-out",
+   "b": "plank",
+   "shared": [
+    "TGT:patient"
+   ]
+  },
+  {
+   "a": "fire-out",
+   "b": "must-not",
+   "shared": [
+    "TGT:patient"
+   ]
+  },
+  {
+   "a": "fire-out",
+   "b": "who-judges",
+   "shared": [
+    "TGT:patient"
+   ]
+  },
+  {
+   "a": "fire-out",
+   "b": "tree-cow",
+   "shared": [
+    "SO:actual/non-actual",
+    "LM:literalization"
+   ]
+  },
+  {
+   "a": "fire-out",
+   "b": "furniture",
+   "shared": [
+    "TGT:patient"
+   ]
+  },
+  {
+   "a": "exams",
+   "b": "receipt",
+   "shared": [
+    "LM:bureaucratic-reframe",
+    "TGT:seeker"
+   ]
+  },
+  {
+   "a": "exams",
+   "b": "tuesday-sanskrit",
+   "shared": [
+    "TGT:seeker"
+   ]
+  },
+  {
+   "a": "exams",
+   "b": "tea-company",
+   "shared": [
+    "SO:sacred/profane"
+   ]
+  },
+  {
+   "a": "exams",
+   "b": "stationery",
+   "shared": [
+    "SO:sacred/profane",
+    "LM:bureaucratic-reframe",
+    "TGT:seeker"
+   ]
+  },
+  {
+   "a": "exams",
+   "b": "sandal",
+   "shared": [
+    "TGT:seeker"
+   ]
+  },
+  {
+   "a": "conqueror",
+   "b": "self-litany",
+   "shared": [
+    "LM:deadpan-list",
+    "TGT:patient"
+   ]
+  },
+  {
+   "a": "conqueror",
+   "b": "dog-water",
+   "shared": [
+    "TGT:patient"
+   ]
+  },
+  {
+   "a": "conqueror",
+   "b": "tuesday-sanskrit",
+   "shared": [
+    "SO:eternal/urgent"
+   ]
+  },
+  {
+   "a": "conqueror",
+   "b": "tea-company",
+   "shared": [
+    "TGT:patient"
+   ]
+  },
+  {
+   "a": "conqueror",
+   "b": "nobody-dies",
+   "shared": [
+    "TGT:patient"
+   ]
+  },
+  {
+   "a": "conqueror",
+   "b": "fire-out",
+   "shared": [
+    "TGT:patient"
+   ]
+  },
+  {
+   "a": "conqueror",
+   "b": "mirror-mine",
+   "shared": [
+    "TGT:patient"
+   ]
+  },
+  {
+   "a": "conqueror",
+   "b": "plank",
+   "shared": [
+    "TGT:patient"
+   ]
+  },
+  {
+   "a": "conqueror",
+   "b": "must-not",
+   "shared": [
+    "TGT:patient"
+   ]
+  },
+  {
+   "a": "conqueror",
+   "b": "who-judges",
+   "shared": [
+    "TGT:patient"
+   ]
+  },
+  {
+   "a": "conqueror",
+   "b": "furniture",
+   "shared": [
+    "TGT:patient"
+   ]
+  },
+  {
+   "a": "mirror-mine",
+   "b": "self-litany",
+   "shared": [
+    "SO:owner/owned",
+    "TGT:patient"
+   ]
+  },
+  {
+   "a": "mirror-mine",
+   "b": "tea-company",
+   "shared": [
+    "TGT:patient"
+   ]
+  },
+  {
+   "a": "mirror-mine",
+   "b": "nobody-dies",
+   "shared": [
+    "TGT:patient"
+   ]
+  },
+  {
+   "a": "mirror-mine",
+   "b": "plank",
+   "shared": [
+    "SO:owner/owned",
+    "TGT:patient"
+   ]
+  },
+  {
+   "a": "mirror-mine",
+   "b": "must-not",
+   "shared": [
+    "TGT:patient"
+   ]
+  },
+  {
+   "a": "mirror-mine",
+   "b": "who-judges",
+   "shared": [
+    "SO:owner/owned",
+    "TGT:patient"
+   ]
+  },
+  {
+   "a": "mirror-mine",
+   "b": "tree-cow",
+   "shared": [
+    "LM:literalization"
+   ]
+  },
+  {
+   "a": "sky-flower",
+   "b": "tea-company",
+   "shared": [
+    "LM:garden-path"
+   ]
+  },
+  {
+   "a": "sky-flower",
+   "b": "tree-cow",
+   "shared": [
+    "TGT:scholar"
+   ]
+  },
+  {
+   "a": "stationery",
+   "b": "tuesday-sanskrit",
+   "shared": [
+    "TGT:seeker"
+   ]
+  },
+  {
+   "a": "stationery",
+   "b": "tea-company",
+   "shared": [
+    "SO:sacred/profane"
+   ]
+  },
+  {
+   "a": "lunch-test",
+   "b": "tuesday-sanskrit",
+   "shared": [
+    "LM:bathos"
+   ]
+  },
+  {
+   "a": "lunch-test",
+   "b": "salt",
+   "shared": [
+    "LM:bathos",
+    "TGT:monk"
+   ]
+  },
+  {
+   "a": "lunch-test",
+   "b": "nobody-dies",
+   "shared": [
+    "SO:ancient/immediate"
+   ]
+  },
+  {
+   "a": "lunch-test",
+   "b": "sandal",
+   "shared": [
+    "LM:bathos"
+   ]
+  },
+  {
+   "a": "lunch-test",
+   "b": "mate-fire",
+   "shared": [
+    "LM:bathos"
+   ]
+  },
+  {
+   "a": "plank",
+   "b": "self-litany",
+   "shared": [
+    "SO:owner/owned",
+    "TGT:patient"
+   ]
+  },
+  {
+   "a": "plank",
+   "b": "tea-company",
+   "shared": [
+    "TGT:patient"
+   ]
+  },
+  {
+   "a": "plank",
+   "b": "who-judges",
+   "shared": [
+    "SO:owner/owned",
+    "LM:perspective-shift",
+    "TGT:patient"
+   ]
+  },
+  {
+   "a": "sandal",
+   "b": "tuesday-sanskrit",
+   "shared": [
+    "LM:bathos",
+    "TGT:seeker"
+   ]
+  },
+  {
+   "a": "sandal",
+   "b": "stationery",
+   "shared": [
+    "TGT:seeker"
+   ]
+  },
+  {
+   "a": "must-not",
+   "b": "self-litany",
+   "shared": [
+    "TGT:patient"
+   ]
+  },
+  {
+   "a": "must-not",
+   "b": "tea-company",
+   "shared": [
+    "LM:garden-path",
+    "TGT:patient"
+   ]
+  },
+  {
+   "a": "must-not",
+   "b": "nobody-dies",
+   "shared": [
+    "TGT:patient"
+   ]
+  },
+  {
+   "a": "must-not",
+   "b": "sky-flower",
+   "shared": [
+    "LM:garden-path"
+   ]
+  },
+  {
+   "a": "must-not",
+   "b": "plank",
+   "shared": [
+    "TGT:patient"
+   ]
+  },
+  {
+   "a": "must-not",
+   "b": "sandal",
+   "shared": [
+    "SO:seeker/sought"
+   ]
+  },
+  {
+   "a": "must-not",
+   "b": "who-judges",
+   "shared": [
+    "TGT:patient"
+   ]
+  },
+  {
+   "a": "mate-fire",
+   "b": "tuesday-sanskrit",
+   "shared": [
+    "LM:bathos"
+   ]
+  },
+  {
+   "a": "mate-fire",
+   "b": "salt",
+   "shared": [
+    "LM:bathos"
+   ]
+  },
+  {
+   "a": "mate-fire",
+   "b": "sandal",
+   "shared": [
+    "LM:bathos"
+   ]
+  },
+  {
+   "a": "furniture",
+   "b": "self-litany",
+   "shared": [
+    "SO:owner/owned",
+    "TGT:patient"
+   ]
+  },
+  {
+   "a": "furniture",
+   "b": "tea-company",
+   "shared": [
+    "TGT:patient"
+   ]
+  },
+  {
+   "a": "furniture",
+   "b": "nobody-dies",
+   "shared": [
+    "LM:perspective-shift",
+    "TGT:patient"
+   ]
+  },
+  {
+   "a": "furniture",
+   "b": "mirror-mine",
+   "shared": [
+    "SO:owner/owned",
+    "TGT:patient"
+   ]
+  },
+  {
+   "a": "furniture",
+   "b": "plank",
+   "shared": [
+    "SO:owner/owned",
+    "LM:perspective-shift",
+    "TGT:patient"
+   ]
+  },
+  {
+   "a": "furniture",
+   "b": "must-not",
+   "shared": [
+    "TGT:patient"
+   ]
+  },
+  {
+   "a": "furniture",
+   "b": "who-judges",
+   "shared": [
+    "SO:owner/owned",
+    "LM:perspective-shift",
+    "TGT:patient"
+   ]
+  },
+  {
+   "a": "calendar",
+   "b": "receipt",
+   "shared": [
+    "TGT:seeker"
+   ]
+  },
+  {
+   "a": "calendar",
+   "b": "tuesday-sanskrit",
+   "shared": [
+    "SO:eternal/urgent",
+    "LM:bathos",
+    "TGT:seeker"
+   ]
+  },
+  {
+   "a": "calendar",
+   "b": "certificates",
+   "shared": [
+    "TGT:seeker"
+   ]
+  },
+  {
+   "a": "calendar",
+   "b": "salt",
+   "shared": [
+    "LM:bathos"
+   ]
+  },
+  {
+   "a": "calendar",
+   "b": "exams",
+   "shared": [
+    "TGT:seeker"
+   ]
+  },
+  {
+   "a": "calendar",
+   "b": "conqueror",
+   "shared": [
+    "SO:eternal/urgent"
+   ]
+  },
+  {
+   "a": "calendar",
+   "b": "stationery",
+   "shared": [
+    "TGT:seeker"
+   ]
+  },
+  {
+   "a": "calendar",
+   "b": "lunch-test",
+   "shared": [
+    "LM:bathos"
+   ]
+  },
+  {
+   "a": "calendar",
+   "b": "sandal",
+   "shared": [
+    "LM:bathos",
+    "TGT:seeker"
+   ]
+  },
+  {
+   "a": "calendar",
+   "b": "mate-fire",
+   "shared": [
+    "LM:bathos"
+   ]
+  }
+ ]
+}

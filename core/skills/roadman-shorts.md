@@ -26,3 +26,10 @@ Process note: every Roady line carries maps_to source bids (C2 rule);
 granny's 60 seconds get written first, Roady's generated off it, handoff
 links them. Voice: roadman seat, free model only. Nothing renders on
 provisional voice without ears.
+
+## Graph rule (comedy-graph-v1, core/knowledge/comedy-graph.json)
+New bits are built, not found: take a proven house SO (owner/owned,
+sacred/profane, eternal/urgent) + a proven LM (bureaucratic-reframe,
+bathos, garden-path) + a FRESH situation from the current chapter.
+Same SO+LM+situation as an existing node = same joke: forbidden.
+Check the graph before writing; file every aired bit back as a node.
