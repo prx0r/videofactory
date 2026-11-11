@@ -157,7 +157,62 @@ def lane_paths(storyboard):
                 'approval': base / f'approved_s{ch}.json',
                 'drops': base / f'drops_s{ch}.json', 'source': base / 'chapters' / f's{ch}.md',
                 'overrides': base / f'overrides_s{ch}.json', 'base': base}
-    raise ContractError(f'unrecognised storyboard path: {storyboard}')
+    return _lane_paths_plugin(storyboard)
+
+
+def _lane_paths_plugin(storyboard):
+    """New lanes delegate to their lane plugins (tantrasara/shiva patterns
+    above stay frozen for parity). Returns the same dict shape; source and
+    overrides stay None because new-lane flows never read them."""
+    sb = Path(storyboard).resolve()
+    sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), '..'))
+    import lane_api as _api
+    try:
+        _name, _mod = _api.for_path(str(sb))
+    except ValueError:
+        raise ContractError(f'unrecognised storyboard path: {storyboard}')
+    _unit = _mod.unit_id(str(sb))
+    _repo = sb.parent.parent if sb.parent.name == 'storyboards' else sb.parent
+    _p = _mod.paths(str(_repo), _unit)
+    _dp = Path(_p['drops'])
+    _ap = _dp.parent / _dp.name.replace('drops_', 'approved_')
+    return {'lane': _name, 'unit': _unit, 'storyboard': sb,
+            'glossary': Path(_p['glossary']),
+            'approval': _ap, 'drops': _dp,
+            'source': None, 'overrides': None, 'base': _repo}
+
+
+def _normalize_glossary(gl):
+    """New lanes keep glossaries as mining-stage lists (all proposed until a
+    scholar confirms). Normalize to the term-dict shape the checks below
+    assume, with slug-folded keys, so unconfirmed terms simply yield no cues
+    instead of crashing validation."""
+    import unicodedata as _ud
+
+    entries = None
+    if isinstance(gl, dict):
+        if isinstance(gl.get('entries'), list) and \
+                set(gl.keys()) <= {'unit', 'status', 'entries', 'meta', 'note'}:
+            entries = gl['entries']
+        elif isinstance(gl.get('deva_terms'), list) or isinstance(gl.get('iast_terms'), list):
+            entries = list(gl.get('deva_terms', [])) + list(gl.get('iast_terms', []))
+    if entries is None:
+        return gl
+    out = {}
+    for e in entries:
+        if not isinstance(e, dict) or not e.get('term'):
+            continue
+        base = _ud.normalize('NFD', str(e['term']))
+        base = ''.join(c for c in base if _ud.category(c) != 'Mn').lower()
+        base = re.sub(r'[\s_]+', '-', base)
+        base = re.sub(r'[^a-z0-9-]', '', base)
+        base = re.sub(r'-+', '-', base).strip('-')
+        if not base or base in out:
+            continue
+        out[base] = {'status': 'proposed', 'cue_blocks': [],
+                     'gloss': e.get('gloss', ''),
+                     'deva': e['term'] if re.search(r'[\u0900-\u097F]', str(e['term'])) else ''}
+    return out
 
 
 def validate_bundle(storyboard, require_approval=False):
@@ -180,7 +235,7 @@ def validate_bundle(storyboard, require_approval=False):
         raise ContractError(f"{paths['storyboard']}: storyboard has "
                             f"{len(validation['errors'])} errors and {len(validation['warnings'])} warnings")
 
-    gl = read_json(paths['glossary'])
+    gl = _normalize_glossary(read_json(paths['glossary']))
     validate_schema('glossary', gl, paths['glossary'])
     known = set(ids)
     for key, entry in gl.items():

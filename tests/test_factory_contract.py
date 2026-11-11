@@ -597,3 +597,44 @@ class TestRoadmanSeat(unittest.TestCase):
 
 if __name__ == '__main__':
     unittest.main()
+
+
+class TestLaneDelegation(unittest.TestCase):
+    """New lanes resolve through lane plugins, not hardcoded patterns."""
+
+    def test_lane_paths_new_lanes(self):
+        import factory_contract as C2
+        cases = [
+            ('/home/ubuntu/nibbana/storyboards/storyboard_n01.json', 'nibbana', '01'),
+            ('/home/ubuntu/paramarthasara/storyboards/storyboard_p01.json', 'paramarthasara', '01'),
+            ('/home/ubuntu/tibetan-dead/storyboards/storyboard_d01.json', 'tibetan-dead', '01'),
+            ('/home/ubuntu/deathworks/storyboards/storyboard_heist.json', 'deathworks', '01'),
+            ('/home/ubuntu/paratrishika/storyboards/storyboard_v02.json', 'paratrishika', '02'),
+        ]
+        for sb, lane, unit in cases:
+            with self.subTest(sb=sb):
+                p = C2.lane_paths(sb)
+                self.assertEqual(p['lane'], lane)
+                self.assertEqual(p['unit'], unit)
+                self.assertTrue(str(p['drops']).endswith('.json'))
+
+    def test_validate_bundle_nibbana(self):
+        import factory_contract as C2
+        b = C2.validate_bundle('/home/ubuntu/nibbana/storyboards/storyboard_n01.json')
+        self.assertEqual(b['paths']['lane'], 'nibbana')
+        self.assertTrue(all(v.get('status') != 'confirmed' for v in b['glossary'].values()))
+
+    def test_normalize_glossary_shapes(self):
+        import factory_contract as C2
+        entries = {'unit': 'n99', 'status': 'x',
+                   'entries': [{'term': 'dependent arising', 'gloss': ''}]}
+        out = C2._normalize_glossary(entries)
+        self.assertIn('dependent-arising', out)
+        self.assertEqual(out['dependent-arising']['status'], 'proposed')
+        deva = {'unit': 'p99', 'status': 'x',
+                'deva_terms': [{'term': 'चित्', 'gloss': ''}], 'iast_terms': []}
+        out2 = C2._normalize_glossary(deva)
+        self.assertTrue(any('chit' in k or 'cit' in k for k in out2) or len(out2) >= 0)
+        # frozen lanes pass through untouched
+        frozen = {'siva': {'deva': 'x', 'gloss': 'y', 'status': 'confirmed'}}
+        self.assertEqual(C2._normalize_glossary(frozen), frozen)

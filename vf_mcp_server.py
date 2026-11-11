@@ -154,8 +154,8 @@ def _publish_targets_ok(local_path, key):
             return False, "local_path must live under ~/vol"
     except ValueError:
         return False, "bad local_path"
-    if not re.fullmatch(r"(tantrasara|shiva)/[\w][\w\-./]*\.\w+", key or "") or ".." in key:
-        return False, "key must look like tantrasara/<name>.ext (no ..)"
+    if not re.fullmatch(r"(tantrasara|shiva|factory)/[\w][\w\-./]*\.\w+", key or "") or ".." in key:
+        return False, "key must look like tantrasara/<name>.ext or factory/<name>.ext (no ..)"
     if not os.path.isfile(lp):
         return False, "local file missing"
     return True, ""
@@ -1034,9 +1034,11 @@ async def vf_queue(project: str, unit: str, ship: bool = True,
 
 @mcp.tool()
 async def vf_publish(local_path: str, key: str) -> str:
-    """Publish a file to R2 (copyto, mount-flake tolerant) + byte-verify (lsl size + HEAD).
+    """    Publish a file to R2 (copyto, mount-flake tolerant) + byte-verify (lsl size + HEAD).
 
-    Local must live under ~/vol; key like tantrasara/<name>.ext (no ..).
+    Local must live under ~/vol; key like tantrasara/<name>.ext or
+    factory/<pack>.zip (no ..). The factory/ prefix carries MCP packs,
+    docs and recipes — anything an outside agent needs.
 
     Args:
         local_path: Volume file to upload (~/vol/.../renders/finals/...)
