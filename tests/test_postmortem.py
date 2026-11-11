@@ -418,6 +418,10 @@ class TestAudioCompleteMirror(unittest.TestCase):
         # exactly like render_chapter (phoneme carve-outs + drop splits).
         if not os.path.exists(self.S00):
             self.skipTest('series repo absent')
+        import glob as _g
+        import paths as _vp
+        if not _g.glob(os.path.join(_vp.renders_root(), '**', '*.wav'), recursive=True):
+            self.skipTest('no rendered audio on this box — audio lives on the render box; server2 runs this')
         self.assertTrue(C.require_audio_complete(self.S00))
 
     def test_figure_blocks_never_hashed(self):
