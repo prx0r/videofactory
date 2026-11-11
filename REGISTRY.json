@@ -1,16 +1,26 @@
 {
  "goal": "video factory proving parity with the frozen series system, then becoming the live path",
  "mode": "render-after-storyboard (owner order 2026-11-06): storyboard green + owner approval is the ONLY render gate; every downstream check is advisory/record-only",
- "series": {
-  "tantrasara": {
-   "stage": "referenced-read-only",
-   "units": 22
+  "series": {
+   "tantrasara": {
+    "stage": "referenced-read-only",
+    "units": 22
+   },
+   "shiva": {
+    "stage": "referenced-read-only",
+    "units": 78
+   }
   },
-  "shiva": {
-   "stage": "referenced-read-only",
-   "units": 78
-  }
- },
+  "closed_lanes": {
+   "tantrasara": "done-2026-11-11-owner-closed: 22 shipped-shape, no further work",
+   "shiva-sutras": "done-2026-11-11-owner-closed: 77/78 finals shipped; s29 missing-audio gap waived by owner, no further work"
+  },
+  "focus": [
+   "nibbana",
+   "paramarthasara",
+   "tibetan-dead",
+   "deathworks"
+  ],
  "milestones": [
   {
    "id": "scaffold",
@@ -92,20 +102,21 @@
    "id": "sleepdraw-engine",
    "status": "done-tested-synthetic"
   },
-  {
-   "id": "suite-60-green",
-   "status": "done"
-  }
- ],
- "locks": {},
- "processes": {
-  "tantrasara-ch14-waiter": {
-   "pid": "2515435",
-   "log": "/tmp/batch_ch14_retry.log",
-   "started": "2026-11-07T04:52:29Z",
-   "note": "ch14 --ship slips into next supervisor gap (draw-skip fix f25c734); gate storyboard+approval OK"
-  }
- },
+   {
+    "id": "suite-60-green",
+    "status": "done"
+   },
+   {
+    "id": "shiva-sutras-complete",
+    "status": "done-2026-11-11-owner-closed"
+   },
+   {
+    "id": "tantrasara-complete",
+    "status": "done-2026-11-11-owner-closed"
+   }
+  ],
+  "locks": {},
+  "processes": {},
  "rules": [
   "storyboard green + owner approval is the ONLY gate that can stop a render (owner order 2026-11-06)",
   "one video build at a time (lock)",
@@ -284,9 +295,14 @@
   {
    "date": "2026-11-07",
    "what": "MCP second round (dogfood-driven): vf_triage/skill-propose/publish/pack/queue + vf_projects/skills + ch6/ch06 aliases; docs/MCP.md (processes, when-to-use, troubleshooting, skills)",
-   "status": "18 tools live; check CANONICAL",
-   "tests": "test_mcp.py pure-helper suite (both runners)"
-  }
- ],
+    "status": "18 tools live; check CANONICAL",
+    "tests": "test_mcp.py pure-helper suite (both runners)"
+   },
+   {
+    "date": "2026-11-11",
+    "what": "OWNER CLOSE: shiva-sutras + tantrasara marked finished, no further work. shiva 77/78 finals shipped (s29 missing-audio gap waived by owner); tantrasara 22 shipped-shape. Stale Nov-7 waiter processes cleared (logs gone, nothing running). Focus now: nibbana, paramarthasara, tibetan-dead, deathworks.",
+    "status": "closed_lanes + focus recorded; milestones shiva-sutras-complete + tantrasara-complete done"
+   }
+  ],
  "render_gate": "storyboard green + owner approval (owner order 2026-11-06); everything else advisory/record-only"
 }

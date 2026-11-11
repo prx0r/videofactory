@@ -183,7 +183,8 @@
      "n01"
     ]
    },
-   "status": "wanted"
+   "status": "wanted",
+   "brief": "Surgeon's hands mid-operation, instruments precise and calm. Why: Sermon 1 \u2014 the Buddha as surgeon (diagnosis and cure), not an estate agent selling mansions (n01 opener). Clean steel, no gore."
   },
   {
    "id": "fire",
@@ -191,7 +192,8 @@
    "used_in": {
     "shiva-sutras": []
    },
-   "status": "wanted"
+   "status": "wanted",
+   "brief": "Single upright flame, steady and bright on white. Why: the dominant chant-image across all 78 sutras (27x) \u2014 consciousness as fire; breath beats (s55/s59). First of the seal four."
   },
   {
    "id": "seed",
@@ -199,7 +201,8 @@
    "used_in": {
     "shiva-sutras": []
    },
-   "status": "wanted"
+   "status": "wanted",
+   "brief": "A seed splitting open, first root reaching down. Why: 22x chant-image \u2014 potency before form; banyan-seed beats. Second of the seal four."
   },
   {
    "id": "ocean",
@@ -207,7 +210,8 @@
    "used_in": {
     "shiva-sutras": []
    },
-   "status": "wanted"
+   "status": "wanted",
+   "brief": "Open ocean swell under a wide sky, one wave gathering itself. Why: 12x chant-image \u2014 the ocean the whirlpool mistakes itself for. Third of the seal four."
   },
   {
    "id": "wheel",
@@ -215,7 +219,8 @@
    "used_in": {
     "shiva-sutras": []
    },
-   "status": "wanted"
+   "status": "wanted",
+   "brief": "A simple wheel turning, spokes catching light. Why: turning itself \u2014 practice, breath cycle, the wheel that needs no road. Fourth of the seal four."
   },
   {
    "id": "leaning-wall",
@@ -345,7 +350,8 @@
      "n01"
     ]
    },
-   "status": "wanted"
+   "status": "wanted",
+   "brief": "A signpost with arms pointing every way at a crossroads. Why: the n01 compass bit \u2014 single-use, draw-first candidate; graduates to GIF only if it recurs elsewhere."
   },
   {
    "id": "crystal-clear",

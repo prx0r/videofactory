@@ -1,0 +1,50 @@
+{
+  "params": {
+    "gif_id": "dog-water",
+    "etch_s": 44.5,
+    "play_s": 24.0,
+    "fade_s": 3.5,
+    "fps": 15,
+    "clean_bg": 250,
+    "speed": 2.0,
+    "direction": "forward",
+    "storyboard": "/home/ubuntu/nibbana/storyboards/storyboard_n02.json",
+    "from_bid": "b581",
+    "to_bid": "b608",
+    "etch_share": 0.65,
+    "wps": 0.0,
+    "passage_s": 0.0
+  },
+  "verify": {
+    "etch_final_eq_frame0": true,
+    "seam_cut_identical": true,
+    "placement": {
+      "x": 805,
+      "y": 333,
+      "w": 309,
+      "h": 413,
+      "canvas": [
+        1920,
+        1080
+      ]
+    },
+    "clean_bg_threshold": 250,
+    "ink_px": 40483
+  },
+  "gif_sha256": "8ba65cd0845be70a153dcf4610c575722deb370fb493dba82b298c683c73429e",
+  "mp4_sha256": "4321eb7bb08c522e1541556585cf9fcf19ca490dc1419f9c94f4681197b988bb",
+  "frame_durations_ms": [
+    550,
+    550,
+    550,
+    550,
+    550,
+    550,
+    550,
+    550,
+    550,
+    550,
+    550,
+    550
+  ]
+}

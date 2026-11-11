@@ -6,6 +6,10 @@ vf_gate, vf_logs, vf_finals, vf_catalog, vf_motion, vf_check, vf_tests, vf_skill
 Decides: vf_triage (gate verdict + per-issue skill routing + recommended step).
 Acts: vf_launch (gated immediate render), vf_queue (gated render in the next
 gap), vf_pack (zip finals), vf_publish (R2 upload + byte-verify),
+vf_seamless_draw (locked etch-to-GIF segment: pen-drawn exact opening
+frame -> motion (speed/direction) -> slow white fade, byte-verified),
+vf_seamless_recipes (list saved segment recipes),
+vf_seamless_cook (replay a recipe byte-for-byte),
 vf_skill_propose (stage a researched skill; commit separately),
 vf_shorts_mine (find shorts candidates), vf_roady_pack (derivation packet).
 
@@ -25,6 +29,7 @@ from __future__ import annotations
 
 import asyncio
 import glob
+import hashlib
 import json
 import os
 import re
@@ -1044,6 +1049,371 @@ async def vf_publish(local_path: str, key: str) -> str:
         lp = os.path.realpath(os.path.expanduser(local_path))
         return _publish_sync(lp, key)
     return json.dumps(await _run_sync(_work), indent=2)
+
+
+def _passage_plan(sb_path, from_bid, to_bid, share, wps, explicit_s):
+    """Time an etch->GIF segment to a spoken passage (pure).
+
+    Returns est_total_s, wps_used, method, etch_s, play_s, mid_bid,
+    per-block seconds, suggested draw/clip lane entries, note. Known block
+    durations come from the lane visual-plan `- draw Ns bid` lines; the
+    rest estimate words/wps (default 2.6 granny wps). explicit_s overrides
+    the total (proportions kept for the mid-bid).
+    """
+    sb = json.load(open(sb_path, encoding="utf-8"))
+    blocks = sb["blocks"]
+    ids = [b["id"] for b in blocks]
+    if from_bid not in ids or to_bid not in ids:
+        return {"ok": False, "reason": "from/to bid not in storyboard"}
+    ia, ib = ids.index(from_bid), ids.index(to_bid)
+    if ia > ib:
+        return {"ok": False, "reason": "from_bid after to_bid"}
+    if not (0.05 <= share <= 0.95):
+        return {"ok": False, "reason": "etch_share must be 0.05..0.95"}
+    span = ids[ia:ib + 1]
+    words = {}
+    for b in blocks:
+        if b["id"] in span:
+            t = re.sub(r"\[[^\]]*\]", "", b.get("directed") or b.get("text", ""))
+            words[b["id"]] = max(1, len(t.split()))
+    known = {}
+    try:
+        lane_root = os.path.dirname(os.path.dirname(os.path.abspath(sb_path)))
+        stem = os.path.splitext(os.path.basename(sb_path))[0].split("storyboard_")[-1]
+        vp = open(os.path.join(lane_root, "process", "visual-plan.md"), encoding="utf-8").read()
+        parts = re.split(r"^## (\S+)\s*$", vp, flags=re.M)
+        body = ""
+        for i in range(1, len(parts), 2):
+            if parts[i] == stem:
+                body = parts[i + 1]
+                break
+        for m in re.finditer(r"- draw (\d+)s (b\d+)", body):
+            known[m.group(2)] = float(m.group(1))
+    except (OSError, ValueError):
+        known = {}
+    cals = [words[bid] / known[bid] for bid in span if bid in known and known[bid] > 0]
+    wps_u = sorted(cals)[len(cals) // 2] if cals else (wps or 2.6)
+    secs = {bid: (known.get(bid) or (words[bid] / wps_u)) for bid in span}
+    total = sum(secs[bid] for bid in span)
+    meth = "visual-plan+words" if cals else "words/wps"
+    if explicit_s and explicit_s > 0:
+        f = explicit_s / total if total > 0 else 1.0
+        secs = {bid: s * f for bid, s in secs.items()}
+        total = explicit_s
+        meth = "explicit"
+    etch = total * share
+    play = max(8.0, total - etch)
+    cum, mid = 0.0, span[-1]
+    for bid in span:
+        cum += secs[bid]
+        if cum >= etch:
+            mid = bid
+            break
+    nxt = ids[ib + 1] if ib + 1 < len(ids) else None
+    note = ""
+    if total < 30 or total > 90:
+        note = f"passage {total:.0f}s outside 30-90s ideal; adjust etch_share or bounds"
+    return {"ok": True, "est_total_s": round(total, 1), "wps_used": round(wps_u, 2),
+            "method": meth, "etch_s": round(etch, 1), "play_s": round(play, 1),
+            "mid_bid": mid, "per_block": [(bid, round(secs[bid], 1)) for bid in span],
+            "suggested": {"draw": {"start": from_bid, "complete": mid},
+                          "clip": {"start": mid, "complete": nxt or to_bid}},
+            "note": note}
+
+
+@mcp.tool()
+async def vf_seamless_draw(gif_id: str, unit: str = "", project: str = "nibbana",
+                           etch_s: float = 20.0, play_s: float = 12.0,
+                           fade_s: float = 3.5, clean_bg: int = 250,
+                           speed: float = 2.0, direction: str = "forward",
+                           recipe: str = "", publish: bool = False,
+                           storyboard: str = "", from_bid: str = "",
+                           to_bid: str = "", etch_share: float = 0.65,
+                           wps: float = 0.0, passage_s: float = 0.0) -> str:
+    """Render a seamless etch-to-GIF segment (locked owner recipe 2026-11-11).
+
+    The pen draws the EXACT opening GIF frame (native size, centered on
+    pure-white 1920x1080, never rescaled), then the GIF plays at 2x with a
+    hard cut (no fade-in), then a slow fade to white. Bank GIFs carry a
+    paper veil (bg ~241-252, never pure white), so backgrounds at or above
+    clean_bg are lifted to 255 first; the canonical bank is untouched and
+    the cleaned frame is the verified subject. Fails loud on any mismatch.
+    Modulations: speed (0.25..8, native delays divided by speed) and
+    direction (forward|reverse|pingpong). Name it with recipe= to save a
+    replayable recipe file; vf_seamless_cook replays one byte-for-byte.
+
+    Args:
+        gif_id: Motion bank id (e.g. lamp-flame)
+        unit: Unit label for the filename (e.g. n01)
+        project: Lane for volume output (default nibbana)
+        etch_s: Pen-draw seconds incl. band breaths (default 20)
+        play_s: Motion seconds at 2x (default 12)
+        fade_s: Slow white-fade seconds (default 3.5)
+        clean_bg: Min-channel threshold lifted to pure white (200..255)
+        speed: Playback speed multiplier (native delay / speed, default 2x)
+        direction: forward|reverse|pingpong (default forward)
+        recipe: Save params+SHAs as a replayable recipe under this name
+        storyboard: Passage mode — storyboard path; times etch/play to the
+            spoken span instead of fixed etch_s/play_s (slow draw welcome)
+        from_bid: Passage start bid (etch begins here)
+        to_bid: Passage end bid (motion covers the tail)
+        etch_share: Fraction of the passage for the etch (default 0.65)
+        wps: Words/sec estimate override (0 = lane-calibrated or 2.6)
+        passage_s: Explicit passage seconds override (beats the estimate)
+        publish: Upload to R2 (shiva/ prefix) when true
+    """
+    def _work():
+        import numpy as np
+        from PIL import Image
+        gpath = os.path.join(ROOT, "core", "art_bank", "motion", f"{gif_id}.gif")
+        if not os.path.isfile(gpath):
+            return {"ok": False, "reason": f"unknown gif_id: {gif_id}"}
+        if not (200 <= clean_bg <= 255):
+            return {"ok": False, "reason": "clean_bg must be 200..255"}
+        im = Image.open(gpath)
+        frames = []
+        durations = []
+        try:
+            while True:
+                durations.append(int(im.info.get("duration", 550)))
+                frames.append(im.copy().convert("RGB"))
+                im.seek(im.tell() + 1)
+        except EOFError:
+            pass
+        if not frames:
+            return {"ok": False, "reason": "no frames decoded"}
+        arr = [np.asarray(f) for f in frames]
+        if any(a.shape != arr[0].shape for a in arr):
+            return {"ok": False, "reason": "gif frames differ in size"}
+        clean = [np.where(a.min(axis=2, keepdims=True) >= clean_bg, 255, a).astype(np.uint8)
+                 for a in arr]
+        f0 = clean[0]
+        fh, fw = f0.shape[:2]
+        W, H = (1920, 1080)
+        x0, y0 = (W - fw) // 2, (H - fh) // 2
+        white = np.full((H, W, 3), 255, dtype=np.uint8)
+        sroot = os.environ.get("SLEEPDRAW_ROOT", os.path.expanduser("~/sleepdraw"))
+        sys.path.insert(0, os.path.join(sroot, "vendor", "techdou", "scripts"))
+        import generate_whiteboard as GW
+        dark = f0.min(axis=2) < 200
+        if not bool(dark.any()):
+            return {"ok": False, "reason": "no ink pixels under 200"}
+        skel = GW._zhang_suen(dark)
+        walk = np.asarray(GW._walk_skeleton(skel), dtype=np.float64)
+        pict = np.any(f0 != 255, axis=2)
+        ys, xs = np.where(pict)
+        ref = walk[::max(1, len(walk) // 2000)]
+        d2 = ((np.stack([xs, ys], 1)[..., None, :].astype(np.float64)
+               - ref[None, ...]) ** 2).sum(-1)
+        nearest = np.argmin(d2, axis=1)
+        yq = np.quantile(ys, [.25, .5, .75])
+        bands = np.digitize(ys, list(yq))
+        FPS = 15
+        plan = None
+        if storyboard:
+            plan = _passage_plan(storyboard, from_bid, to_bid, etch_share,
+                                 wps, passage_s)
+            if not plan.get("ok"):
+                return plan
+            etch_s, play_s = plan["etch_s"], plan["play_s"]
+        n_etch = int(round(etch_s * FPS))
+        n_breath = int(round(min(1.5, etch_s / 8) * FPS))
+        n_settle = 0
+        n_pen = max(4, n_etch - 3 * n_breath - n_settle)
+        fr_base = max(1, n_pen // 4)
+        fr_rem = n_pen - fr_base * 4
+        outdir = os.path.join(os.path.expanduser("~/vol"), project)
+        os.makedirs(outdir, exist_ok=True)
+        spd = f"{speed:g}"
+        tag = f"{gif_id}-{unit or 'demo'}-{int(round(etch_s))}s-{spd}x-{direction}"
+        gsha = hashlib.sha256(open(gpath, "rb").read()).hexdigest()
+        rc0, hd = _sh(["git", "-C", os.environ.get("SLEEPDRAW_ROOT",
+                      os.path.expanduser("~/sleepdraw")), "rev-parse", "--short", "HEAD"])
+        rc1, ffv = _sh(["ffmpeg", "-version"])
+        fdir = os.path.join(outdir, f".seamless_{tag}")
+        os.makedirs(fdir, exist_ok=True)
+        ox, oy = xs + x0, ys + y0
+        idx = 1
+        for bi, b in enumerate((3, 2, 1, 0)):
+            mb = np.where(bands == b)[0]
+            seq = mb[np.argsort(nearest[mb], kind="stable")]
+            m = len(seq)
+            n_fr = fr_base + (1 if bi < fr_rem else 0)
+            for j in range(n_fr):
+                k = int(m * (j + 1) / n_fr)
+                img = white.copy()
+                for pb in (3, 2, 1, 0):
+                    if pb > b:
+                        pm = np.where(bands == pb)[0]
+                        img[oy[pm], ox[pm]] = f0[ys[pm], xs[pm]]
+                img[oy[seq[:k]], ox[seq[:k]]] = f0[ys[seq[:k]], xs[seq[:k]]]
+                Image.fromarray(img).save(os.path.join(fdir, f"s_{idx:05d}.png"))
+                idx += 1
+            if b:
+                for _ in range(n_breath):
+                    Image.fromarray(img).save(os.path.join(fdir, f"s_{idx:05d}.png"))
+                    idx += 1
+        full = white.copy()
+        full[y0:y0 + fh, x0:x0 + fw] = f0
+        for _ in range(n_settle):
+            Image.fromarray(full).save(os.path.join(fdir, f"s_{idx:05d}.png"))
+            idx += 1
+        ref_img = np.asarray(Image.open(os.path.join(fdir, f"s_{idx - 1:05d}.png")))
+        expect = white.copy()
+        expect[y0:y0 + fh, x0:x0 + fw] = f0
+        if not bool(np.array_equal(ref_img, expect)):
+            return {"ok": False, "reason": "etch final != cleaned frame0"}
+        if direction not in ("forward", "reverse", "pingpong"):
+            return {"ok": False, "reason": "direction must be forward|reverse|pingpong"}
+        if not (0.25 <= speed <= 8.0):
+            return {"ok": False, "reason": "speed must be 0.25..8"}
+        order = list(range(len(clean)))
+        if direction == "reverse":
+            order = order[::-1]
+        elif direction == "pingpong" and len(clean) > 2:
+            order = order + order[-2:0:-1]
+        cyc = []
+        for gi in order:
+            cyc.extend([gi] * max(1, int(round((durations[gi] / 1000.0 / speed) / (1.0 / FPS)))))
+        total_motion = int(round(play_s * FPS))
+        seqm_rep = (cyc * ((total_motion // len(cyc)) + 1))[:total_motion]
+        if not seqm_rep:
+            return {"ok": False, "reason": "empty motion plan"}
+        for gi in seqm_rep:
+            img = white.copy()
+            img[y0:y0 + fh, x0:x0 + fw] = clean[gi]
+            Image.fromarray(img).save(os.path.join(fdir, f"s_{idx:05d}.png"))
+            idx += 1
+        first_motion = np.asarray(Image.open(
+            os.path.join(fdir, f"s_{idx - len(seqm_rep):05d}.png")))
+        if not bool(np.array_equal(ref_img, first_motion)):
+            return {"ok": False, "reason": "seam cut mismatch"}
+        last = clean[seqm_rep[-1]].astype(np.float32)
+        wf = white.astype(np.float32)
+        nf = int(round(fade_s * FPS))
+        for j in range(nf):
+            q = max(0.0, 1.0 - (j + 1) / nf)
+            fg = wf.copy()
+            fg[y0:y0 + fh, x0:x0 + fw] = last
+            Image.fromarray((fg * q + wf * (1 - q)).astype(np.uint8)).save(
+                os.path.join(fdir, f"s_{idx:05d}.png"))
+            idx += 1
+        mp4 = os.path.join(outdir, f"seamless_{tag}.mp4")
+        rc, out = _sh(["ffmpeg", "-y", "-v", "error", "-framerate", str(FPS),
+                       "-i", os.path.join(fdir, "s_%05d.png"),
+                       "-c:v", "libx264", "-pix_fmt", "yuv420p", "-crf", "20", mp4],
+                      timeout=600)
+        if rc or not os.path.isfile(mp4):
+            return {"ok": False, "reason": f"ffmpeg failed: {out[-300:]}"}
+        msha = hashlib.sha256(open(mp4, "rb").read()).hexdigest()
+        params = {"gif_id": gif_id, "etch_s": etch_s, "play_s": play_s,
+                  "fade_s": fade_s, "fps": FPS, "clean_bg": clean_bg,
+                  "speed": speed, "direction": direction,
+                  "storyboard": storyboard, "from_bid": from_bid,
+                  "to_bid": to_bid, "etch_share": etch_share, "wps": wps,
+                  "passage_s": passage_s}
+        res = {"ok": True, "mp4": mp4, "bytes": os.path.getsize(mp4),
+               "mp4_sha256": msha, "gif_sha256": gsha,
+               "frame_durations_ms": durations,
+               "env": {"sleepdraw_head": ((hd.strip().splitlines() or ["?"])[0][:40]
+                                          if not rc0 else "?"),
+                       "ffmpeg": ((ffv.strip().splitlines() or ["?"])[0][:80]
+                                 if not rc1 else "?")},
+               "verify": {"etch_final_eq_frame0": True, "seam_cut_identical": True,
+                          "placement": {"x": x0, "y": y0, "w": fw, "h": fh,
+                                        "canvas": [W, H]},
+                          "clean_bg_threshold": clean_bg, "ink_px": int(dark.sum())},
+               "params": params}
+        if plan:
+            res["passage_plan"] = {k: v for k, v in plan.items() if k != "ok"}
+        if recipe:
+            if not re.fullmatch(r"[a-z0-9][a-z0-9-]*", recipe):
+                return {"ok": False, "reason": "recipe must match [a-z0-9][a-z0-9-]*"}
+            rdir = os.path.join(ROOT, "core", "art_bank", "seamless_recipes")
+            os.makedirs(rdir, exist_ok=True)
+            rpath = os.path.join(rdir, f"{recipe}.json")
+            json.dump({"params": params, "verify": res["verify"],
+                       "gif_sha256": gsha, "mp4_sha256": msha,
+                       "frame_durations_ms": durations}, open(rpath, "w"), indent=2)
+            res["recipe_file"] = rpath
+        if publish:
+            key = f"shiva/{project}-{tag}.mp4"
+            ok, reason = _publish_targets_ok(mp4, key)
+            if not ok:
+                res["publish"] = {"published": False, "reason": reason}
+            else:
+                res["publish"] = _publish_sync(os.path.realpath(mp4), key)
+        return res
+    return json.dumps(await _run_sync(_work), indent=2)
+
+
+@mcp.tool()
+async def vf_seamless_recipes() -> str:
+    """List saved seamless etch-to-GIF recipes (locked, replayable).
+
+    Each recipe records exact params plus input/output SHAs; replay with
+    vf_seamless_cook, which reports byte-match against the recorded mp4.
+    """
+    def _work():
+        rdir = os.path.join(ROOT, "core", "art_bank", "seamless_recipes")
+        out = []
+        for p in sorted(glob.glob(os.path.join(rdir, "*.json"))):
+            try:
+                d = json.load(open(p, encoding="utf-8"))
+            except (OSError, ValueError):
+                continue
+            out.append({"name": os.path.basename(p)[:-5], "params": d.get("params"),
+                        "mp4_sha256": d.get("mp4_sha256"),
+                        "gif_sha256": d.get("gif_sha256")})
+        return {"recipes": out}
+    return json.dumps(await _run_sync(_work), indent=2)
+
+
+@mcp.tool()
+async def vf_seamless_cook(recipe: str, gif_id: str, unit: str = "",
+                           project: str = "nibbana",
+                           publish: bool = False) -> str:
+    """Replay a saved seamless recipe on a GIF/unit, byte-for-byte check.
+
+    Runs vf_seamless_draw with the recipe's exact params, then compares the
+    output mp4 SHA against the recorded one. replay_match=true means the
+    pipeline reproduced the locked bytes.
+
+    Args:
+        recipe: Saved recipe name (see vf_seamless_recipes)
+        gif_id: Motion bank id to render
+        unit: Unit label for the filename
+        project: Lane for volume output
+        publish: Upload to R2 (shiva/ prefix) when true
+    """
+    def _work():
+        rpath = os.path.join(ROOT, "core", "art_bank", "seamless_recipes",
+                             f"{recipe}.json")
+        if not os.path.isfile(rpath):
+            return {"ok": False, "reason": f"unknown recipe: {recipe}"}
+        try:
+            d = json.load(open(rpath, encoding="utf-8"))
+        except ValueError:
+            return {"ok": False, "reason": "recipe unreadable"}
+        p = d.get("params", {})
+        return {"recipe_params": p, "recipe_file": rpath,
+                "recorded_mp4_sha256": d.get("mp4_sha256")}
+    rec = json.loads(await _run_sync(_work))
+    if not rec.get("recipe_params"):
+        return json.dumps(rec, indent=2)
+    if rec["recipe_file"] and os.path.basename(rec["recipe_file"]) != f"{recipe}.json":
+        return json.dumps({"ok": False, "reason": "recipe path mismatch"}, indent=2)
+    p = rec["recipe_params"]
+    res = json.loads(await vf_seamless_draw(
+        gif_id=gif_id, unit=unit, project=project,
+        etch_s=p.get("etch_s", 20.0), play_s=p.get("play_s", 12.0),
+        fade_s=p.get("fade_s", 3.5), clean_bg=p.get("clean_bg", 250),
+        speed=p.get("speed", 2.0), direction=p.get("direction", "forward"),
+        recipe="", publish=publish))
+    if res.get("ok"):
+        res["replay_match"] = (res.get("mp4_sha256") == rec.get("recorded_mp4_sha256"))
+        res["recipe"] = recipe
+    return json.dumps(res, indent=2)
 
 
 @mcp.tool()
