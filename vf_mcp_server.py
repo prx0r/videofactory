@@ -565,7 +565,7 @@ async def vf_catalog(project: str = "tantrasara") -> str:
         return json.dumps({"error": str(e)[:300]})
 
 
-def _motion_query(status=None, lane=None, query=None):
+def _motion_query(status=None, lane=None, query=None, tags=None):
     """Filter the motion bank (pure; tested in tests/test_motion.py)."""
     try:
         doc = json.load(open(os.path.join(ROOT, "core", "art_bank", "motion.json"),
@@ -580,24 +580,31 @@ def _motion_query(status=None, lane=None, query=None):
             continue
         if query and query.lower() not in json.dumps(e).lower():
             continue
+        if tags and not set(tags) <= set(e.get("tags", [])):
+            continue
         out.append(e)
     return {"entries": out, "total": len(doc.get("entries", []))}
 
 
 @mcp.tool()
-async def vf_motion(status: str = "", lane: str = "", query: str = "") -> str:
+async def vf_motion(status: str = "", lane: str = "", query: str = "",
+                  tags: str = "") -> str:
     """Motion emblem bank: GIF motifs with depictions, placements, queue.
 
     GIFs are earned by recurrence (house VISUALS.md); wanted entries carry
-    maker briefs. Read-only.
+    maker briefs. Every entry carries granular `tags` (setting, subject,
+    mood, light) — pass comma tags to find a suitable visual, e.g.
+    tags="night,calm" or tags="deity,fire". Read-only.
 
     Args:
         status: Filter — "banked", "banked-described", or "wanted" ("" = all)
         lane: Filter to a lane using an entry (e.g. nibbana, shiva-sutras)
         query: Substring match across id/motif/brief/placements
+        tags: Comma tags — entry must carry ALL of them ("" = no tag filter)
     """
     def _work():
-        return _motion_query(status or None, lane or None, query or None)
+        return _motion_query(status or None, lane or None, query or None,
+                             [t.strip() for t in tags.split(",") if t.strip()] or None)
     try:
         return json.dumps(await _run_sync(_work), indent=2)
     except (OSError, ValueError) as e:
@@ -1637,6 +1644,85 @@ async def vf_speakclean(project: str, unit: str = "") -> str:
                 "units": len(report), "report": report,
                 "note": "re-validate bundles + gates after cleaning (SHAs moved)"}
 
+    try:
+        return json.dumps(await _run_sync(_work), indent=2)
+    except (OSError, ValueError) as e:
+        return json.dumps({"error": str(e)[:300]})
+
+
+@mcp.tool()
+async def vf_passage_plan(storyboard: str, from_bid: str, to_bid: str,
+                          etch_share: float = 0.65, wps: float = 0.0,
+                          passage_s: float = 0.0) -> str:
+    """Time an etch->GIF segment to a spoken passage (pure planning).
+
+    Same estimator vf_seamless_draw uses: visual-plan durations where
+    pinned, else words/wps. Returns est_total_s, etch_s, play_s, mid_bid,
+    per-block seconds and suggested draw/clip lane entries. Read-only.
+
+    Args:
+        storyboard: Storyboard path
+        from_bid: Passage start bid (etch begins here)
+        to_bid: Passage end bid
+        etch_share: Fraction of the passage for the etch (default 0.65)
+        wps: Words/sec override (0 = lane-calibrated or 2.6)
+        passage_s: Explicit passage seconds override
+    """
+    def _work():
+        return _passage_plan(storyboard, from_bid, to_bid, etch_share,
+                             wps, passage_s)
+    try:
+        return json.dumps(await _run_sync(_work), indent=2)
+    except (OSError, ValueError) as e:
+        return json.dumps({"error": str(e)[:300]})
+
+
+@mcp.tool()
+async def vf_approve_pack(project: str, unit: str) -> str:
+    """Assemble an owner approval pack for one unit (read-only bundle).
+
+    Collects storyboard + glossary + issues + contact sheets + thumbnails
+    into one JSON manifest with SHAs, so the owner reviews once and blesses
+    once. Nothing is approved by this tool — the owner signs separately.
+
+    Args:
+        project: Lane name
+        unit: Unit id
+    """
+    def _work():
+        import glob as _g
+        cfg = _project_cfg(project)
+        repo = os.path.expanduser(cfg.get("repo", "~/" + project))
+        stem = None
+        for pat in (f"storyboard_{unit}.json", f"storyboard_*{unit}*.json"):
+            hits = _g.glob(os.path.join(repo, "storyboards", pat))
+            if hits:
+                stem = os.path.basename(hits[0])
+                sb_path = hits[0]
+                break
+        if stem is None:
+            return {"ok": False, "reason": "storyboard not found"}
+        short = stem.replace("storyboard_", "").replace(".json", "")
+        files = {}
+        for rel in [f"storyboards/{stem}", f"glossary_{short}.json",
+                    f"drops_{short}.json", f"draws_{short}.json",
+                    f"clips_{short}.json", f"process/{short}.issues.json",
+                    f"assets/thumbnail/{short}.png"]:
+            p = os.path.join(repo, rel)
+            if os.path.isfile(p):
+                files[rel] = {"bytes": os.path.getsize(p),
+                              "sha256": hashlib.sha256(
+                                  open(p, "rb").read()).hexdigest()[:16]}
+        sheets = sorted(_g.glob(os.path.join(repo, "review", short, "sheets", "*.png")))
+        import factory_contract as _C
+        try:
+            _C.validate_bundle(sb_path)
+            bundle = {"valid": True}
+        except Exception as e:
+            bundle = {"valid": False, "reason": str(e)[:300]}
+        return {"ok": True, "project": project, "unit": unit,
+                "files": files, "sheets": len(sheets),
+                "bundle": bundle}
     try:
         return json.dumps(await _run_sync(_work), indent=2)
     except (OSError, ValueError) as e:
