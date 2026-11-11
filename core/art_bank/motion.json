@@ -490,8 +490,14 @@
      "p04"
     ]
    },
-   "status": "wanted",
-   "brief": "Sunrise over still water, one horizontal gold band. Why: remembrance not travel (p04). Minimal."
+   "status": "banked-described",
+   "brief": "Sunrise over still water, one horizontal gold band. Why: remembrance not travel (p04). Minimal.",
+   "file": "motion/sunrise-mountain.gif",
+   "depicts": "Low sun over still water between mountains, gold path on the water.",
+   "means": "Remembrance not travel; recognition as daybreak.",
+   "use": "plays paramarthasara:p04",
+   "watch": "Light strengthens; the gold path widens toward the viewer.",
+   "note": "shares bytes with sunrise-mountain.gif (same delivery; p04 remembrance slot)"
   },
   {
    "id": "open-doorway",
