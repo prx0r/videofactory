@@ -1787,7 +1787,23 @@ async def vf_gate_resource() -> str:
 
 
 async def main():
-    await mcp.run_stdio_async()
+    import argparse as _ap
+    _pa = _ap.ArgumentParser(prog="vf_mcp_server")
+    _pa.add_argument("--serve-http", action="store_true",
+                     help="serve MCP over streamable HTTP instead of stdio")
+    _pa.add_argument("--port", type=int, default=8930)
+    _ns, _ = _pa.parse_known_args()
+    if _ns.serve_http:
+        import os as _os2
+        _allowed = [h.strip() for h in _os2.environ.get("VF_ALLOWED_HOSTS", "").split(",") if h.strip()]
+        _ts = None
+        if _allowed:
+            from mcp.server.transport_security import TransportSecuritySettings
+            _ts = TransportSecuritySettings(allowed_hosts=_allowed)
+        await mcp.run_streamable_http_async(host="127.0.0.1", port=_ns.port,
+                                            transport_security=_ts)
+    else:
+        await mcp.run_stdio_async()
 
 
 if __name__ == "__main__":
