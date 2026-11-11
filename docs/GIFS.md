@@ -3,6 +3,16 @@
 Doctrine, mechanism, and technical reference live here; lane queues live
 in lane logs. Companion to docs/VISUALS.md (priority ladder: GIFs are
 earned by recurrence; draws are pacing filler).
+Skills: gif-choose (pick), gif-request (order), seamless-build (render).
+
+## One visual system (owner law 2026-11-11)
+
+GIF and draw are the same thing: the pen draws the EXACT opening frame
+for as long as the passage needs (30 seconds or 3 minutes — the etch just
+slows), then the GIF plays with a hard cut, then a slow white fade. Etch
+length is passage-timed, never hardcoded; motion runs 2x ~20s unless a
+ramp says otherwise (0.25→0.5→1→2→4 is the speedup recipe shape).
+vf_seamless_draw renders it, recipes replay it byte-for-byte.
 
 ## Where things live
 - Canonical bank: `core/art_bank/motion/*.gif` + `core/art_bank/motion.json`

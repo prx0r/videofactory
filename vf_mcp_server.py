@@ -1121,37 +1121,63 @@ def _passage_plan(sb_path, from_bid, to_bid, share, wps, explicit_s):
             "note": note}
 
 
+def _ramp_plan(durations, order, speeds, play_s, fps):
+    """Flat gif-index play plan across speed-ramp steps (pure, tested).
+
+    Each step gets an equal share of play_s (last step takes the remainder);
+    per-frame repeats derive from native frame delays divided by that step's
+    speed, so 0.25 crawls and 4x flies. Deterministic: same inputs, same plan.
+    """
+    steps = []
+    for s in speeds:
+        cyc = []
+        for gi in order:
+            cyc.extend([gi] * max(1, int(round((durations[gi] / 1000.0 / s) / (1.0 / fps)))))
+        steps.append(cyc)
+    total = int(round(play_s * fps))
+    seq = []
+    for i, cyc in enumerate(steps):
+        n = total - len(seq) if i == len(steps) - 1 else total // len(steps)
+        seq.extend((cyc * ((n // len(cyc)) + 1))[:n])
+    return seq
+
+
 @mcp.tool()
 async def vf_seamless_draw(gif_id: str, unit: str = "", project: str = "nibbana",
-                           etch_s: float = 20.0, play_s: float = 12.0,
+                           etch_s: float = 20.0, play_s: float = 20.0,
                            fade_s: float = 3.5, clean_bg: int = 250,
                            speed: float = 2.0, direction: str = "forward",
+                           ramp: str = "",
                            recipe: str = "", publish: bool = False,
                            storyboard: str = "", from_bid: str = "",
                            to_bid: str = "", etch_share: float = 0.65,
                            wps: float = 0.0, passage_s: float = 0.0) -> str:
     """Render a seamless etch-to-GIF segment (locked owner recipe 2026-11-11).
 
-    The pen draws the EXACT opening GIF frame (native size, centered on
-    pure-white 1920x1080, never rescaled), then the GIF plays at 2x with a
-    hard cut (no fade-in), then a slow fade to white. Bank GIFs carry a
-    paper veil (bg ~241-252, never pure white), so backgrounds at or above
-    clean_bg are lifted to 255 first; the canonical bank is untouched and
-    the cleaned frame is the verified subject. Fails loud on any mismatch.
-    Modulations: speed (0.25..8, native delays divided by speed) and
-    direction (forward|reverse|pingpong). Name it with recipe= to save a
-    replayable recipe file; vf_seamless_cook replays one byte-for-byte.
+    ONE visual system, not two: the pen draws the EXACT opening GIF frame
+    (native size, centered on pure-white 1920x1080, never rescaled) for as
+    long as the passage needs — 30 seconds or 3 minutes, the etch just slows
+    — then the GIF plays with a hard cut (no fade-in), then a slow fade to
+    white. Bank GIFs carry a paper veil (bg ~241-252, never pure white), so
+    backgrounds at or above clean_bg are lifted to 255 first; the canonical
+    bank is untouched and the cleaned frame is the verified subject. Fails
+    loud on any mismatch.
+    Modulations: speed (0.25..8, native delays divided by speed, default 2x),
+    direction (forward|reverse|pingpong), ramp (comma speeds like
+    0.25,0.5,1,2,4 — the speedup recipe shape). Name it with recipe= to save
+    a replayable recipe file; vf_seamless_cook replays one byte-for-byte.
 
     Args:
         gif_id: Motion bank id (e.g. lamp-flame)
         unit: Unit label for the filename (e.g. n01)
         project: Lane for volume output (default nibbana)
         etch_s: Pen-draw seconds incl. band breaths (default 20)
-        play_s: Motion seconds at 2x (default 12)
+        play_s: Motion seconds (default 20 at 2x)
         fade_s: Slow white-fade seconds (default 3.5)
         clean_bg: Min-channel threshold lifted to pure white (200..255)
         speed: Playback speed multiplier (native delay / speed, default 2x)
         direction: forward|reverse|pingpong (default forward)
+        ramp: Comma speeds for a speedup shape, e.g. 0.25,0.5,1,2,4 (overrides speed)
         recipe: Save params+SHAs as a replayable recipe under this name
         storyboard: Passage mode — storyboard path; times etch/play to the
             spoken span instead of fixed etch_s/play_s (slow draw welcome)
@@ -1210,14 +1236,24 @@ async def vf_seamless_draw(gif_id: str, unit: str = "", project: str = "nibbana"
         bands = np.digitize(ys, list(yq))
         FPS = 15
         plan = None
+        run_etch, run_play = etch_s, play_s
         if storyboard:
             plan = _passage_plan(storyboard, from_bid, to_bid, etch_share,
                                  wps, passage_s)
             if not plan.get("ok"):
                 return plan
-            etch_s, play_s = plan["etch_s"], plan["play_s"]
-        n_etch = int(round(etch_s * FPS))
-        n_breath = int(round(min(1.5, etch_s / 8) * FPS))
+            run_etch, run_play = plan["etch_s"], plan["play_s"]
+        if ramp:
+            try:
+                speeds = [float(x) for x in ramp.split(",") if x.strip()]
+            except ValueError:
+                return {"ok": False, "reason": "ramp must be comma speeds like 0.25,0.5,1,2,4"}
+            if not (2 <= len(speeds) <= 8) or not all(0.25 <= s <= 8 for s in speeds):
+                return {"ok": False, "reason": "ramp needs 2..8 steps, each 0.25..8"}
+        else:
+            speeds = [speed]
+        n_etch = int(round(run_etch * FPS))
+        n_breath = int(round(min(1.5, run_etch / 8) * FPS))
         n_settle = 0
         n_pen = max(4, n_etch - 3 * n_breath - n_settle)
         fr_base = max(1, n_pen // 4)
@@ -1225,7 +1261,8 @@ async def vf_seamless_draw(gif_id: str, unit: str = "", project: str = "nibbana"
         outdir = os.path.join(os.path.expanduser("~/vol"), project)
         os.makedirs(outdir, exist_ok=True)
         spd = f"{speed:g}"
-        tag = f"{gif_id}-{unit or 'demo'}-{int(round(etch_s))}s-{spd}x-{direction}"
+        pace = ("ramp" + "-".join(f"{s:g}" for s in speeds).replace(".", "p")) if ramp else f"{spd}x"
+        tag = f"{gif_id}-{unit or 'demo'}-{int(round(run_etch))}s-{pace}-{direction}"
         gsha = hashlib.sha256(open(gpath, "rb").read()).hexdigest()
         rc0, hd = _sh(["git", "-C", os.environ.get("SLEEPDRAW_ROOT",
                       os.path.expanduser("~/sleepdraw")), "rev-parse", "--short", "HEAD"])
@@ -1272,11 +1309,7 @@ async def vf_seamless_draw(gif_id: str, unit: str = "", project: str = "nibbana"
             order = order[::-1]
         elif direction == "pingpong" and len(clean) > 2:
             order = order + order[-2:0:-1]
-        cyc = []
-        for gi in order:
-            cyc.extend([gi] * max(1, int(round((durations[gi] / 1000.0 / speed) / (1.0 / FPS)))))
-        total_motion = int(round(play_s * FPS))
-        seqm_rep = (cyc * ((total_motion // len(cyc)) + 1))[:total_motion]
+        seqm_rep = _ramp_plan(durations, order, speeds, run_play, FPS)
         if not seqm_rep:
             return {"ok": False, "reason": "empty motion plan"}
         for gi in seqm_rep:
@@ -1306,9 +1339,9 @@ async def vf_seamless_draw(gif_id: str, unit: str = "", project: str = "nibbana"
         if rc or not os.path.isfile(mp4):
             return {"ok": False, "reason": f"ffmpeg failed: {out[-300:]}"}
         msha = hashlib.sha256(open(mp4, "rb").read()).hexdigest()
-        params = {"gif_id": gif_id, "etch_s": etch_s, "play_s": play_s,
+        params = {"gif_id": gif_id, "etch_s": run_etch, "play_s": run_play,
                   "fade_s": fade_s, "fps": FPS, "clean_bg": clean_bg,
-                  "speed": speed, "direction": direction,
+                  "speed": speed, "direction": direction, "ramp": ramp,
                   "storyboard": storyboard, "from_bid": from_bid,
                   "to_bid": to_bid, "etch_share": etch_share, "wps": wps,
                   "passage_s": passage_s}
@@ -1371,7 +1404,7 @@ async def vf_seamless_recipes() -> str:
 
 @mcp.tool()
 async def vf_seamless_cook(recipe: str, gif_id: str, unit: str = "",
-                           project: str = "nibbana",
+                           project: str = "nibbana", ramp: str = "",
                            publish: bool = False) -> str:
     """Replay a saved seamless recipe on a GIF/unit, byte-for-byte check.
 
@@ -1384,6 +1417,7 @@ async def vf_seamless_cook(recipe: str, gif_id: str, unit: str = "",
         gif_id: Motion bank id to render
         unit: Unit label for the filename
         project: Lane for volume output
+        ramp: Optional ramp override (else the recipe's own)
         publish: Upload to R2 (shiva/ prefix) when true
     """
     def _work():
@@ -1398,7 +1432,7 @@ async def vf_seamless_cook(recipe: str, gif_id: str, unit: str = "",
         p = d.get("params", {})
         return {"recipe_params": p, "recipe_file": rpath,
                 "recorded_mp4_sha256": d.get("mp4_sha256")}
-    rec = json.loads(await _run_sync(_work))
+    rec = await _run_sync(_work)
     if not rec.get("recipe_params"):
         return json.dumps(rec, indent=2)
     if rec["recipe_file"] and os.path.basename(rec["recipe_file"]) != f"{recipe}.json":
@@ -1406,9 +1440,10 @@ async def vf_seamless_cook(recipe: str, gif_id: str, unit: str = "",
     p = rec["recipe_params"]
     res = json.loads(await vf_seamless_draw(
         gif_id=gif_id, unit=unit, project=project,
-        etch_s=p.get("etch_s", 20.0), play_s=p.get("play_s", 12.0),
+        etch_s=p.get("etch_s", 20.0), play_s=p.get("play_s", 20.0),
         fade_s=p.get("fade_s", 3.5), clean_bg=p.get("clean_bg", 250),
         speed=p.get("speed", 2.0), direction=p.get("direction", "forward"),
+        ramp=ramp or p.get("ramp", ""),
         recipe="", publish=publish))
     if res.get("ok"):
         res["replay_match"] = (res.get("mp4_sha256") == rec.get("recorded_mp4_sha256"))

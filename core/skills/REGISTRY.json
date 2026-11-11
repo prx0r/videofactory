@@ -1,130 +1,148 @@
 {
-  "flow": "run checker (check_issues.py) -> issue? look up skill by kind here -> apply skill steps -> re-run checker -> green or file draw/owner request. New kind? resolve, write skill md + register here, same commit as the fix.",
-  "skills": {
-    "verse-term-unheld": {
-      "file": "verse-term-unheld.md",
-      "auto": true,
-      "needs_owner": false,
-      "web_query": "Sanskrit verse chant term cue hold karaoke onset"
-    },
-    "white-gap": {
-      "file": "white-gap.md",
-      "auto": false,
-      "needs_owner": true,
-      "web_query": "video essay pacing white hold sleepdraw overlay insert rule"
-    },
-    "stuck-term": {
-      "file": "stuck-term.md",
-      "auto": false,
-      "needs_owner": true,
-      "web_query": "kinetic typography term card hold duration release cue supersede"
-    },
-    "empty-gloss": {
-      "file": "empty-gloss.md",
-      "auto": false,
-      "needs_owner": true,
-      "web_query": "Sanskrit IAST term English gloss translation-work T1 literal_gloss"
-    },
-    "machine-deva": {
-      "file": "machine-deva.md",
-      "auto": false,
-      "needs_owner": true,
-      "web_query": "Sanskrit IAST to Devanagari transliteration indic_transliteration round-trip verification"
-    },
-    "missing-audio": {
-      "file": "missing-audio.md",
-      "auto": true,
-      "needs_owner": false,
-      "web_query": "Fish Audio TTS content-hash cache render retry free-tier"
-    },
-    "list-geometry": {
-      "file": "list-geometry.md",
-      "auto": false,
-      "needs_owner": true,
-      "web_query": "PIL card layout slot overlap subtitle-safe-zone render headless gate"
-    },
-    "hold-scan-red": {
-      "file": "hold-scan-red.md",
-      "auto": false,
-      "needs_owner": true,
-      "web_query": "storyboard hold timeline audit 60s static frame draw filing"
-    },
-    "verse-gloss-missing": {
-      "file": "verse-gloss-missing.md",
-      "auto": false,
-      "needs_owner": true,
-      "web_query": "Sanskrit verse fuzzy matching IAST Devanagari normalization difflib threshold"
-    },
-    "verse-deva-no-english": {
-      "file": "verse-deva-no-english.md",
-      "auto": false,
-      "needs_owner": true,
-      "web_query": "Sanskrit verse card Devanagari English gloss confirmed-only render gate"
-    },
-    "stale-verse-hold": {
-      "file": "stale-verse-hold.md",
-      "auto": false,
-      "needs_owner": true,
-      "web_query": "storyboard verse split Devanagari transliteration block reblocking voice casting"
-    },
-    "stack-crash": {
-      "file": "stack-crash.md",
-      "auto": false,
-      "needs_owner": true,
-      "web_query": "PIL card layout list stack collision subtitle safe zone render headless gate",
-      "retired": "2026-11-06: renderer now one-cue-per-block; not a runtime gate"
-    },
-    "canon-shape": {
-      "file": "canon-shape.md",
-      "auto": false,
-      "needs_owner": true,
-      "web_query": "video essay series format skeleton chapter structure beats order intake"
-    },
-    "tts-ready": {
-      "file": "tts-ready.md",
-      "auto": false,
-      "needs_owner": true,
-      "web_query": "text to speech Fish Audio punctuation direction tags TTS delivery probe"
-    },
-    "cue-model": {
-      "file": "cue-model.md",
-      "auto": false,
-      "needs_owner": false,
-      "web_query": "single renderer rule term cue per block narration dialogue verse",
-      "governs": [
-        "build_clip",
-        "gate_visual H3",
-        "gate_storyboard H8",
-        "require_list_geometry",
-        "scan_holds",
-        "audit_white_gaps"
-      ]
-    },
-    "av-sync": {
-      "file": "av-sync.md",
-      "auto": true,
-      "needs_owner": false,
-      "web_query": "ffprobe audio video stream duration delta AAC padding Spotify strict mux trim shortest"
-    },
-    "roadman-shorts": {
-      "file": "roadman-shorts.md",
-      "auto": false,
-      "needs_owner": true,
-      "web_query": "Fish Audio expressive TTS direction tags roadman British voice short-form pacing hook retention"
-    },
-    "granny-distill": {
-      "file": "granny-distill.md",
-      "auto": false,
-      "needs_owner": true,
-      "web_query": "distilling long-form to short-form retention-tested educational video condensation hook"
-    }
+ "flow": "run checker (check_issues.py) -> issue? look up skill by kind here -> apply skill steps -> re-run checker -> green or file draw/owner request. New kind? resolve, write skill md + register here, same commit as the fix.",
+ "skills": {
+  "verse-term-unheld": {
+   "file": "verse-term-unheld.md",
+   "auto": true,
+   "needs_owner": false,
+   "web_query": "Sanskrit verse chant term cue hold karaoke onset"
   },
-  "decisions": {
-    "check": "check_issues.py emits issues.json per unit",
-    "route": "kind -> skill file -> auto-fixer if registered, else blocked",
-    "novel": "no skill file -> blocked-new-kind + web-search prompt (human runs search, writes skill same-commit)",
-    "recheck": "loop until no open change or max-iters",
-    "verdict": "require_issues_clear gates launch; validate_ship gates ship on measured artifacts",
-    "render_gate": "OWNER 2026-11-06: storyboard (green + owner approval) is the ONLY render gate. Audio/geometry/hold-scan/review-pack/prove are advisory/record-only."
+  "white-gap": {
+   "file": "white-gap.md",
+   "auto": false,
+   "needs_owner": true,
+   "web_query": "video essay pacing white hold sleepdraw overlay insert rule"
+  },
+  "stuck-term": {
+   "file": "stuck-term.md",
+   "auto": false,
+   "needs_owner": true,
+   "web_query": "kinetic typography term card hold duration release cue supersede"
+  },
+  "empty-gloss": {
+   "file": "empty-gloss.md",
+   "auto": false,
+   "needs_owner": true,
+   "web_query": "Sanskrit IAST term English gloss translation-work T1 literal_gloss"
+  },
+  "machine-deva": {
+   "file": "machine-deva.md",
+   "auto": false,
+   "needs_owner": true,
+   "web_query": "Sanskrit IAST to Devanagari transliteration indic_transliteration round-trip verification"
+  },
+  "missing-audio": {
+   "file": "missing-audio.md",
+   "auto": true,
+   "needs_owner": false,
+   "web_query": "Fish Audio TTS content-hash cache render retry free-tier"
+  },
+  "list-geometry": {
+   "file": "list-geometry.md",
+   "auto": false,
+   "needs_owner": true,
+   "web_query": "PIL card layout slot overlap subtitle-safe-zone render headless gate"
+  },
+  "hold-scan-red": {
+   "file": "hold-scan-red.md",
+   "auto": false,
+   "needs_owner": true,
+   "web_query": "storyboard hold timeline audit 60s static frame draw filing"
+  },
+  "verse-gloss-missing": {
+   "file": "verse-gloss-missing.md",
+   "auto": false,
+   "needs_owner": true,
+   "web_query": "Sanskrit verse fuzzy matching IAST Devanagari normalization difflib threshold"
+  },
+  "verse-deva-no-english": {
+   "file": "verse-deva-no-english.md",
+   "auto": false,
+   "needs_owner": true,
+   "web_query": "Sanskrit verse card Devanagari English gloss confirmed-only render gate"
+  },
+  "stale-verse-hold": {
+   "file": "stale-verse-hold.md",
+   "auto": false,
+   "needs_owner": true,
+   "web_query": "storyboard verse split Devanagari transliteration block reblocking voice casting"
+  },
+  "stack-crash": {
+   "file": "stack-crash.md",
+   "auto": false,
+   "needs_owner": true,
+   "web_query": "PIL card layout list stack collision subtitle safe zone render headless gate",
+   "retired": "2026-11-06: renderer now one-cue-per-block; not a runtime gate"
+  },
+  "canon-shape": {
+   "file": "canon-shape.md",
+   "auto": false,
+   "needs_owner": true,
+   "web_query": "video essay series format skeleton chapter structure beats order intake"
+  },
+  "tts-ready": {
+   "file": "tts-ready.md",
+   "auto": false,
+   "needs_owner": true,
+   "web_query": "text to speech Fish Audio punctuation direction tags TTS delivery probe"
+  },
+  "cue-model": {
+   "file": "cue-model.md",
+   "auto": false,
+   "needs_owner": false,
+   "web_query": "single renderer rule term cue per block narration dialogue verse",
+   "governs": [
+    "build_clip",
+    "gate_visual H3",
+    "gate_storyboard H8",
+    "require_list_geometry",
+    "scan_holds",
+    "audit_white_gaps"
+   ]
+  },
+  "av-sync": {
+   "file": "av-sync.md",
+   "auto": true,
+   "needs_owner": false,
+   "web_query": "ffprobe audio video stream duration delta AAC padding Spotify strict mux trim shortest"
+  },
+  "roadman-shorts": {
+   "file": "roadman-shorts.md",
+   "auto": false,
+   "needs_owner": true,
+   "web_query": "Fish Audio expressive TTS direction tags roadman British voice short-form pacing hook retention"
+  },
+  "granny-distill": {
+   "file": "granny-distill.md",
+   "auto": false,
+   "needs_owner": true,
+   "web_query": "distilling long-form to short-form retention-tested educational video condensation hook"
+  },
+  "gif-choose": {
+   "file": "gif-choose.md",
+   "auto": true,
+   "needs_owner": false,
+   "web_query": "video essay motion emblem recurrence motif placement storyboard beat"
+  },
+  "gif-request": {
+   "file": "gif-request.md",
+   "auto": true,
+   "needs_owner": false,
+   "web_query": "GIF89a seamless loop specification white background line engraving maker brief"
+  },
+  "seamless-build": {
+   "file": "seamless-build.md",
+   "auto": true,
+   "needs_owner": false,
+   "web_query": "etch to GIF seamless handoff byte identical placement speed ramp"
   }
+ },
+ "decisions": {
+  "check": "check_issues.py emits issues.json per unit",
+  "route": "kind -> skill file -> auto-fixer if registered, else blocked",
+  "novel": "no skill file -> blocked-new-kind + web-search prompt (human runs search, writes skill same-commit)",
+  "recheck": "loop until no open change or max-iters",
+  "verdict": "require_issues_clear gates launch; validate_ship gates ship on measured artifacts",
+  "render_gate": "OWNER 2026-11-06: storyboard (green + owner approval) is the ONLY render gate. Audio/geometry/hold-scan/review-pack/prove are advisory/record-only."
+ }
 }

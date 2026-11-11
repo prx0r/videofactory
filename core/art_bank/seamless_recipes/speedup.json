@@ -1,0 +1,51 @@
+{
+  "params": {
+    "gif_id": "lamp-flame",
+    "etch_s": 12.0,
+    "play_s": 20.0,
+    "fade_s": 3.5,
+    "fps": 15,
+    "clean_bg": 250,
+    "speed": 2.0,
+    "direction": "forward",
+    "ramp": "0.25,0.5,1,2,4",
+    "storyboard": "",
+    "from_bid": "",
+    "to_bid": "",
+    "etch_share": 0.65,
+    "wps": 0.0,
+    "passage_s": 0.0
+  },
+  "verify": {
+    "etch_final_eq_frame0": true,
+    "seam_cut_identical": true,
+    "placement": {
+      "x": 805,
+      "y": 333,
+      "w": 309,
+      "h": 414,
+      "canvas": [
+        1920,
+        1080
+      ]
+    },
+    "clean_bg_threshold": 250,
+    "ink_px": 26316
+  },
+  "gif_sha256": "8645b5fb8c7a02066d8c433b85da79d1bfca13143dbe20876e79761f38a2f01e",
+  "mp4_sha256": "9e2792d360fadfe7ffb32225402610f044e25b9dae49bf2a4d0fbddb42f1a0d6",
+  "frame_durations_ms": [
+    550,
+    550,
+    550,
+    550,
+    550,
+    550,
+    550,
+    550,
+    550,
+    550,
+    550,
+    550
+  ]
+}
