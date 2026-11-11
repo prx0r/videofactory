@@ -2717,6 +2717,23 @@
    "watch": "The jet climbs and falls.",
    "variant_of": "spanda-throb",
    "variant_when": "use when the burst rises like water"
+  },
+  {
+   "id": "trident-shrine",
+   "motif": "Trident with damaru and snake",
+   "why": "variant of trident: use for the damaru-and-snake shrine set rather than the lone rock",
+   "used_in": {
+    "paratrishika": []
+   },
+   "status": "banked-described",
+   "brief": "Trident with damaru and snake coiled at its foot. Why: the attended emblem. Blue-ink engraving on white, minimal, one moving element, no text, seamless loop.",
+   "file": "motion/trident-shrine.gif",
+   "depicts": "Trident with damaru and snake coiled at its foot.",
+   "means": "The attended emblem.",
+   "use": "Shrine-set chapters; retinue beats.",
+   "watch": "Snake loops; damaru hangs.",
+   "variant_of": "trident",
+   "variant_when": "use for the damaru-and-snake shrine set rather than the lone rock"
   }
  ]
 }
