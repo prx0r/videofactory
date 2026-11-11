@@ -126,3 +126,14 @@ class TestSpeakTools(unittest.TestCase):
         d = json.loads(asyncio.run(M.vf_speakcheck(project="nibbana")))
         self.assertEqual(d["units"], 10)
         self.assertEqual(d["hazards"], 0)
+
+
+class TestVisualCap(unittest.TestCase):
+    def test_overcap_refused_without_render(self):
+        import asyncio
+        import vf_mcp_mod as M
+        r = asyncio.run(M.vf_seamless_draw('lamp-flame', etch_s=200.0, play_s=200.0))
+        import json
+        d = json.loads(r)
+        self.assertFalse(d.get('ok'))
+        self.assertIn('5-minute', d.get('reason', ''))

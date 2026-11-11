@@ -1245,6 +1245,8 @@ async def vf_seamless_draw(gif_id: str, unit: str = "", project: str = "nibbana"
             if not plan.get("ok"):
                 return plan
             run_etch, run_play = plan["etch_s"], plan["play_s"]
+        if run_etch + run_play > 300:
+            return {"ok": False, "reason": f"segment {run_etch + run_play:.0f}s exceeds the 5-minute visual cap — split the passage into movements"}
         if ramp:
             try:
                 speeds = [float(x) for x in ramp.split(",") if x.strip()]

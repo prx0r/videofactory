@@ -233,7 +233,8 @@
    "means": "The ocean the whirlpool mistakes itself for.",
    "use": "Ocean chapters",
    "watch": "Vastness beats.",
-   "note": "full-bleed seascape; needs white-mat or owner exception"
+   "note": "full-bleed seascape; needs white-mat or owner exception B-roll eligible: fullscreen only.",
+   "broll": true
   },
   {
    "id": "wheel",
@@ -1066,8 +1067,9 @@
     ]
    },
    "status": "banked-described",
-   "note": "Full-bleed exception candidate; white law requires mat or owner exception.",
-   "watch": "Sun climbs over mountain water; its light path grows toward viewer."
+   "note": "Full-bleed exception candidate; white law requires mat or owner exception. B-roll eligible: fullscreen only.",
+   "watch": "Sun climbs over mountain water; its light path grows toward viewer.",
+   "broll": true
   },
   {
    "id": "breath-rhythm",
@@ -1156,7 +1158,8 @@
    "means": "Turya boundaries; the states between states.",
    "use": "Between-states chapters",
    "watch": "Swell beats",
-   "note": "night seascape; needs white-mat or owner exception"
+   "note": "night seascape; needs white-mat or owner exception B-roll eligible: fullscreen only.",
+   "broll": true
   },
   {
    "id": "fifa-night",
@@ -1174,7 +1177,8 @@
    "means": "Freedom as Friday night: home, FIFA, mind off.",
    "use": "Roady opener",
    "watch": "Home beats.",
-   "note": "full-bleed interior; needs white-mat or owner exception"
+   "note": "full-bleed interior; needs white-mat or owner exception B-roll eligible: fullscreen only.",
+   "broll": true
   },
   {
    "id": "chip-shop",
@@ -1188,7 +1192,8 @@
    "means": "Ordinary bliss, no metaphysics required.",
    "use": "Roady everyday-nirvana beats.",
    "watch": "",
-   "note": "full-bleed street scene; needs white-mat or owner exception"
+   "note": "full-bleed street scene; needs white-mat or owner exception B-roll eligible: fullscreen only.",
+   "broll": true
   },
   {
    "id": "bus-window",
@@ -1202,7 +1207,8 @@
    "means": "Contemplation vehicle; moving while sitting still.",
    "use": "Transit chapters",
    "watch": "Stillness-in-motion beats.",
-   "note": "full-bleed interior; needs white-mat or owner exception"
+   "note": "full-bleed interior; needs white-mat or owner exception B-roll eligible: fullscreen only.",
+   "broll": true
   },
   {
    "id": "kettle-steam",
@@ -1759,6 +1765,196 @@
    "means": "The upward departure.",
    "use": "Ascent chapters; ejection beats",
    "watch": "The column climbs steadily."
+  },
+  {
+   "id": "forest-waterfall",
+   "motif": "A waterfall pouring through luminous forest",
+   "why": "B-roll scenery: full-bleed breaks between emblems.",
+   "used_in": {
+    "nibbana": []
+   },
+   "status": "banked-described",
+   "brief": "A waterfall pouring through luminous forest Blue-ink engraving on white, minimal, one moving element, no text, seamless loop.",
+   "file": "motion/forest-waterfall.gif",
+   "depicts": "A waterfall pouring through luminous forest",
+   "means": "Falling water that never lands.",
+   "use": "B-roll fullscreen breaks",
+   "watch": "The scene breathes in loop.",
+   "broll": true,
+   "note": "full-bleed scenery; fullscreen B-roll only, never mini-canvas"
+  },
+  {
+   "id": "forest-grove",
+   "motif": "A grove with deer in misty light",
+   "why": "B-roll scenery: full-bleed breaks between emblems.",
+   "used_in": {
+    "nibbana": [
+     "n01"
+    ]
+   },
+   "status": "banked-described",
+   "brief": "A grove with deer in misty light Blue-ink engraving on white, minimal, one moving element, no text, seamless loop.",
+   "file": "motion/forest-grove.gif",
+   "depicts": "A grove with deer in misty light",
+   "means": "The forest that listens.",
+   "use": "B-roll fullscreen breaks",
+   "watch": "The scene breathes in loop.",
+   "broll": true,
+   "note": "n01 cold open: Sri Lanka forest monastery"
+  },
+  {
+   "id": "forest-energy",
+   "motif": "Light currents threading dark woods",
+   "why": "B-roll scenery: full-bleed breaks between emblems.",
+   "used_in": {},
+   "status": "banked-described",
+   "brief": "Light currents threading dark woods Blue-ink engraving on white, minimal, one moving element, no text, seamless loop.",
+   "file": "motion/forest-energy.gif",
+   "depicts": "Light currents threading dark woods",
+   "means": "The current running through things.",
+   "use": "B-roll fullscreen breaks",
+   "watch": "The scene breathes in loop.",
+   "broll": true,
+   "note": "full-bleed scenery; fullscreen B-roll only, never mini-canvas"
+  },
+  {
+   "id": "forest-mycelium",
+   "motif": "Glowing mycelium net under dark trees",
+   "why": "B-roll scenery: full-bleed breaks between emblems.",
+   "used_in": {},
+   "status": "banked-described",
+   "brief": "Glowing mycelium net under dark trees Blue-ink engraving on white, minimal, one moving element, no text, seamless loop.",
+   "file": "motion/forest-mycelium.gif",
+   "depicts": "Glowing mycelium net under dark trees",
+   "means": "The network beneath the seen.",
+   "use": "B-roll fullscreen breaks",
+   "watch": "The scene breathes in loop.",
+   "broll": true,
+   "note": "full-bleed scenery; fullscreen B-roll only, never mini-canvas"
+  },
+  {
+   "id": "forest-stag",
+   "motif": "A stag above still valley water",
+   "why": "B-roll scenery: full-bleed breaks between emblems.",
+   "used_in": {},
+   "status": "banked-described",
+   "brief": "A stag above still valley water Blue-ink engraving on white, minimal, one moving element, no text, seamless loop.",
+   "file": "motion/forest-stag.gif",
+   "depicts": "A stag above still valley water",
+   "means": "Stillness with a witness.",
+   "use": "B-roll fullscreen breaks",
+   "watch": "The scene breathes in loop.",
+   "broll": true,
+   "note": "full-bleed scenery; fullscreen B-roll only, never mini-canvas"
+  },
+  {
+   "id": "forest-stream",
+   "motif": "A bright stream winding through green woods",
+   "why": "B-roll scenery: full-bleed breaks between emblems.",
+   "used_in": {
+    "nibbana": [
+     "n01"
+    ]
+   },
+   "status": "banked-described",
+   "brief": "A bright stream winding through green woods Blue-ink engraving on white, minimal, one moving element, no text, seamless loop.",
+   "file": "motion/forest-stream.gif",
+   "depicts": "A bright stream winding through green woods",
+   "means": "Going on, without going away.",
+   "use": "B-roll fullscreen breaks",
+   "watch": "The scene breathes in loop.",
+   "broll": true,
+   "note": "n01 forest monastery waters"
+  },
+  {
+   "id": "forest-mycelium-glow",
+   "motif": "A gold-lit mycelial web under roots",
+   "why": "B-roll scenery: full-bleed breaks between emblems.",
+   "used_in": {},
+   "status": "banked-described",
+   "brief": "A gold-lit mycelial web under roots Blue-ink engraving on white, minimal, one moving element, no text, seamless loop.",
+   "file": "motion/forest-mycelium-glow.gif",
+   "depicts": "A gold-lit mycelial web under roots",
+   "means": "The lit root-web.",
+   "use": "B-roll fullscreen breaks",
+   "watch": "The scene breathes in loop.",
+   "broll": true,
+   "note": "full-bleed scenery; fullscreen B-roll only, never mini-canvas"
+  },
+  {
+   "id": "forest-winds",
+   "motif": "Golden wind combing the canopy",
+   "why": "B-roll scenery: full-bleed breaks between emblems.",
+   "used_in": {},
+   "status": "banked-described",
+   "brief": "Golden wind combing the canopy Blue-ink engraving on white, minimal, one moving element, no text, seamless loop.",
+   "file": "motion/forest-winds.gif",
+   "depicts": "Golden wind combing the canopy",
+   "means": "The sweep that spares nothing.",
+   "use": "B-roll fullscreen breaks",
+   "watch": "The scene breathes in loop.",
+   "broll": true,
+   "note": "full-bleed scenery; fullscreen B-roll only, never mini-canvas"
+  },
+  {
+   "id": "forest-luminous",
+   "motif": "Pale wind pouring between trunks",
+   "why": "B-roll scenery: full-bleed breaks between emblems.",
+   "used_in": {},
+   "status": "banked-described",
+   "brief": "Pale wind pouring between trunks Blue-ink engraving on white, minimal, one moving element, no text, seamless loop.",
+   "file": "motion/forest-luminous.gif",
+   "depicts": "Pale wind pouring between trunks",
+   "means": "Light moving as air.",
+   "use": "B-roll fullscreen breaks",
+   "watch": "The scene breathes in loop.",
+   "broll": true,
+   "note": "full-bleed scenery; fullscreen B-roll only, never mini-canvas"
+  },
+  {
+   "id": "forest-pool",
+   "motif": "Sunlit pool rings widening",
+   "why": "B-roll scenery: full-bleed breaks between emblems.",
+   "used_in": {},
+   "status": "banked-described",
+   "brief": "Sunlit pool rings widening Blue-ink engraving on white, minimal, one moving element, no text, seamless loop.",
+   "file": "motion/forest-pool.gif",
+   "depicts": "Sunlit pool rings widening",
+   "means": "Rings without a stone.",
+   "use": "B-roll fullscreen breaks",
+   "watch": "The scene breathes in loop.",
+   "broll": true,
+   "note": "full-bleed scenery; fullscreen B-roll only, never mini-canvas"
+  },
+  {
+   "id": "forest-spiral",
+   "motif": "A spiral of light turning over dark trees",
+   "why": "B-roll scenery: full-bleed breaks between emblems.",
+   "used_in": {},
+   "status": "banked-described",
+   "brief": "A spiral of light turning over dark trees Blue-ink engraving on white, minimal, one moving element, no text, seamless loop.",
+   "file": "motion/forest-spiral.gif",
+   "depicts": "A spiral of light turning over dark trees",
+   "means": "The turn that gathers.",
+   "use": "B-roll fullscreen breaks",
+   "watch": "The scene breathes in loop.",
+   "broll": true,
+   "note": "full-bleed scenery; fullscreen B-roll only, never mini-canvas"
+  },
+  {
+   "id": "mountain-halo",
+   "motif": "A mountain ringed with breathing light",
+   "why": "B-roll scenery: full-bleed breaks between emblems.",
+   "used_in": {},
+   "status": "banked-described",
+   "brief": "A mountain ringed with breathing light Blue-ink engraving on white, minimal, one moving element, no text, seamless loop.",
+   "file": "motion/mountain-halo.gif",
+   "depicts": "A mountain ringed with breathing light",
+   "means": "The height that breathes.",
+   "use": "B-roll fullscreen breaks",
+   "watch": "The scene breathes in loop.",
+   "broll": true,
+   "note": "full-bleed scenery; fullscreen B-roll only, never mini-canvas"
   }
  ]
 }

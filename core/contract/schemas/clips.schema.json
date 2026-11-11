@@ -29,10 +29,13 @@
           "cut"
         ]
       },
-      "fade": {
-        "type": "number",
-        "exclusiveMinimum": 0
-      },
+   "fade": {
+    "type": "number",
+    "exclusiveMinimum": 0
+   },
+   "fullscreen": {
+    "type": "boolean"
+   },
       "why": {
         "type": "string",
         "pattern": "\\S"

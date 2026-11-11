@@ -33,6 +33,22 @@ with a why, filed as `draws_<stem>.json`.
 Emblems float on white like thumbnails. Lane banks carry an executable
 rim check (mean > 225); anything else fails loudly.
 
+## Five-minute cap (owner law 2026-11-11)
+
+No single visual holds longer than ~300 seconds. Gaps over 180s already
+split into ~90s sub-draws; anything that would still hold past five minutes
+splits into movements (etch → motion → breath → next), each with its own
+art and its own why. Long single-block narration splits at render time on
+measured onsets. `vf_seamless_draw` refuses segments over 300s — split
+the passage instead.
+
+## B-roll (full-bleed scenery)
+
+Forest waters, night streets, open seas: B-roll breaks the white law on
+purpose and plays FULLSCREEN (`fullscreen: true` on the clip), never the
+mini canvas. Bank entries carry `"broll": true`. Karaoke continues over
+it; slow fades in and out. Sparingly — a break, never wallpaper.
+
 ## Lane notes
 - nibbana: no-Pali, so ladder starts at 2 (draws/GIFs carry the lane).
 - paramarthasara: mirror is the lane mark; parts take their own seals.

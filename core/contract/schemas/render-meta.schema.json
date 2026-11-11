@@ -14,7 +14,7 @@
       "properties": {"t": {"type": "number", "minimum": 0}, "key": {"type": "string", "minLength": 1}}}},
       "clips": {"type": "array", "items": {"type": "object", "required": ["key", "t_start", "t_complete", "clear", "fade", "why", "asset_sha", "muted"],
       "additionalProperties": false, "properties": {"key": {"type": "string"}, "t_start": {"type": "number", "minimum": 0}, "t_complete": {"type": "number", "minimum": 0},
-      "clear": {"type": "string"}, "fade": {"type": "number", "minimum": 0}, "why": {"type": "string"}, "asset_sha": {"type": "string"}, "muted": {"type": "boolean"}}}},
+      "clear": {"type": "string"}, "fade": {"type": "number", "minimum": 0}, "why": {"type": "string"}, "asset_sha": {"type": "string"}, "muted": {"type": "boolean"}, "fullscreen": {"type": "boolean"}}}},
       "bids": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "string", "pattern": "^b[1-9][0-9]*$"}},
     "drops": {"type": "object", "additionalProperties": {"type": "object", "required": ["pause", "at"], "additionalProperties": false,
       "properties": {"pause": {"type": "number", "exclusiveMinimum": 0}, "at": {"type": "number", "minimum": 0}}}},

@@ -851,18 +851,22 @@ def _main_inner():
         assert os.path.exists(_casset), f'clip {_ck}: asset missing: {_casset}'
         _cclear = _cspec.get('clear', 'cut')
         _cfade = float(_cspec.get('fade', 1.5))
+        _cfs = bool(_cspec.get('fullscreen', False))
         _cdir = _tf.mkdtemp(prefix=f'clip_{_ck}_')
         _clip_dirs.append(_cdir)
+        _cvf = (f'scale={W}:{H}:force_original_aspect_ratio=increase,'
+               f'crop={W}:{H},fps=15' if _cfs else
+               f'scale={_H.CANVAS_W}:{_H.CANVAS_H}:force_original_aspect_ratio=decrease,'
+               f'pad={_H.CANVAS_W}:{_H.CANVAS_H}:(ow-iw)/2:(oh-ih)/2:white,fps=15')
         _r = subprocess.run(['ffmpeg', '-y', '-v', 'error', '-stream_loop', '-1', '-i', _casset,
-                             '-vf', f'scale={_H.CANVAS_W}:{_H.CANVAS_H}:force_original_aspect_ratio=decrease,'
-                                    f'pad={_H.CANVAS_W}:{_H.CANVAS_H}:(ow-iw)/2:(oh-ih)/2:white,fps=15',
+                             '-vf', _cvf,
                              '-t', str(round(_ct1 - _ct0 + 0.1, 3)), '-an', f'{_cdir}/f%05d.png'],
                             capture_output=True, text=True)
         assert _r.returncode == 0, f'clip {_ck}: ffmpeg pre-render failed: {_r.stderr[-300:]}'
         import glob as _gg3
         _cframes = sorted(_gg3.glob(f'{_cdir}/f*.png'))
         assert _cframes, f'clip {_ck}: no frames pre-rendered'
-        _clip_spans.append((_ck, _cdir, _cframes, _ct0, _ct1))
+        _clip_spans.append((_ck, _cdir, _cframes, _ct0, _ct1, _cfs))
         _evts2 = sorted({s for s, e, k in _cues if s > _ct1} |
                         {tt for (bb, kk, tt, *_r) in flat if tt > _ct1 and
                          (bb['type'] in ('verse', 'dialogue') or '[long pause]' in bb.get('directed', ''))})
@@ -878,14 +882,14 @@ def _main_inner():
         _ends2 = ([_brk2] if _brk2 else []) + _evts2
         _chend = min(_ends2) if _ends2 else off
         _cf0 = max(_ct1, _chend - _cfade) if _cclear == 'fade' else _chend
-        _clipholds.append((_ct1, _chend, _cf0, _ck, _cframes[-1], _cclear))
+        _clipholds.append((_ct1, _chend, _cf0, _ck, _cframes[-1], _cclear, _cfs))
         import hashlib as _hh4
         _meta_clips.append({'key': _ck, 't_start': round(_ct0, 2), 't_complete': round(_ct1, 2),
                             'clear': _cclear, 'fade': _cfade, 'why': _cspec.get('why', ''),
                             'asset_sha': _hh4.sha256(open(_casset, 'rb').read()).hexdigest()[:16],
-                            'muted': True})
+                            'muted': True, 'fullscreen': _cfs})
     if _clip_spans:
-        print(f'clips: {[(k, round(t0, 1), round(t1, 1)) for k, d, f, t0, t1 in _clip_spans]}', flush=True)
+        print(f'clips: {[(k, round(t0, 1), round(t1, 1)) for k, d, f, t0, t1, _ in _clip_spans]}', flush=True)
     for fi, (b, k, t_on, sw, sub, t_off) in enumerate(flat):
         im = hold_img(b, fi).copy()
         # Staging law: motion renders ONLY on white (kind0). Chant, cue,
@@ -901,10 +905,11 @@ def _main_inner():
                 else:
                     im = _H.draw_progress(im, _da, 1.0)
                 break
-        for (_cs, _ce, _cf0, _ck2, _clast, _cc) in _clipholds:
+        for (_cs, _ce, _cf0, _ck2, _clast, _cc, _cfs2) in _clipholds:
             if _motion_ok and _cs <= t_on < _ce:
                 from PIL import Image as _PIL
-                im = _H.overlay_paste(im, _PIL.open(_clast).convert('RGB'), 1.0)
+                _paste = _H.fullscreen_paste if _cfs2 else _H.overlay_paste
+                im = _paste(im, _PIL.open(_clast).convert('RGB'), 1.0)
                 break
         d = ImageDraw.Draw(im)
         # duplicates) collapse for display; k maps to the visible index.
@@ -1003,22 +1008,23 @@ def _main_inner():
             continue
         _hit = next(((k2, a2, t0, t1, ef) for (k2, a2, t0, t1, ef) in _draw_spans
                      if t0 <= t_on < t1), None)
-        _chit = next(((k2, cd, cf, t0, t1) for (k2, cd, cf, t0, t1) in _clip_spans
+        _chit = next(((k2, cd, cf, t0, t1, fs) for (k2, cd, cf, t0, t1, fs) in _clip_spans
                       if t0 <= t_on < t1), None)
         _ftail = next(((k2, a2, ef, f0, de) for (ds, de, f0, k2, a2, dc, ef) in _drawholds
                        if dc == 'fade' and ds <= t_on < de and f0 < de and nxt > f0 and fi >= _intro_end_fi), None)
-        _ctail = next(((k2, cf, f0, de) for (ds, de, f0, k2, cf, cc) in _clipholds
+        _ctail = next(((k2, cf, f0, de, fs) for (ds, de, f0, k2, cf, cc, fs) in _clipholds
                        if cc == 'fade' and ds <= t_on < de and f0 < de and nxt > f0 and fi >= _intro_end_fi), None)
         if _ctail is not None and _motion_ok:
             # clip fade clearing: tail dissolves the frozen frame to white.
             from PIL import Image as _PIL2
-            _ck3, _cf3, _cf0, _ce1 = _ctail
+            _ck3, _cf3, _cf0, _ce1, _cfs3 = _ctail
             _dur = max(0.03, nxt - t_on)
             _K = max(1, int(round(_dur / DRAW_STEP)))
             for _j in range(_K):
                 _tt = t_on + _dur * _j / _K
                 _q = 1.0 if _tt < _cf0 else max(0.0, 1.0 - (_tt - _cf0) / (_ce1 - _cf0))
-                _H.overlay_paste(im, _PIL2.open(_cf3).convert('RGB'), _q).save(f'{fdir}/{idx:05d}.png')
+                _paste2 = _H.fullscreen_paste if _cfs3 else _H.overlay_paste
+                _paste2(im, _PIL2.open(_cf3).convert('RGB'), _q).save(f'{fdir}/{idx:05d}.png')
                 entries.append((idx, round(_dur / _K, 4), 'clip:' + _ck3))
                 idx += 1
             continue
@@ -1027,13 +1033,14 @@ def _main_inner():
             # this moment (drops win on conflict — handled above). Muted
             # always; karaoke continues on the same word.
             from PIL import Image as _PIL3
-            _ck3, _cd3, _cf3, _ct0, _ct1 = _chit
+            _ck3, _cd3, _cf3, _ct0, _ct1, _cfs4 = _chit
             _dur = max(0.03, nxt - t_on)
             _K = max(1, int(round(_dur / DRAW_STEP)))
             for _j in range(_K):
                 _tt = t_on + _dur * _j / _K
                 _fidx = min(len(_cf3) - 1, int((_tt - _ct0) * 15))
-                _H.overlay_paste(im, _PIL3.open(_cf3[_fidx]).convert('RGB'), 1.0).save(f'{fdir}/{idx:05d}.png')
+                _paste3 = _H.fullscreen_paste if _cfs4 else _H.overlay_paste
+                _paste3(im, _PIL3.open(_cf3[_fidx]).convert('RGB'), 1.0).save(f'{fdir}/{idx:05d}.png')
                 entries.append((idx, round(_dur / _K, 4), 'clip:' + _ck3))
                 idx += 1
             continue
