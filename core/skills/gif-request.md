@@ -51,3 +51,12 @@ line without a bank entry is a rumour.
 Request the emblem at native pace. Playback speed (2x, reverse, ramps like
 0.25→4) is a render decision in vf_seamless_draw, never a property of the
 file. Do not ask the maker for "a slow version" — ask for one good loop.
+
+## Variants (same motif, different telling)
+
+When several images serve one motif, bank each under its own slug with
+`variant_of` (base id) and `variant_when` (one line: when to use this one
+over the base, e.g. "use when the burst must be geological and outer").
+Inherit the base's `used_in` unless a variant genuinely serves different
+beats. The MCP surfaces variant fields on every query — choosing between
+three skies for one ocean is the whole point of the bank.
