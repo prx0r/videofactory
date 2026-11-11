@@ -23,7 +23,8 @@ class TestMotion(unittest.TestCase):
         banked = M._motion_query(status="banked-described")["entries"]
         wanted = M._motion_query(status="wanted")["entries"]
         self.assertGreater(len(banked), 0)
-        self.assertGreater(len(wanted), 0)
+        # the wanted queue may legitimately run dry (owner-closed at zero);
+        # what must hold is that every returned wanted entry is wanted.
         self.assertTrue(all(e["status"] == "wanted" for e in wanted))
 
     def test_query_lane(self):

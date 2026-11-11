@@ -135,6 +135,12 @@
    "auto": true,
    "needs_owner": false,
    "web_query": "etch to GIF seamless handoff byte identical placement speed ramp"
+  },
+  "markdown-speech": {
+   "file": "markdown-speech.md",
+   "auto": true,
+   "needs_owner": false,
+   "web_query": "TTS markdown asterisks spoken aloud subtitle text cleanup narration"
   }
  },
  "decisions": {

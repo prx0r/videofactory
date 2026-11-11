@@ -34,6 +34,24 @@ SANSKRIT_LEXICON = {
 # Inserted BEFORE anchors only; body words never rewritten. Allowlist only.
 DIRECT_TAGS = {'long pause', 'short pause', 'soft pause', 'slowly', 'calm'}
 
+
+def speak_clean(t):
+    """Voiced text must be speakable: strip markdown the chapters leak in.
+
+    Headers of any depth, bold/italic markers, list bullets. Direction tags
+    ([short pause]) pass through untouched. Tables can never be spoken by
+    rule — validate() errors on pipes instead of inventing prose.
+    """
+    t = re.sub(r'<br\s*/?>', '. ', t, flags=re.I)
+    t = re.sub(r'</?[a-zA-Z][^>]*>', '', t)
+    t = re.sub(r'(?m)^\s*#{1,6}\s+', '', t)
+    t = t.replace('**', '').replace('__', '')
+    t = re.sub(r'(?<!\w)\*([^*]+?)\*(?!\w)', r'\1', t)
+    t = t.replace('*', '')
+    t = re.sub(r'(?m)^\s*[*\-+]\s+', '', t)
+    t = re.sub(r'[ \t]+', ' ', t)
+    return t.strip()
+
 # Chapter opener: vatulanatha kit logic, free-only. One bell at the head
 # of every chapter — bell_ding (0.99s attention grab), +6 dB at mix.
 # Kit stays in vatulanatha (single source); pipeline only references it.
@@ -276,6 +294,9 @@ def build(md_path, overrides=None):
         blocks.append({'id': f'b{bid}', 'section': section, 'type': 'narration', 'voice': 'granny', 'text': text})
         bid += 1
     for b in blocks:
+        if b.get('voice') in ('granny', 'man', 'verse'):
+            b['text'] = speak_clean(b['text'])
+    for b in blocks:
         if b['id'] in overrides and b['id'] != 'b_opener':
             v = overrides[b['id']]
             assert v in ('granny', 'man', 'verse'), f"override {b['id']}: bad voice {v}"
@@ -309,6 +330,14 @@ def validate(sb):
         if b['voice'] not in ('granny', 'man', 'verse', 'roadman', 'none'):
             errs.append(f"{b['id']}: bad voice {b['voice']}")
             continue
+        if b['voice'] in ('granny', 'man', 'verse'):
+            _st = b.get('text', '')
+            if _st.lstrip().startswith('#'):
+                errs.append(f"{b['id']}: markdown header in voiced text — strip # [{_st[:60]}]")
+            if '**' in _st or '__' in _st:
+                errs.append(f"{b['id']}: markdown emphasis in voiced text — strip stars [{_st[:60]}]")
+            if '|' in _st:
+                errs.append(f"{b['id']}: table markup in voiced text — prose it by hand [{_st[:60]}]")
         b['directed'] = apply_direction(b)
         ok, unknown = audit_direction(b['directed'], b['text'])
         if not ok:

@@ -1404,6 +1404,169 @@ async def vf_seamless_recipes() -> str:
     return json.dumps(await _run_sync(_work), indent=2)
 
 
+def _speak_hazards(sb_path):
+    """Count speak hazards per unit (pure read; tested in test_seamless.py).
+
+    Scans voiced text+directed for markdown the TTS would speak aloud:
+    hash-headers, emphasis stars, table pipes. Tables need human prose;
+    everything else strips mechanically (see markdown-speech skill).
+    """
+    import re as _re
+    sb = json.load(open(sb_path, encoding="utf-8"))
+    out = {"unit": None, "hashheads": [], "emphasis": [], "tables": []}
+    for b in sb.get("blocks", []):
+        if b.get("voice") not in ("granny", "man", "verse"):
+            continue
+        for k in ("text", "directed"):
+            v = b.get(k) or ""
+            if v.lstrip().startswith("#"):
+                out["hashheads"].append(f"{b['id']}:{k}")
+            if "**" in v or "__" in v:
+                out["emphasis"].append(f"{b['id']}:{k}")
+            if "|" in v:
+                out["tables"].append(f"{b['id']}:{k}")
+    for k in ("hashheads", "emphasis", "tables"):
+        out[k] = sorted(set(out[k]))
+        out[k + "_n"] = len(out[k])
+    out["total"] = out["hashheads_n"] + out["emphasis_n"] + out["tables_n"]
+    return out
+
+
+@mcp.tool()
+async def vf_speakcheck(project: str = "", unit: str = "") -> str:
+    """Audit speak hazards: markdown TTS would speak aloud, per unit.
+
+    Read-only. Project "" scans every lane; unit "" scans the whole lane.
+    Zero everywhere or fix before any render (see markdown-speech skill).
+
+    Args:
+        project: Lane name (nibbana, paramarthasara, paratrishika, ...)
+        unit: Unit id ("" = whole lane)
+    """
+    def _work():
+        lanes = [project] if project else ["nibbana", "paramarthasara",
+                                           "paratrishika", "tibetan-dead",
+                                           "deathworks", "tantrasara",
+                                           "shiva-sutras"]
+        rows, total = [], 0
+        stems = [unit] if unit else None
+        for lane in lanes:
+            import glob as _g
+            roots = [f"/home/ubuntu/{lane}/storyboards",
+                     os.path.join(ROOT, "projects", lane)]
+            found = []
+            for r in roots:
+                found.extend(_g.glob(os.path.join(r, "storyboard_*.json")))
+            if stems:
+                found = [f for f in found
+                         if any(s in os.path.basename(f) for s in stems)]
+            for sb_path in sorted(found):
+                h = _speak_hazards(sb_path)
+                h["unit"] = os.path.basename(sb_path)
+                h["lane"] = lane
+                rows.append(h)
+                total += h["total"]
+        return {"units": len(rows), "hazards": total, "rows": rows}
+    try:
+        return json.dumps(await _run_sync(_work), indent=2)
+    except (OSError, ValueError) as e:
+        return json.dumps({"error": str(e)[:300]})
+
+
+def _speak_table_prose(t):
+    """2-column term/gloss tables to spoken sentences (pure, tested).
+
+    Keeps leading direction tags up front. Returns None when nothing
+    speakable survives (caller lists it as needs-human instead).
+    """
+    import re as _re
+    m = _re.match(r"((?:\[[^\]]+\]\s*)+)", t)
+    tags, body = (m.group(1), t[m.end():]) if m else ("", t)
+    rows = []
+    for line in body.split("\n"):
+        s = line.strip()
+        if "|" not in s:
+            if s:
+                rows.append(s)
+            continue
+        cells = [c.strip().strip("*").strip() for c in s.strip().strip("|").split("|")]
+        if not cells or all(not c for c in cells):
+            continue
+        if all(_re.fullmatch(r":?-+:?", c or "-") for c in cells):
+            continue
+        low = [c.lower() for c in cells]
+        if any(h in low for h in ("sanskrit", "literal meaning", "remember it as")) \
+                and len(" ".join(cells)) < 60:
+            continue
+        rows.append(": ".join(c for c in cells[:2] if c))
+    if not rows:
+        return None
+    return (tags + " " if tags else "") + " ".join(rows)
+
+
+@mcp.tool()
+async def vf_speakclean(project: str, unit: str = "") -> str:
+    """Clean speak hazards from storyboards (applies speak_clean + hand tables).
+
+    Act tool: rewrites voiced text/directed in lane storyboards and reports
+    the diff (fields changed per unit). Tables convert to "Term: gloss."
+    prose only when 2-column term/gloss shaped; anything else is listed as
+    needs-human instead of being mangled. Pre-approval boards only — text
+    edits move SHAs, so refused when an approval file already exists.
+
+    Args:
+        project: Lane name
+        unit: Unit id ("" = whole lane)
+    """
+    def _work():
+        import re as _re
+        sys.path.insert(0, os.path.join(ROOT, "core", "builders"))
+        from build_storyboard import speak_clean
+        cfg = _project_cfg(project)
+        repo = os.path.expanduser((cfg.get("repo", "~/" + project)))
+        import glob as _g
+        files = sorted(_g.glob(os.path.join(repo, "storyboards", "storyboard_*.json")))
+        if unit:
+            files = [f for f in files if unit in os.path.basename(f)]
+        if not files:
+            return {"ok": False, "reason": "no storyboards matched"}
+        report = []
+        for sb_path in files:
+            if _g.glob(os.path.join(repo, "approved_*.json")):
+                return {"ok": False, "reason": "approvals exist — cleaning moves SHAs, needs fresh approval first"}
+            sb = json.load(open(sb_path, encoding="utf-8"))
+            changed, human = 0, []
+            for b in sb.get("blocks", []):
+                if b.get("voice") not in ("granny", "man", "verse"):
+                    continue
+                for k in ("text", "directed"):
+                    v = b.get(k)
+                    if not v:
+                        continue
+                    if "|" in v:
+                        nv = _speak_table_prose(v)
+                        if nv is None:
+                            human.append(f"{b['id']}:{k}")
+                            continue
+                    else:
+                        nv = speak_clean(v)
+                    if nv != v:
+                        b[k] = nv
+                        changed += 1
+            if changed:
+                json.dump(sb, open(sb_path, "w"), indent=1, ensure_ascii=False)
+            report.append({"unit": os.path.basename(sb_path), "fields": changed,
+                           "needs_human": human})
+        return {"ok": True,
+                "units": len(report), "report": report,
+                "note": "re-validate bundles + gates after cleaning (SHAs moved)"}
+
+    try:
+        return json.dumps(await _run_sync(_work), indent=2)
+    except (OSError, ValueError) as e:
+        return json.dumps({"error": str(e)[:300]})
+
+
 @mcp.tool()
 async def vf_seamless_cook(recipe: str, gif_id: str, unit: str = "",
                            project: str = "nibbana", ramp: str = "",

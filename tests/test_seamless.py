@@ -98,3 +98,31 @@ class TestPassagePlan(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class TestSpeakTools(unittest.TestCase):
+    def test_table_prose(self):
+        import vf_mcp_mod as M
+        t = "[slowly] | Sanskrit | Remember it as |\n|--------|--------|\n| **cit** | Consciousness |\n| **ānanda** | Bliss |"
+        out = M._speak_table_prose(t)
+        self.assertTrue(out.startswith("[slowly]"))
+        self.assertIn("cit: Consciousness", out)
+        self.assertNotIn("|", out)
+        self.assertNotIn("**", out)
+
+    def test_table_prose_empty(self):
+        import vf_mcp_mod as M
+        self.assertIsNone(M._speak_table_prose("|---|"))
+
+    def test_hazards_shape(self):
+        import vf_mcp_mod as M
+        h = M._speak_hazards("/home/ubuntu/nibbana/storyboards/storyboard_n01.json")
+        self.assertEqual(h["total"], 0)
+        self.assertIn("hashheads_n", h)
+
+    def test_speakcheck_tool(self):
+        import asyncio
+        import vf_mcp_mod as M
+        d = json.loads(asyncio.run(M.vf_speakcheck(project="nibbana")))
+        self.assertEqual(d["units"], 10)
+        self.assertEqual(d["hazards"], 0)

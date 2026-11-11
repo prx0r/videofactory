@@ -638,3 +638,48 @@ class TestLaneDelegation(unittest.TestCase):
         # frozen lanes pass through untouched
         frozen = {'siva': {'deva': 'x', 'gloss': 'y', 'status': 'confirmed'}}
         self.assertEqual(C2._normalize_glossary(frozen), frozen)
+
+
+class TestSpeakClean(unittest.TestCase):
+    def test_strips_headers_and_emphasis(self):
+        import build_storyboard as B
+        self.assertEqual(B.speak_clean('### The master key'), 'The master key')
+        self.assertEqual(B.speak_clean('#### Deep head'), 'Deep head')
+        self.assertEqual(B.speak_clean('**Etam** - *this*. Done.'), 'Etam - this. Done.')
+        self.assertEqual(B.speak_clean('* item one'), 'item one')
+        # direction tags survive
+        self.assertEqual(B.speak_clean('[short pause] "Speak."'), '[short pause] "Speak."')
+
+    def test_validate_flags_residue(self):
+        import build_storyboard as B
+        def blk(bid, text):
+            return {'id': bid, 'section': 's', 'type': 'narration',
+                    'voice': 'granny', 'text': text}
+        sb = {'title': 't', 'blocks': [
+            {'id': 'b_opener', 'section': 'opener', 'type': 'opener',
+             'voice': 'none', 'text': '[bell]', 'asset': '/tmp/bell.wav', 'mix': '+6dB'},
+            blk('b1', '### Spoken hash'),
+            blk('b2', 'Say **this** now'),
+            blk('b3', 'Clean sentence here'),
+        ]}
+        errs, _ = B.validate(sb)
+        self.assertTrue(any('b1' in e and '#' in e for e in errs))
+        self.assertTrue(any('b2' in e and 'stars' in e for e in errs))
+        self.assertFalse(any(e.startswith('b3:') for e in errs))
+
+    def test_build_never_emits_voiced_markup(self):
+        import build_storyboard as B
+        md = '## Part\n\n### The master key\n\nBody with **bold** and *ital* words.\n'
+        import tempfile, os
+        with tempfile.TemporaryDirectory() as d:
+            p = os.path.join(d, 'ch.md')
+            open(p, 'w').write(md)
+            sb = B.build(p)
+            voiced = [b['text'] for b in sb['blocks'] if b.get('voice') in ('granny', 'man', 'verse')]
+            joined = '\n'.join(voiced)
+            self.assertNotIn('###', joined)
+            self.assertNotIn('**', joined)
+            errs, _ = B.validate(dict(sb, blocks=[
+                dict(b, asset='/tmp/bell.wav', mix='+6dB') if b['id'] == 'b_opener' else b
+                for b in sb['blocks']]))
+            self.assertEqual([e for e in errs if 'voiced text' in e or 'markdown' in e or 'table' in e], [])
