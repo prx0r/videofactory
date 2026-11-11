@@ -1517,7 +1517,7 @@
    "depicts": "A chip-shop queue at night in rain, steam and menu glow.",
    "means": "Ordinary bliss, no metaphysics required.",
    "use": "Roady everyday-nirvana beats.",
-   "watch": "",
+   "watch": "Steam rises; the queue shuffles.",
    "broll": true,
    "note": "full-bleed street scene; needs white-mat or owner exception",
    "tags": [
@@ -1642,7 +1642,7 @@
   },
   {
    "id": "yogic-ascension",
-   "file": "yogic-ascension.gif",
+   "file": "motion/yogic-ascension.gif",
    "status": "banked-described",
    "depicts": "Seated yogi, luminous channels rising spine to crown.",
    "means": "Awakening current rising through the centers.",
@@ -1658,7 +1658,7 @@
   },
   {
    "id": "yogic-cycle",
-   "file": "yogic-cycle.gif",
+   "file": "motion/yogic-cycle.gif",
    "status": "banked-described",
    "depicts": "Energy cycling up the spine in panel sequence.",
    "means": "Cyclic ascent and return of the current.",
@@ -1673,7 +1673,7 @@
   },
   {
    "id": "scroll-unroll",
-   "file": "scroll-unroll.gif",
+   "file": "motion/scroll-unroll.gif",
    "status": "banked-described",
    "depicts": "Engraved scroll unrolling, text revealed line by line.",
    "means": "Teachings disclosed in sequence.",
@@ -1694,7 +1694,7 @@
   },
   {
    "id": "lamp-row",
-   "file": "lamp-row.gif",
+   "file": "motion/lamp-row.gif",
    "status": "banked-described",
    "depicts": "Row of engraved offering lamps, flames alive.",
    "means": "Offerings kept burning; remembrance held.",
@@ -1717,7 +1717,7 @@
   },
   {
    "id": "prayer-hands",
-   "file": "prayer-hands.gif",
+   "file": "motion/prayer-hands.gif",
    "status": "banked-described",
    "depicts": "Cupped hands raised, rays parting between palms.",
    "means": "Supplication; calling on the guides.",
@@ -1738,7 +1738,7 @@
   },
   {
    "id": "yogic-awakening",
-   "file": "yogic-awakening.gif",
+   "file": "motion/yogic-awakening.gif",
    "status": "banked-described",
    "depicts": "Seated figure, heart and crown igniting in sequence.",
    "means": "Centers lighting in order.",
@@ -1753,7 +1753,7 @@
   },
   {
    "id": "yogic-flow",
-   "file": "yogic-flow.gif",
+   "file": "motion/yogic-flow.gif",
    "status": "banked-described",
    "depicts": "Seated figure, current streaming hands to crown.",
    "means": "Current in full circulation.",
@@ -2976,7 +2976,7 @@
    "depicts": "Goddess with lion under storm cloud",
    "means": "Fierce weather",
    "use": "Storm chapters; cloud beats",
-   "watch": "",
+   "watch": "Clouds churn; she holds.",
    "variant_of": "durga",
    "variant_when": "use for storm Durga; tiger serves triumph",
    "note": "dense tableau fills frame; needs white-mat or owner exception",
@@ -3000,7 +3000,7 @@
    "depicts": "Seated figure before great falls",
    "means": "Stillness before falling water",
    "use": "Falls chapters; cascade beats",
-   "watch": "",
+   "watch": "Water falls; stillness holds.",
    "variant_of": "shiva-wind",
    "variant_when": "use for waterfall stillness rather than wind",
    "tags": [
@@ -3022,7 +3022,7 @@
    "depicts": "Dark goddess with trident at the burning ground",
    "means": "The ground itself",
    "use": "Cremation chapters; ash beats",
-   "watch": "",
+   "watch": "Ash swirls; she dances.",
    "variant_of": "kali",
    "variant_when": "use for the cremation-ground aspect rather than the dance",
    "note": "dense tableau fills frame; needs white-mat or owner exception",
@@ -3106,7 +3106,7 @@
    "depicts": "Evening courage",
    "means": "Dusk chapters; ember beats",
    "use": "durga chapters; variant beats",
-   "watch": "",
+   "watch": "Embers pulse; the lion breathes.",
    "variant_of": "durga",
    "variant_when": "use for dusk Durga on foot with lion",
    "tags": [
