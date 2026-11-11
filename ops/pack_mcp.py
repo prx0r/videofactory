@@ -19,7 +19,7 @@ from datetime import date
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-INCLUDE_TOP = ["vf_mcp_server.py", "requirements-contract.txt",
+INCLUDE_TOP = ["vf_mcp_server.py", "REGISTRY.json", "requirements-contract.txt",
                "requirements-test.txt", "AGENTS.md", "FACTORY-SPEC.md",
                "BARS.md", "PERMISSIONS.md", "DATATYPES.json"]
 INCLUDE_DIRS = ["core/builders", "core/contract", "core/skills",
