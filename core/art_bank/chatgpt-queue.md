@@ -1,4 +1,4 @@
-# ChatGPT GIF queue — greedy pack (28 wanted, briefs locked 2026-11-11)
+# ChatGPT GIF queue — greedy pack (26 wanted, briefs locked 2026-11-11)
 
 Maker envelope (every item, no exceptions): GIF89a loop, 12 frames,
 ~310x414 portrait or square, 0.5–1.5 MB, pure-white background,
@@ -9,18 +9,13 @@ Slugs lowercase-hyphenated. On arrival: file under
 depicts/means/use/watch + unit slots.
 
 
-Banked this intake: 29 arrivals (goddess/knot-heart/alphabet/trident/bee/mandala/death-bell, abstracts, roady set, book-open/waking-eye/threshold-light/ocean/folded→prayer).
-Full-bleed scenic arrivals (chip-shop/fifa-night/ocean/bus-window) carry white-mat-or-exception notes.
+Done this intake: fire + leaning-wall banked on shared delivery bytes (noted); crystal-clear still live in draws, motion still open.
 
-## shiva-sutras (8 wanted)
+## shiva-sutras (7 wanted)
 
 ### breath-rhythm
 motif: Slow breath bar rising and falling, endless loop.
 brief: Slow breath bar rising and falling, endless loop.. Blue-ink engraving on white, minimal, one moving element, no text, seamless loop.
-
-### fire
-motif: fire, dominant chant-image (27x)
-brief: Single upright flame, steady and bright on white. Why: the dominant chant-image across all 78 sutras (27x) — consciousness as fire; breath beats (s55/s59). First of the seal four.
 
 ### folded-hands
 motif: Two hands slowly joining in añjali, holding, releasing.
@@ -52,7 +47,7 @@ brief: A simple wheel turning, spokes catching light. Why: turning itself — pr
 motif: The syllable A tightening then loosening like a knot untying.
 brief: The syllable A tightening then loosening like a knot untying.. Blue-ink engraving on white, minimal, one moving element, no text, seamless loop.
 
-## nibbana (11 wanted)
+## nibbana (10 wanted)
 
 ### breath-rhythm
 motif: Slow breath bar rising and falling, endless loop.
@@ -73,10 +68,6 @@ brief: An open hand closing on drifting smoke. Why: the most recurrent image lan
 ### jewel-pond
 motif: jewel glinting in pond water, reached for
 brief: One jewel glinting just under pond ripples, half-seen. Why: existent-or-not, the two-lunatics object (n03/n04).
-
-### leaning-wall
-motif: figure leaning on a vanishing wall
-brief: A lone figure leaning on a wall that fades to white. Why: dependence mistaken for stability (n02).
 
 ### mara-army
 motif: shadow army approaching at dusk

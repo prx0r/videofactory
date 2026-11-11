@@ -192,8 +192,14 @@
    "used_in": {
     "shiva-sutras": []
    },
-   "status": "wanted",
-   "brief": "Single upright flame, steady and bright on white. Why: the dominant chant-image across all 78 sutras (27x) \u2014 consciousness as fire; breath beats (s55/s59). First of the seal four."
+   "status": "banked-described",
+   "brief": "Single upright flame, steady and bright on white. Why: the dominant chant-image across all 78 sutras (27x) \u2014 consciousness as fire; breath beats (s55/s59). First of the seal four.",
+   "file": "motion/logs-fire.gif",
+   "depicts": "Logs catching fierce upright flame, bright and fierce.",
+   "means": "Consciousness as fire; the first seal (27x chant-image).",
+   "use": "plays shiva-sutras: seal chapters; ignition beats",
+   "watch": "Flames take the pile; light steadies.",
+   "note": "shares bytes with logs-fire.gif (same ChatGPT delivery under two names); single stored file"
   },
   {
    "id": "seed",
@@ -236,8 +242,14 @@
      "n02"
     ]
    },
-   "status": "wanted",
-   "brief": "A lone figure leaning on a wall that fades to white. Why: dependence mistaken for stability (n02)."
+   "status": "banked-described",
+   "brief": "A lone figure leaning on a wall that fades to white. Why: dependence mistaken for stability (n02).",
+   "file": "motion/leaning-monk.gif",
+   "depicts": "A robed monk dozing upright against a stone wall, slumping and standing again.",
+   "means": "Dependence mistaken for stability (leaning-wall alternate, seated).",
+   "use": "plays nibbana:n02",
+   "watch": "The monk slumps, crumbles to dust, and stands again whole.",
+   "note": "delivered as leaning-monk (same bytes); pure wall-fade variant still open if owner wants it distinct"
   },
   {
    "id": "mirror-empty",
@@ -374,7 +386,8 @@
     ]
    },
    "status": "wanted",
-   "brief": "Clear quartz cluster, sharp and colorless. Why: verse 6 hinge, clarity that adds nothing (p01)."
+   "brief": "Clear quartz cluster, sharp and colorless. Why: verse 6 hinge, clarity that adds nothing (p01).",
+   "note": "still art crystal-clear.png live in param draws (draws_p01); motion GIF still open"
   },
   {
    "id": "rice-bowl",
