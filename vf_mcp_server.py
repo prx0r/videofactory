@@ -1183,7 +1183,7 @@ async def vf_seamless_draw(gif_id: str, unit: str = "", project: str = "nibbana"
                            etch_s: float = 20.0, play_s: float = 20.0,
                            fade_s: float = 3.5, clean_bg: int = 250,
                            speed: float = 2.0, direction: str = "forward",
-                           ramp: str = "", subject: str = "first",
+                           ramp: str = "", subject: str = "peak",
                            recipe: str = "", publish: bool = False,
                            storyboard: str = "", from_bid: str = "",
                            to_bid: str = "", etch_share: float = 0.65,
@@ -1214,7 +1214,7 @@ async def vf_seamless_draw(gif_id: str, unit: str = "", project: str = "nibbana"
         speed: Playback speed multiplier (native delay / speed, default 2x)
         direction: forward|reverse|pingpong (default forward)
         ramp: Comma speeds for a speedup shape, e.g. 0.25,0.5,1,2,4 (overrides speed)
-        subject: first|peak — peak etches the fullest frame (fade-in loops
+        subject: first|peak — peak (default) etches the fullest frame (fade-in loops
             that open on blank) and rotates playback to start there; the seam
             stays byte-identical either way
         recipe: Save params+SHAs as a replayable recipe under this name
