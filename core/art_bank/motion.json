@@ -979,8 +979,13 @@
      "heist"
     ]
    },
-   "status": "wanted",
-   "brief": "Three vertical channels with slow ascending glow dots.. Blue-ink engraving on white, minimal, one moving element, no text, seamless loop."
+   "status": "banked-described",
+   "brief": "Three vertical channels with slow ascending glow dots.. Blue-ink engraving on white, minimal, one moving element, no text, seamless loop.",
+   "file": "motion/channel-body.gif",
+   "depicts": "A seated figure with the central channel glowing upward.",
+   "means": "Subtle body; yogic departure.",
+   "use": "Departure chapters (tibetan/deathworks-heist)",
+   "watch": "Ascent beats; glow rises"
   },
   {
    "id": "corpse-quiet",
@@ -992,8 +997,14 @@
      "ancestors"
     ]
    },
-   "status": "wanted",
-   "brief": "A shrouded form utterly still, dust motes drifting.. Blue-ink engraving on white, minimal, one moving element, no text, seamless loop."
+   "status": "banked-described",
+   "brief": "A shrouded form utterly still, dust motes drifting.. Blue-ink engraving on white, minimal, one moving element, no text, seamless loop.",
+   "file": "motion/corpse-quiet.gif",
+   "depicts": "A woman asleep under the moon, peaceful and still.",
+   "means": "The fact of death, held without horror.",
+   "use": "Death-sleep chapters",
+   "watch": "Tukdam beats; stillness holds",
+   "note": "unveiled peaceful sleeper (tukdam-sleep reading), not a shrouded corpse; close-up fills frame, mat-or-exception"
   },
   {
    "id": "folded-hands",
@@ -1019,8 +1030,13 @@
     "paramarthasara": [],
     "deathworks": []
    },
-   "status": "wanted",
-   "brief": "A row of small flames bowing in one direction, night.. Blue-ink engraving on white, minimal, one moving element, no text, seamless loop."
+   "status": "banked-described",
+   "brief": "A row of small flames bowing in one direction, night.. Blue-ink engraving on white, minimal, one moving element, no text, seamless loop.",
+   "file": "motion/temple-lamps.gif",
+   "depicts": "A row of flaming lamps with a lotus bowl beneath.",
+   "means": "Offered light; evening temple chapters.",
+   "use": "Lamp chapters",
+   "watch": "Offering beats; flames bow"
   },
   {
    "id": "hymn-scroll",
@@ -1088,18 +1104,6 @@
    "means": "Emergence from turya boundaries; waking as event.",
    "use": "Waking chapters (s55)",
    "watch": "Emergence beats."
-  },
-  {
-   "id": "heart-flame",
-   "motif": "A small flame cupped where a heart would be, steady.",
-   "why": "Worship-heart; the happy place as furnace.",
-   "used_in": {
-    "tantrasara": [
-     "ch13"
-    ]
-   },
-   "status": "wanted",
-   "brief": "A small flame cupped where a heart would be, steady.. Blue-ink engraving on white, minimal, one moving element, no text, seamless loop."
   },
   {
    "id": "book-open",
@@ -1663,6 +1667,98 @@
    "means": "The elements releasing.",
    "use": "Dissolution chapters",
    "watch": "Release beats"
+  },
+  {
+   "id": "wrathful-host",
+   "motif": "A wrathful protector with attendants in mist",
+   "why": "The wrathful hosts of the bardo (58 wrathful).",
+   "used_in": {
+    "tibetan-dead": []
+   },
+   "status": "banked-described",
+   "brief": "A wrathful protector with attendants emerging from mist. Why: the 58 wrathful deities. Blue-ink engraving on white, minimal, one moving element, no text, seamless loop.",
+   "file": "motion/wrathful-host.gif",
+   "depicts": "Wrathful protector in mist.",
+   "means": "The wrathful hosts.",
+   "use": "Wrathful chapters (d03/d04); awe beats",
+   "watch": "Mist parts; the protector advances.",
+   "note": "dense tableau fills frame; needs white-mat or owner exception"
+  },
+  {
+   "id": "prayer-flags",
+   "motif": "Prayer flags on a cairn above mountain seas of cloud",
+   "why": "Auspicious opener; the high place marked.",
+   "used_in": {
+    "tibetan-dead": []
+   },
+   "status": "banked-described",
+   "brief": "Prayer flags on a stone cairn above clouds. Why: auspicious high-place opener. Blue-ink engraving on white, minimal, one moving element, no text, seamless loop.",
+   "file": "motion/prayer-flags.gif",
+   "depicts": "Flags on a cairn above clouds.",
+   "means": "The high place marked.",
+   "use": "Opener chapters; auspicious beats",
+   "watch": "Flags lift; clouds breathe."
+  },
+  {
+   "id": "stupa",
+   "motif": "A stupa with prayer flags above cloud seas",
+   "why": "The monument; liberation made architecture.",
+   "used_in": {
+    "tibetan-dead": []
+   },
+   "status": "banked-described",
+   "brief": "A stupa with prayer flags above the clouds. Why: liberation made architecture. Blue-ink engraving on white, minimal, one moving element, no text, seamless loop.",
+   "file": "motion/stupa.gif",
+   "depicts": "Stupa above clouds.",
+   "means": "Liberation made architecture.",
+   "use": "Monument chapters; refuge beats",
+   "watch": "Clouds breathe around the dome."
+  },
+  {
+   "id": "vajra-bell",
+   "motif": "Ritual bell, vajra and damaru laid on brocade",
+   "why": "The Vajrayana instruments at rest.",
+   "used_in": {
+    "tibetan-dead": []
+   },
+   "status": "banked-described",
+   "brief": "Ritual bell, vajra and damaru on brocade. Why: the instruments at rest. Blue-ink engraving on white, minimal, one moving element, no text, seamless loop.",
+   "file": "motion/vajra-bell.gif",
+   "depicts": "Bell, vajra and damaru at rest.",
+   "means": "The instruments waiting.",
+   "use": "Ritual chapters; readiness beats",
+   "watch": "Nothing moves but light."
+  },
+  {
+   "id": "skull-offering",
+   "motif": "A skull-cup heaped with offerings and small flames",
+   "why": "The cremation ground as offering; everything given.",
+   "used_in": {
+    "paramarthasara": []
+   },
+   "status": "banked-described",
+   "brief": "A skull-cup heaped with offerings and flames. Why: the cremation ground as offering. Blue-ink engraving on white, minimal, one moving element, no text, seamless loop.",
+   "file": "motion/skull-offering.gif",
+   "depicts": "Skull-cup of offerings and flames.",
+   "means": "Everything given.",
+   "use": "Cremation chapters (p06)",
+   "watch": "Offering beats"
+  },
+  {
+   "id": "ascent",
+   "motif": "A column of light rising from a lotus, swirling upward",
+   "why": "Consciousness ejecting upward; the phowa ascent.",
+   "used_in": {
+    "tibetan-dead": [],
+    "deathworks": []
+   },
+   "status": "banked-described",
+   "brief": "A column of light rising from a lotus. Why: the phowa ascent. Blue-ink engraving on white, minimal, one moving element, no text, seamless loop.",
+   "file": "motion/ascent.gif",
+   "depicts": "Light column rising from a lotus.",
+   "means": "The upward departure.",
+   "use": "Ascent chapters; ejection beats",
+   "watch": "The column climbs steadily."
   }
  ]
 }
