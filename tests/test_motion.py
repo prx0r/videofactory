@@ -39,3 +39,18 @@ class TestMotion(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+    def test_query_tags(self):
+        calm = M._motion_query(tags=["calm"])["entries"]
+        self.assertGreater(len(calm), 0)
+        self.assertTrue(all("calm" in e.get("tags", []) for e in calm))
+        both = M._motion_query(tags=["night", "calm"])["entries"]
+        self.assertTrue(all({"night", "calm"} <= set(e.get("tags", [])) for e in both))
+        self.assertLessEqual(len(both), len(calm))
+        none = M._motion_query(tags=["no-such-tag"])["entries"]
+        self.assertEqual(none, [])
+
+    def test_every_entry_tagged(self):
+        doc = M._motion_query()["entries"]
+        untagged = [e["id"] for e in doc if not e.get("tags")]
+        self.assertEqual(untagged, [])

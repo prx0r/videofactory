@@ -19,7 +19,14 @@
    "depicts": "A puppy at a pond edge gazing at its own reflection in still water.",
    "means": "The self meeting itself; the owner smuggled into the story. Play wherever recognition misfires.",
    "use": "n02 leaning-mechanics, n09 dog chapter. Never as mere cuteness.",
-   "watch": "Puppy lowers its head toward its reflection; tail gives one wag."
+   "watch": "Puppy lowers its head toward its reflection; tail gives one wag.",
+   "tags": [
+    "animal",
+    "blue",
+    "calm",
+    "joyful",
+    "water"
+   ]
   },
   {
    "id": "cinema",
@@ -36,7 +43,11 @@
    "depicts": "A vintage projector beaming a landscape onto a screen in a dark room.",
    "means": "Consciousness as projection; the show that needs no world behind it.",
    "use": "n03 cinema trick. Pairs with magician, never same span.",
-   "watch": "Projector beam flickers; the screen image shifts from landscape to blank white."
+   "watch": "Projector beam flickers; the screen image shifts from landscape to blank white.",
+   "tags": [
+    "blue",
+    "night"
+   ]
   },
   {
    "id": "donkey-carrot",
@@ -51,7 +62,11 @@
    "depicts": "A donkey pulling a cart, chasing a carrot dangled ahead of it.",
    "means": "Goalless pursuit; the goal recedes because the chase produces it.",
    "use": "n04 pond-jewel and carrot beats.",
-   "watch": "Donkey plods forward; the dangling carrot bobs just out of reach."
+   "watch": "Donkey plods forward; the dangling carrot bobs just out of reach.",
+   "tags": [
+    "animal",
+    "plant"
+   ]
   },
   {
    "id": "sewing-machine",
@@ -66,7 +81,12 @@
    "depicts": "An antique sewing machine mid-stitch, thread running.",
    "means": "Stitching a self together; the final stitch never made. Closing energy.",
    "use": "n10 seamstress and finale. Nowhere else.",
-   "watch": "The needle pumps, thread feeding through cloth."
+   "watch": "The needle pumps, thread feeding through cloth.",
+   "tags": [
+    "blue",
+    "human",
+    "object"
+   ]
   },
   {
    "id": "lotus-rain",
@@ -81,7 +101,13 @@
    "depicts": "Lotus leaf beaded with rain that will not stick.",
    "means": "Non-grasping awareness; contact without ownership.",
    "use": "General purity beats; n06 non-appropriation.",
-   "watch": "Rain strikes a lotus leaf and beads roll off."
+   "watch": "Rain strikes a lotus leaf and beads roll off.",
+   "tags": [
+    "blue",
+    "forest",
+    "plant",
+    "water"
+   ]
   },
   {
    "id": "lamp-flame",
@@ -97,7 +123,12 @@
    "depicts": "A lit oil lamp, flame leaning in dark air.",
    "means": "Attention itself; the flame that goes out is also the one that sees.",
    "use": "n01 fire beats, n07 exhausted-lamp chapter (counterpoint: lit vs out).",
-   "watch": "A small flame leans and recovers, steady overall."
+   "watch": "A small flame leans and recovers, steady overall.",
+   "tags": [
+    "fire",
+    "night",
+    "object"
+   ]
   },
   {
    "id": "hands-sand",
@@ -113,7 +144,11 @@
    "depicts": "Open hands letting dry sand run through.",
    "means": "Release; possession failing in real time.",
    "use": "n08 sandcastle chapter. Hands, never fists.",
-   "watch": "Hands build a sandcastle, then waves wash it flat."
+   "watch": "Hands build a sandcastle, then waves wash it flat.",
+   "tags": [
+    "blue",
+    "human"
+   ]
   },
   {
    "id": "magician",
@@ -128,7 +163,10 @@
    "depicts": "A stage magician presenting a levitation, audience watching.",
    "means": "The trick of consciousness; total conviction, nothing behind it.",
    "use": "n09 magic-show chapter. Never alongside cinema in one span.",
-   "watch": "Doves appear above the act; the assistant changes pose."
+   "watch": "Doves appear above the act; the assistant changes pose.",
+   "tags": [
+    "blue"
+   ]
   },
   {
    "id": "raft",
@@ -144,7 +182,12 @@
    "depicts": "A figure on a bamboo raft, hand trailing in the water.",
    "means": "The vehicle to abandon after crossing; means, not home.",
    "use": "n10 raft beats. Never as travel scenery.",
-   "watch": "A figure poles a bamboo raft across; banks slide past."
+   "watch": "A figure poles a bamboo raft across; banks slide past.",
+   "tags": [
+    "blue",
+    "human",
+    "water"
+   ]
   },
   {
    "id": "wave-vortex",
@@ -160,7 +203,11 @@
    "depicts": "Engraved wave gathering itself toward calm water.",
    "means": "Agitation resolving without going anywhere; the whirlpool ending.",
    "use": "n01/n03 whirlpool expositions; closing-adjacent calm.",
-   "watch": "The vortex churns, collapses, and reforms."
+   "watch": "The vortex churns, collapses, and reforms.",
+   "tags": [
+    "calm",
+    "water"
+   ]
   },
   {
    "id": "fire-out",
@@ -173,7 +220,12 @@
    },
    "status": "superseded-banked",
    "brief": "A dying flame above cooling ash, last smoke thread rising straight. Blue-ink engraving, white ground. Why: the extinction thesis in one image (n01 opening, n07 lamp chapter).",
-   "note": "fulfilled by logs-fire / hand-mirror"
+   "note": "fulfilled by logs-fire / hand-mirror",
+   "tags": [
+    "cremation",
+    "fire",
+    "object"
+   ]
   },
   {
    "id": "surgeon",
@@ -190,7 +242,12 @@
    "means": "The Buddha as surgeon; diagnosis and cure.",
    "use": "Surgeon chapters (n01)",
    "watch": "Diagnosis beats",
-   "note": "close-up scene fills frame; needs white-mat or owner exception"
+   "note": "close-up scene fills frame; needs white-mat or owner exception",
+   "tags": [
+    "blue",
+    "calm",
+    "human"
+   ]
   },
   {
    "id": "fire",
@@ -204,7 +261,12 @@
    "depicts": "A brazier fire burning tall and fierce.",
    "means": "Consciousness as fire; the first seal.",
    "use": "Fire chapters",
-   "watch": "Ignition beats"
+   "watch": "Ignition beats",
+   "tags": [
+    "fierce",
+    "fire",
+    "pulse"
+   ]
   },
   {
    "id": "seed",
@@ -218,7 +280,11 @@
    "depicts": "A seed splitting, first root reaching down.",
    "means": "Potency before form; banyan-seed beats.",
    "use": "Seed chapters",
-   "watch": "Latency beats"
+   "watch": "Latency beats",
+   "tags": [
+    "plant",
+    "pulse"
+   ]
   },
   {
    "id": "ocean",
@@ -234,7 +300,13 @@
    "use": "Ocean chapters",
    "watch": "Vastness beats.",
    "broll": true,
-   "note": "full-bleed seascape; needs white-mat or owner exception"
+   "note": "full-bleed seascape; needs white-mat or owner exception",
+   "tags": [
+    "blue",
+    "calm",
+    "sky",
+    "water"
+   ]
   },
   {
    "id": "wheel",
@@ -248,7 +320,13 @@
    "depicts": "A cart wheel turning, spokes catching light.",
    "means": "Turning itself; practice and breath cycle.",
    "use": "Wheel chapters",
-   "watch": "Cycle beats"
+   "watch": "Cycle beats",
+   "tags": [
+    "animal",
+    "human",
+    "object",
+    "pulse"
+   ]
   },
   {
    "id": "leaning-wall",
@@ -265,7 +343,12 @@
    "means": "Dependence mistaken for stability (leaning-wall alternate, seated).",
    "use": "plays nibbana:n02",
    "watch": "The monk slumps, crumbles to dust, and stands again whole.",
-   "note": "delivered as leaning-monk (same bytes); pure wall-fade variant still open if owner wants it distinct"
+   "note": "delivered as leaning-monk (same bytes); pure wall-fade variant still open if owner wants it distinct",
+   "tags": [
+    "blue",
+    "human",
+    "mountain"
+   ]
   },
   {
    "id": "mirror-empty",
@@ -279,7 +362,11 @@
    },
    "status": "superseded-banked",
    "brief": "Small oval hand mirror reflecting blank white. Why: the owner-inventing danger-object (n03/n04/n09).",
-   "note": "fulfilled by logs-fire / hand-mirror"
+   "note": "fulfilled by logs-fire / hand-mirror",
+   "tags": [
+    "human",
+    "object"
+   ]
   },
   {
    "id": "jewel-pond",
@@ -296,7 +383,12 @@
    "depicts": "A jewel glinting just under pond ripples.",
    "means": "Existent-or-not; the two-lunatics object.",
    "use": "Jewel chapters (n03/n04)",
-   "watch": "Doubt beats"
+   "watch": "Doubt beats",
+   "tags": [
+    "blue",
+    "object",
+    "water"
+   ]
   },
   {
    "id": "passbook",
@@ -314,7 +406,10 @@
    "depicts": "A stamped ledger with coins, columns of merit-ink.",
    "means": "The merit-accounting joke engine.",
    "use": "Ledger chapters (n06-n08)",
-   "watch": "Accounting beats"
+   "watch": "Accounting beats",
+   "tags": [
+    "object"
+   ]
   },
   {
    "id": "carpenter-tools",
@@ -332,7 +427,10 @@
    "means": "Self-critique made object.",
    "use": "Carpenter chapters (n10, n04 planks)",
    "watch": "Shaving beats",
-   "note": "close-up fills frame; needs white-mat or owner exception"
+   "note": "close-up fills frame; needs white-mat or owner exception",
+   "tags": [
+    "human"
+   ]
   },
   {
    "id": "chariot-team",
@@ -348,7 +446,10 @@
    "depicts": "Seven chariots receding toward one horizon point.",
    "means": "Many vehicles, one destination.",
    "use": "Relay chapters (n10)",
-   "watch": "Destination beats"
+   "watch": "Destination beats",
+   "tags": [
+    "object"
+   ]
   },
   {
    "id": "relay-runner",
@@ -364,7 +465,11 @@
    "depicts": "Two runners passing a small flame-baton.",
    "means": "The practice relay; the handoff loop.",
    "use": "Relay chapters (n10)",
-   "watch": "Handoff beats"
+   "watch": "Handoff beats",
+   "tags": [
+    "fire",
+    "human"
+   ]
   },
   {
    "id": "mara-army",
@@ -381,7 +486,12 @@
    "means": "The death chapter mustering.",
    "use": "Death chapters (n08)",
    "watch": "Mustering beats",
-   "note": "dark scenic ground; needs white-mat or owner exception"
+   "note": "dark scenic ground; needs white-mat or owner exception",
+   "tags": [
+    "blue",
+    "night",
+    "sky"
+   ]
   },
   {
    "id": "grasping-hand",
@@ -397,7 +507,10 @@
    "depicts": "An open hand closing on drifting smoke.",
    "means": "Appropriation failing; the lane-wide image.",
    "use": "Grasping beats lane-wide",
-   "watch": "Release beats"
+   "watch": "Release beats",
+   "tags": [
+    "human"
+   ]
   },
   {
    "id": "knotted-thread",
@@ -416,7 +529,10 @@
    "depicts": "A single tangled rope knot with loose ends.",
    "means": "The self-tie across chapters.",
    "use": "Knot chapters n03-n09",
-   "watch": "Entanglement beats"
+   "watch": "Entanglement beats",
+   "tags": [
+    "object"
+   ]
   },
   {
    "id": "signpost",
@@ -432,7 +548,10 @@
    "depicts": "A signpost with arms pointing every way.",
    "means": "The compass bit; every direction at once.",
    "use": "n01 compass bit",
-   "watch": "Direction beats"
+   "watch": "Direction beats",
+   "tags": [
+    "object"
+   ]
   },
   {
    "id": "crystal-clear",
@@ -448,7 +567,10 @@
    "depicts": "A clear quartz cluster, sharp and colorless.",
    "means": "Verse 6 hinge; clarity that adds nothing.",
    "use": "Crystal chapters (p01)",
-   "watch": "Clarity beats"
+   "watch": "Clarity beats",
+   "tags": [
+    "object"
+   ]
   },
   {
    "id": "rice-bowl",
@@ -464,7 +586,10 @@
    "depicts": "A plain full bowl of rice, steam curling.",
    "means": "Enlightenment via rice, verse 18.",
    "use": "Rice chapters (p02)",
-   "watch": "Humility beats"
+   "watch": "Humility beats",
+   "tags": [
+    "object"
+   ]
   },
   {
    "id": "spiderweb-dew",
@@ -481,7 +606,10 @@
    "means": "Self-trapped Siva.",
    "use": "Web chapters (p03)",
    "watch": "Binding beats",
-   "note": "web fills frame edge to edge; needs white-mat or owner exception"
+   "note": "web fills frame edge to edge; needs white-mat or owner exception",
+   "tags": [
+    "animal"
+   ]
   },
   {
    "id": "sunrise-water",
@@ -498,7 +626,15 @@
    "means": "Remembrance not travel; recognition as daybreak.",
    "use": "plays paramarthasara:p04",
    "watch": "Light strengthens; the gold path widens toward the viewer.",
-   "note": "shares bytes with sunrise-mountain.gif (same delivery; p04 remembrance slot)"
+   "note": "shares bytes with sunrise-mountain.gif (same delivery; p04 remembrance slot)",
+   "tags": [
+    "blue",
+    "calm",
+    "dawn",
+    "mountain",
+    "sky",
+    "water"
+   ]
   },
   {
    "id": "open-doorway",
@@ -515,7 +651,11 @@
    "file": "motion/open-doorway.gif",
    "note": "ChatGPT procedural draft from queue briefs (manifest: not engraving quality); promote by re-render.",
    "watch": "A white door swings slowly open onto white.",
-   "use": "Threshold beats: entries, exits, thresholds crossed."
+   "use": "Threshold beats: entries, exits, thresholds crossed.",
+   "tags": [
+    "object",
+    "temple"
+   ]
   },
   {
    "id": "skullbowl-line",
@@ -532,7 +672,11 @@
    "file": "motion/skullbowl-line.gif",
    "note": "ChatGPT procedural draft from queue briefs (manifest: not engraving quality); promote by re-render.",
    "watch": "Near-still line bowl; the faintest shimmer.",
-   "use": "Cremation-ground chapters; mortality held lightly."
+   "use": "Cremation-ground chapters; mortality held lightly.",
+   "tags": [
+    "cremation",
+    "object"
+   ]
   },
   {
    "id": "dawn-break",
@@ -549,7 +693,14 @@
    "file": "motion/dawn-break.gif",
    "note": "ChatGPT procedural draft from queue briefs (manifest: not engraving quality); promote by re-render.",
    "watch": "Clouds thin, first light strengthens over still water.",
-   "use": "Remembrance and daybreak chapters (p04/p07 pattern)."
+   "use": "Remembrance and daybreak chapters (p04/p07 pattern).",
+   "tags": [
+    "calm",
+    "dawn",
+    "night",
+    "sky",
+    "water"
+   ]
   },
   {
    "id": "rainbow-body",
@@ -566,7 +717,11 @@
    "file": "motion/rainbow-body.gif",
    "note": "ChatGPT procedural draft from queue briefs (manifest: not engraving quality); promote by re-render.",
    "watch": "A seated figure brightens then dims, breathing light.",
-   "use": "Fruition without spectacle; light-body beats."
+   "use": "Fruition without spectacle; light-body beats.",
+   "tags": [
+    "human",
+    "sky"
+   ]
   },
   {
    "id": "yama-scales",
@@ -587,7 +742,11 @@
    "file": "motion/yama-scales.gif",
    "note": "ChatGPT procedural draft from queue briefs (manifest: not engraving quality); promote by re-render.",
    "watch": "The pans sway gently, never settling.",
-   "use": "Judgment and weighing beats across death lanes."
+   "use": "Judgment and weighing beats across death lanes.",
+   "tags": [
+    "object",
+    "pulse"
+   ]
   },
   {
    "id": "rising-corpse",
@@ -604,7 +763,12 @@
    "file": "motion/rising-corpse.gif",
    "note": "ChatGPT procedural draft from queue briefs (manifest: not engraving quality); promote by re-render.",
    "watch": "A shrouded form rises slightly, then settles back.",
-   "use": "Tukdam/mummy beats; stillness, never horror."
+   "use": "Tukdam/mummy beats; stillness, never horror.",
+   "tags": [
+    "calm",
+    "human",
+    "pulse"
+   ]
   },
   {
    "id": "campfire",
@@ -618,7 +782,10 @@
     ]
    },
    "status": "banked-described",
-   "watch": "Flames lick upward, smoke threads curling off."
+   "watch": "Flames lick upward, smoke threads curling off.",
+   "tags": [
+    "fire"
+   ]
   },
   {
    "id": "calm-sea",
@@ -632,7 +799,12 @@
     ]
    },
    "status": "banked-described",
-   "watch": "Slow swells rolling under a wide sky, gulls implied."
+   "watch": "Slow swells rolling under a wide sky, gulls implied.",
+   "tags": [
+    "calm",
+    "sky",
+    "water"
+   ]
   },
   {
    "id": "seed-soil",
@@ -645,7 +817,12 @@
     "paramarthasara": []
    },
    "status": "banked-described",
-   "watch": "A seed cracks; a sprout rises with roots spreading."
+   "watch": "A seed cracks; a sprout rises with roots spreading.",
+   "tags": [
+    "night",
+    "plant",
+    "pulse"
+   ]
   },
   {
    "id": "palm-reading",
@@ -657,7 +834,11 @@
     "nibbana": []
    },
    "status": "banked-described",
-   "watch": "A finger traces the lines of an offered palm."
+   "watch": "A finger traces the lines of an offered palm.",
+   "tags": [
+    "blue",
+    "human"
+   ]
   },
   {
    "id": "watermill",
@@ -669,7 +850,11 @@
     "nibbana": []
    },
    "status": "banked-described",
-   "watch": "The great wheel turns; water pours continuously."
+   "watch": "The great wheel turns; water pours continuously.",
+   "tags": [
+    "blue",
+    "object"
+   ]
   },
   {
    "id": "om-reveal",
@@ -692,7 +877,11 @@
     },
     "mechanism": "ffmpeg setpts on frame stream (2x halve, 0.5x double delays); reverse via -vf reverse; white hold appended at render. Baked to mp4, player-agnostic."
    },
-   "watch": "The syllable om forms stroke by stroke, ringed by circular script."
+   "watch": "The syllable om forms stroke by stroke, ringed by circular script.",
+   "tags": [
+    "letter",
+    "object"
+   ]
   },
   {
    "id": "pond-water",
@@ -707,7 +896,13 @@
     ]
    },
    "status": "banked-described",
-   "watch": "A hand ripples pond water; rings spread and settle."
+   "watch": "A hand ripples pond water; rings spread and settle.",
+   "tags": [
+    "blue",
+    "calm",
+    "object",
+    "water"
+   ]
   },
   {
    "id": "book-cup",
@@ -719,7 +914,11 @@
     "nibbana": []
    },
    "status": "banked-described",
-   "watch": "A hand writes in a ledger; a coin appears and vanishes on the page."
+   "watch": "A hand writes in a ledger; a coin appears and vanishes on the page.",
+   "tags": [
+    "human",
+    "object"
+   ]
   },
   {
    "id": "hand-mirror",
@@ -735,7 +934,11 @@
     ]
    },
    "status": "banked-described",
-   "watch": "A hand tilts a small mirror: sky, water, then blank white cross it."
+   "watch": "A hand tilts a small mirror: sky, water, then blank white cross it.",
+   "tags": [
+    "human",
+    "object"
+   ]
   },
   {
    "id": "leaning-monk",
@@ -749,7 +952,13 @@
     ]
    },
    "status": "banked-described",
-   "watch": "A robed monk slumps, crumbles to dust, and stands again whole."
+   "watch": "A robed monk slumps, crumbles to dust, and stands again whole.",
+   "tags": [
+    "blue",
+    "calm",
+    "human",
+    "mountain"
+   ]
   },
   {
    "id": "lamp-extinguish",
@@ -764,7 +973,11 @@
     ]
    },
    "status": "banked-described",
-   "watch": "A lamp flame gutters down to smoke."
+   "watch": "A lamp flame gutters down to smoke.",
+   "tags": [
+    "fire",
+    "object"
+   ]
   },
   {
    "id": "logs-fire",
@@ -779,7 +992,10 @@
     ]
    },
    "status": "banked-described",
-   "watch": "Split logs catch, blaze, and sink to embers."
+   "watch": "Split logs catch, blaze, and sink to embers.",
+   "tags": [
+    "fire"
+   ]
   },
   {
    "id": "prakasa-light",
@@ -799,7 +1015,10 @@
    "means": "Consciousness as light itself.",
    "use": "Illumination chapters",
    "watch": "Light beats.",
-   "note": "The radiance breathes outward."
+   "note": "The radiance breathes outward.",
+   "tags": [
+    "pulse"
+   ]
   },
   {
    "id": "vimarsa-mirror",
@@ -816,7 +1035,10 @@
    "means": "Self-awareness: light knowing itself.",
    "use": "Recognition chapters",
    "watch": "Mirror beats.",
-   "note": "The current loops home."
+   "note": "The current loops home.",
+   "tags": [
+    "human"
+   ]
   },
   {
    "id": "spanda-throb",
@@ -832,7 +1054,10 @@
    "depicts": "A single point expanding and contracting, breathing rhythm.",
    "means": "The throb; reality pulsing.",
    "use": "Pulse chapters",
-   "watch": "Rhythm beats"
+   "watch": "Rhythm beats",
+   "tags": [
+    "pulse"
+   ]
   },
   {
    "id": "aham-knot",
@@ -848,7 +1073,11 @@
    "depicts": "The syllable A tightening then loosening like a knot.",
    "means": "The I-sense forming and releasing.",
    "use": "I-sense chapters",
-   "watch": "Release beats"
+   "watch": "Release beats",
+   "tags": [
+    "letter",
+    "object"
+   ]
   },
   {
    "id": "hridaya-lotus",
@@ -864,7 +1093,11 @@
    "means": "The Heart opening; recognition warming.",
    "use": "Heart chapters",
    "watch": "Opening beats.",
-   "note": "Petals part; the glow steadies."
+   "note": "Petals part; the glow steadies.",
+   "tags": [
+    "plant",
+    "sky"
+   ]
   },
   {
    "id": "bindu-point",
@@ -881,7 +1114,10 @@
    "means": "The point-source; emanation without moving.",
    "use": "Bindu chapters",
    "watch": "Source beats.",
-   "note": "Rings spread; the point stays."
+   "note": "Rings spread; the point stays.",
+   "tags": [
+    "sky"
+   ]
   },
   {
    "id": "nada-wave",
@@ -897,7 +1133,12 @@
    "means": "Primordial sound before letters.",
    "use": "Sound chapters",
    "watch": "Pre-verbal beats.",
-   "note": "Ripples widen and dissolve."
+   "note": "Ripples widen and dissolve.",
+   "tags": [
+    "calm",
+    "letter",
+    "water"
+   ]
   },
   {
    "id": "dawn-ray",
@@ -915,7 +1156,15 @@
    "means": "Awakening as daybreak; remembrance not travel.",
    "use": "Dawn chapters p04/p07",
    "watch": "Daybreak beats.",
-   "note": "Light widens across the water."
+   "note": "Light widens across the water.",
+   "tags": [
+    "blue",
+    "calm",
+    "dawn",
+    "night",
+    "sky",
+    "water"
+   ]
   },
   {
    "id": "moon-disc",
@@ -932,7 +1181,13 @@
    "means": "Calm witness; night chapters, death watches.",
    "use": "Night chapters",
    "watch": "Witness beats.",
-   "note": "Cloud thins; the halo holds."
+   "note": "Cloud thins; the halo holds.",
+   "tags": [
+    "blue",
+    "calm",
+    "night",
+    "sky"
+   ]
   },
   {
    "id": "star-field",
@@ -951,7 +1206,11 @@
    "means": "Vast time; finale skies.",
    "use": "Finale chapters n10",
    "watch": "Vastness beats.",
-   "note": "Stars wheel; the pole holds."
+   "note": "Stars wheel; the pole holds.",
+   "tags": [
+    "majestic",
+    "sky"
+   ]
   },
   {
    "id": "breath-body",
@@ -968,7 +1227,11 @@
    "means": "The body breathing itself; bardo and tukdam beats.",
    "use": "Breath chapters",
    "watch": "Body beats.",
-   "note": "The chest rises and falls."
+   "note": "The chest rises and falls.",
+   "tags": [
+    "human",
+    "pulse"
+   ]
   },
   {
    "id": "channel-body",
@@ -986,7 +1249,12 @@
    "depicts": "A seated figure with the central channel glowing upward.",
    "means": "Subtle body; yogic departure.",
    "use": "Departure chapters (tibetan/deathworks-heist)",
-   "watch": "Ascent beats; glow rises"
+   "watch": "Ascent beats; glow rises",
+   "tags": [
+    "blue",
+    "human",
+    "sky"
+   ]
   },
   {
    "id": "corpse-quiet",
@@ -1005,7 +1273,14 @@
    "means": "The fact of death, held without horror.",
    "use": "Death-sleep chapters",
    "watch": "Tukdam beats; stillness holds",
-   "note": "unveiled peaceful sleeper (tukdam-sleep reading), not a shrouded corpse; close-up fills frame, mat-or-exception"
+   "note": "unveiled peaceful sleeper (tukdam-sleep reading), not a shrouded corpse; close-up fills frame, mat-or-exception",
+   "tags": [
+    "blue",
+    "calm",
+    "human",
+    "night",
+    "sky"
+   ]
   },
   {
    "id": "folded-hands",
@@ -1021,7 +1296,10 @@
    "depicts": "Two hands pressed in anjali, held in stillness.",
    "means": "Devotion concentrating then releasing into praise.",
    "use": "Devotion chapters",
-   "watch": "Prayer beats"
+   "watch": "Prayer beats",
+   "tags": [
+    "human"
+   ]
   },
   {
    "id": "temple-lamps",
@@ -1037,7 +1315,16 @@
    "depicts": "A row of flaming lamps with a lotus bowl beneath.",
    "means": "Offered light; evening temple chapters.",
    "use": "Lamp chapters",
-   "watch": "Offering beats; flames bow"
+   "watch": "Offering beats; flames bow",
+   "tags": [
+    "blue",
+    "fire",
+    "gold",
+    "night",
+    "object",
+    "plant",
+    "temple"
+   ]
   },
   {
    "id": "hymn-scroll",
@@ -1052,7 +1339,11 @@
    "depicts": "A scroll unrolling, lotus seal brightening line by line.",
    "means": "Praise continuing past the singer.",
    "use": "Hymn chapters",
-   "watch": "Continuation beats"
+   "watch": "Continuation beats",
+   "tags": [
+    "object",
+    "plant"
+   ]
   },
   {
    "id": "sunrise-mountain",
@@ -1069,7 +1360,13 @@
    "status": "banked-described",
    "watch": "Sun climbs over mountain water; its light path grows toward viewer.",
    "broll": true,
-   "note": "Full-bleed exception candidate; white law requires mat or owner exception."
+   "note": "Full-bleed exception candidate; white law requires mat or owner exception.",
+   "tags": [
+    "blue",
+    "dawn",
+    "mountain",
+    "water"
+   ]
   },
   {
    "id": "breath-rhythm",
@@ -1088,7 +1385,12 @@
    "depicts": "A reclining figure, breath rising and falling in the chest.",
    "means": "The hamsa rhythm; breath as mantra.",
    "use": "Breath chapters",
-   "watch": "Mantra beats"
+   "watch": "Mantra beats",
+   "tags": [
+    "human",
+    "letter",
+    "pulse"
+   ]
   },
   {
    "id": "waking-eye",
@@ -1105,7 +1407,11 @@
    "depicts": "A single eye opening from sleep, lashes lifting once.",
    "means": "Emergence from turya boundaries; waking as event.",
    "use": "Waking chapters (s55)",
-   "watch": "Emergence beats."
+   "watch": "Emergence beats.",
+   "tags": [
+    "blue",
+    "calm"
+   ]
   },
   {
    "id": "book-open",
@@ -1122,7 +1428,11 @@
    "depicts": "A closed book opening by itself, pages breathing.",
    "means": "Hidden mantra revealed; teachings opening themselves.",
    "use": "Mantra chapters (s32)",
-   "watch": "Revelation beats."
+   "watch": "Revelation beats.",
+   "tags": [
+    "letter",
+    "object"
+   ]
   },
   {
    "id": "threshold-light",
@@ -1140,7 +1450,11 @@
    "depicts": "Light widening under and through a door left ajar.",
    "means": "Freedom as near side, not far; the finale door.",
    "use": "Threshold chapters (s45/s77)",
-   "watch": "Arrival beats."
+   "watch": "Arrival beats.",
+   "tags": [
+    "blue",
+    "object"
+   ]
   },
   {
    "id": "sleep-wave",
@@ -1159,7 +1473,13 @@
    "use": "Between-states chapters",
    "watch": "Swell beats",
    "broll": true,
-   "note": "night seascape; needs white-mat or owner exception"
+   "note": "night seascape; needs white-mat or owner exception",
+   "tags": [
+    "blue",
+    "night",
+    "sky",
+    "water"
+   ]
   },
   {
    "id": "fifa-night",
@@ -1178,7 +1498,13 @@
    "use": "Roady opener",
    "watch": "Home beats.",
    "broll": true,
-   "note": "full-bleed interior; needs white-mat or owner exception"
+   "note": "full-bleed interior; needs white-mat or owner exception",
+   "tags": [
+    "blue",
+    "home",
+    "human",
+    "night"
+   ]
   },
   {
    "id": "chip-shop",
@@ -1193,7 +1519,14 @@
    "use": "Roady everyday-nirvana beats.",
    "watch": "",
    "broll": true,
-   "note": "full-bleed street scene; needs white-mat or owner exception"
+   "note": "full-bleed street scene; needs white-mat or owner exception",
+   "tags": [
+    "home",
+    "joyful",
+    "night",
+    "sky",
+    "water"
+   ]
   },
   {
    "id": "bus-window",
@@ -1208,7 +1541,14 @@
    "use": "Transit chapters",
    "watch": "Stillness-in-motion beats.",
    "broll": true,
-   "note": "full-bleed interior; needs white-mat or owner exception"
+   "note": "full-bleed interior; needs white-mat or owner exception",
+   "tags": [
+    "blue",
+    "calm",
+    "home",
+    "night",
+    "water"
+   ]
   },
   {
    "id": "kettle-steam",
@@ -1222,7 +1562,10 @@
    "means": "Agitation settling by itself; no technique applied.",
    "use": "Restlessness chapters",
    "watch": "Settling beats.",
-   "note": "Steam thickens, then thins."
+   "note": "Steam thickens, then thins.",
+   "tags": [
+    "object"
+   ]
   },
   {
    "id": "pigeon-square",
@@ -1236,7 +1579,10 @@
    "means": "Thoughts startled and returning; attention scattering.",
    "use": "Distraction chapters",
    "watch": "Scattering beats.",
-   "note": "The flock bursts, then resettles."
+   "note": "The flock bursts, then resettles.",
+   "tags": [
+    "animal"
+   ]
   },
   {
    "id": "washing-line",
@@ -1250,7 +1596,11 @@
    "means": "Simple order restored; small liberations.",
    "use": "Relief chapters",
    "watch": "Ordinary-bliss beats.",
-   "note": "Shirts snap; the line holds."
+   "note": "Shirts snap; the line holds.",
+   "tags": [
+    "home",
+    "sky"
+   ]
   },
   {
    "id": "night-fridge",
@@ -1264,7 +1614,14 @@
    "means": "3am craving, examined live.",
    "use": "Craving chapters",
    "watch": "Night beats.",
-   "note": "The door opens; cold light spills."
+   "note": "The door opens; cold light spills.",
+   "tags": [
+    "blue",
+    "home",
+    "human",
+    "night",
+    "object"
+   ]
   },
   {
    "id": "queue-post",
@@ -1278,7 +1635,10 @@
    "means": "Samsara as admin; patience practice.",
    "use": "Waiting chapters",
    "watch": "Endurance beats.",
-   "note": "The queue shuffles one step."
+   "note": "The queue shuffles one step.",
+   "tags": [
+    "home"
+   ]
   },
   {
    "id": "yogic-ascension",
@@ -1290,7 +1650,11 @@
    "watch": "Loop seam invisible.",
    "used_in": {
     "paratrishika": []
-   }
+   },
+   "tags": [
+    "human",
+    "sky"
+   ]
   },
   {
    "id": "yogic-cycle",
@@ -1302,7 +1666,10 @@
    "watch": "Loop seam invisible.",
    "used_in": {
     "paratrishika": []
-   }
+   },
+   "tags": [
+    "human"
+   ]
   },
   {
    "id": "scroll-unroll",
@@ -1320,7 +1687,10 @@
     "nibbana": [
      "n10"
     ]
-   }
+   },
+   "tags": [
+    "object"
+   ]
   },
   {
    "id": "lamp-row",
@@ -1338,7 +1708,12 @@
     "tibetan-dead": [
      "d01"
     ]
-   }
+   },
+   "tags": [
+    "fire",
+    "object",
+    "temple"
+   ]
   },
   {
    "id": "prayer-hands",
@@ -1355,7 +1730,11 @@
     "deathworks": [
      "ancestors"
     ]
-   }
+   },
+   "tags": [
+    "human",
+    "sky"
+   ]
   },
   {
    "id": "yogic-awakening",
@@ -1367,7 +1746,10 @@
    "watch": "Loop seam invisible.",
    "used_in": {
     "paratrishika": []
-   }
+   },
+   "tags": [
+    "human"
+   ]
   },
   {
    "id": "yogic-flow",
@@ -1379,7 +1761,10 @@
    "watch": "Loop seam invisible.",
    "used_in": {
     "paratrishika": []
-   }
+   },
+   "tags": [
+    "human"
+   ]
   },
   {
    "id": "goddess",
@@ -1395,7 +1780,12 @@
    "means": "Devi as questioner; the dialogue engine made visible.",
    "use": "Paratrishika question chapters",
    "watch": "Never as decoration.",
-   "note": "She leans in; the veil shifts once."
+   "note": "She leans in; the veil shifts once.",
+   "tags": [
+    "calm",
+    "deity",
+    "human"
+   ]
   },
   {
    "id": "knot-heart",
@@ -1411,7 +1801,10 @@
    "means": "The Hridaya granthi: bondage and release in one object.",
    "use": "Heart-space chapters",
    "watch": "Knot-ignorance beats.",
-   "note": "The knot tightens, then loosens."
+   "note": "The knot tightens, then loosens.",
+   "tags": [
+    "object"
+   ]
   },
   {
    "id": "alphabet",
@@ -1427,7 +1820,12 @@
    "means": "Malini letters as cosmology; phonemes made visible.",
    "use": "Letter-emission chapters",
    "watch": "Wheel-of-energies units.",
-   "note": "The wheel turns; one letter kindles per station."
+   "note": "The wheel turns; one letter kindles per station.",
+   "tags": [
+    "letter",
+    "object",
+    "plant"
+   ]
   },
   {
    "id": "trident",
@@ -1443,7 +1841,12 @@
    "means": "Ascent through the powers; Fourth-interpretation absorption.",
    "use": "Trident chapters",
    "watch": "Absorption beats.",
-   "note": "Mist parts; the prongs clear it."
+   "note": "Mist parts; the prongs clear it.",
+   "tags": [
+    "blue",
+    "human",
+    "object"
+   ]
   },
   {
    "id": "bee",
@@ -1459,7 +1862,12 @@
    "means": "Sweetness settling into form; the teaching condensing.",
    "use": "Honey chapters",
    "watch": "Doctrine-settling beats.",
-   "note": "The bee circuits; the surface stills."
+   "note": "The bee circuits; the surface stills.",
+   "tags": [
+    "animal",
+    "object",
+    "water"
+   ]
   },
   {
    "id": "mandala",
@@ -1475,7 +1883,12 @@
    "means": "The deity days arrayed; the hundred peaceful and wrathful.",
    "use": "Mandala chapters (d02/d05)",
    "watch": "Deity-day beats.",
-   "note": "The courts revolve; the center holds."
+   "note": "The courts revolve; the center holds.",
+   "tags": [
+    "blue",
+    "calm",
+    "temple"
+   ]
   },
   {
    "id": "death-bell",
@@ -1491,7 +1904,11 @@
    "means": "Death announced; instruction begins.",
    "use": "Unit opens across tibetan-dead",
    "watch": "Threshold beats.",
-   "note": "The bell swings; rings widen and fade."
+   "note": "The bell swings; rings widen and fade.",
+   "tags": [
+    "object",
+    "temple"
+   ]
   },
   {
    "id": "anubis",
@@ -1506,7 +1923,11 @@
    "depicts": "A jackal-headed guardian seated at the tomb door.",
    "means": "The watcher of the dead; Egypt anchor.",
    "use": "Tomb chapters",
-   "watch": "Watching beats"
+   "watch": "Watching beats",
+   "tags": [
+    "object",
+    "temple"
+   ]
   },
   {
    "id": "vishnu",
@@ -1520,7 +1941,12 @@
    "means": "Preservation embodied.",
    "use": "Deity chapters",
    "watch": "Majesty beats",
-   "note": "no lane yet; shorts candidate"
+   "note": "no lane yet; shorts candidate",
+   "tags": [
+    "deity",
+    "object",
+    "plant"
+   ]
   },
   {
    "id": "krishna",
@@ -1534,7 +1960,13 @@
    "means": "Divine play.",
    "use": "Pastoral chapters",
    "watch": "Music beats",
-   "note": "no lane yet; shorts candidate"
+   "note": "no lane yet; shorts candidate",
+   "tags": [
+    "animal",
+    "deity",
+    "joyful",
+    "object"
+   ]
   },
   {
    "id": "hanuman",
@@ -1548,7 +1980,12 @@
    "means": "Devotion as strength.",
    "use": "Service chapters",
    "watch": "Loyalty beats",
-   "note": "no lane yet; shorts candidate"
+   "note": "no lane yet; shorts candidate",
+   "tags": [
+    "deity",
+    "human",
+    "object"
+   ]
   },
   {
    "id": "ganesha",
@@ -1563,7 +2000,14 @@
    "depicts": "Four-armed deity in blessing pose.",
    "means": "Remover of obstacles.",
    "use": "Opening chapters",
-   "watch": "Blessing beats"
+   "watch": "Blessing beats",
+   "tags": [
+    "animal",
+    "deity",
+    "human",
+    "object",
+    "plant"
+   ]
   },
   {
    "id": "lakshmi",
@@ -1579,7 +2023,13 @@
    "means": "Fortune that flows.",
    "use": "Abundance chapters",
    "watch": "Giving beats",
-   "note": "wide tableau fills frame; needs white-mat or owner exception"
+   "note": "wide tableau fills frame; needs white-mat or owner exception",
+   "tags": [
+    "animal",
+    "deity",
+    "object",
+    "plant"
+   ]
   },
   {
    "id": "durga",
@@ -1594,7 +2044,13 @@
    "depicts": "Goddess on roaring tiger.",
    "means": "Fierce grace.",
    "use": "Protection chapters",
-   "watch": "Courage beats"
+   "watch": "Courage beats",
+   "tags": [
+    "animal",
+    "deity",
+    "fierce",
+    "object"
+   ]
   },
   {
    "id": "kali",
@@ -1610,7 +2066,14 @@
    "means": "Time devouring form.",
    "use": "Fierce chapters",
    "watch": "Wildness beats",
-   "note": "dense tableau; needs white-mat or owner exception"
+   "note": "dense tableau; needs white-mat or owner exception",
+   "tags": [
+    "cremation",
+    "deity",
+    "fierce",
+    "night",
+    "sky"
+   ]
   },
   {
    "id": "shiva-wind",
@@ -1625,7 +2088,13 @@
    "depicts": "Meditating figure in unfolding wind.",
    "means": "Stillness at the center.",
    "use": "Stillness chapters",
-   "watch": "Center beats"
+   "watch": "Center beats",
+   "tags": [
+    "deity",
+    "human",
+    "pulse",
+    "sky"
+   ]
   },
   {
    "id": "saraswati",
@@ -1640,7 +2109,12 @@
    "depicts": "Veena-player beside a swan.",
    "means": "Learning as music.",
    "use": "Study chapters",
-   "watch": "Song beats"
+   "watch": "Song beats",
+   "tags": [
+    "animal",
+    "deity",
+    "object"
+   ]
   },
   {
    "id": "goddess-beckoning",
@@ -1656,7 +2130,11 @@
    "means": "Grace that beckons.",
    "use": "Invitation chapters",
    "watch": "Welcome beats",
-   "note": "close-up fills frame; needs white-mat or owner exception"
+   "note": "close-up fills frame; needs white-mat or owner exception",
+   "tags": [
+    "deity",
+    "human"
+   ]
   },
   {
    "id": "dissolution",
@@ -1672,7 +2150,10 @@
    "depicts": "Standing figure turning to particles.",
    "means": "The elements releasing.",
    "use": "Dissolution chapters",
-   "watch": "Release beats"
+   "watch": "Release beats",
+   "tags": [
+    "human"
+   ]
   },
   {
    "id": "wrathful-host",
@@ -1688,7 +2169,10 @@
    "means": "The wrathful hosts.",
    "use": "Wrathful chapters (d03/d04); awe beats",
    "watch": "Mist parts; the protector advances.",
-   "note": "dense tableau fills frame; needs white-mat or owner exception"
+   "note": "dense tableau fills frame; needs white-mat or owner exception",
+   "tags": [
+    "blue"
+   ]
   },
   {
    "id": "prayer-flags",
@@ -1703,7 +2187,14 @@
    "depicts": "Flags on a cairn above clouds.",
    "means": "The high place marked.",
    "use": "Opener chapters; auspicious beats",
-   "watch": "Flags lift; clouds breathe."
+   "watch": "Flags lift; clouds breathe.",
+   "tags": [
+    "blue",
+    "mountain",
+    "sky",
+    "temple",
+    "water"
+   ]
   },
   {
    "id": "stupa",
@@ -1718,7 +2209,13 @@
    "depicts": "Stupa above clouds.",
    "means": "Liberation made architecture.",
    "use": "Monument chapters; refuge beats",
-   "watch": "Clouds breathe around the dome."
+   "watch": "Clouds breathe around the dome.",
+   "tags": [
+    "blue",
+    "sky",
+    "temple",
+    "water"
+   ]
   },
   {
    "id": "vajra-bell",
@@ -1733,7 +2230,13 @@
    "depicts": "Bell, vajra and damaru at rest.",
    "means": "The instruments waiting.",
    "use": "Ritual chapters; readiness beats",
-   "watch": "Nothing moves but light."
+   "watch": "Nothing moves but light.",
+   "tags": [
+    "blue",
+    "calm",
+    "object",
+    "temple"
+   ]
   },
   {
    "id": "skull-offering",
@@ -1748,7 +2251,15 @@
    "depicts": "Skull-cup of offerings and flames.",
    "means": "Everything given.",
    "use": "Cremation chapters (p06)",
-   "watch": "Offering beats"
+   "watch": "Offering beats",
+   "tags": [
+    "blue",
+    "cremation",
+    "fire",
+    "gold",
+    "object",
+    "temple"
+   ]
   },
   {
    "id": "ascent",
@@ -1764,7 +2275,12 @@
    "depicts": "Light column rising from a lotus.",
    "means": "The upward departure.",
    "use": "Ascent chapters; ejection beats",
-   "watch": "The column climbs steadily."
+   "watch": "The column climbs steadily.",
+   "tags": [
+    "blue",
+    "human",
+    "plant"
+   ]
   },
   {
    "id": "forest-waterfall",
@@ -1781,7 +2297,12 @@
    "use": "B-roll fullscreen breaks",
    "watch": "The scene breathes in loop.",
    "broll": true,
-   "note": "full-bleed scenery; plays small-in-frame like everything else"
+   "note": "full-bleed scenery; plays small-in-frame like everything else",
+   "tags": [
+    "forest",
+    "sky",
+    "water"
+   ]
   },
   {
    "id": "forest-grove",
@@ -1800,7 +2321,12 @@
    "use": "B-roll fullscreen breaks",
    "watch": "The scene breathes in loop.",
    "broll": true,
-   "note": "n01 cold open: Sri Lanka forest monastery"
+   "note": "n01 cold open: Sri Lanka forest monastery",
+   "tags": [
+    "animal",
+    "forest",
+    "plant"
+   ]
   },
   {
    "id": "forest-energy",
@@ -1815,7 +2341,13 @@
    "use": "B-roll fullscreen breaks",
    "watch": "The scene breathes in loop.",
    "broll": true,
-   "note": "full-bleed scenery; plays small-in-frame like everything else"
+   "note": "full-bleed scenery; plays small-in-frame like everything else",
+   "tags": [
+    "forest",
+    "gold",
+    "human",
+    "night"
+   ]
   },
   {
    "id": "forest-mycelium",
@@ -1830,7 +2362,13 @@
    "use": "B-roll fullscreen breaks",
    "watch": "The scene breathes in loop.",
    "broll": true,
-   "note": "full-bleed scenery; plays small-in-frame like everything else"
+   "note": "full-bleed scenery; plays small-in-frame like everything else",
+   "tags": [
+    "forest",
+    "gold",
+    "night",
+    "plant"
+   ]
   },
   {
    "id": "forest-stag",
@@ -1845,7 +2383,14 @@
    "use": "B-roll fullscreen breaks",
    "watch": "The scene breathes in loop.",
    "broll": true,
-   "note": "full-bleed scenery; plays small-in-frame like everything else"
+   "note": "full-bleed scenery; plays small-in-frame like everything else",
+   "tags": [
+    "animal",
+    "calm",
+    "gold",
+    "mountain",
+    "water"
+   ]
   },
   {
    "id": "forest-stream",
@@ -1864,7 +2409,12 @@
    "use": "B-roll fullscreen breaks",
    "watch": "The scene breathes in loop.",
    "broll": true,
-   "note": "n01 forest monastery waters"
+   "note": "n01 forest monastery waters",
+   "tags": [
+    "forest",
+    "gold",
+    "water"
+   ]
   },
   {
    "id": "forest-mycelium-glow",
@@ -1879,7 +2429,10 @@
    "use": "B-roll fullscreen breaks",
    "watch": "The scene breathes in loop.",
    "broll": true,
-   "note": "full-bleed scenery; plays small-in-frame like everything else"
+   "note": "full-bleed scenery; plays small-in-frame like everything else",
+   "tags": [
+    "plant"
+   ]
   },
   {
    "id": "forest-winds",
@@ -1894,7 +2447,12 @@
    "use": "B-roll fullscreen breaks",
    "watch": "The scene breathes in loop.",
    "broll": true,
-   "note": "full-bleed scenery; plays small-in-frame like everything else"
+   "note": "full-bleed scenery; plays small-in-frame like everything else",
+   "tags": [
+    "forest",
+    "gold",
+    "sky"
+   ]
   },
   {
    "id": "forest-luminous",
@@ -1909,7 +2467,11 @@
    "use": "B-roll fullscreen breaks",
    "watch": "The scene breathes in loop.",
    "broll": true,
-   "note": "full-bleed scenery; plays small-in-frame like everything else"
+   "note": "full-bleed scenery; plays small-in-frame like everything else",
+   "tags": [
+    "plant",
+    "sky"
+   ]
   },
   {
    "id": "forest-pool",
@@ -1924,7 +2486,12 @@
    "use": "B-roll fullscreen breaks",
    "watch": "The scene breathes in loop.",
    "broll": true,
-   "note": "full-bleed scenery; plays small-in-frame like everything else"
+   "note": "full-bleed scenery; plays small-in-frame like everything else",
+   "tags": [
+    "gold",
+    "mountain",
+    "water"
+   ]
   },
   {
    "id": "forest-spiral",
@@ -1939,7 +2506,12 @@
    "use": "B-roll fullscreen breaks",
    "watch": "The scene breathes in loop.",
    "broll": true,
-   "note": "full-bleed scenery; plays small-in-frame like everything else"
+   "note": "full-bleed scenery; plays small-in-frame like everything else",
+   "tags": [
+    "forest",
+    "night",
+    "plant"
+   ]
   },
   {
    "id": "mountain-halo",
@@ -1954,7 +2526,10 @@
    "use": "B-roll fullscreen breaks",
    "watch": "The scene breathes in loop.",
    "broll": true,
-   "note": "full-bleed scenery; plays small-in-frame like everything else"
+   "note": "full-bleed scenery; plays small-in-frame like everything else",
+   "tags": [
+    "mountain"
+   ]
   },
   {
    "id": "naga-pond",
@@ -1967,7 +2542,12 @@
    "depicts": "A cobra rising over a lotus pond",
    "means": "held in reserve.",
    "use": "spares; paratrishika retinue or shorts; serpent lore",
-   "watch": "Loop holds."
+   "watch": "Loop holds.",
+   "tags": [
+    "animal",
+    "plant",
+    "water"
+   ]
   },
   {
    "id": "sacred-falls",
@@ -1980,7 +2560,12 @@
    "depicts": "A waterfall pouring through high mountains",
    "means": "held in reserve.",
    "use": "spares; sleep vistas or pilgrimage openers",
-   "watch": "Loop holds."
+   "watch": "Loop holds.",
+   "tags": [
+    "calm",
+    "mountain",
+    "water"
+   ]
   },
   {
    "id": "tulsi-shrine",
@@ -1993,7 +2578,12 @@
    "depicts": "A tulsi plant in a pot with a small lamp",
    "means": "held in reserve.",
    "use": "spares; shorts domestic devotion",
-   "watch": "Loop holds."
+   "watch": "Loop holds.",
+   "tags": [
+    "fire",
+    "object",
+    "plant"
+   ]
   },
   {
    "id": "banyan-waters",
@@ -2006,7 +2596,13 @@
    "depicts": "A vast banyan over still backwaters",
    "means": "held in reserve.",
    "use": "spares; sleep vistas; the great tree",
-   "watch": "Loop holds."
+   "watch": "Loop holds.",
+   "tags": [
+    "calm",
+    "forest",
+    "majestic",
+    "plant"
+   ]
   },
   {
    "id": "conch-shore",
@@ -2019,7 +2615,11 @@
    "depicts": "A conch resting on the shore",
    "means": "held in reserve.",
    "use": "spares; Vishnu attribute note; shorts",
-   "watch": "Loop holds."
+   "watch": "Loop holds.",
+   "tags": [
+    "deity",
+    "object"
+   ]
   },
   {
    "id": "mustard-hills",
@@ -2032,7 +2632,11 @@
    "depicts": "Flowering fields under high mountains",
    "means": "held in reserve.",
    "use": "spares; sleep vistas",
-   "watch": "Loop holds."
+   "watch": "Loop holds.",
+   "tags": [
+    "calm",
+    "mountain"
+   ]
   },
   {
    "id": "kailash-view",
@@ -2045,7 +2649,15 @@
    "depicts": "Kailash under moon and trident-marked sky",
    "means": "held in reserve.",
    "use": "spares; shiva retinue or sleep vistas",
-   "watch": "Loop holds."
+   "watch": "Loop holds.",
+   "tags": [
+    "calm",
+    "deity",
+    "mountain",
+    "night",
+    "object",
+    "sky"
+   ]
   },
   {
    "id": "temple-elephant",
@@ -2058,7 +2670,14 @@
    "depicts": "An elephant spraying river water among lotuses",
    "means": "held in reserve.",
    "use": "spares; lakshmi retinue note; festival beats",
-   "watch": "Loop holds."
+   "watch": "Loop holds.",
+   "tags": [
+    "animal",
+    "deity",
+    "joyful",
+    "pulse",
+    "water"
+   ]
   },
   {
    "id": "lamp-diya",
@@ -2078,7 +2697,15 @@
    "use": "Offering chapters; release beats",
    "watch": "The boat drifts; flame holds.",
    "variant_of": "lamp-flame",
-   "variant_when": "use for the river offering rather than the household lamp"
+   "variant_when": "use for the river offering rather than the household lamp",
+   "tags": [
+    "fire",
+    "forest",
+    "object",
+    "plant",
+    "temple",
+    "water"
+   ]
   },
   {
    "id": "death-bells-hanging",
@@ -2095,7 +2722,11 @@
    "use": "Waiting chapters; paired beats",
    "watch": "Petals fall; bells sway.",
    "variant_of": "death-bell",
-   "variant_when": "use for paired hanging bells rather than the swung one"
+   "variant_when": "use for paired hanging bells rather than the swung one",
+   "tags": [
+    "object",
+    "temple"
+   ]
   },
   {
    "id": "trident-rock",
@@ -2112,7 +2743,12 @@
    "use": "Enshrined chapters; marker beats",
    "watch": "Scarf lifts; steel holds.",
    "variant_of": "trident",
-   "variant_when": "use when the emblem stands enshrined on rock"
+   "variant_when": "use when the emblem stands enshrined on rock",
+   "tags": [
+    "mountain",
+    "object",
+    "sky"
+   ]
   },
   {
    "id": "nandi-waters",
@@ -2125,7 +2761,14 @@
    "depicts": "Nandi seated by still temple waters",
    "means": "held in reserve.",
    "use": "spares; paratrishika retinue note; guardian beats",
-   "watch": "Loop holds."
+   "watch": "Loop holds.",
+   "tags": [
+    "animal",
+    "calm",
+    "pulse",
+    "temple",
+    "water"
+   ]
   },
   {
    "id": "cow-lotus",
@@ -2138,7 +2781,12 @@
    "depicts": "A cow drinking among lotuses at dusk",
    "means": "held in reserve.",
    "use": "spares; pastoral spare; Krishna retinue note",
-   "watch": "Loop holds."
+   "watch": "Loop holds.",
+   "tags": [
+    "animal",
+    "deity",
+    "night"
+   ]
   },
   {
    "id": "flute-feather",
@@ -2151,7 +2799,14 @@
    "depicts": "A flute with a peacock feather on stone",
    "means": "held in reserve.",
    "use": "spares; second flute still life; alternate to krishna-flute",
-   "watch": "Loop holds."
+   "watch": "Loop holds.",
+   "tags": [
+    "animal",
+    "calm",
+    "deity",
+    "mountain",
+    "object"
+   ]
   },
   {
    "id": "kettle-brass",
@@ -2166,7 +2821,12 @@
    "use": "Keeping chapters; vessel beats",
    "watch": "Water runs; brass holds.",
    "variant_of": "kettle-steam",
-   "variant_when": "use when the vessel is ritual brass, not kitchen"
+   "variant_when": "use when the vessel is ritual brass, not kitchen",
+   "tags": [
+    "home",
+    "object",
+    "water"
+   ]
   },
   {
    "id": "lingam",
@@ -2181,7 +2841,14 @@
    "depicts": "Lingam under cobra hood.",
    "means": "Worship concentrated.",
    "use": "Emblem chapters; mark beats",
-   "watch": "Water rings spread below."
+   "watch": "Water rings spread below.",
+   "tags": [
+    "animal",
+    "calm",
+    "deity",
+    "forest",
+    "water"
+   ]
   },
   {
    "id": "ganesha-tree",
@@ -2198,7 +2865,13 @@
    "use": "Shade chapters; rest beats",
    "watch": "Leaves move; the belly breathes.",
    "variant_of": "ganesha",
-   "variant_when": "use for the tree-shrine Ganesha rather than blessing pose"
+   "variant_when": "use for the tree-shrine Ganesha rather than blessing pose",
+   "tags": [
+    "deity",
+    "forest",
+    "plant",
+    "temple"
+   ]
   },
   {
    "id": "saraswati-playing",
@@ -2215,7 +2888,14 @@
    "use": "Playing chapters; song beats",
    "watch": "Strings shimmer; swan drifts.",
    "variant_of": "saraswati",
-   "variant_when": "use when she plays; resting veena serves quiet"
+   "variant_when": "use when she plays; resting veena serves quiet",
+   "tags": [
+    "animal",
+    "calm",
+    "deity",
+    "joyful",
+    "object"
+   ]
   },
   {
    "id": "kali-dancing",
@@ -2233,7 +2913,15 @@
    "watch": "Flames wheel; feet blur.",
    "variant_of": "kali",
    "variant_when": "use for the full dance; wild-wind serves weather",
-   "note": "dense tableau fills frame; needs white-mat or owner exception"
+   "note": "dense tableau fills frame; needs white-mat or owner exception",
+   "tags": [
+    "deity",
+    "fierce",
+    "fire",
+    "joyful",
+    "night",
+    "sky"
+   ]
   },
   {
    "id": "bhairava",
@@ -2248,7 +2936,12 @@
    "depicts": "Ascetic with trident, moon above.",
    "means": "The night watch.",
    "use": "Watch chapters (madman); vigil beats",
-   "watch": "Moonlight holds; breath fogs."
+   "watch": "Moonlight holds; breath fogs.",
+   "tags": [
+    "night",
+    "object",
+    "sky"
+   ]
   },
   {
    "id": "narasimha-spare",
@@ -2261,7 +2954,14 @@
    "depicts": "Lion-man avatar with mace among storm reeds",
    "means": "held in reserve.",
    "use": "spares; no lane yet; fierce-avatar note",
-   "watch": "Loop holds."
+   "watch": "Loop holds.",
+   "tags": [
+    "animal",
+    "fierce",
+    "human",
+    "object",
+    "sky"
+   ]
   },
   {
    "id": "durga-storm",
@@ -2279,7 +2979,13 @@
    "watch": "",
    "variant_of": "durga",
    "variant_when": "use for storm Durga; tiger serves triumph",
-   "note": "dense tableau fills frame; needs white-mat or owner exception"
+   "note": "dense tableau fills frame; needs white-mat or owner exception",
+   "tags": [
+    "animal",
+    "deity",
+    "fierce",
+    "sky"
+   ]
   },
   {
    "id": "shiva-falls",
@@ -2296,7 +3002,12 @@
    "use": "Falls chapters; cascade beats",
    "watch": "",
    "variant_of": "shiva-wind",
-   "variant_when": "use for waterfall stillness rather than wind"
+   "variant_when": "use for waterfall stillness rather than wind",
+   "tags": [
+    "human",
+    "sky",
+    "water"
+   ]
   },
   {
    "id": "kali-cremation",
@@ -2314,7 +3025,15 @@
    "watch": "",
    "variant_of": "kali",
    "variant_when": "use for the cremation-ground aspect rather than the dance",
-   "note": "dense tableau fills frame; needs white-mat or owner exception"
+   "note": "dense tableau fills frame; needs white-mat or owner exception",
+   "tags": [
+    "cremation",
+    "deity",
+    "fierce",
+    "joyful",
+    "night",
+    "object"
+   ]
   },
   {
    "id": "eclipse-veil",
@@ -2327,7 +3046,11 @@
    "depicts": "A goddess behind a veiling eclipse",
    "means": "held in reserve.",
    "use": "spares; omen spare; suggested tibetan bardo",
-   "watch": "Loop holds."
+   "watch": "Loop holds.",
+   "tags": [
+    "deity",
+    "sky"
+   ]
   },
   {
    "id": "varahi-boar",
@@ -2340,7 +3063,12 @@
    "depicts": "Boar-faced goddess with mace among lotuses",
    "means": "held in reserve.",
    "use": "spares; no lane yet; goddess-retinue note",
-   "watch": "Loop holds."
+   "watch": "Loop holds.",
+   "tags": [
+    "animal",
+    "deity",
+    "object"
+   ]
   },
   {
    "id": "nataraja",
@@ -2355,7 +3083,15 @@
    "depicts": "Dancer in fire ring.",
    "means": "Consciousness in motion.",
    "use": "Dance chapters; rhythm beats",
-   "watch": "Fire rings turn; foot strikes."
+   "watch": "Fire rings turn; foot strikes.",
+   "tags": [
+    "fierce",
+    "fire",
+    "joyful",
+    "majestic",
+    "night",
+    "water"
+   ]
   },
   {
    "id": "durga-dusk",
@@ -2372,7 +3108,15 @@
    "use": "durga chapters; variant beats",
    "watch": "",
    "variant_of": "durga",
-   "variant_when": "use for dusk Durga on foot with lion"
+   "variant_when": "use for dusk Durga on foot with lion",
+   "tags": [
+    "animal",
+    "blue",
+    "deity",
+    "fire",
+    "night",
+    "pulse"
+   ]
   },
   {
    "id": "kapalika",
@@ -2387,7 +3131,12 @@
    "depicts": "Ascetic dancing with skull and fire.",
    "means": "The skull path.",
    "use": "Wild chapters (madman); ash beats",
-   "watch": "Ash swirls; feet stamp."
+   "watch": "Ash swirls; feet stamp.",
+   "tags": [
+    "cremation",
+    "fire",
+    "object"
+   ]
   },
   {
    "id": "bhairava-dog",
@@ -2404,7 +3153,12 @@
    "use": "Shrine chapters; companion beats",
    "watch": "Dog pants; flame leans.",
    "variant_of": "bhairava",
-   "variant_when": "use for the dog companion aspect"
+   "variant_when": "use for the dog companion aspect",
+   "tags": [
+    "animal",
+    "object",
+    "temple"
+   ]
   },
   {
    "id": "durga-sword",
@@ -2421,7 +3175,14 @@
    "use": "Edge chapters; blade beats",
    "watch": "Hair flies; steel holds.",
    "variant_of": "durga",
-   "variant_when": "use for the sword aspect rather than storm or lion"
+   "variant_when": "use for the sword aspect rather than storm or lion",
+   "tags": [
+    "animal",
+    "deity",
+    "fierce",
+    "object",
+    "sky"
+   ]
   },
   {
    "id": "sage-portrait",
@@ -2434,7 +3195,10 @@
    "depicts": "A bearded sage close up, third eye marked",
    "means": "held in reserve.",
    "use": "spares; portrait spare; suggested shorts",
-   "watch": "Loop holds."
+   "watch": "Loop holds.",
+   "tags": [
+    "human"
+   ]
   },
   {
    "id": "lingam-rain",
@@ -2451,7 +3215,11 @@
    "use": "Monsoon chapters; shelter beats",
    "watch": "Rain streaks; stone holds.",
    "variant_of": "lingam",
-   "variant_when": "use for the rain-pavilion lingam rather than the pond canopy"
+   "variant_when": "use for the rain-pavilion lingam rather than the pond canopy",
+   "tags": [
+    "forest",
+    "water"
+   ]
   },
   {
    "id": "kapalika-skull",
@@ -2468,7 +3236,16 @@
    "use": "Still chapters; held beats",
    "watch": "Nothing moves but smoke.",
    "variant_of": "kapalika",
-   "variant_when": "use for the skull-cup and bell stillness rather than the dance"
+   "variant_when": "use for the skull-cup and bell stillness rather than the dance",
+   "tags": [
+    "calm",
+    "cremation",
+    "fierce",
+    "human",
+    "joyful",
+    "object",
+    "temple"
+   ]
   },
   {
    "id": "owl-goddess",
@@ -2481,7 +3258,14 @@
    "depicts": "A goddess with an owl under a bare tree",
    "means": "held in reserve.",
    "use": "spares; lakshmi vahana note; night spare",
-   "watch": "Loop holds."
+   "watch": "Loop holds.",
+   "tags": [
+    "animal",
+    "deity",
+    "forest",
+    "night",
+    "plant"
+   ]
   },
   {
    "id": "ascetic-vigil",
@@ -2494,7 +3278,12 @@
    "depicts": "A seated ascetic before a night fire with birds",
    "means": "held in reserve.",
    "use": "spares; vigil spare; deathworks suggested",
-   "watch": "Loop holds."
+   "watch": "Loop holds.",
+   "tags": [
+    "animal",
+    "fire",
+    "night"
+   ]
   },
   {
    "id": "triple-eye",
@@ -2507,7 +3296,10 @@
    "depicts": "Three watching eyes turning in cloud rings",
    "means": "held in reserve.",
    "use": "spares; omen spare; watchfulness note",
-   "watch": "Loop holds."
+   "watch": "Loop holds.",
+   "tags": [
+    "sky"
+   ]
   },
   {
    "id": "krishna-flute",
@@ -2522,7 +3314,12 @@
    "use": "Still chapters; pause beats",
    "watch": "Water moves; the flute waits.",
    "variant_of": "krishna",
-   "variant_when": "use for the riverside flute; the player serves pastoral scenes"
+   "variant_when": "use for the riverside flute; the player serves pastoral scenes",
+   "tags": [
+    "animal",
+    "object",
+    "water"
+   ]
   },
   {
    "id": "lingam-tree",
@@ -2539,7 +3336,13 @@
    "use": "Tree-shrine chapters; shade beats",
    "watch": "Leaves move; the stone holds.",
    "variant_of": "lingam",
-   "variant_when": "use for the tree-shrine lingam rather than the pond canopy"
+   "variant_when": "use for the tree-shrine lingam rather than the pond canopy",
+   "tags": [
+    "forest",
+    "plant",
+    "temple",
+    "water"
+   ]
   },
   {
    "id": "spanda-volcano",
@@ -2557,7 +3360,11 @@
    "use": "Burst chapters; outer beats",
    "watch": "Ash rises; the cone holds.",
    "variant_of": "spanda-throb",
-   "variant_when": "use when the burst must be geological and outer"
+   "variant_when": "use when the burst must be geological and outer",
+   "tags": [
+    "mountain",
+    "sky"
+   ]
   },
   {
    "id": "spanda-geode",
@@ -2575,7 +3382,10 @@
    "use": "Breakthrough chapters; cracking beats",
    "watch": "Cracks widen; light escapes.",
    "variant_of": "spanda-throb",
-   "variant_when": "use when inner light breaks its shell"
+   "variant_when": "use when inner light breaks its shell",
+   "tags": [
+    "mountain"
+   ]
   },
   {
    "id": "bindu-sunburst",
@@ -2593,7 +3403,12 @@
    "use": "Daybreak chapters; horizon beats",
    "watch": "Rays lengthen over ridges.",
    "variant_of": "bindu-point",
-   "variant_when": "use when radiance has a horizon"
+   "variant_when": "use when radiance has a horizon",
+   "tags": [
+    "dawn",
+    "mountain",
+    "sky"
+   ]
   },
   {
    "id": "saraswati-resting",
@@ -2610,7 +3425,13 @@
    "use": "Quiet chapters; rest beats",
    "watch": "Nothing moves but water.",
    "variant_of": "saraswati",
-   "variant_when": "use when the music is paused, not played"
+   "variant_when": "use when the music is paused, not played",
+   "tags": [
+    "animal",
+    "calm",
+    "object",
+    "water"
+   ]
   },
   {
    "id": "spanda-rock",
@@ -2628,7 +3449,10 @@
    "use": "Yielding chapters; fault beats",
    "watch": "The fault glows wider.",
    "variant_of": "spanda-throb",
-   "variant_when": "use when even stone gives way"
+   "variant_when": "use when even stone gives way",
+   "tags": [
+    "mountain"
+   ]
   },
   {
    "id": "hridaya-cave",
@@ -2645,7 +3469,11 @@
    "use": "Opening chapters; cave beats",
    "watch": "Dark thins; glow steadies.",
    "variant_of": "hridaya-lotus",
-   "variant_when": "use when the opening is stone, not petal"
+   "variant_when": "use when the opening is stone, not petal",
+   "tags": [
+    "mountain",
+    "plant"
+   ]
   },
   {
    "id": "fire-spiral",
@@ -2662,7 +3490,10 @@
    "use": "Turning-fire chapters; spiral beats",
    "watch": "The column turns steadily.",
    "variant_of": "fire",
-   "variant_when": "use when flame turns instead of rising"
+   "variant_when": "use when flame turns instead of rising",
+   "tags": [
+    "fire"
+   ]
   },
   {
    "id": "bindu-star",
@@ -2680,7 +3511,10 @@
    "use": "Star chapters; bloom beats",
    "watch": "Points kindle outward.",
    "variant_of": "bindu-point",
-   "variant_when": "use when the source is stellar, not solar"
+   "variant_when": "use when the source is stellar, not solar",
+   "tags": [
+    "sky"
+   ]
   },
   {
    "id": "spanda-lightning",
@@ -2698,7 +3532,12 @@
    "use": "Shock chapters; strike beats",
    "watch": "The bolt lands; rings spread.",
    "variant_of": "spanda-throb",
-   "variant_when": "use when the burst comes from the sky"
+   "variant_when": "use when the burst comes from the sky",
+   "tags": [
+    "calm",
+    "sky",
+    "water"
+   ]
   },
   {
    "id": "spanda-fountain",
@@ -2716,7 +3555,11 @@
    "use": "Surge chapters; jet beats",
    "watch": "The jet climbs and falls.",
    "variant_of": "spanda-throb",
-   "variant_when": "use when the burst rises like water"
+   "variant_when": "use when the burst rises like water",
+   "tags": [
+    "calm",
+    "water"
+   ]
   },
   {
    "id": "trident-shrine",
@@ -2733,7 +3576,11 @@
    "use": "Shrine-set chapters; retinue beats.",
    "watch": "Snake loops; damaru hangs.",
    "variant_of": "trident",
-   "variant_when": "use for the damaru-and-snake shrine set rather than the lone rock"
+   "variant_when": "use for the damaru-and-snake shrine set rather than the lone rock",
+   "tags": [
+    "animal",
+    "object"
+   ]
   }
  ]
 }
