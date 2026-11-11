@@ -112,58 +112,6 @@ class TestOverlayClips(unittest.TestCase):
         C.validate_schema('draws', {'b2': {'asset': 'x.jpg', 'complete_bid': 'b9',
                                            'etch': 'y.mp4', 'why': 't'}}, 'etch ok')
 
-    def test_fullscreen_paste_fills_frame(self):
-        full = Image.new('RGB', (1920, 1080), (30, 60, 200))
-        out = H.fullscreen_paste(self.base, full, 1.0)
-        px = out.load()
-        self.assertEqual(px[100, 100][:2], (30, 60))
-        self.assertEqual(px[960, 400][:2], (30, 60))
-        out0 = H.fullscreen_paste(self.base, full, 0.0)
-        self.assertEqual(out0.load()[100, 100], (255, 255, 255))
-        with self.assertRaises(AssertionError):
-            H.fullscreen_paste(self.base, Image.new('RGB', (100, 100), (0, 0, 0)))
-
-    def test_fullscreen_prerender_shape(self):
-        outdir = '/tmp/vf_test_full'
-        os.makedirs(outdir, exist_ok=True)
-        r = subprocess.run(['ffmpeg', '-y', '-v', 'error', '-stream_loop', '-1', '-i', self.clip,
-                            '-vf', 'scale=1920:1080:force_original_aspect_ratio=increase,'
-                                   'crop=1920:1080,fps=15',
-                            '-t', '1.1', '-an', f'{outdir}/f%05d.png'],
-                           capture_output=True, text=True)
-        self.assertEqual(r.returncode, 0, r.stderr[-300:])
-        import glob
-        frames = sorted(glob.glob(f'{outdir}/f*.png'))
-        self.assertGreater(len(frames), 10)
-        self.assertEqual(Image.open(frames[0]).size, (1920, 1080))
-
-    def test_fullscreen_spec_validation(self):
-        import tempfile
-        from unittest import mock
-        import factory_contract as C
-        lane = tempfile.mkdtemp(prefix='vf_lane_fs_')
-        sb = os.path.join(lane, 'storyboard_ch01.json')
-        spec_path = os.path.join(lane, 'clips_ch01.json')
-        try:
-            json.dump({'b2': {'asset': self.clip, 'complete_bid': 'b9',
-                              'clear': 'fade', 'fade': 1.5, 'why': 'test',
-                              'fullscreen': True}}, open(spec_path, 'w'))
-            with mock.patch.dict(os.environ, {'VF_REPO': lane}):
-                d = H.clips_for(sb)
-            self.assertIn('b2', d)
-            json.dump({'b2': {'asset': self.clip, 'complete_bid': 'b9',
-                              'why': 't', 'fullscreen': 'yes'}}, open(spec_path, 'w'))
-            with mock.patch.dict(os.environ, {'VF_REPO': lane}):
-                with self.assertRaises(AssertionError):
-                    H.clips_for(sb)
-            C.validate_schema('clips', {'b2': {'asset': 'x.mp4', 'complete_bid': 'b9',
-                                              'why': 't', 'fullscreen': True}}, 'fs ok')
-            with self.assertRaises(Exception):
-                C.validate_schema('clips', {'b2': {'asset': 'x.mp4', 'complete_bid': 'b9',
-                                                  'why': 't', 'fullscreen': 'yes'}}, 'fs rejected')
-        finally:
-            import shutil
-            shutil.rmtree(lane, ignore_errors=True)
 
 if __name__ == '__main__':
     unittest.main()

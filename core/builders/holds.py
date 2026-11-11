@@ -269,7 +269,7 @@ def clips_for(sb_path):
         assert spec.get('clear', 'cut') in ('fade', 'cut'), f"clip {bid}: clear is fade|cut"
         assert float(spec.get('fade', 1.5)) > 0, f"clip {bid}: fade seconds must be > 0"
         if 'fullscreen' in spec:
-            assert isinstance(spec['fullscreen'], bool), f"clip {bid}: fullscreen is true|false"
+            assert False, f"clip {bid}: fullscreen retired — every visual runs the one deterministic process (small frame, native size, never rescaled)"
         assert (spec.get('why') or '').strip(), f"clip {bid}: needs a why — unjustified motion never renders"
     return d
 
@@ -310,24 +310,6 @@ def overlay_paste(base_im, frame_im, q=1.0):
         ground = Image.new('RGB', frame_im.size, LIGHT)
         im.paste(Image.blend(frame_im, ground, min(1.0, max(0.0, 1.0 - q))), (CANVAS_X, CANVAS_Y))
     assert_safe(CANVAS_Y + CANVAS_H, 'overlay canvas')
-    return im
-
-
-def fullscreen_paste(base_im, frame_im, q=1.0):
-    """Paste one pre-rendered fullscreen frame (exactly 1920x1080, B-roll).
-
-    Same contract as overlay_paste but full-bleed: B-roll scenery fills the
-    frame edge to edge while karaoke subtitles (drawn later, same as ever)
-    keep playing over it. q fades toward white for fade clearings.
-    """
-    from PIL import Image
-    assert frame_im.size == (W, H), f'fullscreen frame must be {W}x{H}'
-    im = base_im.copy()
-    if q >= 1.0:
-        im.paste(frame_im, (0, 0))
-    else:
-        ground = Image.new('RGB', frame_im.size, LIGHT)
-        im.paste(Image.blend(frame_im, ground, min(1.0, max(0.0, 1.0 - q))), (0, 0))
     return im
 
 

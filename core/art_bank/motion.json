@@ -233,8 +233,8 @@
    "means": "The ocean the whirlpool mistakes itself for.",
    "use": "Ocean chapters",
    "watch": "Vastness beats.",
-   "note": "full-bleed seascape; needs white-mat or owner exception B-roll eligible: fullscreen only.",
-   "broll": true
+   "broll": true,
+   "note": "full-bleed seascape; needs white-mat or owner exception"
   },
   {
    "id": "wheel",
@@ -1067,9 +1067,9 @@
     ]
    },
    "status": "banked-described",
-   "note": "Full-bleed exception candidate; white law requires mat or owner exception. B-roll eligible: fullscreen only.",
    "watch": "Sun climbs over mountain water; its light path grows toward viewer.",
-   "broll": true
+   "broll": true,
+   "note": "Full-bleed exception candidate; white law requires mat or owner exception."
   },
   {
    "id": "breath-rhythm",
@@ -1158,8 +1158,8 @@
    "means": "Turya boundaries; the states between states.",
    "use": "Between-states chapters",
    "watch": "Swell beats",
-   "note": "night seascape; needs white-mat or owner exception B-roll eligible: fullscreen only.",
-   "broll": true
+   "broll": true,
+   "note": "night seascape; needs white-mat or owner exception"
   },
   {
    "id": "fifa-night",
@@ -1177,8 +1177,8 @@
    "means": "Freedom as Friday night: home, FIFA, mind off.",
    "use": "Roady opener",
    "watch": "Home beats.",
-   "note": "full-bleed interior; needs white-mat or owner exception B-roll eligible: fullscreen only.",
-   "broll": true
+   "broll": true,
+   "note": "full-bleed interior; needs white-mat or owner exception"
   },
   {
    "id": "chip-shop",
@@ -1192,8 +1192,8 @@
    "means": "Ordinary bliss, no metaphysics required.",
    "use": "Roady everyday-nirvana beats.",
    "watch": "",
-   "note": "full-bleed street scene; needs white-mat or owner exception B-roll eligible: fullscreen only.",
-   "broll": true
+   "broll": true,
+   "note": "full-bleed street scene; needs white-mat or owner exception"
   },
   {
    "id": "bus-window",
@@ -1207,8 +1207,8 @@
    "means": "Contemplation vehicle; moving while sitting still.",
    "use": "Transit chapters",
    "watch": "Stillness-in-motion beats.",
-   "note": "full-bleed interior; needs white-mat or owner exception B-roll eligible: fullscreen only.",
-   "broll": true
+   "broll": true,
+   "note": "full-bleed interior; needs white-mat or owner exception"
   },
   {
    "id": "kettle-steam",
@@ -1781,7 +1781,7 @@
    "use": "B-roll fullscreen breaks",
    "watch": "The scene breathes in loop.",
    "broll": true,
-   "note": "full-bleed scenery; fullscreen B-roll only, never mini-canvas"
+   "note": "full-bleed scenery; plays small-in-frame like everything else"
   },
   {
    "id": "forest-grove",
@@ -1815,7 +1815,7 @@
    "use": "B-roll fullscreen breaks",
    "watch": "The scene breathes in loop.",
    "broll": true,
-   "note": "full-bleed scenery; fullscreen B-roll only, never mini-canvas"
+   "note": "full-bleed scenery; plays small-in-frame like everything else"
   },
   {
    "id": "forest-mycelium",
@@ -1830,7 +1830,7 @@
    "use": "B-roll fullscreen breaks",
    "watch": "The scene breathes in loop.",
    "broll": true,
-   "note": "full-bleed scenery; fullscreen B-roll only, never mini-canvas"
+   "note": "full-bleed scenery; plays small-in-frame like everything else"
   },
   {
    "id": "forest-stag",
@@ -1845,7 +1845,7 @@
    "use": "B-roll fullscreen breaks",
    "watch": "The scene breathes in loop.",
    "broll": true,
-   "note": "full-bleed scenery; fullscreen B-roll only, never mini-canvas"
+   "note": "full-bleed scenery; plays small-in-frame like everything else"
   },
   {
    "id": "forest-stream",
@@ -1879,7 +1879,7 @@
    "use": "B-roll fullscreen breaks",
    "watch": "The scene breathes in loop.",
    "broll": true,
-   "note": "full-bleed scenery; fullscreen B-roll only, never mini-canvas"
+   "note": "full-bleed scenery; plays small-in-frame like everything else"
   },
   {
    "id": "forest-winds",
@@ -1894,7 +1894,7 @@
    "use": "B-roll fullscreen breaks",
    "watch": "The scene breathes in loop.",
    "broll": true,
-   "note": "full-bleed scenery; fullscreen B-roll only, never mini-canvas"
+   "note": "full-bleed scenery; plays small-in-frame like everything else"
   },
   {
    "id": "forest-luminous",
@@ -1909,7 +1909,7 @@
    "use": "B-roll fullscreen breaks",
    "watch": "The scene breathes in loop.",
    "broll": true,
-   "note": "full-bleed scenery; fullscreen B-roll only, never mini-canvas"
+   "note": "full-bleed scenery; plays small-in-frame like everything else"
   },
   {
    "id": "forest-pool",
@@ -1924,7 +1924,7 @@
    "use": "B-roll fullscreen breaks",
    "watch": "The scene breathes in loop.",
    "broll": true,
-   "note": "full-bleed scenery; fullscreen B-roll only, never mini-canvas"
+   "note": "full-bleed scenery; plays small-in-frame like everything else"
   },
   {
    "id": "forest-spiral",
@@ -1939,7 +1939,7 @@
    "use": "B-roll fullscreen breaks",
    "watch": "The scene breathes in loop.",
    "broll": true,
-   "note": "full-bleed scenery; fullscreen B-roll only, never mini-canvas"
+   "note": "full-bleed scenery; plays small-in-frame like everything else"
   },
   {
    "id": "mountain-halo",
@@ -1954,7 +1954,7 @@
    "use": "B-roll fullscreen breaks",
    "watch": "The scene breathes in loop.",
    "broll": true,
-   "note": "full-bleed scenery; fullscreen B-roll only, never mini-canvas"
+   "note": "full-bleed scenery; plays small-in-frame like everything else"
   }
  ]
 }

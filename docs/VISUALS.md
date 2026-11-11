@@ -42,12 +42,12 @@ art and its own why. Long single-block narration splits at render time on
 measured onsets. `vf_seamless_draw` refuses segments over 300s — split
 the passage instead.
 
-## B-roll (full-bleed scenery)
+## B-roll (scenery through the same process)
 
-Forest waters, night streets, open seas: B-roll breaks the white law on
-purpose and plays FULLSCREEN (`fullscreen: true` on the clip), never the
-mini canvas. Bank entries carry `"broll": true`. Karaoke continues over
-it; slow fades in and out. Sparingly — a break, never wallpaper.
+Forest waters, night streets, open seas: B-roll is scenery, not emblems,
+but it runs the ONE deterministic process like everything else — etch the
+exact opening frame small and centered on white, play at speed, slow fade.
+No fullscreen, no rescaling, no exceptions. A break, never wallpaper.
 
 ## Lane notes
 - nibbana: no-Pali, so ladder starts at 2 (draws/GIFs carry the lane).
