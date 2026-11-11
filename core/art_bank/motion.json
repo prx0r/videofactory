@@ -1120,6 +1120,86 @@
    "used_in": {
     "paratrishika": []
    }
+  },
+  {
+   "id": "goddess",
+   "motif": "The Goddess leaning forward to ask, veil stirring",
+   "why": "Devi as questioner across every unit (71 hits); the dialogue engine made visible.",
+   "used_in": {
+    "paratrishika": []
+   },
+   "status": "wanted",
+   "brief": "A veiled goddess leaning forward to ask, veil stirring once in still air. Why: Devi as questioner across every unit (71 hits); the dialogue engine made visible. Blue-ink engraving on white, minimal, one moving element, no text, seamless loop."
+  },
+  {
+   "id": "knot-heart",
+   "motif": "The heart-knot tightening, then releasing open",
+   "why": "The Hridaya granthi the whole book orbits (55 hits); bondage and release in one object.",
+   "used_in": {
+    "paratrishika": []
+   },
+   "status": "wanted",
+   "brief": "A knot over a heart-center tightening, then releasing open. Why: the Hridaya granthi the whole book orbits (55 hits); bondage and release in one object. Blue-ink engraving on white, minimal, one moving element, no text, seamless loop."
+  },
+  {
+   "id": "alphabet",
+   "motif": "Letters of the wheel turning through the circle",
+   "why": "Malini letters as cosmology (10+ single-letter hits); phonemes made visible.",
+   "used_in": {
+    "paratrishika": []
+   },
+   "status": "wanted",
+   "brief": "Letters turning slowly through a wheel-circle, one highlighted at a time. Why: Malini letters as cosmology (10+ single-letter hits); phonemes made visible. Blue-ink engraving on white, minimal, one moving element, no text, seamless loop."
+  },
+  {
+   "id": "trident",
+   "motif": "A trident rising through three bands of mist",
+   "why": "Fourth-interpretation absorption image (5 hits); ascent through the powers.",
+   "used_in": {
+    "paratrishika": []
+   },
+   "status": "wanted",
+   "brief": "A trident rising through three bands of mist. Why: Fourth-interpretation absorption image (5 hits); ascent through the powers. Blue-ink engraving on white, minimal, one moving element, no text, seamless loop."
+  },
+  {
+   "id": "bee",
+   "motif": "A bee circling above cooling honey",
+   "why": "Liquid honey cooling thicker (honey image); sweetness settling into form.",
+   "used_in": {
+    "paratrishika": []
+   },
+   "status": "wanted",
+   "brief": "A bee circling above a cooling pool of honey. Why: liquid honey cooling thicker; sweetness settling into form. Blue-ink engraving on white, minimal, one moving element, no text, seamless loop."
+  },
+  {
+   "id": "mandala",
+   "motif": "A deity mandala rotating slowly, concentric courts",
+   "why": "The deity days themselves (49 hits in d02); the hundred peaceful and wrathful arrayed.",
+   "used_in": {
+    "tibetan-dead": []
+   },
+   "status": "wanted",
+   "brief": "A concentric deity mandala rotating slowly, courts within courts. Why: the deity days themselves (49 hits in d02). Blue-ink engraving on white, minimal, one moving element, no text, seamless loop."
+  },
+  {
+   "id": "death-bell",
+   "motif": "A bell swinging one slow toll, sound-lines spreading",
+   "why": "Opens every tibetan-dead unit; death announced, instruction begins.",
+   "used_in": {
+    "tibetan-dead": []
+   },
+   "status": "wanted",
+   "brief": "A temple bell swinging one slow toll, sound-lines spreading outward. Why: opens every tibetan-dead unit; death announced, instruction begins. Blue-ink engraving on white, minimal, one moving element, no text, seamless loop."
+  },
+  {
+   "id": "anubis",
+   "motif": "A jackal-headed guardian seated at the tomb door",
+   "why": "Egypt chapters anchor (31 hits in madman); the watcher of the dead.",
+   "used_in": {
+    "deathworks": []
+   },
+   "status": "wanted",
+   "brief": "A jackal-headed guardian seated at the tomb door, chest rising in slow watch. Why: Egypt chapters anchor (31 hits in madman); the watcher of the dead. Blue-ink engraving on white, minimal, one moving element, no text, seamless loop."
   }
  ]
 }
