@@ -183,8 +183,14 @@
      "n01"
     ]
    },
-   "status": "wanted",
-   "brief": "Surgeon's hands mid-operation, instruments precise and calm. Why: Sermon 1 \u2014 the Buddha as surgeon (diagnosis and cure), not an estate agent selling mansions (n01 opener). Clean steel, no gore."
+   "status": "banked-described",
+   "brief": "Surgeon's hands mid-operation, instruments precise and calm. Why: Sermon 1 \u2014 the Buddha as surgeon (diagnosis and cure), not an estate agent selling mansions (n01 opener). Clean steel, no gore.",
+   "file": "motion/surgeon.gif",
+   "depicts": "A masked surgeon operating, instruments precise.",
+   "means": "The Buddha as surgeon; diagnosis and cure.",
+   "use": "Surgeon chapters (n01)",
+   "watch": "Diagnosis beats",
+   "note": "close-up scene fills frame; needs white-mat or owner exception"
   },
   {
    "id": "fire",
@@ -194,12 +200,11 @@
    },
    "status": "banked-described",
    "brief": "Single upright flame, steady and bright on white. Why: the dominant chant-image across all 78 sutras (27x) \u2014 consciousness as fire; breath beats (s55/s59). First of the seal four.",
-   "file": "motion/logs-fire.gif",
-   "depicts": "Logs catching fierce upright flame, bright and fierce.",
-   "means": "Consciousness as fire; the first seal (27x chant-image).",
-   "use": "plays shiva-sutras: seal chapters; ignition beats",
-   "watch": "Flames take the pile; light steadies.",
-   "note": "shares bytes with logs-fire.gif (same ChatGPT delivery under two names); single stored file"
+   "file": "motion/fire.gif",
+   "depicts": "A brazier fire burning tall and fierce.",
+   "means": "Consciousness as fire; the first seal.",
+   "use": "Fire chapters",
+   "watch": "Ignition beats"
   },
   {
    "id": "seed",
@@ -207,8 +212,13 @@
    "used_in": {
     "shiva-sutras": []
    },
-   "status": "wanted",
-   "brief": "A seed splitting open, first root reaching down. Why: 22x chant-image \u2014 potency before form; banyan-seed beats. Second of the seal four."
+   "status": "banked-described",
+   "brief": "A seed splitting open, first root reaching down. Why: 22x chant-image \u2014 potency before form; banyan-seed beats. Second of the seal four.",
+   "file": "motion/seed.gif",
+   "depicts": "A seed splitting, first root reaching down.",
+   "means": "Potency before form; banyan-seed beats.",
+   "use": "Seed chapters",
+   "watch": "Latency beats"
   },
   {
    "id": "ocean",
@@ -231,8 +241,13 @@
    "used_in": {
     "shiva-sutras": []
    },
-   "status": "wanted",
-   "brief": "A simple wheel turning, spokes catching light. Why: turning itself \u2014 practice, breath cycle, the wheel that needs no road. Fourth of the seal four."
+   "status": "banked-described",
+   "brief": "A simple wheel turning, spokes catching light. Why: turning itself \u2014 practice, breath cycle, the wheel that needs no road. Fourth of the seal four.",
+   "file": "motion/wheel.gif",
+   "depicts": "A cart wheel turning, spokes catching light.",
+   "means": "Turning itself; practice and breath cycle.",
+   "use": "Wheel chapters",
+   "watch": "Cycle beats"
   },
   {
    "id": "leaning-wall",
@@ -274,8 +289,13 @@
      "n04"
     ]
    },
-   "status": "wanted",
-   "brief": "One jewel glinting just under pond ripples, half-seen. Why: existent-or-not, the two-lunatics object (n03/n04)."
+   "status": "banked-described",
+   "brief": "One jewel glinting just under pond ripples, half-seen. Why: existent-or-not, the two-lunatics object (n03/n04).",
+   "file": "motion/jewel-pond.gif",
+   "depicts": "A jewel glinting just under pond ripples.",
+   "means": "Existent-or-not; the two-lunatics object.",
+   "use": "Jewel chapters (n03/n04)",
+   "watch": "Doubt beats"
   },
   {
    "id": "passbook",
@@ -287,8 +307,13 @@
      "n08"
     ]
    },
-   "status": "wanted",
-   "brief": "A stamped savings passbook, columns of merit-ink. Why: the merit-accounting joke engine (n06-n08)."
+   "status": "banked-described",
+   "brief": "A stamped savings passbook, columns of merit-ink. Why: the merit-accounting joke engine (n06-n08).",
+   "file": "motion/passbook.gif",
+   "depicts": "A stamped ledger with coins, columns of merit-ink.",
+   "means": "The merit-accounting joke engine.",
+   "use": "Ledger chapters (n06-n08)",
+   "watch": "Accounting beats"
   },
   {
    "id": "carpenter-tools",
@@ -299,8 +324,14 @@
      "n04"
     ]
    },
-   "status": "wanted",
-   "brief": "A wood plane with fresh curled shavings. Why: self-critique made object (n10, n04 planks)."
+   "status": "banked-described",
+   "brief": "A wood plane with fresh curled shavings. Why: self-critique made object (n10, n04 planks).",
+   "file": "motion/carpenter-tools.gif",
+   "depicts": "A hand planing wood, fresh shavings curling off.",
+   "means": "Self-critique made object.",
+   "use": "Carpenter chapters (n10, n04 planks)",
+   "watch": "Shaving beats",
+   "note": "close-up fills frame; needs white-mat or owner exception"
   },
   {
    "id": "chariot-team",
@@ -310,8 +341,13 @@
      "n10"
     ]
    },
-   "status": "wanted",
-   "brief": "Seven chariots receding toward one horizon point. Why: many vehicles, one destination (n10). Distant, minimal."
+   "status": "banked-described",
+   "brief": "Seven chariots receding toward one horizon point. Why: many vehicles, one destination (n10). Distant, minimal.",
+   "file": "motion/chariot-team.gif",
+   "depicts": "Seven chariots receding toward one horizon point.",
+   "means": "Many vehicles, one destination.",
+   "use": "Relay chapters (n10)",
+   "watch": "Destination beats"
   },
   {
    "id": "relay-runner",
@@ -321,8 +357,13 @@
      "n10"
     ]
    },
-   "status": "wanted",
-   "brief": "A runner passing a small flame-baton onward. Why: the practice relay (n10). Motion: handoff loop."
+   "status": "banked-described",
+   "brief": "A runner passing a small flame-baton onward. Why: the practice relay (n10). Motion: handoff loop.",
+   "file": "motion/relay-runner.gif",
+   "depicts": "Two runners passing a small flame-baton.",
+   "means": "The practice relay; the handoff loop.",
+   "use": "Relay chapters (n10)",
+   "watch": "Handoff beats"
   },
   {
    "id": "mara-army",
@@ -332,8 +373,14 @@
      "n08"
     ]
    },
-   "status": "wanted",
-   "brief": "Low dark treeline advancing at dusk, torches. Why: the death chapter mustering (n08). Keep distant, no gore."
+   "status": "banked-described",
+   "brief": "Low dark treeline advancing at dusk, torches. Why: the death chapter mustering (n08). Keep distant, no gore.",
+   "file": "motion/mara-army.gif",
+   "depicts": "A shadow host mustering at dusk under a dark moon.",
+   "means": "The death chapter mustering.",
+   "use": "Death chapters (n08)",
+   "watch": "Mustering beats",
+   "note": "dark scenic ground; needs white-mat or owner exception"
   },
   {
    "id": "grasping-hand",
@@ -343,8 +390,13 @@
      "lane-wide"
     ]
    },
-   "status": "wanted",
-   "brief": "An open hand closing on drifting smoke. Why: the most recurrent image lane-wide; appropriation failing."
+   "status": "banked-described",
+   "brief": "An open hand closing on drifting smoke. Why: the most recurrent image lane-wide; appropriation failing.",
+   "file": "motion/grasping-hand.gif",
+   "depicts": "An open hand closing on drifting smoke.",
+   "means": "Appropriation failing; the lane-wide image.",
+   "use": "Grasping beats lane-wide",
+   "watch": "Release beats"
   },
   {
    "id": "knotted-thread",
@@ -360,11 +412,10 @@
    "status": "banked-described",
    "brief": "One tangled knot with loose ends on white. Why: self-tie across n03-n09.",
    "file": "motion/knotted-thread.gif",
-   "depicts": "A single ribbon trefoil knot turning slowly.",
-   "means": "The self-tie across chapters; entanglement made visible.",
+   "depicts": "A single tangled rope knot with loose ends.",
+   "means": "The self-tie across chapters.",
    "use": "Knot chapters n03-n09",
-   "watch": "Entanglement beats.",
-   "note": "The trefoil turns without tightening."
+   "watch": "Entanglement beats"
   },
   {
    "id": "signpost",
@@ -374,8 +425,13 @@
      "n01"
     ]
    },
-   "status": "wanted",
-   "brief": "A signpost with arms pointing every way at a crossroads. Why: the n01 compass bit \u2014 single-use, draw-first candidate; graduates to GIF only if it recurs elsewhere."
+   "status": "banked-described",
+   "brief": "A signpost with arms pointing every way at a crossroads. Why: the n01 compass bit \u2014 single-use, draw-first candidate; graduates to GIF only if it recurs elsewhere.",
+   "file": "motion/signpost.gif",
+   "depicts": "A signpost with arms pointing every way.",
+   "means": "The compass bit; every direction at once.",
+   "use": "n01 compass bit",
+   "watch": "Direction beats"
   },
   {
    "id": "crystal-clear",
@@ -385,9 +441,13 @@
      "p01"
     ]
    },
-   "status": "wanted",
+   "status": "banked-described",
    "brief": "Clear quartz cluster, sharp and colorless. Why: verse 6 hinge, clarity that adds nothing (p01).",
-   "note": "still art crystal-clear.png live in param draws (draws_p01); motion GIF still open"
+   "file": "motion/crystal-clear.gif",
+   "depicts": "A clear quartz cluster, sharp and colorless.",
+   "means": "Verse 6 hinge; clarity that adds nothing.",
+   "use": "Crystal chapters (p01)",
+   "watch": "Clarity beats"
   },
   {
    "id": "rice-bowl",
@@ -397,8 +457,13 @@
      "p02"
     ]
    },
-   "status": "wanted",
-   "brief": "A plain full bowl of rice, steam curling. Why: enlightenment via rice, verse 18 (p02). Humble, no garnish."
+   "status": "banked-described",
+   "brief": "A plain full bowl of rice, steam curling. Why: enlightenment via rice, verse 18 (p02). Humble, no garnish.",
+   "file": "motion/rice-bowl.gif",
+   "depicts": "A plain full bowl of rice, steam curling.",
+   "means": "Enlightenment via rice, verse 18.",
+   "use": "Rice chapters (p02)",
+   "watch": "Humility beats"
   },
   {
    "id": "spiderweb-dew",
@@ -408,8 +473,14 @@
      "p03"
     ]
    },
-   "status": "wanted",
-   "brief": "Dewed web with spider at center, radial symmetry. Why: self-trapped Siva (p03)."
+   "status": "banked-described",
+   "brief": "Dewed web with spider at center, radial symmetry. Why: self-trapped Siva (p03).",
+   "file": "motion/spiderweb-dew.gif",
+   "depicts": "A dewed web with spider at center.",
+   "means": "Self-trapped Siva.",
+   "use": "Web chapters (p03)",
+   "watch": "Binding beats",
+   "note": "web fills frame edge to edge; needs white-mat or owner exception"
   },
   {
    "id": "sunrise-water",
@@ -748,8 +819,13 @@
     "paramarthasara": [],
     "shiva-sutras": []
    },
-   "status": "wanted",
-   "brief": "A single point gently expanding and contracting, breathing rhythm.. Blue-ink engraving on white, minimal, one moving element, no text, seamless loop."
+   "status": "banked-described",
+   "brief": "A single point gently expanding and contracting, breathing rhythm.. Blue-ink engraving on white, minimal, one moving element, no text, seamless loop.",
+   "file": "motion/spanda-throb.gif",
+   "depicts": "A single point expanding and contracting, breathing rhythm.",
+   "means": "The throb; reality pulsing.",
+   "use": "Pulse chapters",
+   "watch": "Rhythm beats"
   },
   {
    "id": "aham-knot",
@@ -759,8 +835,13 @@
     "paramarthasara": [],
     "paratrishika": []
    },
-   "status": "wanted",
-   "brief": "The syllable A tightening then loosening like a knot untying.. Blue-ink engraving on white, minimal, one moving element, no text, seamless loop."
+   "status": "banked-described",
+   "brief": "The syllable A tightening then loosening like a knot untying.. Blue-ink engraving on white, minimal, one moving element, no text, seamless loop.",
+   "file": "motion/aham-knot.gif",
+   "depicts": "The syllable A tightening then loosening like a knot.",
+   "means": "The I-sense forming and releasing.",
+   "use": "I-sense chapters",
+   "watch": "Release beats"
   },
   {
    "id": "hridaya-lotus",
@@ -916,8 +997,13 @@
     "shiva-sutras": [],
     "paramarthasara": []
    },
-   "status": "wanted",
-   "brief": "Two hands slowly joining in a\u00f1jali, holding, releasing.. Blue-ink engraving on white, minimal, one moving element, no text, seamless loop."
+   "status": "banked-described",
+   "brief": "Two hands slowly joining in a\u00f1jali, holding, releasing.. Blue-ink engraving on white, minimal, one moving element, no text, seamless loop.",
+   "file": "motion/folded-hands.gif",
+   "depicts": "Two hands pressed in anjali, held in stillness.",
+   "means": "Devotion concentrating then releasing into praise.",
+   "use": "Devotion chapters",
+   "watch": "Prayer beats"
   },
   {
    "id": "temple-lamps",
@@ -937,8 +1023,13 @@
    "used_in": {
     "shiva-sutras": []
    },
-   "status": "wanted",
-   "brief": "A scroll unrolling one line at a time, endless paper.. Blue-ink engraving on white, minimal, one moving element, no text, seamless loop."
+   "status": "banked-described",
+   "brief": "A scroll unrolling one line at a time, endless paper.. Blue-ink engraving on white, minimal, one moving element, no text, seamless loop.",
+   "file": "motion/hymn-scroll.gif",
+   "depicts": "A scroll unrolling, lotus seal brightening line by line.",
+   "means": "Praise continuing past the singer.",
+   "use": "Hymn chapters",
+   "watch": "Continuation beats"
   },
   {
    "id": "sunrise-mountain",
@@ -967,8 +1058,13 @@
     "nibbana": [],
     "tibetan-dead": []
    },
-   "status": "wanted",
-   "brief": "Slow breath bar rising and falling, endless loop.. Blue-ink engraving on white, minimal, one moving element, no text, seamless loop."
+   "status": "banked-described",
+   "brief": "Slow breath bar rising and falling, endless loop.. Blue-ink engraving on white, minimal, one moving element, no text, seamless loop.",
+   "file": "motion/breath-rhythm.gif",
+   "depicts": "A reclining figure, breath rising and falling in the chest.",
+   "means": "The hamsa rhythm; breath as mantra.",
+   "use": "Breath chapters",
+   "watch": "Mantra beats"
   },
   {
    "id": "waking-eye",
@@ -1043,8 +1139,14 @@
      "s55"
     ]
    },
-   "status": "wanted",
-   "brief": "Slow dark water swell rolling under stars.. Blue-ink engraving on white, minimal, one moving element, no text, seamless loop."
+   "status": "banked-described",
+   "brief": "Slow dark water swell rolling under stars.. Blue-ink engraving on white, minimal, one moving element, no text, seamless loop.",
+   "file": "motion/sleep-wave.gif",
+   "depicts": "Moonlit water swell rolling under wheeling stars.",
+   "means": "Turya boundaries; the states between states.",
+   "use": "Between-states chapters",
+   "watch": "Swell beats",
+   "note": "night seascape; needs white-mat or owner exception"
   },
   {
    "id": "fifa-night",
@@ -1382,8 +1484,179 @@
    "used_in": {
     "deathworks": []
    },
-   "status": "wanted",
-   "brief": "A jackal-headed guardian seated at the tomb door, chest rising in slow watch. Why: Egypt chapters anchor (31 hits in madman); the watcher of the dead. Blue-ink engraving on white, minimal, one moving element, no text, seamless loop."
+   "status": "banked-described",
+   "brief": "A jackal-headed guardian seated at the tomb door, chest rising in slow watch. Why: Egypt chapters anchor (31 hits in madman); the watcher of the dead. Blue-ink engraving on white, minimal, one moving element, no text, seamless loop.",
+   "file": "motion/anubis.gif",
+   "depicts": "A jackal-headed guardian seated at the tomb door.",
+   "means": "The watcher of the dead; Egypt anchor.",
+   "use": "Tomb chapters",
+   "watch": "Watching beats"
+  },
+  {
+   "id": "vishnu",
+   "motif": "Four-armed Vishnu standing with conch, discus, mace, lotus",
+   "why": "Preservation embodied; the maintainer among the trimurti.",
+   "used_in": {},
+   "status": "banked-described",
+   "brief": "A four-armed deity standing with conch, discus, mace and lotus. Why: preservation embodied. Blue-ink engraving on white, minimal, one moving element, no text, seamless loop.",
+   "file": "motion/vishnu.gif",
+   "depicts": "Standing four-armed deity with full attributes.",
+   "means": "Preservation embodied.",
+   "use": "Deity chapters",
+   "watch": "Majesty beats",
+   "note": "no lane yet; shorts candidate"
+  },
+  {
+   "id": "krishna",
+   "motif": "Krishna playing the flute beside a cow, peacock near",
+   "why": "Divine play; music that herds the world.",
+   "used_in": {},
+   "status": "banked-described",
+   "brief": "A flute-player beside a cow with a peacock near. Why: divine play. Blue-ink engraving on white, minimal, one moving element, no text, seamless loop.",
+   "file": "motion/krishna.gif",
+   "depicts": "Flute-player with cow and peacock.",
+   "means": "Divine play.",
+   "use": "Pastoral chapters",
+   "watch": "Music beats",
+   "note": "no lane yet; shorts candidate"
+  },
+  {
+   "id": "hanuman",
+   "motif": "Kneeling Hanuman with mace, hand on heart",
+   "why": "Devotion as strength; service kneeling.",
+   "used_in": {},
+   "status": "banked-described",
+   "brief": "A kneeling figure with mace, hand on heart. Why: devotion as strength. Blue-ink engraving on white, minimal, one moving element, no text, seamless loop.",
+   "file": "motion/hanuman.gif",
+   "depicts": "Kneeling figure, hand on heart.",
+   "means": "Devotion as strength.",
+   "use": "Service chapters",
+   "watch": "Loyalty beats",
+   "note": "no lane yet; shorts candidate"
+  },
+  {
+   "id": "ganesha",
+   "motif": "Four-armed Ganesha blessing, lotus and sweet bowl in hand",
+   "why": "Remover of obstacles; the opener of works.",
+   "used_in": {
+    "paratrishika": []
+   },
+   "status": "banked-described",
+   "brief": "A four-armed elephant-headed deity blessing, lotus and sweet bowl in hand. Why: remover of obstacles. Blue-ink engraving on white, minimal, one moving element, no text, seamless loop.",
+   "file": "motion/ganesha.gif",
+   "depicts": "Four-armed deity in blessing pose.",
+   "means": "Remover of obstacles.",
+   "use": "Opening chapters",
+   "watch": "Blessing beats"
+  },
+  {
+   "id": "lakshmi",
+   "motif": "Lakshmi enthroned on a lotus between elephants, coins flowing",
+   "why": "Fortune that flows; abundance given.",
+   "used_in": {
+    "paratrishika": []
+   },
+   "status": "banked-described",
+   "brief": "An enthroned goddess on a lotus between elephants, coins flowing. Why: fortune that flows. Blue-ink engraving on white, minimal, one moving element, no text, seamless loop.",
+   "file": "motion/lakshmi.gif",
+   "depicts": "Enthroned goddess, coins flowing.",
+   "means": "Fortune that flows.",
+   "use": "Abundance chapters",
+   "watch": "Giving beats",
+   "note": "wide tableau fills frame; needs white-mat or owner exception"
+  },
+  {
+   "id": "durga",
+   "motif": "Durga riding a roaring tiger, trident and sword raised",
+   "why": "Fierce grace; protection that roars.",
+   "used_in": {
+    "paratrishika": []
+   },
+   "status": "banked-described",
+   "brief": "A goddess riding a roaring tiger, weapons raised. Why: fierce grace. Blue-ink engraving on white, minimal, one moving element, no text, seamless loop.",
+   "file": "motion/durga.gif",
+   "depicts": "Goddess on roaring tiger.",
+   "means": "Fierce grace.",
+   "use": "Protection chapters",
+   "watch": "Courage beats"
+  },
+  {
+   "id": "kali",
+   "motif": "Dark goddess dancing in wild wind, tongue out, skull garland",
+   "why": "The fierce mother; time devouring form.",
+   "used_in": {
+    "paratrishika": []
+   },
+   "status": "banked-described",
+   "brief": "A dark goddess dancing in wild wind with skull garland. Why: time devouring form. Blue-ink engraving on white, minimal, one moving element, no text, seamless loop.",
+   "file": "motion/kali.gif",
+   "depicts": "Dancing dark goddess in wind.",
+   "means": "Time devouring form.",
+   "use": "Fierce chapters",
+   "watch": "Wildness beats",
+   "note": "dense tableau; needs white-mat or owner exception"
+  },
+  {
+   "id": "shiva-wind",
+   "motif": "Seated Shiva meditating, wind and breath unfolding around him",
+   "why": "Stillness at the center of motion.",
+   "used_in": {
+    "paratrishika": []
+   },
+   "status": "banked-described",
+   "brief": "A seated meditating figure with wind unfolding around him. Why: stillness at the center. Blue-ink engraving on white, minimal, one moving element, no text, seamless loop.",
+   "file": "motion/shiva-wind.gif",
+   "depicts": "Meditating figure in unfolding wind.",
+   "means": "Stillness at the center.",
+   "use": "Stillness chapters",
+   "watch": "Center beats"
+  },
+  {
+   "id": "saraswati",
+   "motif": "Saraswati playing the veena beside a swan",
+   "why": "Learning as music; knowledge that sings.",
+   "used_in": {
+    "paratrishika": []
+   },
+   "status": "banked-described",
+   "brief": "A goddess playing the veena beside a swan. Why: learning as music. Blue-ink engraving on white, minimal, one moving element, no text, seamless loop.",
+   "file": "motion/saraswati.gif",
+   "depicts": "Veena-player beside a swan.",
+   "means": "Learning as music.",
+   "use": "Study chapters",
+   "watch": "Song beats"
+  },
+  {
+   "id": "goddess-beckoning",
+   "motif": "A smiling goddess close up, hand extended in invitation",
+   "why": "The invitation; grace that beckons.",
+   "used_in": {
+    "paratrishika": []
+   },
+   "status": "banked-described",
+   "brief": "A smiling goddess close up, hand extended. Why: the invitation. Blue-ink engraving on white, minimal, one moving element, no text, seamless loop.",
+   "file": "motion/goddess-beckoning.gif",
+   "depicts": "Close goddess, hand extended.",
+   "means": "Grace that beckons.",
+   "use": "Invitation chapters",
+   "watch": "Welcome beats",
+   "note": "close-up fills frame; needs white-mat or owner exception"
+  },
+  {
+   "id": "dissolution",
+   "motif": "A robed figure standing, body loosening into rising particles",
+   "why": "Dissolution; the elements releasing their hold.",
+   "used_in": {
+    "tibetan-dead": [],
+    "deathworks": []
+   },
+   "status": "banked-described",
+   "brief": "A robed standing figure loosening into rising particles. Why: dissolution teachings. Blue-ink engraving on white, minimal, one moving element, no text, seamless loop.",
+   "file": "motion/dissolution.gif",
+   "depicts": "Standing figure turning to particles.",
+   "means": "The elements releasing.",
+   "use": "Dissolution chapters",
+   "watch": "Release beats"
   }
  ]
 }
