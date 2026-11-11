@@ -198,6 +198,22 @@ version of a granny short: granny lines + GIF options with watch notes +
 SO/LM triples from the comedy graph + Roady register. The creative
 reword stays human/agent-side per the roadman-shorts skill. Read-only.
 
+**`vf_seamless_draw(...)`** — renders a seamless etch-to-GIF segment:
+pen draws the exact opening frame (any length), hard cut, motion at
+speed/direction/ramp, slow white fade. Byte-verified or fails loud.
+`recipe=` saves locked params+SHAs; see `vf_seamless_recipes` (list) and
+`vf_seamless_cook` (exact replay + byte-match report).
+
+**`vf_speakcheck(project="", unit="")`** — audits speak hazards per unit:
+markdown the TTS would speak aloud (hash-headers, emphasis stars, table
+pipes). Read-only; zero everywhere or fix before any render (skill:
+`markdown-speech`).
+
+**`vf_speakclean(project, unit="")`** — applies `speak_clean` plus
+2-column table-to-prose to lane storyboards, with a per-unit diff report.
+Refuses when approvals exist (text edits move SHAs). Re-validate bundles
+and gates after (see `markdown-speech`).
+
 ### Resources
 
 - `vf://registry` — live `REGISTRY.json` (milestones, locks, processes,
