@@ -647,6 +647,8 @@ class TestSpeakClean(unittest.TestCase):
         self.assertEqual(B.speak_clean('#### Deep head'), 'Deep head')
         self.assertEqual(B.speak_clean('**Etam** - *this*. Done.'), 'Etam - this. Done.')
         self.assertEqual(B.speak_clean('* item one'), 'item one')
+        self.assertEqual(B.speak_clean('thinking\\: go'), 'thinking: go')
+        self.assertEqual(B.speak_clean('a \\= b \\(c)'), 'a = b (c)')
         # direction tags survive
         self.assertEqual(B.speak_clean('[short pause] "Speak."'), '[short pause] "Speak."')
 

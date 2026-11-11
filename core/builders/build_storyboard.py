@@ -44,6 +44,8 @@ def speak_clean(t):
     """
     t = re.sub(r'<br\s*/?>', '. ', t, flags=re.I)
     t = re.sub(r'</?[a-zA-Z][^>]*>', '', t)
+    t = re.sub(r'\\([:.()\-_*#\[\]!|>=])', r'\1', t)
+    t = re.sub(r'\\', '', t)
     t = re.sub(r'(?m)^\s*#{1,6}\s+', '', t)
     t = t.replace('**', '').replace('__', '')
     t = re.sub(r'(?<!\w)\*([^*]+?)\*(?!\w)', r'\1', t)
@@ -294,7 +296,7 @@ def build(md_path, overrides=None):
         blocks.append({'id': f'b{bid}', 'section': section, 'type': 'narration', 'voice': 'granny', 'text': text})
         bid += 1
     for b in blocks:
-        if b.get('voice') in ('granny', 'man', 'verse'):
+        if b.get('voice') in ('granny', 'man', 'verse') or b.get('type') == 'figure':
             b['text'] = speak_clean(b['text'])
     for b in blocks:
         if b['id'] in overrides and b['id'] != 'b_opener':
@@ -330,9 +332,10 @@ def validate(sb):
         if b['voice'] not in ('granny', 'man', 'verse', 'roadman', 'none'):
             errs.append(f"{b['id']}: bad voice {b['voice']}")
             continue
-        if b['voice'] in ('granny', 'man', 'verse'):
+        if b['voice'] in ('granny', 'man', 'verse') or b.get('type') == 'figure':
             _st = b.get('text', '')
-            if _st.lstrip().startswith('#'):
+            _is_fig_num = b.get('type') == 'figure' and bool(re.match(r'^#\s*\d+', _st.lstrip()))
+            if _st.lstrip().startswith('#') and not _is_fig_num:
                 errs.append(f"{b['id']}: markdown header in voiced text — strip # [{_st[:60]}]")
             if '**' in _st or '__' in _st:
                 errs.append(f"{b['id']}: markdown emphasis in voiced text — strip stars [{_st[:60]}]")
