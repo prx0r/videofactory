@@ -176,3 +176,22 @@ class TestSubjectDrawn(unittest.TestCase):
         rng = np.random.default_rng(7)
         pen_rank = np.argsort(rng.random(n), kind="stable")
         self.assertLess(M._drawn_max_corr(ys, pen_rank, bands), 0.9)
+
+
+class TestPassageApproveTools(unittest.TestCase):
+    def test_passage_plan_tool(self):
+        import asyncio
+        import vf_mcp_mod as M
+        d = json.loads(asyncio.run(M.vf_passage_plan(
+            '/home/ubuntu/nibbana/storyboards/storyboard_n02.json', 'b581', 'b608')))
+        self.assertTrue(d.get('ok', True) if 'ok' not in d else d['ok'])
+        self.assertGreater(d['etch_s'], 0)
+        self.assertIn('mid_bid', d)
+
+    def test_approve_pack_tool(self):
+        import asyncio
+        import vf_mcp_mod as M
+        d = json.loads(asyncio.run(M.vf_approve_pack('nibbana', 'n01')))
+        self.assertTrue(d['ok'])
+        self.assertIn('storyboards/storyboard_n01.json', d['files'])
+        self.assertTrue(d['bundle']['valid'])
