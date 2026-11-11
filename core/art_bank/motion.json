@@ -1955,6 +1955,768 @@
    "watch": "The scene breathes in loop.",
    "broll": true,
    "note": "full-bleed scenery; plays small-in-frame like everything else"
+  },
+  {
+   "id": "naga-pond",
+   "motif": "A cobra rising over a lotus pond",
+   "why": "spare: no lane demand yet; paratrishika retinue or shorts; serpent lore",
+   "used_in": {},
+   "status": "spare",
+   "brief": "A cobra rising over a lotus pond Suggested homes: paratrishika retinue or shorts; serpent lore. Blue-ink engraving on white, minimal, one moving element, no text, seamless loop.",
+   "file": "motion/naga-pond.gif",
+   "depicts": "A cobra rising over a lotus pond",
+   "means": "held in reserve.",
+   "use": "spares; paratrishika retinue or shorts; serpent lore",
+   "watch": "Loop holds."
+  },
+  {
+   "id": "sacred-falls",
+   "motif": "A waterfall pouring through high mountains",
+   "why": "spare: no lane demand yet; sleep vistas or pilgrimage openers",
+   "used_in": {},
+   "status": "spare",
+   "brief": "A waterfall pouring through high mountains Suggested homes: sleep vistas or pilgrimage openers. Blue-ink engraving on white, minimal, one moving element, no text, seamless loop.",
+   "file": "motion/sacred-falls.gif",
+   "depicts": "A waterfall pouring through high mountains",
+   "means": "held in reserve.",
+   "use": "spares; sleep vistas or pilgrimage openers",
+   "watch": "Loop holds."
+  },
+  {
+   "id": "tulsi-shrine",
+   "motif": "A tulsi plant in a pot with a small lamp",
+   "why": "spare: no lane demand yet; shorts domestic devotion",
+   "used_in": {},
+   "status": "spare",
+   "brief": "A tulsi plant in a pot with a small lamp Suggested homes: shorts domestic devotion. Blue-ink engraving on white, minimal, one moving element, no text, seamless loop.",
+   "file": "motion/tulsi-shrine.gif",
+   "depicts": "A tulsi plant in a pot with a small lamp",
+   "means": "held in reserve.",
+   "use": "spares; shorts domestic devotion",
+   "watch": "Loop holds."
+  },
+  {
+   "id": "banyan-waters",
+   "motif": "A vast banyan over still backwaters",
+   "why": "spare: no lane demand yet; sleep vistas; the great tree",
+   "used_in": {},
+   "status": "spare",
+   "brief": "A vast banyan over still backwaters Suggested homes: sleep vistas; the great tree. Blue-ink engraving on white, minimal, one moving element, no text, seamless loop.",
+   "file": "motion/banyan-waters.gif",
+   "depicts": "A vast banyan over still backwaters",
+   "means": "held in reserve.",
+   "use": "spares; sleep vistas; the great tree",
+   "watch": "Loop holds."
+  },
+  {
+   "id": "conch-shore",
+   "motif": "A conch resting on the shore",
+   "why": "spare: no lane demand yet; Vishnu attribute note; shorts",
+   "used_in": {},
+   "status": "spare",
+   "brief": "A conch resting on the shore Suggested homes: Vishnu attribute note; shorts. Blue-ink engraving on white, minimal, one moving element, no text, seamless loop.",
+   "file": "motion/conch-shore.gif",
+   "depicts": "A conch resting on the shore",
+   "means": "held in reserve.",
+   "use": "spares; Vishnu attribute note; shorts",
+   "watch": "Loop holds."
+  },
+  {
+   "id": "mustard-hills",
+   "motif": "Flowering fields under high mountains",
+   "why": "spare: no lane demand yet; sleep vistas",
+   "used_in": {},
+   "status": "spare",
+   "brief": "Flowering fields under high mountains Suggested homes: sleep vistas. Blue-ink engraving on white, minimal, one moving element, no text, seamless loop.",
+   "file": "motion/mustard-hills.gif",
+   "depicts": "Flowering fields under high mountains",
+   "means": "held in reserve.",
+   "use": "spares; sleep vistas",
+   "watch": "Loop holds."
+  },
+  {
+   "id": "kailash-view",
+   "motif": "Kailash under moon and trident-marked sky",
+   "why": "spare: no lane demand yet; shiva retinue or sleep vistas",
+   "used_in": {},
+   "status": "spare",
+   "brief": "Kailash under moon and trident-marked sky Suggested homes: shiva retinue or sleep vistas. Blue-ink engraving on white, minimal, one moving element, no text, seamless loop.",
+   "file": "motion/kailash-view.gif",
+   "depicts": "Kailash under moon and trident-marked sky",
+   "means": "held in reserve.",
+   "use": "spares; shiva retinue or sleep vistas",
+   "watch": "Loop holds."
+  },
+  {
+   "id": "temple-elephant",
+   "motif": "An elephant spraying river water among lotuses",
+   "why": "spare: no lane demand yet; lakshmi retinue note; festival beats",
+   "used_in": {},
+   "status": "spare",
+   "brief": "An elephant spraying river water among lotuses Suggested homes: lakshmi retinue note; festival beats. Blue-ink engraving on white, minimal, one moving element, no text, seamless loop.",
+   "file": "motion/temple-elephant.gif",
+   "depicts": "An elephant spraying river water among lotuses",
+   "means": "held in reserve.",
+   "use": "spares; lakshmi retinue note; festival beats",
+   "watch": "Loop holds."
+  },
+  {
+   "id": "lamp-diya",
+   "motif": "A leaf-boat flame floating downstream",
+   "why": "variant of lamp-flame: use for the river offering rather than the household lamp",
+   "used_in": {
+    "nibbana": [
+     "n01",
+     "n07"
+    ]
+   },
+   "status": "banked-described",
+   "brief": "A leaf-boat flame floating downstream Why: use for the river offering rather than the household lamp Blue-ink engraving on white, minimal, one moving element, no text, seamless loop.",
+   "file": "motion/lamp-diya.gif",
+   "depicts": "A leaf-boat flame floating downstream",
+   "means": "The offering sent off",
+   "use": "Offering chapters; release beats",
+   "watch": "The boat drifts; flame holds.",
+   "variant_of": "lamp-flame",
+   "variant_when": "use for the river offering rather than the household lamp"
+  },
+  {
+   "id": "death-bells-hanging",
+   "motif": "Two bells hanging under flowering branches",
+   "why": "variant of death-bell: use for paired hanging bells rather than the swung one",
+   "used_in": {
+    "tibetan-dead": []
+   },
+   "status": "banked-described",
+   "brief": "Two bells hanging under flowering branches Why: use for paired hanging bells rather than the swung one Blue-ink engraving on white, minimal, one moving element, no text, seamless loop.",
+   "file": "motion/death-bells-hanging.gif",
+   "depicts": "Two bells hanging under flowering branches",
+   "means": "The pair waiting",
+   "use": "Waiting chapters; paired beats",
+   "watch": "Petals fall; bells sway.",
+   "variant_of": "death-bell",
+   "variant_when": "use for paired hanging bells rather than the swung one"
+  },
+  {
+   "id": "trident-rock",
+   "motif": "Trident planted on rock with scarf and sky",
+   "why": "variant of trident: use when the emblem stands enshrined on rock",
+   "used_in": {
+    "paratrishika": []
+   },
+   "status": "banked-described",
+   "brief": "Trident planted on rock with scarf and sky Why: use when the emblem stands enshrined on rock Blue-ink engraving on white, minimal, one moving element, no text, seamless loop.",
+   "file": "motion/trident-rock.gif",
+   "depicts": "Trident planted on rock with scarf and sky",
+   "means": "The established emblem",
+   "use": "Enshrined chapters; marker beats",
+   "watch": "Scarf lifts; steel holds.",
+   "variant_of": "trident",
+   "variant_when": "use when the emblem stands enshrined on rock"
+  },
+  {
+   "id": "nandi-waters",
+   "motif": "Nandi seated by still temple waters",
+   "why": "spare: no lane demand yet; paratrishika retinue note; guardian beats",
+   "used_in": {},
+   "status": "spare",
+   "brief": "Nandi seated by still temple waters Suggested homes: paratrishika retinue note; guardian beats. Blue-ink engraving on white, minimal, one moving element, no text, seamless loop.",
+   "file": "motion/nandi-waters.gif",
+   "depicts": "Nandi seated by still temple waters",
+   "means": "held in reserve.",
+   "use": "spares; paratrishika retinue note; guardian beats",
+   "watch": "Loop holds."
+  },
+  {
+   "id": "cow-lotus",
+   "motif": "A cow drinking among lotuses at dusk",
+   "why": "spare: no lane demand yet; pastoral spare; Krishna retinue note",
+   "used_in": {},
+   "status": "spare",
+   "brief": "A cow drinking among lotuses at dusk Suggested homes: pastoral spare; Krishna retinue note. Blue-ink engraving on white, minimal, one moving element, no text, seamless loop.",
+   "file": "motion/cow-lotus.gif",
+   "depicts": "A cow drinking among lotuses at dusk",
+   "means": "held in reserve.",
+   "use": "spares; pastoral spare; Krishna retinue note",
+   "watch": "Loop holds."
+  },
+  {
+   "id": "flute-feather",
+   "motif": "A flute with a peacock feather on stone",
+   "why": "spare: no lane demand yet; second flute still life; alternate to krishna-flute",
+   "used_in": {},
+   "status": "spare",
+   "brief": "A flute with a peacock feather on stone Suggested homes: second flute still life; alternate to krishna-flute. Blue-ink engraving on white, minimal, one moving element, no text, seamless loop.",
+   "file": "motion/flute-feather.gif",
+   "depicts": "A flute with a peacock feather on stone",
+   "means": "held in reserve.",
+   "use": "spares; second flute still life; alternate to krishna-flute",
+   "watch": "Loop holds."
+  },
+  {
+   "id": "kettle-brass",
+   "motif": "A brass pot with rudraksha by running water",
+   "why": "variant of kettle-steam: use when the vessel is ritual brass, not kitchen",
+   "used_in": {},
+   "status": "banked-described",
+   "brief": "A brass pot with rudraksha by running water Why: use when the vessel is ritual brass, not kitchen Blue-ink engraving on white, minimal, one moving element, no text, seamless loop.",
+   "file": "motion/kettle-brass.gif",
+   "depicts": "A brass pot with rudraksha by running water",
+   "means": "The kept vessel",
+   "use": "Keeping chapters; vessel beats",
+   "watch": "Water runs; brass holds.",
+   "variant_of": "kettle-steam",
+   "variant_when": "use when the vessel is ritual brass, not kitchen"
+  },
+  {
+   "id": "lingam",
+   "motif": "Lingam with cobra canopy over still water",
+   "why": "The mark of Shiva; worship concentrated.",
+   "used_in": {
+    "paratrishika": []
+   },
+   "status": "banked-described",
+   "brief": "A lingam with cobra canopy over still water. Why: the mark of Shiva. Blue-ink engraving on white, minimal, one moving element, no text, seamless loop.",
+   "file": "motion/lingam.gif",
+   "depicts": "Lingam under cobra hood.",
+   "means": "Worship concentrated.",
+   "use": "Emblem chapters; mark beats",
+   "watch": "Water rings spread below."
+  },
+  {
+   "id": "ganesha-tree",
+   "motif": "Ganesha seated beneath a great tree",
+   "why": "variant of ganesha: use for the tree-shrine Ganesha rather than blessing pose",
+   "used_in": {
+    "paratrishika": []
+   },
+   "status": "banked-described",
+   "brief": "Ganesha seated beneath a great tree Why: use for the tree-shrine Ganesha rather than blessing pose Blue-ink engraving on white, minimal, one moving element, no text, seamless loop.",
+   "file": "motion/ganesha-tree.gif",
+   "depicts": "Ganesha seated beneath a great tree",
+   "means": "The shade-giver",
+   "use": "Shade chapters; rest beats",
+   "watch": "Leaves move; the belly breathes.",
+   "variant_of": "ganesha",
+   "variant_when": "use for the tree-shrine Ganesha rather than blessing pose"
+  },
+  {
+   "id": "saraswati-playing",
+   "motif": "Goddess playing veena with swan and books",
+   "why": "variant of saraswati: use when she plays; resting veena serves quiet",
+   "used_in": {
+    "paratrishika": []
+   },
+   "status": "banked-described",
+   "brief": "Goddess playing veena with swan and books Why: use when she plays; resting veena serves quiet Blue-ink engraving on white, minimal, one moving element, no text, seamless loop.",
+   "file": "motion/saraswati-playing.gif",
+   "depicts": "Goddess playing veena with swan and books",
+   "means": "Music in play",
+   "use": "Playing chapters; song beats",
+   "watch": "Strings shimmer; swan drifts.",
+   "variant_of": "saraswati",
+   "variant_when": "use when she plays; resting veena serves quiet"
+  },
+  {
+   "id": "kali-dancing",
+   "motif": "Dark goddess dancing in ringed fire",
+   "why": "variant of kali: use for the full dance; wild-wind serves weather",
+   "used_in": {
+    "paratrishika": []
+   },
+   "status": "banked-described",
+   "brief": "Dark goddess dancing in ringed fire Why: use for the full dance; wild-wind serves weather Blue-ink engraving on white, minimal, one moving element, no text, seamless loop.",
+   "file": "motion/kali-dancing.gif",
+   "depicts": "Dark goddess dancing in ringed fire",
+   "means": "The dance itself",
+   "use": "Dance chapters; fire-ring beats",
+   "watch": "Flames wheel; feet blur.",
+   "variant_of": "kali",
+   "variant_when": "use for the full dance; wild-wind serves weather",
+   "note": "dense tableau fills frame; needs white-mat or owner exception"
+  },
+  {
+   "id": "bhairava",
+   "motif": "Moonlit ascetic with trident under crescent moon",
+   "why": "The fierce guardian keeping night watch.",
+   "used_in": {
+    "deathworks": []
+   },
+   "status": "banked-described",
+   "brief": "A moonlit ascetic with trident under a crescent moon. Why: the night watch. Blue-ink engraving on white, minimal, one moving element, no text, seamless loop.",
+   "file": "motion/bhairava.gif",
+   "depicts": "Ascetic with trident, moon above.",
+   "means": "The night watch.",
+   "use": "Watch chapters (madman); vigil beats",
+   "watch": "Moonlight holds; breath fogs."
+  },
+  {
+   "id": "narasimha-spare",
+   "motif": "Lion-man avatar with mace among storm reeds",
+   "why": "spare: no lane demand yet; no lane yet; fierce-avatar note",
+   "used_in": {},
+   "status": "spare",
+   "brief": "Lion-man avatar with mace among storm reeds Suggested homes: no lane yet; fierce-avatar note. Blue-ink engraving on white, minimal, one moving element, no text, seamless loop.",
+   "file": "motion/narasimha-spare.gif",
+   "depicts": "Lion-man avatar with mace among storm reeds",
+   "means": "held in reserve.",
+   "use": "spares; no lane yet; fierce-avatar note",
+   "watch": "Loop holds."
+  },
+  {
+   "id": "durga-storm",
+   "motif": "Goddess with lion under storm cloud",
+   "why": "variant of durga: use for storm Durga; tiger serves triumph",
+   "used_in": {
+    "paratrishika": []
+   },
+   "status": "banked-described",
+   "brief": "Goddess with lion under storm cloud Why: use for storm Durga; tiger serves triumph Blue-ink engraving on white, minimal, one moving element, no text, seamless loop.",
+   "file": "motion/durga-storm.gif",
+   "depicts": "Goddess with lion under storm cloud",
+   "means": "Fierce weather",
+   "use": "Storm chapters; cloud beats",
+   "watch": "",
+   "variant_of": "durga",
+   "variant_when": "use for storm Durga; tiger serves triumph",
+   "note": "dense tableau fills frame; needs white-mat or owner exception"
+  },
+  {
+   "id": "shiva-falls",
+   "motif": "Seated figure before great falls",
+   "why": "variant of shiva-wind: use for waterfall stillness rather than wind",
+   "used_in": {
+    "paratrishika": []
+   },
+   "status": "banked-described",
+   "brief": "Seated figure before great falls Why: use for waterfall stillness rather than wind Blue-ink engraving on white, minimal, one moving element, no text, seamless loop.",
+   "file": "motion/shiva-falls.gif",
+   "depicts": "Seated figure before great falls",
+   "means": "Stillness before falling water",
+   "use": "Falls chapters; cascade beats",
+   "watch": "",
+   "variant_of": "shiva-wind",
+   "variant_when": "use for waterfall stillness rather than wind"
+  },
+  {
+   "id": "kali-cremation",
+   "motif": "Dark goddess with trident at the burning ground",
+   "why": "variant of kali: use for the cremation-ground aspect rather than the dance",
+   "used_in": {
+    "paratrishika": []
+   },
+   "status": "banked-described",
+   "brief": "Dark goddess with trident at the burning ground Why: use for the cremation-ground aspect rather than the dance Blue-ink engraving on white, minimal, one moving element, no text, seamless loop.",
+   "file": "motion/kali-cremation.gif",
+   "depicts": "Dark goddess with trident at the burning ground",
+   "means": "The ground itself",
+   "use": "Cremation chapters; ash beats",
+   "watch": "",
+   "variant_of": "kali",
+   "variant_when": "use for the cremation-ground aspect rather than the dance",
+   "note": "dense tableau fills frame; needs white-mat or owner exception"
+  },
+  {
+   "id": "eclipse-veil",
+   "motif": "A goddess behind a veiling eclipse",
+   "why": "spare: no lane demand yet; omen spare; suggested tibetan bardo",
+   "used_in": {},
+   "status": "spare",
+   "brief": "A goddess behind a veiling eclipse Suggested homes: omen spare; suggested tibetan bardo. Blue-ink engraving on white, minimal, one moving element, no text, seamless loop.",
+   "file": "motion/eclipse-veil.gif",
+   "depicts": "A goddess behind a veiling eclipse",
+   "means": "held in reserve.",
+   "use": "spares; omen spare; suggested tibetan bardo",
+   "watch": "Loop holds."
+  },
+  {
+   "id": "varahi-boar",
+   "motif": "Boar-faced goddess with mace among lotuses",
+   "why": "spare: no lane demand yet; no lane yet; goddess-retinue note",
+   "used_in": {},
+   "status": "spare",
+   "brief": "Boar-faced goddess with mace among lotuses Suggested homes: no lane yet; goddess-retinue note. Blue-ink engraving on white, minimal, one moving element, no text, seamless loop.",
+   "file": "motion/varahi-boar.gif",
+   "depicts": "Boar-faced goddess with mace among lotuses",
+   "means": "held in reserve.",
+   "use": "spares; no lane yet; goddess-retinue note",
+   "watch": "Loop holds."
+  },
+  {
+   "id": "nataraja",
+   "motif": "Dancer in a ring of fire over dark waters",
+   "why": "The cosmic dance; consciousness in motion.",
+   "used_in": {
+    "paratrishika": []
+   },
+   "status": "banked-described",
+   "brief": "A dancer in a ring of fire over dark waters. Why: the cosmic dance. Blue-ink engraving on white, minimal, one moving element, no text, seamless loop.",
+   "file": "motion/nataraja.gif",
+   "depicts": "Dancer in fire ring.",
+   "means": "Consciousness in motion.",
+   "use": "Dance chapters; rhythm beats",
+   "watch": "Fire rings turn; foot strikes."
+  },
+  {
+   "id": "durga-dusk",
+   "motif": "Evening courage",
+   "why": "variant of durga: use for dusk Durga on foot with lion",
+   "used_in": {
+    "paratrishika": []
+   },
+   "status": "banked-described",
+   "brief": "Evening courage Why: use for dusk Durga on foot with lion Blue-ink engraving on white, minimal, one moving element, no text, seamless loop.",
+   "file": "motion/durga-dusk.gif",
+   "depicts": "Evening courage",
+   "means": "Dusk chapters; ember beats",
+   "use": "durga chapters; variant beats",
+   "watch": "",
+   "variant_of": "durga",
+   "variant_when": "use for dusk Durga on foot with lion"
+  },
+  {
+   "id": "kapalika",
+   "motif": "Skull-wielding ascetic dancing with fire bowl",
+   "why": "The skull path; shaiva asceticism dancing.",
+   "used_in": {
+    "deathworks": []
+   },
+   "status": "banked-described",
+   "brief": "A skull-wielding ascetic dancing with a fire bowl. Why: the skull path. Blue-ink engraving on white, minimal, one moving element, no text, seamless loop.",
+   "file": "motion/kapalika.gif",
+   "depicts": "Ascetic dancing with skull and fire.",
+   "means": "The skull path.",
+   "use": "Wild chapters (madman); ash beats",
+   "watch": "Ash swirls; feet stamp."
+  },
+  {
+   "id": "bhairava-dog",
+   "motif": "Ascetic with trident and dog before a shrine",
+   "why": "variant of bhairava: use for the dog companion aspect",
+   "used_in": {
+    "deathworks": []
+   },
+   "status": "banked-described",
+   "brief": "Ascetic with trident and dog before a shrine Why: use for the dog companion aspect Blue-ink engraving on white, minimal, one moving element, no text, seamless loop.",
+   "file": "motion/bhairava-dog.gif",
+   "depicts": "Ascetic with trident and dog before a shrine",
+   "means": "The accompanied watch",
+   "use": "Shrine chapters; companion beats",
+   "watch": "Dog pants; flame leans.",
+   "variant_of": "bhairava",
+   "variant_when": "use for the dog companion aspect"
+  },
+  {
+   "id": "durga-sword",
+   "motif": "Wild-haired goddess raising a sword",
+   "why": "variant of durga: use for the sword aspect rather than storm or lion",
+   "used_in": {
+    "paratrishika": []
+   },
+   "status": "banked-described",
+   "brief": "Wild-haired goddess raising a sword Why: use for the sword aspect rather than storm or lion Blue-ink engraving on white, minimal, one moving element, no text, seamless loop.",
+   "file": "motion/durga-sword.gif",
+   "depicts": "Wild-haired goddess raising a sword",
+   "means": "The cutting edge",
+   "use": "Edge chapters; blade beats",
+   "watch": "Hair flies; steel holds.",
+   "variant_of": "durga",
+   "variant_when": "use for the sword aspect rather than storm or lion"
+  },
+  {
+   "id": "sage-portrait",
+   "motif": "A bearded sage close up",
+   "why": "spare: no lane demand yet; portrait spare; suggested shorts",
+   "used_in": {},
+   "status": "spare",
+   "brief": "A bearded sage close up, third eye marked Suggested homes: portrait spare; suggested shorts. Blue-ink engraving on white, minimal, one moving element, no text, seamless loop.",
+   "file": "motion/sage-portrait.gif",
+   "depicts": "A bearded sage close up, third eye marked",
+   "means": "held in reserve.",
+   "use": "spares; portrait spare; suggested shorts",
+   "watch": "Loop holds."
+  },
+  {
+   "id": "lingam-rain",
+   "motif": "Lingam sheltering in a rain pavilion",
+   "why": "variant of lingam: use for the rain-pavilion lingam rather than the pond canopy",
+   "used_in": {
+    "paratrishika": []
+   },
+   "status": "banked-described",
+   "brief": "Lingam sheltering in a rain pavilion Why: use for the rain-pavilion lingam rather than the pond canopy Blue-ink engraving on white, minimal, one moving element, no text, seamless loop.",
+   "file": "motion/lingam-rain.gif",
+   "depicts": "Lingam sheltering in a rain pavilion",
+   "means": "Sheltered worship",
+   "use": "Monsoon chapters; shelter beats",
+   "watch": "Rain streaks; stone holds.",
+   "variant_of": "lingam",
+   "variant_when": "use for the rain-pavilion lingam rather than the pond canopy"
+  },
+  {
+   "id": "kapalika-skull",
+   "motif": "Skull-cup and bell held in still hands",
+   "why": "variant of kapalika: use for the skull-cup and bell stillness rather than the dance",
+   "used_in": {
+    "deathworks": []
+   },
+   "status": "banked-described",
+   "brief": "Skull-cup and bell held in still hands Why: use for the skull-cup and bell stillness rather than the dance Blue-ink engraving on white, minimal, one moving element, no text, seamless loop.",
+   "file": "motion/kapalika-skull.gif",
+   "depicts": "Skull-cup and bell held in still hands",
+   "means": "Held offering",
+   "use": "Still chapters; held beats",
+   "watch": "Nothing moves but smoke.",
+   "variant_of": "kapalika",
+   "variant_when": "use for the skull-cup and bell stillness rather than the dance"
+  },
+  {
+   "id": "owl-goddess",
+   "motif": "A goddess with an owl under a bare tree",
+   "why": "spare: no lane demand yet; lakshmi vahana note; night spare",
+   "used_in": {},
+   "status": "spare",
+   "brief": "A goddess with an owl under a bare tree Suggested homes: lakshmi vahana note; night spare. Blue-ink engraving on white, minimal, one moving element, no text, seamless loop.",
+   "file": "motion/owl-goddess.gif",
+   "depicts": "A goddess with an owl under a bare tree",
+   "means": "held in reserve.",
+   "use": "spares; lakshmi vahana note; night spare",
+   "watch": "Loop holds."
+  },
+  {
+   "id": "ascetic-vigil",
+   "motif": "A seated ascetic before a night fire with birds",
+   "why": "spare: no lane demand yet; vigil spare; deathworks suggested",
+   "used_in": {},
+   "status": "spare",
+   "brief": "A seated ascetic before a night fire with birds Suggested homes: vigil spare; deathworks suggested. Blue-ink engraving on white, minimal, one moving element, no text, seamless loop.",
+   "file": "motion/ascetic-vigil.gif",
+   "depicts": "A seated ascetic before a night fire with birds",
+   "means": "held in reserve.",
+   "use": "spares; vigil spare; deathworks suggested",
+   "watch": "Loop holds."
+  },
+  {
+   "id": "triple-eye",
+   "motif": "Three watching eyes turning in cloud rings",
+   "why": "spare: no lane demand yet; omen spare; watchfulness note",
+   "used_in": {},
+   "status": "spare",
+   "brief": "Three watching eyes turning in cloud rings Suggested homes: omen spare; watchfulness note. Blue-ink engraving on white, minimal, one moving element, no text, seamless loop.",
+   "file": "motion/triple-eye.gif",
+   "depicts": "Three watching eyes turning in cloud rings",
+   "means": "held in reserve.",
+   "use": "spares; omen spare; watchfulness note",
+   "watch": "Loop holds."
+  },
+  {
+   "id": "krishna-flute",
+   "motif": "A flute resting by the river with a peacock feather",
+   "why": "variant of krishna: use for the riverside flute; the player serves pastoral scenes",
+   "used_in": {},
+   "status": "banked-described",
+   "brief": "A flute resting by the river with a peacock feather Why: use for the riverside flute; the player serves pastoral scenes Blue-ink engraving on white, minimal, one moving element, no text, seamless loop.",
+   "file": "motion/krishna-flute.gif",
+   "depicts": "A flute resting by the river with a peacock feather",
+   "means": "Music laid down",
+   "use": "Still chapters; pause beats",
+   "watch": "Water moves; the flute waits.",
+   "variant_of": "krishna",
+   "variant_when": "use for the riverside flute; the player serves pastoral scenes"
+  },
+  {
+   "id": "lingam-tree",
+   "motif": "A lingam beneath a great sheltering tree",
+   "why": "variant of lingam: use for the tree-shrine lingam rather than the pond canopy",
+   "used_in": {
+    "paratrishika": []
+   },
+   "status": "banked-described",
+   "brief": "A lingam beneath a great sheltering tree Why: use for the tree-shrine lingam rather than the pond canopy Blue-ink engraving on white, minimal, one moving element, no text, seamless loop.",
+   "file": "motion/lingam-tree.gif",
+   "depicts": "A lingam beneath a great sheltering tree",
+   "means": "The shaded mark",
+   "use": "Tree-shrine chapters; shade beats",
+   "watch": "Leaves move; the stone holds.",
+   "variant_of": "lingam",
+   "variant_when": "use for the tree-shrine lingam rather than the pond canopy"
+  },
+  {
+   "id": "spanda-volcano",
+   "motif": "A volcano erupting gold into white sky",
+   "why": "variant of spanda-throb: use when the burst must be geological and outer",
+   "used_in": {
+    "paramarthasara": [],
+    "shiva-sutras": []
+   },
+   "status": "banked-described",
+   "brief": "A volcano erupting gold into white sky Why: use when the burst must be geological and outer Blue-ink engraving on white, minimal, one moving element, no text, seamless loop.",
+   "file": "motion/spanda-volcano.gif",
+   "depicts": "A volcano erupting gold into white sky",
+   "means": "Outer eruption",
+   "use": "Burst chapters; outer beats",
+   "watch": "Ash rises; the cone holds.",
+   "variant_of": "spanda-throb",
+   "variant_when": "use when the burst must be geological and outer"
+  },
+  {
+   "id": "spanda-geode",
+   "motif": "A geode cracking open",
+   "why": "variant of spanda-throb: use when inner light breaks its shell",
+   "used_in": {
+    "paramarthasara": [],
+    "shiva-sutras": []
+   },
+   "status": "banked-described",
+   "brief": "A geode cracking open, light getting out Why: use when inner light breaks its shell Blue-ink engraving on white, minimal, one moving element, no text, seamless loop.",
+   "file": "motion/spanda-geode.gif",
+   "depicts": "A geode cracking open, light getting out",
+   "means": "Breakthrough",
+   "use": "Breakthrough chapters; cracking beats",
+   "watch": "Cracks widen; light escapes.",
+   "variant_of": "spanda-throb",
+   "variant_when": "use when inner light breaks its shell"
+  },
+  {
+   "id": "bindu-sunburst",
+   "motif": "Sunburst breaking over mountain ridges",
+   "why": "variant of bindu-point: use when radiance has a horizon",
+   "used_in": {
+    "paratrishika": [],
+    "paramarthasara": []
+   },
+   "status": "banked-described",
+   "brief": "Sunburst breaking over mountain ridges Why: use when radiance has a horizon Blue-ink engraving on white, minimal, one moving element, no text, seamless loop.",
+   "file": "motion/bindu-sunburst.gif",
+   "depicts": "Sunburst breaking over mountain ridges",
+   "means": "Dawn with geography",
+   "use": "Daybreak chapters; horizon beats",
+   "watch": "Rays lengthen over ridges.",
+   "variant_of": "bindu-point",
+   "variant_when": "use when radiance has a horizon"
+  },
+  {
+   "id": "saraswati-resting",
+   "motif": "Veena",
+   "why": "variant of saraswati: use when the music is paused, not played",
+   "used_in": {
+    "paratrishika": []
+   },
+   "status": "banked-described",
+   "brief": "Veena, books and swan resting by still water Why: use when the music is paused, not played Blue-ink engraving on white, minimal, one moving element, no text, seamless loop.",
+   "file": "motion/saraswati-resting.gif",
+   "depicts": "Veena, books and swan resting by still water",
+   "means": "Study at rest",
+   "use": "Quiet chapters; rest beats",
+   "watch": "Nothing moves but water.",
+   "variant_of": "saraswati",
+   "variant_when": "use when the music is paused, not played"
+  },
+  {
+   "id": "spanda-rock",
+   "motif": "A boulder splitting",
+   "why": "variant of spanda-throb: use when even stone gives way",
+   "used_in": {
+    "paramarthasara": [],
+    "shiva-sutras": []
+   },
+   "status": "banked-described",
+   "brief": "A boulder splitting, light in the fault Why: use when even stone gives way Blue-ink engraving on white, minimal, one moving element, no text, seamless loop.",
+   "file": "motion/spanda-rock.gif",
+   "depicts": "A boulder splitting, light in the fault",
+   "means": "The hard yielding",
+   "use": "Yielding chapters; fault beats",
+   "watch": "The fault glows wider.",
+   "variant_of": "spanda-throb",
+   "variant_when": "use when even stone gives way"
+  },
+  {
+   "id": "hridaya-cave",
+   "motif": "A cave mouth glowing from inside",
+   "why": "variant of hridaya-lotus: use when the opening is stone, not petal",
+   "used_in": {
+    "paramarthasara": []
+   },
+   "status": "banked-described",
+   "brief": "A cave mouth glowing from inside Why: use when the opening is stone, not petal Blue-ink engraving on white, minimal, one moving element, no text, seamless loop.",
+   "file": "motion/hridaya-cave.gif",
+   "depicts": "A cave mouth glowing from inside",
+   "means": "The stone heart opening",
+   "use": "Opening chapters; cave beats",
+   "watch": "Dark thins; glow steadies.",
+   "variant_of": "hridaya-lotus",
+   "variant_when": "use when the opening is stone, not petal"
+  },
+  {
+   "id": "fire-spiral",
+   "motif": "A spiral column of flame turning",
+   "why": "variant of fire: use when flame turns instead of rising",
+   "used_in": {
+    "shiva-sutras": []
+   },
+   "status": "banked-described",
+   "brief": "A spiral column of flame turning Why: use when flame turns instead of rising Blue-ink engraving on white, minimal, one moving element, no text, seamless loop.",
+   "file": "motion/fire-spiral.gif",
+   "depicts": "A spiral column of flame turning",
+   "means": "Fire that circles",
+   "use": "Turning-fire chapters; spiral beats",
+   "watch": "The column turns steadily.",
+   "variant_of": "fire",
+   "variant_when": "use when flame turns instead of rising"
+  },
+  {
+   "id": "bindu-star",
+   "motif": "A star blooming out of cupped leaves",
+   "why": "variant of bindu-point: use when the source is stellar, not solar",
+   "used_in": {
+    "paratrishika": [],
+    "paramarthasara": []
+   },
+   "status": "banked-described",
+   "brief": "A star blooming out of cupped leaves Why: use when the source is stellar, not solar Blue-ink engraving on white, minimal, one moving element, no text, seamless loop.",
+   "file": "motion/bindu-star.gif",
+   "depicts": "A star blooming out of cupped leaves",
+   "means": "Stellar emanation",
+   "use": "Star chapters; bloom beats",
+   "watch": "Points kindle outward.",
+   "variant_of": "bindu-point",
+   "variant_when": "use when the source is stellar, not solar"
+  },
+  {
+   "id": "spanda-lightning",
+   "motif": "Lightning striking still water",
+   "why": "variant of spanda-throb: use when the burst comes from the sky",
+   "used_in": {
+    "paramarthasara": [],
+    "shiva-sutras": []
+   },
+   "status": "banked-described",
+   "brief": "Lightning striking still water Why: use when the burst comes from the sky Blue-ink engraving on white, minimal, one moving element, no text, seamless loop.",
+   "file": "motion/spanda-lightning.gif",
+   "depicts": "Lightning striking still water",
+   "means": "Sudden discharge",
+   "use": "Shock chapters; strike beats",
+   "watch": "The bolt lands; rings spread.",
+   "variant_of": "spanda-throb",
+   "variant_when": "use when the burst comes from the sky"
+  },
+  {
+   "id": "spanda-fountain",
+   "motif": "A fountain jet climbing a still pond",
+   "why": "variant of spanda-throb: use when the burst rises like water",
+   "used_in": {
+    "paramarthasara": [],
+    "shiva-sutras": []
+   },
+   "status": "banked-described",
+   "brief": "A fountain jet climbing a still pond Why: use when the burst rises like water Blue-ink engraving on white, minimal, one moving element, no text, seamless loop.",
+   "file": "motion/spanda-fountain.gif",
+   "depicts": "A fountain jet climbing a still pond",
+   "means": "Upward surge",
+   "use": "Surge chapters; jet beats",
+   "watch": "The jet climbs and falls.",
+   "variant_of": "spanda-throb",
+   "variant_when": "use when the burst rises like water"
   }
  ]
 }
