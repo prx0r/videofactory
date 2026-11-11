@@ -58,4 +58,9 @@ e=np.asarray(Image.open('etch_final.png')); m=np.asarray(Image.open('gif_first_p
 assert e.shape==m.shape==(1080,1920,3); assert np.array_equal(e,m)"
 
 A jump in size or position between etch and motion is a defect — re-file
-the etch, never ship it.
+the etch, never ship it. The etched subject defaults to the opening frame;
+fade-in-style loops that open on blank use the peak (fullest) frame with
+playback rotated to start there — same byte-identical seam either way.
+The reveal itself is verified drawn, not wiped: per-band reveal-rank vs
+height correlation must stay under 0.9 (wipes score ~1.0), or the render
+refuses.

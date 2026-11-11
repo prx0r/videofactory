@@ -1,7 +1,7 @@
 {
   "params": {
     "gif_id": "forest-grove",
-    "etch_s": 12.0,
+    "etch_s": 20.0,
     "play_s": 12.0,
     "fade_s": 3.5,
     "fps": 15,
@@ -19,7 +19,8 @@
   "verify": {
     "etch_final_eq_frame0": true,
     "seam_cut_identical": true,
-    "etch_method": "wash",
+    "etch_method": "pen",
+    "drawn_travel": 0.543,
     "placement": {
       "x": 806,
       "y": 333,
@@ -31,10 +32,10 @@
       ]
     },
     "clean_bg_threshold": 250,
-    "ink_px": 0
+    "ink_px": 66340
   },
   "gif_sha256": "c4a6760749fbe366b3fb9ceb1648f4d5ac1c67c14c307b34b940c8e12af01b79",
-  "mp4_sha256": "fd30f9a9f3abc88ee8e7e3255073512a7c988843af19a32fbffe0de8b38a954e",
+  "mp4_sha256": "7db38ac8651b7dcfd95de44d4c40044e20915b40962f2c4242156d0738616055",
   "frame_durations_ms": [
     550,
     550,

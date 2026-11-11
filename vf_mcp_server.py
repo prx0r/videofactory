@@ -1123,6 +1123,40 @@ def _passage_plan(sb_path, from_bid, to_bid, share, wps, explicit_s):
             "note": note}
 
 
+def _subject_index(counts, mode):
+    """Which GIF frame to etch (pure, tested). First by default; peak picks
+    the fullest frame (fade-in-style loops that open on blank). Ties go to
+    the lowest index, so well-made loops keep frame zero."""
+    if mode not in ("first", "peak"):
+        raise ValueError("subject must be first|peak")
+    if mode == "first" or not counts:
+        return 0
+    best = max(counts)
+    return counts.index(best)
+
+
+def _drawn_max_corr(ys, rank, bands):
+    """Max per-band rank-vs-height correlation of a reveal order (pure).
+
+    A pen travelling skeleton paths wanders (low correlation); a wipe is
+    height-monotonic (~1.0). Bands with <50 pixels are skipped.
+    """
+    import numpy as _np
+    worst = 0.0
+    for b in (3, 2, 1, 0):
+        m = bands == b
+        if int(m.sum()) < 50:
+            continue
+        r = rank[m].astype(float)
+        y = ys[m].astype(float)
+        r -= r.mean()
+        y -= y.mean()
+        denom = float(_np.sqrt((r * r).sum() * (y * y).sum()))
+        if denom > 0:
+            worst = max(worst, abs(float((r * y).sum() / denom)))
+    return worst
+
+
 def _ramp_plan(durations, order, speeds, play_s, fps):
     """Flat gif-index play plan across speed-ramp steps (pure, tested).
 
@@ -1149,7 +1183,7 @@ async def vf_seamless_draw(gif_id: str, unit: str = "", project: str = "nibbana"
                            etch_s: float = 20.0, play_s: float = 20.0,
                            fade_s: float = 3.5, clean_bg: int = 250,
                            speed: float = 2.0, direction: str = "forward",
-                           ramp: str = "",
+                           ramp: str = "", subject: str = "first",
                            recipe: str = "", publish: bool = False,
                            storyboard: str = "", from_bid: str = "",
                            to_bid: str = "", etch_share: float = 0.65,
@@ -1180,6 +1214,9 @@ async def vf_seamless_draw(gif_id: str, unit: str = "", project: str = "nibbana"
         speed: Playback speed multiplier (native delay / speed, default 2x)
         direction: forward|reverse|pingpong (default forward)
         ramp: Comma speeds for a speedup shape, e.g. 0.25,0.5,1,2,4 (overrides speed)
+        subject: first|peak — peak etches the fullest frame (fade-in loops
+            that open on blank) and rotates playback to start there; the seam
+            stays byte-identical either way
         recipe: Save params+SHAs as a replayable recipe under this name
         storyboard: Passage mode — storyboard path; times etch/play to the
             spoken span instead of fixed etch_s/play_s (slow draw welcome)
@@ -1215,6 +1252,14 @@ async def vf_seamless_draw(gif_id: str, unit: str = "", project: str = "nibbana"
             return {"ok": False, "reason": "gif frames differ in size"}
         clean = [np.where(a.min(axis=2, keepdims=True) >= clean_bg, 255, a).astype(np.uint8)
                  for a in arr]
+        counts = [int((c.min(axis=2) < 250).sum()) for c in clean]
+        try:
+            sidx = _subject_index(counts, subject)
+        except ValueError:
+            return {"ok": False, "reason": "subject must be first|peak"}
+        if sidx:
+            clean = clean[sidx:] + clean[:sidx]
+            durations = durations[sidx:] + durations[:sidx]
         f0 = clean[0]
         fh, fw = f0.shape[:2]
         W, H = (1920, 1080)
@@ -1237,6 +1282,16 @@ async def vf_seamless_draw(gif_id: str, unit: str = "", project: str = "nibbana"
             nearest = np.argmin(d2, axis=1)
             yq = np.quantile(ys, [.25, .5, .75])
             bands = np.digitize(ys, list(yq))
+            _rank = np.zeros(len(xs), dtype=np.int64)
+            _step = 0
+            for _b in (3, 2, 1, 0):
+                _mb = np.where(bands == _b)[0]
+                _seq = _mb[np.argsort(nearest[_mb], kind="stable")]
+                _rank[_seq] = np.arange(_step, _step + len(_seq))
+                _step += len(_seq)
+            _drawn = _drawn_max_corr(ys, _rank, bands)
+            if _drawn >= 0.9:
+                return {"ok": False, "reason": f"reveal is wipe-like (drawn-travel {_drawn:.2f}) — not a drawing"}
         else:
             # wash-in for full-tone scenery (B-roll): no ink to draw, so the
             # frame dissolves in from white over the etch span instead.
@@ -1272,7 +1327,7 @@ async def vf_seamless_draw(gif_id: str, unit: str = "", project: str = "nibbana"
         os.makedirs(outdir, exist_ok=True)
         spd = f"{speed:g}"
         pace = ("ramp" + "-".join(f"{s:g}" for s in speeds).replace(".", "p")) if ramp else f"{spd}x"
-        tag = f"{gif_id}-{unit or 'demo'}-{int(round(run_etch))}s-{pace}-{direction}"
+        tag = f"{gif_id}-{unit or 'demo'}-{int(round(run_etch))}s-{pace}-{direction}" + (f"-peak{sidx}" if sidx else "")
         gsha = hashlib.sha256(open(gpath, "rb").read()).hexdigest()
         rc0, hd = _sh(["git", "-C", os.environ.get("SLEEPDRAW_ROOT",
                       os.path.expanduser("~/sleepdraw")), "rev-parse", "--short", "HEAD"])
@@ -1375,6 +1430,7 @@ async def vf_seamless_draw(gif_id: str, unit: str = "", project: str = "nibbana"
                                  if not rc1 else "?")},
                "verify": {"etch_final_eq_frame0": True, "seam_cut_identical": True,
                           "etch_method": "pen" if pen_ok else "wash",
+                          "drawn_travel": round(_drawn, 3) if pen_ok else None,
                           "placement": {"x": x0, "y": y0, "w": fw, "h": fh,
                                         "canvas": [W, H]},
                           "clean_bg_threshold": clean_bg, "ink_px": int(dark.sum())},
@@ -1590,6 +1646,7 @@ async def vf_speakclean(project: str, unit: str = "") -> str:
 @mcp.tool()
 async def vf_seamless_cook(recipe: str, gif_id: str, unit: str = "",
                            project: str = "nibbana", ramp: str = "",
+                           subject: str = "",
                            publish: bool = False) -> str:
     """Replay a saved seamless recipe on a GIF/unit, byte-for-byte check.
 
@@ -1603,6 +1660,7 @@ async def vf_seamless_cook(recipe: str, gif_id: str, unit: str = "",
         unit: Unit label for the filename
         project: Lane for volume output
         ramp: Optional ramp override (else the recipe's own)
+        subject: Optional subject override (first|peak, else the recipe's own)
         publish: Upload to R2 (shiva/ prefix) when true
     """
     def _work():
@@ -1628,7 +1686,7 @@ async def vf_seamless_cook(recipe: str, gif_id: str, unit: str = "",
         etch_s=p.get("etch_s", 20.0), play_s=p.get("play_s", 20.0),
         fade_s=p.get("fade_s", 3.5), clean_bg=p.get("clean_bg", 250),
         speed=p.get("speed", 2.0), direction=p.get("direction", "forward"),
-        ramp=ramp or p.get("ramp", ""),
+        ramp=ramp or p.get("ramp", ""), subject=subject or p.get("subject", "first"),
         recipe="", publish=publish))
     if res.get("ok"):
         res["replay_match"] = (res.get("mp4_sha256") == rec.get("recorded_mp4_sha256"))

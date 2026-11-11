@@ -154,3 +154,25 @@ class TestWashPath(unittest.TestCase):
         wht = np.full((4, 4, 3), 255, dtype=np.float32)
         full = (fg * 1.0 + wht * 0.0).astype(np.uint8)
         self.assertTrue((full == 200).all())
+
+
+class TestSubjectDrawn(unittest.TestCase):
+    def test_subject_index(self):
+        import vf_mcp_mod as M
+        self.assertEqual(M._subject_index([10, 20, 15], "first"), 0)
+        self.assertEqual(M._subject_index([10, 20, 15], "peak"), 1)
+        self.assertEqual(M._subject_index([5, 5], "peak"), 0)
+        with self.assertRaises(ValueError):
+            M._subject_index([1], "middle")
+
+    def test_drawn_check(self):
+        import numpy as np
+        import vf_mcp_mod as M
+        n = 400
+        ys = np.tile(np.arange(100), 4)
+        bands = np.repeat([3, 2, 1, 0], 100)
+        wipe_rank = np.argsort(np.argsort(ys, kind="stable"), kind="stable")
+        self.assertGreaterEqual(M._drawn_max_corr(ys, wipe_rank, bands), 0.9)
+        rng = np.random.default_rng(7)
+        pen_rank = np.argsort(rng.random(n), kind="stable")
+        self.assertLess(M._drawn_max_corr(ys, pen_rank, bands), 0.9)
