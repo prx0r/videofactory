@@ -137,3 +137,20 @@ class TestVisualCap(unittest.TestCase):
         d = json.loads(r)
         self.assertFalse(d.get('ok'))
         self.assertIn('5-minute', d.get('reason', ''))
+
+
+class TestWashPath(unittest.TestCase):
+    def test_inkless_detection(self):
+        import numpy as np
+        pale = np.full((10, 10, 3), 250, dtype=np.uint8)
+        dark = pale.copy()
+        dark[4, 4] = (10, 10, 10)
+        self.assertFalse(bool((pale.min(axis=2) < 200).any()))
+        self.assertTrue(bool((dark.min(axis=2) < 200).any()))
+
+    def test_wash_math_exact(self):
+        import numpy as np
+        fg = np.full((4, 4, 3), 200, dtype=np.float32)
+        wht = np.full((4, 4, 3), 255, dtype=np.float32)
+        full = (fg * 1.0 + wht * 0.0).astype(np.uint8)
+        self.assertTrue((full == 200).all())

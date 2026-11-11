@@ -1224,18 +1224,24 @@ async def vf_seamless_draw(gif_id: str, unit: str = "", project: str = "nibbana"
         sys.path.insert(0, os.path.join(sroot, "vendor", "techdou", "scripts"))
         import generate_whiteboard as GW
         dark = f0.min(axis=2) < 200
-        if not bool(dark.any()):
-            return {"ok": False, "reason": "no ink pixels under 200"}
-        skel = GW._zhang_suen(dark)
-        walk = np.asarray(GW._walk_skeleton(skel), dtype=np.float64)
+        pen_ok = bool(dark.any())
+        if pen_ok:
+            skel = GW._zhang_suen(dark)
+            walk = np.asarray(GW._walk_skeleton(skel), dtype=np.float64)
         pict = np.any(f0 != 255, axis=2)
         ys, xs = np.where(pict)
-        ref = walk[::max(1, len(walk) // 2000)]
-        d2 = ((np.stack([xs, ys], 1)[..., None, :].astype(np.float64)
-               - ref[None, ...]) ** 2).sum(-1)
-        nearest = np.argmin(d2, axis=1)
-        yq = np.quantile(ys, [.25, .5, .75])
-        bands = np.digitize(ys, list(yq))
+        if pen_ok:
+            ref = walk[::max(1, len(walk) // 2000)]
+            d2 = ((np.stack([xs, ys], 1)[..., None, :].astype(np.float64)
+                   - ref[None, ...]) ** 2).sum(-1)
+            nearest = np.argmin(d2, axis=1)
+            yq = np.quantile(ys, [.25, .5, .75])
+            bands = np.digitize(ys, list(yq))
+        else:
+            # wash-in for full-tone scenery (B-roll): no ink to draw, so the
+            # frame dissolves in from white over the etch span instead.
+            nearest = np.zeros(len(xs), dtype=np.int64)
+            bands = np.zeros(len(xs), dtype=np.int64)
         FPS = 15
         plan = None
         run_etch, run_play = etch_s, play_s
@@ -1275,7 +1281,18 @@ async def vf_seamless_draw(gif_id: str, unit: str = "", project: str = "nibbana"
         os.makedirs(fdir, exist_ok=True)
         ox, oy = xs + x0, ys + y0
         idx = 1
+        if not pen_ok:
+            for j in range(n_etch):
+                q = (j + 1) / n_etch
+                fg = white.astype(np.float32)
+                fg[y0:y0 + fh, x0:x0 + fw] = f0.astype(np.float32)
+                wht = white.astype(np.float32)
+                Image.fromarray((fg * q + wht * (1 - q)).astype(np.uint8)).save(
+                    os.path.join(fdir, f"s_{idx:05d}.png"))
+                idx += 1
         for bi, b in enumerate((3, 2, 1, 0)):
+            if not pen_ok:
+                break
             mb = np.where(bands == b)[0]
             seq = mb[np.argsort(nearest[mb], kind="stable")]
             m = len(seq)
@@ -1357,6 +1374,7 @@ async def vf_seamless_draw(gif_id: str, unit: str = "", project: str = "nibbana"
                        "ffmpeg": ((ffv.strip().splitlines() or ["?"])[0][:80]
                                  if not rc1 else "?")},
                "verify": {"etch_final_eq_frame0": True, "seam_cut_identical": True,
+                          "etch_method": "pen" if pen_ok else "wash",
                           "placement": {"x": x0, "y": y0, "w": fw, "h": fh,
                                         "canvas": [W, H]},
                           "clean_bg_threshold": clean_bg, "ink_px": int(dark.sum())},
