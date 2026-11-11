@@ -1,4 +1,4 @@
-# ChatGPT GIF queue — greedy pack (57 wanted, briefs locked 2026-11-11)
+# ChatGPT GIF queue — greedy pack (28 wanted, briefs locked 2026-11-11)
 
 Maker envelope (every item, no exceptions): GIF89a loop, 12 frames,
 ~310x414 portrait or square, 0.5–1.5 MB, pure-white background,
@@ -8,16 +8,11 @@ Slugs lowercase-hyphenated. On arrival: file under
 `core/art_bank/motion/<slug>.gif` + bank entry gets
 depicts/means/use/watch + unit slots.
 
-Lane priority: shiva seal four (fire/seed/ocean/wheel) → paratrishika
-(goddess/knot-heart/alphabet/trident/bee) → nibbana (grasping-hand
-lane-wide first) → paramarthasara → tibetan-dead (mandala/death-bell)
-+ deathworks (anubis) → tantrasara/shorts singles.
 
-## shiva-sutras (13 wanted)
+Banked this intake: 29 arrivals (goddess/knot-heart/alphabet/trident/bee/mandala/death-bell, abstracts, roady set, book-open/waking-eye/threshold-light/ocean/folded→prayer).
+Full-bleed scenic arrivals (chip-shop/fifa-night/ocean/bus-window) carry white-mat-or-exception notes.
 
-### book-open
-motif: A closed book opening by itself, pages breathing.
-brief: A closed book opening by itself, pages breathing.. Blue-ink engraving on white, minimal, one moving element, no text, seamless loop.
+## shiva-sutras (8 wanted)
 
 ### breath-rhythm
 motif: Slow breath bar rising and falling, endless loop.
@@ -35,14 +30,6 @@ brief: Two hands slowly joining in añjali, holding, releasing.. Blue-ink engrav
 motif: A scroll unrolling one line at a time, endless paper.
 brief: A scroll unrolling one line at a time, endless paper.. Blue-ink engraving on white, minimal, one moving element, no text, seamless loop.
 
-### ocean
-motif: ocean (12x)
-brief: Open ocean swell under a wide sky, one wave gathering itself. Why: 12x chant-image — the ocean the whirlpool mistakes itself for. Third of the seal four.
-
-### prakasa-light
-motif: Pure light radiating outward from a center point, steady pulse.
-brief: Pure light radiating outward from a center point, steady pulse.. Blue-ink engraving on white, minimal, one moving element, no text, seamless loop.
-
 ### seed
 motif: seed (22x)
 brief: A seed splitting open, first root reaching down. Why: 22x chant-image — potency before form; banyan-seed beats. Second of the seal four.
@@ -55,65 +42,17 @@ brief: Slow dark water swell rolling under stars.. Blue-ink engraving on white, 
 motif: A single point gently expanding and contracting, breathing rhythm.
 brief: A single point gently expanding and contracting, breathing rhythm.. Blue-ink engraving on white, minimal, one moving element, no text, seamless loop.
 
-### threshold-light
-motif: Light widening under a door left ajar.
-brief: Light widening under a door left ajar.. Blue-ink engraving on white, minimal, one moving element, no text, seamless loop.
-
-### waking-eye
-motif: A single eye opening from sleep, lashes lifting once, loop.
-brief: A single eye opening from sleep, lashes lifting once, loop.. Blue-ink engraving on white, minimal, one moving element, no text, seamless loop.
-
 ### wheel
 motif: wheel turning
 brief: A simple wheel turning, spokes catching light. Why: turning itself — practice, breath cycle, the wheel that needs no road. Fourth of the seal four.
 
-## paratrishika (11 wanted)
+## paratrishika (1 wanted)
 
 ### aham-knot
 motif: The syllable A tightening then loosening like a knot untying.
 brief: The syllable A tightening then loosening like a knot untying.. Blue-ink engraving on white, minimal, one moving element, no text, seamless loop.
 
-### alphabet
-motif: Letters of the wheel turning through the circle
-brief: Letters turning slowly through a wheel-circle, one highlighted at a time. Why: Malini letters as cosmology (10+ single-letter hits); phonemes made visible. Blue-ink engraving on white, minimal, one moving element, no text, seamless loop.
-
-### bee
-motif: A bee circling above cooling honey
-brief: A bee circling above a cooling pool of honey. Why: liquid honey cooling thicker; sweetness settling into form. Blue-ink engraving on white, minimal, one moving element, no text, seamless loop.
-
-### bindu-point
-motif: One luminous point with faint concentric rings spreading.
-brief: One luminous point with faint concentric rings spreading.. Blue-ink engraving on white, minimal, one moving element, no text, seamless loop.
-
-### goddess
-motif: The Goddess leaning forward to ask, veil stirring
-brief: A veiled goddess leaning forward to ask, veil stirring once in still air. Why: Devi as questioner across every unit (71 hits); the dialogue engine made visible. Blue-ink engraving on white, minimal, one moving element, no text, seamless loop.
-
-### knot-heart
-motif: The heart-knot tightening, then releasing open
-brief: A knot over a heart-center tightening, then releasing open. Why: the Hridaya granthi the whole book orbits (55 hits); bondage and release in one object. Blue-ink engraving on white, minimal, one moving element, no text, seamless loop.
-
-### nada-wave
-motif: Concentric sound-ripples from an unseen center.
-brief: Concentric sound-ripples from an unseen center.. Blue-ink engraving on white, minimal, one moving element, no text, seamless loop.
-
-### prakasa-light
-motif: Pure light radiating outward from a center point, steady pulse.
-brief: Pure light radiating outward from a center point, steady pulse.. Blue-ink engraving on white, minimal, one moving element, no text, seamless loop.
-
-### star-field
-motif: Stars slowly wheeling overhead, one fixed pole star.
-brief: Stars slowly wheeling overhead, one fixed pole star.. Blue-ink engraving on white, minimal, one moving element, no text, seamless loop.
-
-### trident
-motif: A trident rising through three bands of mist
-brief: A trident rising through three bands of mist. Why: Fourth-interpretation absorption image (5 hits); ascent through the powers. Blue-ink engraving on white, minimal, one moving element, no text, seamless loop.
-
-### vimarsa-mirror
-motif: Light bending back to regard its own source, figure-eight flow.
-brief: Light bending back to regard its own source, figure-eight flow.. Blue-ink engraving on white, minimal, one moving element, no text, seamless loop.
-
-## nibbana (14 wanted)
+## nibbana (11 wanted)
 
 ### breath-rhythm
 motif: Slow breath bar rising and falling, endless loop.
@@ -127,10 +66,6 @@ brief: A wood plane with fresh curled shavings. Why: self-critique made object (
 motif: seven chariots, one destination
 brief: Seven chariots receding toward one horizon point. Why: many vehicles, one destination (n10). Distant, minimal.
 
-### dawn-ray
-motif: A single ray widening across dark water to daylight.
-brief: A single ray widening across dark water to daylight.. Blue-ink engraving on white, minimal, one moving element, no text, seamless loop.
-
 ### grasping-hand
 motif: hand closing on drifting smoke
 brief: An open hand closing on drifting smoke. Why: the most recurrent image lane-wide; appropriation failing.
@@ -138,10 +73,6 @@ brief: An open hand closing on drifting smoke. Why: the most recurrent image lan
 ### jewel-pond
 motif: jewel glinting in pond water, reached for
 brief: One jewel glinting just under pond ripples, half-seen. Why: existent-or-not, the two-lunatics object (n03/n04).
-
-### knotted-thread
-motif: single tangled knot, loose ends
-brief: One tangled knot with loose ends on white. Why: self-tie across n03-n09.
 
 ### leaning-wall
 motif: figure leaning on a vanishing wall
@@ -163,23 +94,15 @@ brief: A runner passing a small flame-baton onward. Why: the practice relay (n10
 motif: signpost with arms pointing every way
 brief: A signpost with arms pointing every way at a crossroads. Why: the n01 compass bit — single-use, draw-first candidate; graduates to GIF only if it recurs elsewhere.
 
-### star-field
-motif: Stars slowly wheeling overhead, one fixed pole star.
-brief: Stars slowly wheeling overhead, one fixed pole star.. Blue-ink engraving on white, minimal, one moving element, no text, seamless loop.
-
 ### surgeon
 motif: surgeon at work
 brief: Surgeon's hands mid-operation, instruments precise and calm. Why: Sermon 1 — the Buddha as surgeon (diagnosis and cure), not an estate agent selling mansions (n01 opener). Clean steel, no gore.
 
-## paramarthasara (12 wanted)
+## paramarthasara (8 wanted)
 
 ### aham-knot
 motif: The syllable A tightening then loosening like a knot untying.
 brief: The syllable A tightening then loosening like a knot untying.. Blue-ink engraving on white, minimal, one moving element, no text, seamless loop.
-
-### bindu-point
-motif: One luminous point with faint concentric rings spreading.
-brief: One luminous point with faint concentric rings spreading.. Blue-ink engraving on white, minimal, one moving element, no text, seamless loop.
 
 ### crystal-clear
 motif: clear quartz cluster on white
@@ -188,14 +111,6 @@ brief: Clear quartz cluster, sharp and colorless. Why: verse 6 hinge, clarity th
 ### folded-hands
 motif: Two hands slowly joining in añjali, holding, releasing.
 brief: Two hands slowly joining in añjali, holding, releasing.. Blue-ink engraving on white, minimal, one moving element, no text, seamless loop.
-
-### hridaya-lotus
-motif: A closed lotus bud opening one petal at a time, looping.
-brief: A closed lotus bud opening one petal at a time, looping.. Blue-ink engraving on white, minimal, one moving element, no text, seamless loop.
-
-### prakasa-light
-motif: Pure light radiating outward from a center point, steady pulse.
-brief: Pure light radiating outward from a center point, steady pulse.. Blue-ink engraving on white, minimal, one moving element, no text, seamless loop.
 
 ### rice-bowl
 motif: plain bowl of rice, steam rising
@@ -217,15 +132,7 @@ brief: Sunrise over still water, one horizontal gold band. Why: remembrance not 
 motif: A row of small flames bowing in one direction, night.
 brief: A row of small flames bowing in one direction, night.. Blue-ink engraving on white, minimal, one moving element, no text, seamless loop.
 
-### vimarsa-mirror
-motif: Light bending back to regard its own source, figure-eight flow.
-brief: Light bending back to regard its own source, figure-eight flow.. Blue-ink engraving on white, minimal, one moving element, no text, seamless loop.
-
-## tibetan-dead (7 wanted)
-
-### breath-body
-motif: A reclining outline, breath rising and falling in the chest.
-brief: A reclining outline, breath rising and falling in the chest.. Blue-ink engraving on white, minimal, one moving element, no text, seamless loop.
+## tibetan-dead (2 wanted)
 
 ### breath-rhythm
 motif: Slow breath bar rising and falling, endless loop.
@@ -235,31 +142,11 @@ brief: Slow breath bar rising and falling, endless loop.. Blue-ink engraving on 
 motif: Three vertical channels with slow ascending glow dots.
 brief: Three vertical channels with slow ascending glow dots.. Blue-ink engraving on white, minimal, one moving element, no text, seamless loop.
 
-### dawn-ray
-motif: A single ray widening across dark water to daylight.
-brief: A single ray widening across dark water to daylight.. Blue-ink engraving on white, minimal, one moving element, no text, seamless loop.
-
-### death-bell
-motif: A bell swinging one slow toll, sound-lines spreading
-brief: A temple bell swinging one slow toll, sound-lines spreading outward. Why: opens every tibetan-dead unit; death announced, instruction begins. Blue-ink engraving on white, minimal, one moving element, no text, seamless loop.
-
-### mandala
-motif: A deity mandala rotating slowly, concentric courts
-brief: A concentric deity mandala rotating slowly, courts within courts. Why: the deity days themselves (49 hits in d02). Blue-ink engraving on white, minimal, one moving element, no text, seamless loop.
-
-### moon-disc
-motif: A full moon clearing slow cloud, halo steady.
-brief: A full moon clearing slow cloud, halo steady.. Blue-ink engraving on white, minimal, one moving element, no text, seamless loop.
-
-## deathworks (7 wanted)
+## deathworks (4 wanted)
 
 ### anubis
 motif: A jackal-headed guardian seated at the tomb door
 brief: A jackal-headed guardian seated at the tomb door, chest rising in slow watch. Why: Egypt chapters anchor (31 hits in madman); the watcher of the dead. Blue-ink engraving on white, minimal, one moving element, no text, seamless loop.
-
-### breath-body
-motif: A reclining outline, breath rising and falling in the chest.
-brief: A reclining outline, breath rising and falling in the chest.. Blue-ink engraving on white, minimal, one moving element, no text, seamless loop.
 
 ### channel-body
 motif: Three vertical channels with slow ascending glow dots.
@@ -268,14 +155,6 @@ brief: Three vertical channels with slow ascending glow dots.. Blue-ink engravin
 ### corpse-quiet
 motif: A shrouded form utterly still, dust motes drifting.
 brief: A shrouded form utterly still, dust motes drifting.. Blue-ink engraving on white, minimal, one moving element, no text, seamless loop.
-
-### dawn-ray
-motif: A single ray widening across dark water to daylight.
-brief: A single ray widening across dark water to daylight.. Blue-ink engraving on white, minimal, one moving element, no text, seamless loop.
-
-### moon-disc
-motif: A full moon clearing slow cloud, halo steady.
-brief: A full moon clearing slow cloud, halo steady.. Blue-ink engraving on white, minimal, one moving element, no text, seamless loop.
 
 ### temple-lamps
 motif: A row of small flames bowing in one direction, night.
@@ -286,9 +165,3 @@ brief: A row of small flames bowing in one direction, night.. Blue-ink engraving
 ### heart-flame
 motif: A small flame cupped where a heart would be, steady.
 brief: A small flame cupped where a heart would be, steady.. Blue-ink engraving on white, minimal, one moving element, no text, seamless loop.
-
-## shorts (1 wanted)
-
-### fifa-night
-motif: A sofa, glowing TV with a football match, controller in hand, snacks.
-brief: A sofa, glowing TV with a football match, controller in hand, snacks.. Blue-ink engraving on white, minimal, one moving element, no text, seamless loop. Roady-first approved: everyday scenes welcome.

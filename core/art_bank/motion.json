@@ -210,8 +210,14 @@
    "used_in": {
     "shiva-sutras": []
    },
-   "status": "wanted",
-   "brief": "Open ocean swell under a wide sky, one wave gathering itself. Why: 12x chant-image \u2014 the ocean the whirlpool mistakes itself for. Third of the seal four."
+   "status": "banked-described",
+   "brief": "Open ocean swell under a wide sky, one wave gathering itself. Why: 12x chant-image \u2014 the ocean the whirlpool mistakes itself for. Third of the seal four.",
+   "file": "motion/ocean.gif",
+   "depicts": "Moonlit ocean swell gathering toward calm.",
+   "means": "The ocean the whirlpool mistakes itself for.",
+   "use": "Ocean chapters",
+   "watch": "Vastness beats.",
+   "note": "full-bleed seascape; needs white-mat or owner exception"
   },
   {
    "id": "wheel",
@@ -339,8 +345,14 @@
      "n09"
     ]
    },
-   "status": "wanted",
-   "brief": "One tangled knot with loose ends on white. Why: self-tie across n03-n09."
+   "status": "banked-described",
+   "brief": "One tangled knot with loose ends on white. Why: self-tie across n03-n09.",
+   "file": "motion/knotted-thread.gif",
+   "depicts": "A single ribbon trefoil knot turning slowly.",
+   "means": "The self-tie across chapters; entanglement made visible.",
+   "use": "Knot chapters n03-n09",
+   "watch": "Entanglement beats.",
+   "note": "The trefoil turns without tightening."
   },
   {
    "id": "signpost",
@@ -689,8 +701,14 @@
     "paratrishika": [],
     "shiva-sutras": []
    },
-   "status": "wanted",
-   "brief": "Pure light radiating outward from a center point, steady pulse.. Blue-ink engraving on white, minimal, one moving element, no text, seamless loop."
+   "status": "banked-described",
+   "brief": "Pure light radiating outward from a center point, steady pulse.. Blue-ink engraving on white, minimal, one moving element, no text, seamless loop.",
+   "file": "motion/prakasa-light.gif",
+   "depicts": "Pure light radiating outward from a center point, steady pulse.",
+   "means": "Consciousness as light itself.",
+   "use": "Illumination chapters",
+   "watch": "Light beats.",
+   "note": "The radiance breathes outward."
   },
   {
    "id": "vimarsa-mirror",
@@ -700,8 +718,14 @@
     "paramarthasara": [],
     "paratrishika": []
    },
-   "status": "wanted",
-   "brief": "Light bending back to regard its own source, figure-eight flow.. Blue-ink engraving on white, minimal, one moving element, no text, seamless loop."
+   "status": "banked-described",
+   "brief": "Light bending back to regard its own source, figure-eight flow.. Blue-ink engraving on white, minimal, one moving element, no text, seamless loop.",
+   "file": "motion/vimarsa-mirror.gif",
+   "depicts": "Light flowing in a horizontal figure-eight, returning to its source.",
+   "means": "Self-awareness: light knowing itself.",
+   "use": "Recognition chapters",
+   "watch": "Mirror beats.",
+   "note": "The current loops home."
   },
   {
    "id": "spanda-throb",
@@ -732,8 +756,14 @@
    "used_in": {
     "paramarthasara": []
    },
-   "status": "wanted",
-   "brief": "A closed lotus bud opening one petal at a time, looping.. Blue-ink engraving on white, minimal, one moving element, no text, seamless loop."
+   "status": "banked-described",
+   "brief": "A closed lotus bud opening one petal at a time, looping.. Blue-ink engraving on white, minimal, one moving element, no text, seamless loop.",
+   "file": "motion/hridaya-lotus.gif",
+   "depicts": "A closed lotus bud opening, heart-glow kindling inside.",
+   "means": "The Heart opening; recognition warming.",
+   "use": "Heart chapters",
+   "watch": "Opening beats.",
+   "note": "Petals part; the glow steadies."
   },
   {
    "id": "bindu-point",
@@ -743,8 +773,14 @@
     "paratrishika": [],
     "paramarthasara": []
    },
-   "status": "wanted",
-   "brief": "One luminous point with faint concentric rings spreading.. Blue-ink engraving on white, minimal, one moving element, no text, seamless loop."
+   "status": "banked-described",
+   "brief": "One luminous point with faint concentric rings spreading.. Blue-ink engraving on white, minimal, one moving element, no text, seamless loop.",
+   "file": "motion/bindu-point.gif",
+   "depicts": "One luminous point with faint concentric rings spreading.",
+   "means": "The point-source; emanation without moving.",
+   "use": "Bindu chapters",
+   "watch": "Source beats.",
+   "note": "Rings spread; the point stays."
   },
   {
    "id": "nada-wave",
@@ -753,8 +789,14 @@
    "used_in": {
     "paratrishika": []
    },
-   "status": "wanted",
-   "brief": "Concentric sound-ripples from an unseen center.. Blue-ink engraving on white, minimal, one moving element, no text, seamless loop."
+   "status": "banked-described",
+   "brief": "Concentric sound-ripples from an unseen center.. Blue-ink engraving on white, minimal, one moving element, no text, seamless loop.",
+   "file": "motion/nada-wave.gif",
+   "depicts": "Soft concentric ripples widening from an unseen center.",
+   "means": "Primordial sound before letters.",
+   "use": "Sound chapters",
+   "watch": "Pre-verbal beats.",
+   "note": "Ripples widen and dissolve."
   },
   {
    "id": "dawn-ray",
@@ -765,8 +807,14 @@
     "tibetan-dead": [],
     "deathworks": []
    },
-   "status": "wanted",
-   "brief": "A single ray widening across dark water to daylight.. Blue-ink engraving on white, minimal, one moving element, no text, seamless loop."
+   "status": "banked-described",
+   "brief": "A single ray widening across dark water to daylight.. Blue-ink engraving on white, minimal, one moving element, no text, seamless loop.",
+   "file": "motion/dawn-ray.gif",
+   "depicts": "First light breaking over still water, rays widening.",
+   "means": "Awakening as daybreak; remembrance not travel.",
+   "use": "Dawn chapters p04/p07",
+   "watch": "Daybreak beats.",
+   "note": "Light widens across the water."
   },
   {
    "id": "moon-disc",
@@ -776,8 +824,14 @@
     "tibetan-dead": [],
     "deathworks": []
    },
-   "status": "wanted",
-   "brief": "A full moon clearing slow cloud, halo steady.. Blue-ink engraving on white, minimal, one moving element, no text, seamless loop."
+   "status": "banked-described",
+   "brief": "A full moon clearing slow cloud, halo steady.. Blue-ink engraving on white, minimal, one moving element, no text, seamless loop.",
+   "file": "motion/moon-disc.gif",
+   "depicts": "A full moon clearing slow cloud, halo steady.",
+   "means": "Calm witness; night chapters, death watches.",
+   "use": "Night chapters",
+   "watch": "Witness beats.",
+   "note": "Cloud thins; the halo holds."
   },
   {
    "id": "star-field",
@@ -789,8 +843,14 @@
     ],
     "paratrishika": []
    },
-   "status": "wanted",
-   "brief": "Stars slowly wheeling overhead, one fixed pole star.. Blue-ink engraving on white, minimal, one moving element, no text, seamless loop."
+   "status": "banked-described",
+   "brief": "Stars slowly wheeling overhead, one fixed pole star.. Blue-ink engraving on white, minimal, one moving element, no text, seamless loop.",
+   "file": "motion/star-field.gif",
+   "depicts": "Stars wheeling slowly overhead, one fixed pole star.",
+   "means": "Vast time; finale skies.",
+   "use": "Finale chapters n10",
+   "watch": "Vastness beats.",
+   "note": "Stars wheel; the pole holds."
   },
   {
    "id": "breath-body",
@@ -800,8 +860,14 @@
     "tibetan-dead": [],
     "deathworks": []
    },
-   "status": "wanted",
-   "brief": "A reclining outline, breath rising and falling in the chest.. Blue-ink engraving on white, minimal, one moving element, no text, seamless loop."
+   "status": "banked-described",
+   "brief": "A reclining outline, breath rising and falling in the chest.. Blue-ink engraving on white, minimal, one moving element, no text, seamless loop.",
+   "file": "motion/breath-body.gif",
+   "depicts": "A reclining figure, breath rising and falling in the chest.",
+   "means": "The body breathing itself; bardo and tukdam beats.",
+   "use": "Breath chapters",
+   "watch": "Body beats.",
+   "note": "The chest rises and falls."
   },
   {
    "id": "channel-body",
@@ -900,8 +966,13 @@
      "s55"
     ]
    },
-   "status": "wanted",
-   "brief": "A single eye opening from sleep, lashes lifting once, loop.. Blue-ink engraving on white, minimal, one moving element, no text, seamless loop."
+   "status": "banked-described",
+   "brief": "A single eye opening from sleep, lashes lifting once, loop.. Blue-ink engraving on white, minimal, one moving element, no text, seamless loop.",
+   "file": "motion/waking-eye.gif",
+   "depicts": "A single eye opening from sleep, lashes lifting once.",
+   "means": "Emergence from turya boundaries; waking as event.",
+   "use": "Waking chapters (s55)",
+   "watch": "Emergence beats."
   },
   {
    "id": "heart-flame",
@@ -924,8 +995,13 @@
      "s32"
     ]
    },
-   "status": "wanted",
-   "brief": "A closed book opening by itself, pages breathing.. Blue-ink engraving on white, minimal, one moving element, no text, seamless loop."
+   "status": "banked-described",
+   "brief": "A closed book opening by itself, pages breathing.. Blue-ink engraving on white, minimal, one moving element, no text, seamless loop.",
+   "file": "motion/book-open.gif",
+   "depicts": "A closed book opening by itself, pages breathing.",
+   "means": "Hidden mantra revealed; teachings opening themselves.",
+   "use": "Mantra chapters (s32)",
+   "watch": "Revelation beats."
   },
   {
    "id": "threshold-light",
@@ -937,8 +1013,13 @@
      "s77"
     ]
    },
-   "status": "wanted",
-   "brief": "Light widening under a door left ajar.. Blue-ink engraving on white, minimal, one moving element, no text, seamless loop."
+   "status": "banked-described",
+   "brief": "Light widening under a door left ajar.. Blue-ink engraving on white, minimal, one moving element, no text, seamless loop.",
+   "file": "motion/threshold-light.gif",
+   "depicts": "Light widening under and through a door left ajar.",
+   "means": "Freedom as near side, not far; the finale door.",
+   "use": "Threshold chapters (s45/s77)",
+   "watch": "Arrival beats."
   },
   {
    "id": "sleep-wave",
@@ -961,64 +1042,112 @@
      "roady-first"
     ]
    },
-   "status": "wanted",
-   "brief": "A sofa, glowing TV with a football match, controller in hand, snacks.. Blue-ink engraving on white, minimal, one moving element, no text, seamless loop. Roady-first approved: everyday scenes welcome."
+   "status": "banked-described",
+   "brief": "A sofa, glowing TV with a football match, controller in hand, snacks.. Blue-ink engraving on white, minimal, one moving element, no text, seamless loop. Roady-first approved: everyday scenes welcome.",
+   "file": "motion/fifa-night.gif",
+   "depicts": "A sofa, glowing TV with a football match, controller and snacks.",
+   "means": "Freedom as Friday night: home, FIFA, mind off.",
+   "use": "Roady opener",
+   "watch": "Home beats.",
+   "note": "full-bleed interior; needs white-mat or owner exception"
   },
   {
    "id": "chip-shop",
    "motif": "A chip shop queue at night, steam, menu board glow.",
    "why": "Ordinary bliss, no metaphysics required. Everyday-nirvana beats.",
    "used_in": {},
-   "status": "wanted",
-   "brief": "A chip shop queue at night, steam, menu board glow.. Blue-ink engraving on white, minimal, one moving element, no text, seamless loop. Roady-first approved: everyday scenes welcome."
+   "status": "banked-described",
+   "brief": "A chip shop queue at night, steam, menu board glow.. Blue-ink engraving on white, minimal, one moving element, no text, seamless loop. Roady-first approved: everyday scenes welcome.",
+   "file": "motion/chip-shop.gif",
+   "depicts": "A chip-shop queue at night in rain, steam and menu glow.",
+   "means": "Ordinary bliss, no metaphysics required.",
+   "use": "Roady everyday-nirvana beats.",
+   "watch": "",
+   "note": "full-bleed street scene; needs white-mat or owner exception"
   },
   {
    "id": "bus-window",
    "motif": "Rain streaking a night-bus window, city lights smearing.",
    "why": "Contemplation vehicle; moving while sitting still.",
    "used_in": {},
-   "status": "wanted",
-   "brief": "Rain streaking a night-bus window, city lights smearing.. Blue-ink engraving on white, minimal, one moving element, no text, seamless loop. Roady-first approved: everyday scenes welcome."
+   "status": "banked-described",
+   "brief": "Rain streaking a night-bus window, city lights smearing.. Blue-ink engraving on white, minimal, one moving element, no text, seamless loop. Roady-first approved: everyday scenes welcome.",
+   "file": "motion/bus-window.gif",
+   "depicts": "Rain streaking a night-bus window, city lights smearing.",
+   "means": "Contemplation vehicle; moving while sitting still.",
+   "use": "Transit chapters",
+   "watch": "Stillness-in-motion beats.",
+   "note": "full-bleed interior; needs white-mat or owner exception"
   },
   {
    "id": "kettle-steam",
    "motif": "A kettle coming to boil, steam thickening then easing.",
    "why": "Agitation settling by itself; no technique applied.",
    "used_in": {},
-   "status": "wanted",
-   "brief": "A kettle coming to boil, steam thickening then easing.. Blue-ink engraving on white, minimal, one moving element, no text, seamless loop. Roady-first approved: everyday scenes welcome."
+   "status": "banked-described",
+   "brief": "A kettle coming to boil, steam thickening then easing.. Blue-ink engraving on white, minimal, one moving element, no text, seamless loop. Roady-first approved: everyday scenes welcome.",
+   "file": "motion/kettle-steam.gif",
+   "depicts": "A kettle coming to boil, steam thickening then easing.",
+   "means": "Agitation settling by itself; no technique applied.",
+   "use": "Restlessness chapters",
+   "watch": "Settling beats.",
+   "note": "Steam thickens, then thins."
   },
   {
    "id": "pigeon-square",
    "motif": "Pigeons exploding upward from a square, then resettling.",
    "why": "Thoughts startled and returning; attention scattering.",
    "used_in": {},
-   "status": "wanted",
-   "brief": "Pigeons exploding upward from a square, then resettling.. Blue-ink engraving on white, minimal, one moving element, no text, seamless loop. Roady-first approved: everyday scenes welcome."
+   "status": "banked-described",
+   "brief": "Pigeons exploding upward from a square, then resettling.. Blue-ink engraving on white, minimal, one moving element, no text, seamless loop. Roady-first approved: everyday scenes welcome.",
+   "file": "motion/pigeon-square.gif",
+   "depicts": "Pigeons exploding upward from a square, then resettling.",
+   "means": "Thoughts startled and returning; attention scattering.",
+   "use": "Distraction chapters",
+   "watch": "Scattering beats.",
+   "note": "The flock bursts, then resettles."
   },
   {
    "id": "washing-line",
    "motif": "Shirts snapping on a line in clean wind.",
    "why": "Simple order restored; small liberations.",
    "used_in": {},
-   "status": "wanted",
-   "brief": "Shirts snapping on a line in clean wind.. Blue-ink engraving on white, minimal, one moving element, no text, seamless loop. Roady-first approved: everyday scenes welcome."
+   "status": "banked-described",
+   "brief": "Shirts snapping on a line in clean wind.. Blue-ink engraving on white, minimal, one moving element, no text, seamless loop. Roady-first approved: everyday scenes welcome.",
+   "file": "motion/washing-line.gif",
+   "depicts": "Shirts snapping on a line in clean wind.",
+   "means": "Simple order restored; small liberations.",
+   "use": "Relief chapters",
+   "watch": "Ordinary-bliss beats.",
+   "note": "Shirts snap; the line holds."
   },
   {
    "id": "night-fridge",
    "motif": "Fridge door opening onto midnight light, figure silhouetted.",
    "why": "3am craving, examined live.",
    "used_in": {},
-   "status": "wanted",
-   "brief": "Fridge door opening onto midnight light, figure silhouetted.. Blue-ink engraving on white, minimal, one moving element, no text, seamless loop. Roady-first approved: everyday scenes welcome."
+   "status": "banked-described",
+   "brief": "Fridge door opening onto midnight light, figure silhouetted.. Blue-ink engraving on white, minimal, one moving element, no text, seamless loop. Roady-first approved: everyday scenes welcome.",
+   "file": "motion/night-fridge.gif",
+   "depicts": "A figure bent before an open fridge glowing at night.",
+   "means": "3am craving, examined live.",
+   "use": "Craving chapters",
+   "watch": "Night beats.",
+   "note": "The door opens; cold light spills."
   },
   {
    "id": "queue-post",
    "motif": "A long queue shuffling forward one step at a time.",
    "why": "Samsara as admin; patience practice.",
    "used_in": {},
-   "status": "wanted",
-   "brief": "A long queue shuffling forward one step at a time.. Blue-ink engraving on white, minimal, one moving element, no text, seamless loop. Roady-first approved: everyday scenes welcome."
+   "status": "banked-described",
+   "brief": "A long queue shuffling forward one step at a time.. Blue-ink engraving on white, minimal, one moving element, no text, seamless loop. Roady-first approved: everyday scenes welcome.",
+   "file": "motion/queue-post.gif",
+   "depicts": "A short queue shuffling forward at a wooden counter.",
+   "means": "Samsara as admin; patience practice.",
+   "use": "Waiting chapters",
+   "watch": "Endurance beats.",
+   "note": "The queue shuffles one step."
   },
   {
    "id": "yogic-ascension",
@@ -1128,8 +1257,14 @@
    "used_in": {
     "paratrishika": []
    },
-   "status": "wanted",
-   "brief": "A veiled goddess leaning forward to ask, veil stirring once in still air. Why: Devi as questioner across every unit (71 hits); the dialogue engine made visible. Blue-ink engraving on white, minimal, one moving element, no text, seamless loop."
+   "status": "banked-described",
+   "brief": "A veiled goddess leaning forward to ask, veil stirring once in still air. Why: Devi as questioner across every unit (71 hits); the dialogue engine made visible. Blue-ink engraving on white, minimal, one moving element, no text, seamless loop.",
+   "file": "motion/goddess.gif",
+   "depicts": "A veiled goddess leaning forward, hand extended in invitation.",
+   "means": "Devi as questioner; the dialogue engine made visible.",
+   "use": "Paratrishika question chapters",
+   "watch": "Never as decoration.",
+   "note": "She leans in; the veil shifts once."
   },
   {
    "id": "knot-heart",
@@ -1138,8 +1273,14 @@
    "used_in": {
     "paratrishika": []
    },
-   "status": "wanted",
-   "brief": "A knot over a heart-center tightening, then releasing open. Why: the Hridaya granthi the whole book orbits (55 hits); bondage and release in one object. Blue-ink engraving on white, minimal, one moving element, no text, seamless loop."
+   "status": "banked-described",
+   "brief": "A knot over a heart-center tightening, then releasing open. Why: the Hridaya granthi the whole book orbits (55 hits); bondage and release in one object. Blue-ink engraving on white, minimal, one moving element, no text, seamless loop.",
+   "file": "motion/knot-heart.gif",
+   "depicts": "A rope knotted through the center of a heart, pulling then easing.",
+   "means": "The Hridaya granthi: bondage and release in one object.",
+   "use": "Heart-space chapters",
+   "watch": "Knot-ignorance beats.",
+   "note": "The knot tightens, then loosens."
   },
   {
    "id": "alphabet",
@@ -1148,8 +1289,14 @@
    "used_in": {
     "paratrishika": []
    },
-   "status": "wanted",
-   "brief": "Letters turning slowly through a wheel-circle, one highlighted at a time. Why: Malini letters as cosmology (10+ single-letter hits); phonemes made visible. Blue-ink engraving on white, minimal, one moving element, no text, seamless loop."
+   "status": "banked-described",
+   "brief": "Letters turning slowly through a wheel-circle, one highlighted at a time. Why: Malini letters as cosmology (10+ single-letter hits); phonemes made visible. Blue-ink engraving on white, minimal, one moving element, no text, seamless loop.",
+   "file": "motion/alphabet.gif",
+   "depicts": "A wheel of letters turning around a central lotus, one highlighted at a time.",
+   "means": "Malini letters as cosmology; phonemes made visible.",
+   "use": "Letter-emission chapters",
+   "watch": "Wheel-of-energies units.",
+   "note": "The wheel turns; one letter kindles per station."
   },
   {
    "id": "trident",
@@ -1158,8 +1305,14 @@
    "used_in": {
     "paratrishika": []
    },
-   "status": "wanted",
-   "brief": "A trident rising through three bands of mist. Why: Fourth-interpretation absorption image (5 hits); ascent through the powers. Blue-ink engraving on white, minimal, one moving element, no text, seamless loop."
+   "status": "banked-described",
+   "brief": "A trident rising through three bands of mist. Why: Fourth-interpretation absorption image (5 hits); ascent through the powers. Blue-ink engraving on white, minimal, one moving element, no text, seamless loop.",
+   "file": "motion/trident.gif",
+   "depicts": "A trident rising through three bands of drifting mist.",
+   "means": "Ascent through the powers; Fourth-interpretation absorption.",
+   "use": "Trident chapters",
+   "watch": "Absorption beats.",
+   "note": "Mist parts; the prongs clear it."
   },
   {
    "id": "bee",
@@ -1168,8 +1321,14 @@
    "used_in": {
     "paratrishika": []
    },
-   "status": "wanted",
-   "brief": "A bee circling above a cooling pool of honey. Why: liquid honey cooling thicker; sweetness settling into form. Blue-ink engraving on white, minimal, one moving element, no text, seamless loop."
+   "status": "banked-described",
+   "brief": "A bee circling above a cooling pool of honey. Why: liquid honey cooling thicker; sweetness settling into form. Blue-ink engraving on white, minimal, one moving element, no text, seamless loop.",
+   "file": "motion/bee.gif",
+   "depicts": "A bee circling above a bowl of cooling honey.",
+   "means": "Sweetness settling into form; the teaching condensing.",
+   "use": "Honey chapters",
+   "watch": "Doctrine-settling beats.",
+   "note": "The bee circuits; the surface stills."
   },
   {
    "id": "mandala",
@@ -1178,8 +1337,14 @@
    "used_in": {
     "tibetan-dead": []
    },
-   "status": "wanted",
-   "brief": "A concentric deity mandala rotating slowly, courts within courts. Why: the deity days themselves (49 hits in d02). Blue-ink engraving on white, minimal, one moving element, no text, seamless loop."
+   "status": "banked-described",
+   "brief": "A concentric deity mandala rotating slowly, courts within courts. Why: the deity days themselves (49 hits in d02). Blue-ink engraving on white, minimal, one moving element, no text, seamless loop.",
+   "file": "motion/mandala.gif",
+   "depicts": "A concentric deity mandala rotating slowly, courts within courts.",
+   "means": "The deity days arrayed; the hundred peaceful and wrathful.",
+   "use": "Mandala chapters (d02/d05)",
+   "watch": "Deity-day beats.",
+   "note": "The courts revolve; the center holds."
   },
   {
    "id": "death-bell",
@@ -1188,8 +1353,14 @@
    "used_in": {
     "tibetan-dead": []
    },
-   "status": "wanted",
-   "brief": "A temple bell swinging one slow toll, sound-lines spreading outward. Why: opens every tibetan-dead unit; death announced, instruction begins. Blue-ink engraving on white, minimal, one moving element, no text, seamless loop."
+   "status": "banked-described",
+   "brief": "A temple bell swinging one slow toll, sound-lines spreading outward. Why: opens every tibetan-dead unit; death announced, instruction begins. Blue-ink engraving on white, minimal, one moving element, no text, seamless loop.",
+   "file": "motion/death-bell.gif",
+   "depicts": "A temple bell swinging one slow toll, sound-lines spreading.",
+   "means": "Death announced; instruction begins.",
+   "use": "Unit opens across tibetan-dead",
+   "watch": "Threshold beats.",
+   "note": "The bell swings; rings widen and fade."
   },
   {
    "id": "anubis",
