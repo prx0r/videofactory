@@ -58,6 +58,10 @@ under `<lane>/renders/_work/<stem>`.
   never produce empty/garbled wavs. Paratrishika: 14 structural sections merged
   into neighbouring granny sections + 2 validator-prescribed narration→dialogue
   type fixes; stored validation rebuilt; all 36 now gate-green.
+- **Paratrishika spoken titles** — PART numerals stripped from `directed` only
+  (record `text` keeps PART numbers; do NOT rebuild validation without
+  re-applying, as `validate()` recomputes directed). 3 Continue-reading prompts
+  silenced; 12 broken apparatus fragments removed (real notes kept).
 - **render_chapter TTS timeout** 300s → 1200s (n01 ~5-min intro block
   false-failed under the old cap).
 - **Shiva `build_all` pilot gate** — added missing `word_timestamps=True`
