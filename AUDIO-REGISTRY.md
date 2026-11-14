@@ -68,6 +68,13 @@ under `<lane>/renders/_work/<stem>`.
   confirmed live. All 36 green + approved.
 - **render_chapter TTS timeout** 300s → 1200s (n01 ~5-min intro block
   false-failed under the old cap).
+- **Shiva-unfunny 1.1 dead-air FOUND+FIXED (2026-11-14)**: pilot verse's 6
+  primary-source lecture cut-parts were stale-silent (-71dB) because
+  `build_standard_verse.cut()` skips if the part exists (`if exists: return`) —
+  a bad first build never regenerated. Deleted 1.1 intermediates, rebuilt verse,
+  re-assembled walks 0/A/B, re-uploaded all byte-verified. All 77 verses now
+  scanned: 0 silent cut-parts. (Lesson: delete intermediates before rebuilding
+  a verse; guard hides stale audio.)
 - **Shiva `build_all` pilot gate** — added missing `word_timestamps=True`
   (gate always counted 0 words without it; proofs were fine at ~494 words).
 - **MCP `vf_publish` allowlist** widened from `tantrasara|shiva|factory` to any
