@@ -216,13 +216,15 @@ def main():
             r = subprocess.run(
                 ['python3', _vf.tts_script(),
                  p['text'], p['file'], '1.0', VOICES[p['voice']]],
-                capture_output=True, text=True, timeout=300)
+                capture_output=True, text=True, timeout=1200)
         except subprocess.TimeoutExpired:
             # a hung Fish call must not kill a 48-minute run (ch16/ch17
             # 2026-11-05) — record it, render everything else, driver
-            # retries the chapter and the cache keeps all progress
+            # retries the chapter and the cache keeps all progress.
+            # 1200s: a ~5-minute intro block (n01 b1-b50) legitimately runs
+            # >300s of audio, so the old 300s cap false-failed it.
             failed.append(p['file'])
-            print(f'FAIL {p["file"]}: TTS call hung past 300s, skipped', flush=True)
+            print(f'FAIL {p["file"]}: TTS call hung past 1200s, skipped', flush=True)
             continue
         if r.returncode == 0 and os.path.exists(p['file']):
             dur = subprocess.run(
