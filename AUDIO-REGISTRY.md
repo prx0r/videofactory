@@ -58,10 +58,14 @@ under `<lane>/renders/_work/<stem>`.
   never produce empty/garbled wavs. Paratrishika: 14 structural sections merged
   into neighbouring granny sections + 2 validator-prescribed narration→dialogue
   type fixes; stored validation rebuilt; all 36 now gate-green.
-- **Paratrishika spoken titles** — PART numerals stripped from `directed` only
-  (record `text` keeps PART numbers; do NOT rebuild validation without
-  re-applying, as `validate()` recomputes directed). 3 Continue-reading prompts
-  silenced; 12 broken apparatus fragments removed (real notes kept).
+- **Paratrishika spoken titles + dodgy-scan** — PART numerals and "Part XXX"
+  stripped from `directed` only (record keeps PART numbers; do NOT rebuild
+  validation without re-applying, as `validate()` recomputes `directed`);
+  spoken Romans (Part/KSTS/verse/list) → English words; 35 ALL-CAPS citation
+  labels → sentence case; 3 Continue-reading prompts silenced; broken
+  apparatus/URL/symbol junk removed (real notes kept); 2 scansion blocks
+  silenced; `√`→"root" in TTS map. Verse (64–774/unit) and man (1–43/unit)
+  confirmed live. All 36 green + approved.
 - **render_chapter TTS timeout** 300s → 1200s (n01 ~5-min intro block
   false-failed under the old cap).
 - **Shiva `build_all` pilot gate** — added missing `word_timestamps=True`

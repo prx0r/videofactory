@@ -49,6 +49,7 @@ TTS_SAY.update({
     "Parātrīśikā": "Paratrishika",
     "PHOWA": "POWAH", "Phowa": "Powah", "phowa": "powah",
     "&#124;": ",", "&amp;": "and", "&#39;": "'", "&#8217;": "'",
+    "√": "root ",
 })
 
 
