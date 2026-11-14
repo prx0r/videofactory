@@ -88,6 +88,25 @@ under `<lane>/renders/_work/<stem>`.
    then TTS pipeline.
 3. **paratrishika 14** — DONE (merged + approved + queued).
 
+## Lane audiobook blockers (spec, 2026-11-14)
+
+Solved before queueing — no gate blockers remain for audio:
+- **H1 intro-thumbnail REDs are visual-only** (p01,p02,p03,p04,p06,p07,heist).
+  Audio renders via `validate_storyboard_gate` (green+approval), which ignores
+  H1/H8 planning estimates. `vf_gate` conflates them — do not treat H1 as an
+  audio block. Deferred to the video stage.
+- **Oversized TTS groups — split**: tibetan d01 (12k chars) and d02 (10k) exceeded
+  the proven 7.3k single-call range. Split via filed drops at sentence breaks
+  (d01: 6 splits, d02: 5 splits; 1s breaths). Now max 1.9k/5.7k. Approvals intact
+  (drops are not SHA-pinned).
+- **Tibetan b1 toll-bed drops FILED** (were `.proposed` only; `toll` key stripped
+  as non-schema — pause+why preserved, 2.0s bed).
+- **Monitor (within timeout, split only on actual FAIL)**: d04/d05 (~8k),
+  n08 (7.0k)/n09 (7.4k), deathworks madman (8.7k)/heist (7.2k)/escape (6.3k),
+  para max (5.8k). All <1200s TTS timeout; pipeline logs + continues on failure.
+- Paratrishika 36/36 + nibbana n01-n04 already verified; master queue renders
+  serially with per-unit publish+delete (disk law).
+
 ## Gotchas learned
 
 - Total disk is tight (96G). `~/.cache` and the full analayo clone were the
