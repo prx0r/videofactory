@@ -9,7 +9,7 @@ this doc is the cross-repo pointer.
 | repo | contents | size | rights |
 |---|---|---|---|
 | **prx0r/vivek** | Complete Works of Swami Vivekananda — vols 1–9 + introduction, unpublished, appendices (source: ramakrishnavivekananda.info) | 1,208,442 words · 896-chapter catalogue (genre, dates, places) · one `.md` per volume | PD (author d. 1902) |
-| **prx0r/ramakrishna** | The Gospel of Râmakrishna, tr. Abhedananda 1907 — introduction + 14 chapters | 82,292 words · per-chapter `.md` + catalogue · Question-Led spec (`SPEC-QUESTION-LED.md`) with curation in progress | PD (1907 ed.) |
+| **prx0r/ramakrishna** | The Gospel of Râmakrishna, tr. Abhedananda 1907 — introduction + 14 chapters | 82,292 words · per-chapter `.md` + catalogue · curation complete: **Complete Sessions** emitted (313 KEEP / 76 CUT, 77,468 words) + unused/COVERAGE/ledger | PD (1907 ed.) |
 
 Both repos ship `tools/`, `output/`, catalogues and READMEs; HTML caches are
 gitignored.
@@ -37,15 +37,29 @@ gitignored.
   excluded so every word renders exactly once.
 - ~5,900 groups ≈ 33 h ETA; monitoring: `tools/tts_status.py` (console) +
   `--serve 8612` dashboard + per-slug `notify-send` + log.
-- Progress at PR time: 9 of 13 talks in R2; `great-teachers` rendering.
+- **Talks complete: 13/13 in R2** (6 h 37 min total; `TALKS-INDEX.md`).
+- Volume batch running: vols 1–9 + unpublished + appendices, ~3.4k groups,
+  ETA ~35–40 h, self-healing (watchdog + flock + retries + done markers).
+- **Language guard:** fish cannot read Devanagari/Bengali — Indic blocks are
+  never voiced (4,452 blocks / 219,792 words skipped, documented in
+  `LANGUAGE-POLICY.md`; voice-QA samples in `r2:.../samples/`).
 
 ## Shorts (ready, deliberately NOT in the queue)
 
 - **102 extract-only shorts**, 60–120 s, standalone-checked, 15 themes across
   the full corpus: `shorts/ledger.jsonl`, `shorts/REVIEW.md` (full text),
   `shorts/TOPICS.md` in prx0r/vivek.
-- Nothing renders until the owner approves; they then join the same pipeline
-  as `talks/<slug>` entries.
+- **Tiered after full manual review:** S26 / A50 / B21 / C5 (`shorts/TIERS.md`),
+  duplicate pass done, 5 re-spans applied, zero Indic spans.
+- Nothing renders until the owner approves; `tools/render_shorts.py --tier S
+  --render` voices an approved tier (old-man voice, same norm, `shorts/<id>.mp3`).
+- `tools/shorts_reuse.py`: 28 shorts are exact fish-free slices of already
+  rendered group audio.
+
+## Process notes
+
+Both repos carry append-only `PROCESS-NOTES.md` (pipeline law, runbook,
+mistakes log) — read those before changing anything.
 
 ## Triggering a render from this stack
 
