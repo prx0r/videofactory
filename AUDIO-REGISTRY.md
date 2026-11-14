@@ -114,6 +114,12 @@ Solved before queueing — no gate blockers remain for audio:
 - Paratrishika 36/36 + nibbana n01-n04 already verified; master queue renders
   serially with per-unit publish+delete (disk law).
 
+- **Self-healing completion (2026-11-14)**: primary `/tmp/MASTER_QUEUE.sh` +
+  watchdog `/tmp/watchdog.sh` + idempotent `/tmp/MASTER_QUEUE2.sh` (flock,
+  skips units already on R2, forces n01/n04 rework, writes
+  `/tmp/queue_ALL_DONE`). If the primary dies, the watchdog relaunches the
+  idempotent finisher so all 63 units complete unattended. Freed ~3.4G by
+  deleting shiva wav intermediates (mp3 proofs+walks already on R2).
 ## Gotchas learned
 
 - Total disk is tight (96G). `~/.cache` and the full analayo clone were the
