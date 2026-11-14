@@ -16,12 +16,12 @@ scope for this session.
 |---|---|---|---|
 | Tantrasara (funny) | `~/tantrasara` | ✅ DONE | 22 shipped (owner-closed 2026-11-11) |
 | Shiva-sutras (funny) | `~/tantrasara/shiva` | ✅ DONE | 77/78 shipped, s29 waived (owner-closed) |
-| **Shiva-sutras (UNFUNNY / STANDARD)** | `~/shiva-sutras` | ⏳ BUILDING | `build_all.py` running (pilot gate fixed); 77 verses 0→A→B |
+| **Shiva-sutras (UNFUNNY / STANDARD)** | `~/shiva-sutras` | ✅ BUILT | 77 proofs/layer (0/A/B) + walks 0/A/B on R2; owner ears still required before any master ships. |
 | Śivastotrāvalī (chant) | `~/kashmir_audio`, `~/fish_audio`, `~/stotras` | ✅ DONE | 450/450 verses, 450 wav + 450 mp3, 20 hymns; fulls zip on R2 |
 | Śivastotrāvalī (slang audiobook) | `~/shiva-sutras` + R2 `ayoutube` | ⏳ SOURCE | new ChatGPT Parts XXVII/XLV on R2; extends to Part XLVI / Hymn XX |
-| analayo-nibbana | `~/analayo-nibbana` (sparse, text-only) | ⏳ BUILDING | Rung A CORE assembling (seed + s1–s6, no human-intros); 20 spans gapped (7 lecs missing) |
+| analayo-nibbana | `~/analayo-nibbana` (sparse, text-only) | ✅ DRAFT ON R2 | Rung A CORE draft 2h05m + gaps file on R2 (`analayo/`); 20 spans silent (7 lecs missing). |
 | vatulanatha ("vanustaya") | `~/vatulanatha` | ⛔ BLOCKED | text-complete; 9 owner decisions approved — applying now, then TTS |
-| nibbana | `~/nibbana` | ⏳ RENDERING | 10 approved; n01+n02 on R2, n03+ in progress |
+| nibbana | `~/nibbana` | ⏳ RENDERING | 10 approved; n01+n02+n03 on R2, n04+ in progress |
 | paramarthasara | `~/paramarthasara` | ⏳ QUEUED | 7 approved |
 | tibetan-dead | `~/tibetan-dead` | ⏳ QUEUED | 5 approved |
 | deathworks | `~/deathworks` | ⏳ QUEUED | 5 approved |
