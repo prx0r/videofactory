@@ -21,7 +21,7 @@ scope for this session.
 | Śivastotrāvalī (slang audiobook) | `~/shiva-sutras` + R2 `ayoutube` | ⏳ SOURCE | new ChatGPT Parts XXVII/XLV on R2; extends to Part XLVI / Hymn XX |
 | analayo-nibbana | `~/analayo-nibbana` (sparse, text-only) | ✅ DRAFT ON R2 | Rung A CORE draft 2h05m + gaps file on R2 (`analayo/`); 20 spans silent (7 lecs missing). |
 | vatulanatha ("vanustaya") | `~/vatulanatha` | ⛔ BLOCKED | text-complete; 9 owner decisions approved — applying now, then TTS |
-| nibbana | `~/nibbana` | ⏳ RENDERING | 10 approved; n01+n02+n03 on R2, n04+ in progress |
+| nibbana | `~/nibbana` | ⏳ n01-n04 on R2; PAUSED for disk while analayo rebuilds (n05 cache kept, resumes after) |
 | paramarthasara | `~/paramarthasara` | ⏳ QUEUED | 7 approved |
 | tibetan-dead | `~/tibetan-dead` | ⏳ QUEUED | 5 approved |
 | deathworks | `~/deathworks` | ⏳ QUEUED | 5 approved |
