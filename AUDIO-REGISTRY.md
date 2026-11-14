@@ -19,9 +19,9 @@ scope for this session.
 | **Shiva-sutras (UNFUNNY / STANDARD)** | `~/shiva-sutras` | ✅ BUILT | 77 proofs/layer (0/A/B) + walks 0/A/B on R2; owner ears still required before any master ships. |
 | Śivastotrāvalī (chant) | `~/kashmir_audio`, `~/fish_audio`, `~/stotras` | ✅ DONE | 450/450 verses, 450 wav + 450 mp3, 20 hymns; fulls zip on R2 |
 | Śivastotrāvalī (slang audiobook) | `~/shiva-sutras` + R2 `ayoutube` | ⏳ SOURCE | new ChatGPT Parts XXVII/XLV on R2; extends to Part XLVI / Hymn XX |
-| analayo-nibbana | `~/analayo-nibbana` (sparse, text-only) | ✅ FINAL ON R2 | Rung A `rungA_core_final.mp3` (2h04m, 0 gaps, byte-verified); draft kept; source mp3s cleared from disk (recoverable via git). |
+| analayo-nibbana | `~/analayo-nibbana` (sparse, text-only) | ✅ FINAL ON R2 | Rung A `rungA_core_final.mp3` (2h04m, 0 gaps, byte-verified) + black-screen mp4 (below); draft kept; sources cleared (recoverable). |
 | vatulanatha ("vanustaya") | `~/vatulanatha` | ⏸ ON HOLD (owner) | #1-3 applied (order, home, C-rule); G0-G10 PASS. Left for later. Still needs: #4-9, source audio (missing everywhere), TTS. |
-| nibbana | `~/nibbana` | ⏳ RENDERING (master queue) | n01-n04 on R2; n05+ rendering serially, per-unit publish+delete. |
+| nibbana | `~/nibbana` | ⏳ RENDERING (master queue) | n01-n05 on R2; n06-n10 rendering serially, per-unit publish+delete. |
 | paramarthasara | `~/paramarthasara` | ⏳ QUEUED | 7 approved |
 | tibetan-dead | `~/tibetan-dead` | ⏳ QUEUED | 5 approved |
 | deathworks | `~/deathworks` | ⏳ QUEUED | 5 approved |
