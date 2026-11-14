@@ -7,7 +7,7 @@ Updated 2026-11-14. New session products first, then pre-existing libraries.
 
 | Product | R2 key(s) | Status |
 |---|---|---|
-| nibbana ch.1–10 audio (granny/man TTS) | `nibbana/n01_audio.mp3` … `nibbana/n10_audio.mp3` | n01–n04 ✅ live; n05–n10 rendering |
+| nibbana ch.1–10 audio (granny/man TTS) | `nibbana/n01_audio.mp3` … `n10_audio.mp3` | n01–n07 ✅ live; n08–n10 rendering (n01/n04 rework queued) |
 | paramarthasara p01–p07 audio | `paramarthasara/pNN_audio.mp3` | queued behind nibbana |
 | tibetan-dead d01–d05 audio | `tibetan-dead/dNN_audio.mp3` | queued |
 | deathworks w01–w05 audio | `deathworks/<stem>_audio.mp3` | queued |
@@ -54,3 +54,12 @@ Render recipe (all lanes): per-unit `render_chapter` → `assemble_chapter` →
 - `nibbana/previews/n02_teaching.mp3` (mid-chapter teaching, 75s)
 - `analayo/previews/opening.mp3` (motto + first question, 90s)
 - Full takes: `nibbana/n02_audio.mp3`, `analayo/rungA_core_final.mp3`, `shiva/std/1_1_B.mp3`
+
+## E. Shorts dependency (next phase)
+
+Shorts slice the content-hash **group-wav cache**, but the audio pass deletes
+wavs after publishing the mp3. Resolution for the shorts phase: the shorts
+cutter selects source bids -> if a group wav is missing, render just those
+groups (one Fish call each, cheap) before slicing — never re-render the whole
+unit. Alternative: retain per-lane group wavs on R2 and pull on demand.
+See `docs/SHORTS-PROCESS.md`.
