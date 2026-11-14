@@ -48,3 +48,9 @@ Render recipe (all lanes): per-unit `render_chapter` → `assemble_chapter` →
   draft live. No further analayo audio without owner override of the
   no-render law.
 - Vatulanatha: text-complete; audio blocked on 9 owner decisions (#1–2 done).
+
+### Preview clips (for listening; regenerate share links via \`rclone link\` — presigned URLs expire)
+- `nibbana/previews/n02_intro.mp3` (title + cold open, 75s)
+- `nibbana/previews/n02_teaching.mp3` (mid-chapter teaching, 75s)
+- `analayo/previews/opening.mp3` (motto + first question, 90s)
+- Full takes: `nibbana/n02_audio.mp3`, `analayo/rungA_core_final.mp3`, `shiva/std/1_1_B.mp3`
